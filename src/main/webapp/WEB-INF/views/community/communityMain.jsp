@@ -19,7 +19,7 @@
     <c:import url="/WEB-INF/views/layout/top.jsp" />
 
 <div class="Wrap">
-      커뮤니티 페이지입니다.테스트테스트!
+      커뮤니티 페이지입니다.테스트테스트!두번째
 </div>
 	<!-- bottom 임포트 -->
     	<c:import url="/WEB-INF/views/layout/bottom.jsp" />
