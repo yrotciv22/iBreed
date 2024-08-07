@@ -27,7 +27,7 @@
 		<!-- 메인 -->
 		<div class="main">
 
-                  index page입니다. 수정했음.
+                  index page입니다. 수정했음. 222
 
 
 		</div>
