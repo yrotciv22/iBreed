@@ -9,6 +9,11 @@ li {
 	list-style-type: none;
 }
 
+a {
+	text-decoration: none;
+	color:black;
+}
+
 #wrap {
 	width: 1280px;
 	height: 10000px;
@@ -74,18 +79,30 @@ li {
     left: -400px;
 }
 
+#slideCtrl {
+	position: relative;
+    top: 290px;
+}
+
+.ctrlBtn {
+	width: 13px;
+}
+
 .bigMenu {
 	font-size: 20px;
 	text-align: left;
 }
 
 #allView {
-	text-align: right;
+	position: relative;
+    right: -460px;
+    top: -22px;
 }
 
 #popularItem {
-	height: 495px;
+	height: 440px;
 	margin: 20px 20px;
+	padding: 10px 80px 0 80px;
 }
 
 #popularItem .menuBox {
@@ -102,6 +119,34 @@ li {
 	background-color: white;
 }
 
+#ratingCtrl {
+	margin: 0 auto;
+	padding: 0;
+}
+
+#popularItem li {
+	display: inline-block;
+	padding: 0 5px;
+}
+
+.bestIcon {
+	position: relative;
+    top: 10px;
+    left: -100px;
+}
+
+.starIcon {
+	position: absolute;
+    width: 55px;
+    background-color: gold;
+}
+
+.bestRating {
+	position: absolute;
+    left: 142px;
+    top: 15px;
+}
+
 #popularItem .menuTitle {
 	font-size: 20px;
 }
@@ -110,18 +155,43 @@ li {
 	font-size: 18px;
 }
 
+#popularItem .menuBox p {
+	width: 240px;
+	font-size: 13px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	text-align: left;
+}
+
+#arrow2-R {
+	position: relative;
+    width: 60px;
+    top: -250px;
+    right: -505px;
+}
+
+#arrow2-L {
+	position: relative;
+    width: 60px;
+    top: -250px;
+    left: -505px;
+}
+
 #newItem {
 	margin: 20px 0;
 	height: 955px;
 }
 
-#content ul {
-	padding-left: 20px;
+#bestItem ul,#newItem ul {
+	padding-left: 12px;
 }
 
 .menuBox {
 	float: left;
-	margin: 20px 0;
+	margin: 20px 3px;
 	padding: 0 3px;
 	text-align: left;
 }
@@ -140,7 +210,7 @@ li {
 	font-size: 18px;
 }
 
-li span {
+li span, #popularItem span {
 	font-size: 14px;
 	color: #888;
 	text-decoration: line-through;
@@ -159,6 +229,7 @@ li span {
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
+	color: #aaa;
 }
 
 /* 콘텐트 끝 */
