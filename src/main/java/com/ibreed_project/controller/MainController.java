@@ -12,4 +12,9 @@ public class MainController {
 		
 	return "index";
 }
+
+@RequestMapping("/map")
+	public String viewMap() {
+	return "map/map";
+}
 }
