@@ -26,7 +26,18 @@
 
 
 	<div id="main">
-		<aside id="menu"></aside>
+		<aside id="menu">
+				<ul>
+					<li>홈</li>
+					<li>프로필</li>
+					<li class="active">다이어리</li>
+					<li>감정관리</li>
+					<li>사진첩</li>
+					<li>캘린더</li>
+					<li>친구</li>
+					<li>마이페이지</li>
+				</ul>
+		</aside>
 
 		<section id="checklist"></section>
 
