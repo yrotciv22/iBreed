@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+/* 메인 */
+.main {
+
+	width: 1280px;
+      height: 1000px; 
+      display: flex;
+      flex-direction: column;
+     align-items: center;
+     justify-content: center;
+}
+
+
+@font-face {
+	font-family: "GmarketSansMedium";
+	src:
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "JalnanGothic";
+	src:
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "yg-jalnan";
+	src:
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
