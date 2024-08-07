@@ -27,7 +27,7 @@
 		<!-- 메인 -->
 		<div class="main">
 
-                  index page입니다.
+                  index page입니다.d
 
 
 		</div>
