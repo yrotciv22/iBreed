@@ -1,0 +1,164 @@
+@charset "UTF-8";
+
+* {
+	margin: 0 auto;
+	text-align: center;
+}
+
+li {
+	list-style-type: none;
+}
+
+#wrap {
+	width: 1280px;
+	height: 10000px;
+	background-color: pink;
+	padding-top: 25px;
+}
+
+/* 왼쪽 카테고리 */
+#category {
+	background-color: green;
+	width: 210px;
+	margin-left: 25px;
+	margin-right: 0px;
+	float: left;
+	border-top: 3px solid black;
+}
+
+/* 카테고리에 들어갈 쇼핑몰 로고? (클릭했을때 쇼핑몰 메인으로 돌아옴) */
+#home {
+	width: 200px;
+	height: 200px;
+	background-color: blue;
+	margin: 5px;
+}
+
+#categoryList ul {
+	padding-left: 5px;
+}
+
+#categoryList li {
+	text-align: left;
+	line-height: 45px;
+	padding-left: 0px;
+}
+
+/* 카테고리 끝 */
+
+/* 오른쪽 콘텐트 */
+#content {
+	width: 1020px;
+	background-color: yellow;
+	float: right;
+	list-style-type: none;
+}
+
+#slideShow {
+	width: 1020px;
+	height: 400px;
+	background-color: orange;
+}
+
+#arrow-R {
+	position: relative;
+    width: 60px;
+    top: 159px;
+    right: -400px;
+}
+
+#arrow-L {
+	position: relative;
+    width: 60px;
+    top: 159px;
+    left: -400px;
+}
+
+.bigMenu {
+	font-size: 20px;
+	text-align: left;
+}
+
+#allView {
+	text-align: right;
+}
+
+#popularItem {
+	height: 495px;
+	margin: 20px 20px;
+}
+
+#popularItem .menuBox {
+	width: 240px;
+	float: left;
+	margin: 20px 0;
+	padding: 0 15px;
+	text-align: left;
+}
+
+#popularItem .thumbnail {
+	width: 240px;
+	height: 240px;
+	background-color: white;
+}
+
+#popularItem .menuTitle {
+	font-size: 20px;
+}
+
+#popularItem .price {
+	font-size: 18px;
+}
+
+#newItem {
+	margin: 20px 0;
+	height: 955px;
+}
+
+#content ul {
+	padding-left: 20px;
+}
+
+.menuBox {
+	float: left;
+	margin: 20px 0;
+	padding: 0 3px;
+	text-align: left;
+}
+
+.thumbnail {
+	width: 319px;
+	height: 319px;
+	background-color: black;
+}
+
+.menuTitle {
+	font-size: 20px;
+}
+
+.price {
+	font-size: 18px;
+}
+
+li span {
+	font-size: 14px;
+	color: #888;
+	text-decoration: line-through;
+}
+
+.discount {
+	font-size: 18px;
+	color: #d03935;
+}
+
+.menuBox p {
+	width: 320px;
+	font-size: 13px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+/* 콘텐트 끝 */
