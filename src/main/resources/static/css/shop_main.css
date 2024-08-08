@@ -59,33 +59,51 @@ a {
 	list-style-type: none;
 }
 
+#slidePanel {
+	width: 4080px;
+    height: 400px;
+    position: relative;
+}
+
+
 #slideShow {
 	width: 1020px;
 	height: 400px;
 	background-color: orange;
+	overflow: hidden;
+}
+
+.slideImage {
+	float: left;
+	width:1020px;
+	height: 400px;
+}
+
+#arrow-R, #arrow-L, #arrow2-R, #arrow2-L {
+	position: relative;
+    width: 60px;
+    opacity: 0%;
+    cursor: pointer;
 }
 
 #arrow-R {
-	position: relative;
-    width: 60px;
-    top: 159px;
+    top: -240px;
     right: -400px;
 }
 
 #arrow-L {
-	position: relative;
-    width: 60px;
-    top: 159px;
+    top: -240px;
     left: -400px;
 }
 
 #slideCtrl {
 	position: relative;
-    top: 290px;
+    top: -120px;
 }
 
 .ctrlBtn {
 	width: 13px;
+	cursor: pointer;
 }
 
 .bigMenu {
@@ -93,16 +111,24 @@ a {
 	text-align: left;
 }
 
-#allView {
+/* #allView {
 	position: relative;
     right: -460px;
     top: -22px;
-}
+} */
 
 #popularItem {
-	height: 440px;
-	margin: 20px 20px;
-	padding: 10px 80px 0 80px;
+	width: 810px;
+    height: 380px;
+    margin: 20px auto;
+    padding-top: 10px;
+    overflow: hidden;
+}
+
+#popularSlide {
+	width: 2970px;
+	height: 380px;
+	position: relative;
 }
 
 #popularItem .menuBox {
@@ -166,18 +192,32 @@ a {
 	text-align: left;
 }
 
+#allView {
+	width: 80px;
+}
+
+#allViewBtn {
+	margin: 68px auto;
+}
+
+#allViewText {
+	text-align: center;
+	display: block;
+	text-decoration: none;
+	color: black;
+}
+
 #arrow2-R {
-	position: relative;
-    width: 60px;
-    top: -250px;
-    right: -505px;
+    top: -270px;
+    right: -418px;
+    opacity: 100%;
 }
 
 #arrow2-L {
-	position: relative;
-    width: 60px;
-    top: -250px;
-    left: -505px;
+    top: -270px;
+    left: -428px;
+    opacity: 100%;
+    visibility: hidden;
 }
 
 #newItem {
@@ -210,7 +250,7 @@ a {
 	font-size: 18px;
 }
 
-li span, #popularItem span {
+.existingPrice {
 	font-size: 14px;
 	color: #888;
 	text-decoration: line-through;
