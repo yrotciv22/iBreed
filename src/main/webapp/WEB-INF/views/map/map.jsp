@@ -12,7 +12,7 @@
 
 	<!-- 공통 layout: head.jsp -->
 	<c:import url="/WEB-INF/views/layout/head.jsp" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/index.css'/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/map/map.css'/>" />
 	<script src="<c:url value='/js/index.js'/>"></script>
 
 </head>
@@ -24,15 +24,28 @@
 	<c:import url="/WEB-INF/views/layout/top.jsp" />
 
 
-	<!-- 메인 -->
-	<div class="main">
 
+	<div id="main">
+		<aside id="menu">
+				<ul>
+					<li>홈</li>
+					<li>프로필</li>
+					<li class="active">다이어리</li>
+					<li>감정관리</li>
+					<li>사진첩</li>
+					<li>캘린더</li>
+					<li>친구</li>
+					<li>마이페이지</li>
+				</ul>
+		</aside>
 
-                  index page입니다. 수정했음.
+		<section id="checklist"></section>
 
-
-
+		<section id="map"></section>
+		왜 아무것도안나와??
 	</div>
+
+
 	<!-- 메인 끝 -->
 
 
