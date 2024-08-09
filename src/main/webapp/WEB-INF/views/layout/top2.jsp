@@ -17,14 +17,25 @@
 						src="<c:url value='/image/user.png'/>">
 					</a>
 				</div>
-				
+				<div>
+					<a href="<c:url value='/'/>"> 
+					<img class="bell"
+						src="<c:url value='/image/bell.png'/>"/>
+						<div class="bell_circle">11</div>
+					</a>
+				</div>
 				<div>
 					<a href="<c:url value='/'/>"> 
 					<img class="cart"
 						src="<c:url value='/image/cart.png'/>">
 					</a>
 				</div>
-				
+				<div>
+					<a href="<c:url value='/'/>"> 
+					<img class="logout"
+						src="<c:url value='/image/logout.png'/>">
+					</a>
+				</div>
 
 			</div>
 		</div>
