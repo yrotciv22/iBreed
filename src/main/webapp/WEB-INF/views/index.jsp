@@ -12,8 +12,9 @@
 
 <!-- 공통 layout: head.jsp -->
 <c:import url="/WEB-INF/views/layout/head.jsp" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/index.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/community.css'/>" />
 <script src="<c:url value='/js/index.js'/>"></script>
+<script src="<c:url value='/js/community.js'/>"></script>
 
 </head>
 
