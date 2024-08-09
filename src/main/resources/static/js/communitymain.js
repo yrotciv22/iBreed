@@ -24,6 +24,14 @@ $(document).ready(function() {
                     // 로그인된 경우
                     $('#before-login').hide();
                     $('#after-login').show();
+                    //프로필사진설정
+					let profileImage = response.profileImage ||
+ 					'/images/default-profile.png';  // 기본 프로필 이미지 경로 설정해야댐
+                    $('#profile-img').attr('src', profileImage);  // 프로필 이미지 업데이트
+                    
+                    
+                    
+                    //프로필정보가ㅈ고오기
                     $('#nickname').text(response.user.nickname);
                     $('#join-date').text(response.user.joinDate);
                     $('#level').text(response.user.level);
