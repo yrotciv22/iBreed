@@ -12,4 +12,18 @@ public class MainController {
 
 		return "index";
 	}
+
+	
+	@RequestMapping("/loggedin")
+	public String viewIndex2() {
+
+		return "index2";
+	}
+	@RequestMapping("/mydiary")
+	public String viewMydiary() {
+
+		return "diary/mydiaryMain";
+	}
 }
+
+

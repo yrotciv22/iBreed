@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-		 pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
@@ -7,30 +7,47 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>iBreed</title>
+<meta charset="UTF-8">
+<title>iBreed</title>
 
 
-	<!-- 공통 layout: head.jsp -->
-	<c:import url="/WEB-INF/views/layout/head.jsp" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/index.css'/>" />
-	<script src="<c:url value='/js/index.js'/>"></script>
+
+<!-- 공통 layout: head.jsp -->
+<c:import url="/WEB-INF/views/layout/head.jsp" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/index.css'/>" />
+<script src="<c:url value='/js/index.js'/>"></script>
+
+ <script>
+        function openPopup() {
+        	console.log("openPopup");
+            let popupUrl = "/mydiary"; 
+            let popupTitle = "iBreed Diary"; 
+            var popupWidth = 900; // 팝업 창 너비
+            var popupHeight = 600; // 팝업 창 높이
+            var leftPosition = (screen.width - popupWidth) / 2;
+            var topPosition = (screen.height - popupHeight) / 2;
+
+            window.open(popupUrl, popupTitle, 
+                        "width=" + popupWidth + 
+                        ",height=" + popupHeight + 
+                        ",top=100px"  + 
+                        ",left=100px"  + 
+                        ",resizable=yes,scrollbars=yes");
+        }
+    </script>
 
 </head>
 
 <body>
-<div class="all">
+	<div class="all">
 
-	<!-- 공통 layout: top.jsp -->
-	<c:import url="/WEB-INF/views/layout/top.jsp" />
-
-
+		<!-- 공통 layout: top.jsp -->
+		<c:import url="/WEB-INF/views/layout/top2.jsp" />
 
 
 		<!-- 메인 -->
-		<!-- 0809 am push -->
 		<div class="main">
-
 
 			<div class="search_bar_wrap">
 				<div>
@@ -41,7 +58,7 @@
 
 			<div class="contents_wrap">
 				<div class="left_contents">
-					<div class="main_banner boerder">
+					<div class="main_banner border">
 					<img src="https://media.istockphoto.com/id/1213866189/ko/%EC%82%AC%EC%A7%84/%EB%AA%A8%ED%98%95-3d-%EB%A0%8C%EB%8D%94%EB%A7%81%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%9E%90%EC%8B%9D-%EC%B9%A8%EC%8B%A4-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4.jpg?s=2048x2048&w=is&k=20&c=-G9AR5gJ-UakkR1K4Ajr6rqKdOltvznwnMBvQ3XOtzs="/></div>
 
 					<div class="main_short_cut_wrap">
@@ -163,21 +180,40 @@
 
 				<div class="right_contents">
 					<div class="main_login border">
-						<span>아이브리드만의 다이어리를 이용해보세요.</span>
-						
-						<a href="<c:url value='/loggedin'/>">
+					<div class="loggedin_box1">
+					
+						<div class="circle"></div>
+						<div class="user_wrap">
+							<div class="user_nickname"> 맘편한세상 님</div>
+							<div class="user_id">mompyunhan</div>
+							
+								<div class="user_level">레벨 10</div>
+								<div class="user_level_bar">
+								<div class="level"></div>
+								
+								</div>
+								</div>
+					</div>
+						<div class="loggedin_box2">
+					
+					
+					<div class="main_diary_btn"  onclick="openPopup()">마이다이어리</div>
+					
+						<div class="circle_btn"><span>쪽지</span></div>
+							<div class="circle_btn"><span>설정</span></div>
+							<div class="circle_btn"><span>로그아웃</span></div>
+						</div>
+					<div></div>
+						<!-- <span>맘편한세상 님</span>
 						<button class="main_login_btn">
-							<span>iBREED</span> 로그인
+							<span>iBREED</span> 다이어리
 						</button>
-						</a>
 						
 						<div class="member_btns">
-							<div class="find_id">아이디 찾기</div>
+							<div class="find_id">쪽지</div>
 							|
-							<div class="find_pw">비밀번호 찾기</div>
-							|
-							<div class="join">회원가입</div>
-						</div>
+							<div class="find_pw">로그아웃</div>
+						</div> -->
 					</div>
 
 					<div class="main_market border">
@@ -205,20 +241,18 @@
 
 				</div>
 
-<div id="chatbot_btn">챗봇</div>
 				<div id="to_top_Btn">Top</div>
 			</div>
 
 
+		</div>
+		<!-- 메인 끝 -->
+
+
+		<!-- 공통 layout: botton.jsp -->
+		<c:import url="/WEB-INF/views/layout/bottom.jsp" />
+
 
 	</div>
-	<!-- 메인 끝 -->
-
-
-	<!-- 공통 layout: botton.jsp -->
-	<c:import url="/WEB-INF/views/layout/bottom.jsp" />
-
-
-</div>
 </body>
 </html>

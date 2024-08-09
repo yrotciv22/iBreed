@@ -21,20 +21,30 @@
         <div class="Wrap">
             <div class="content-wrapper">
                 <nav class="sidebar">
-                <!--로그인 상태에 따라 다른 내용을 표시  -->
-                <div class="login-container" id="before-login">	
-                    <div class="login-button">
-                        <a href="<c:url value='/communityAfterlogin'/>" class="login-link" id="login-Btn">IBREED 로그인</a>
-                        <div class="add-links">
-                        	<a href="<c:url value='/findID' />" class="add-link">아이디찾기</a>
-                        	<span>|</span>
-                        	<a href="<c:url value='/findpwd' />" class="add-link">비밀번호찾기</a>
-                        	<span>|</span>
-                        	<a href="<c:url value='/join' />" class="add-link">회원가입</a>
+                   <!-- 로그인 후 프로필 정보 -->
+                        <div class="profile-container">
+                            <div class="profile-info">
+                                <div class="profile-header">
+                                    <img src="<c:url value='/static/images/profile.png' />" alt="프로필" class="profile-img">
+                                    <div>
+                                        <p>닉네임:${user.nickname}</p>
+                                        <p>가입일: ${user.joinDate}</p>
+                                    </div>
+                                </div>
+                                <div class="profile-body">
+                                    <p>레벨/등급: ${user.level}LV</p>
+                                    <p>(뭐 더 적을거 있음적고)</p>
+                                </div>
+                                <hr>
+                                <div class="profile-links">
+                                    <p><a href="#">내가 쓴 게시글</a></p>
+                                    <p><a href="#">내가 쓴 댓글</a></p>
+                                    <p><a href="#">좋아요한 게시글</a></p>
+                                </div>
+                                <hr>
+                                <button class="community-write-btn">커뮤니티 글쓰기</button>
+                            </div>
                         </div>
-                    </div>
-                    </div>
-                   
                       
                     <ul>
                         <li><a href="#" class="nav-link">임신출산</a></li>
