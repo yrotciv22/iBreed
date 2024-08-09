@@ -1,0 +1,275 @@
+@charset "UTF-8";
+
+* {
+	margin: 0 auto;
+	text-align: center;
+}
+
+li {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+	color:black;
+}
+
+#wrap {
+	width: 1280px;
+	height: 10000px;
+	background-color: pink;
+	padding-top: 25px;
+}
+
+/* 왼쪽 카테고리 */
+#category {
+	background-color: green;
+	width: 210px;
+	margin-left: 25px;
+	margin-right: 0px;
+	float: left;
+	border-top: 3px solid black;
+}
+
+/* 카테고리에 들어갈 쇼핑몰 로고? (클릭했을때 쇼핑몰 메인으로 돌아옴) */
+#home {
+	width: 200px;
+	height: 200px;
+	background-color: blue;
+	margin: 5px;
+}
+
+#categoryList ul {
+	padding-left: 5px;
+}
+
+#categoryList li {
+	text-align: left;
+	line-height: 45px;
+	padding-left: 0px;
+}
+
+/* 카테고리 끝 */
+
+/* 오른쪽 콘텐트 */
+#content {
+	width: 1020px;
+	background-color: yellow;
+	float: right;
+	list-style-type: none;
+}
+
+#slidePanel {
+	width: 4080px;
+    height: 400px;
+    position: relative;
+}
+
+
+#slideShow {
+	width: 1020px;
+	height: 400px;
+	background-color: orange;
+	overflow: hidden;
+}
+
+.slideImage {
+	float: left;
+	width:1020px;
+	height: 400px;
+}
+
+#arrow-R, #arrow-L, #arrow2-R, #arrow2-L {
+	position: relative;
+    width: 60px;
+    opacity: 0%;
+    cursor: pointer;
+}
+
+#arrow-R {
+    top: -240px;
+    right: -400px;
+}
+
+#arrow-L {
+    top: -240px;
+    left: -400px;
+}
+
+#slideCtrl {
+	position: relative;
+    top: -120px;
+}
+
+.ctrlBtn {
+	width: 13px;
+	cursor: pointer;
+}
+
+.bigMenu {
+	font-size: 20px;
+	text-align: left;
+}
+
+/* #allView {
+	position: relative;
+    right: -460px;
+    top: -22px;
+} */
+
+#popularItem {
+	width: 810px;
+    height: 380px;
+    margin: 20px auto;
+    padding-top: 10px;
+    overflow: hidden;
+}
+
+#popularSlide {
+	width: 2970px;
+	height: 380px;
+	position: relative;
+}
+
+#popularItem .menuBox {
+	width: 240px;
+	float: left;
+	margin: 20px 0;
+	padding: 0 15px;
+	text-align: left;
+}
+
+#popularItem .thumbnail {
+	width: 240px;
+	height: 240px;
+	background-color: white;
+}
+
+#ratingCtrl {
+	margin: 0 auto;
+	padding: 0;
+}
+
+#popularItem li {
+	display: inline-block;
+	padding: 0 5px;
+}
+
+.bestIcon {
+	position: relative;
+    top: 10px;
+    left: -100px;
+}
+
+.starIcon {
+	position: absolute;
+    width: 55px;
+    background-color: gold;
+}
+
+.bestRating {
+	position: absolute;
+    left: 142px;
+    top: 15px;
+}
+
+#popularItem .menuTitle {
+	font-size: 20px;
+}
+
+#popularItem .price {
+	font-size: 18px;
+}
+
+#popularItem .menuBox p {
+	width: 240px;
+	font-size: 13px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	text-align: left;
+}
+
+#allView {
+	width: 80px;
+}
+
+#allViewBtn {
+	margin: 68px auto;
+}
+
+#allViewText {
+	text-align: center;
+	display: block;
+	text-decoration: none;
+	color: black;
+}
+
+#arrow2-R {
+    top: -270px;
+    right: -418px;
+    opacity: 100%;
+}
+
+#arrow2-L {
+    top: -270px;
+    left: -428px;
+    opacity: 100%;
+    visibility: hidden;
+}
+
+#newItem {
+	margin: 20px 0;
+	height: 955px;
+}
+
+#bestItem ul,#newItem ul {
+	padding-left: 12px;
+}
+
+.menuBox {
+	float: left;
+	margin: 20px 3px;
+	padding: 0 3px;
+	text-align: left;
+}
+
+.thumbnail {
+	width: 319px;
+	height: 319px;
+	background-color: black;
+}
+
+.menuTitle {
+	font-size: 20px;
+}
+
+.price {
+	font-size: 18px;
+}
+
+.existingPrice {
+	font-size: 14px;
+	color: #888;
+	text-decoration: line-through;
+}
+
+.discount {
+	font-size: 18px;
+	color: #d03935;
+}
+
+.menuBox p {
+	width: 320px;
+	font-size: 13px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	color: #aaa;
+}
+
+/* 콘텐트 끝 */

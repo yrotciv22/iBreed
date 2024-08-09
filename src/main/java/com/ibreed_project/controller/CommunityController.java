@@ -11,4 +11,10 @@ public class CommunityController {
 	
 	    return "community/communityMain"; 
 	  }
+	  
+	  @RequestMapping("/communityAfterlogin") 
+	  public String viewcommunityAfterlogin() {
+	
+	    return "community/communityAfterlogin"; 
+	  }
 }

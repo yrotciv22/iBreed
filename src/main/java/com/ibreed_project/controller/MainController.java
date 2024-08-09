@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 
+
 	@RequestMapping("/")
 	public String viewIndex() {
 
 		return "index";
 	}
+
 	
 	@RequestMapping("/loggedin")
 	public String viewIndex2() {
@@ -23,3 +25,5 @@ public class MainController {
 		return "diary/mydiaryMain";
 	}
 }
+
+
