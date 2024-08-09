@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ibreed_project.dao.IJoinDAO">
-	<resultMap id="postResult" type="com.ibreed_project.model.JoinVO">
-		<result property="postNo" column="postNo" />
-		<result property="postCtg" column="postCtg" />
-		<result property="postTitle" column="postTitle" />
-		<result property="postWriter" column="postWriter" />
-		<result property="postDate" column="postDate" jdbcType="TIMESTAMP" />
-		<result property="postContent" column="postContent" />
-	</resultMap>
 
-	<insert id="joinCommit" parameterType="com.ibreed_project.model.JoinVO">
-		INSERT INTO board (postNo, postCtg, postTitle, postWriter, postDate, postContent)
-		VALUES (#{postNo}, #{postCtg}, #{postTitle}, #{postWriter}, #{postDate}, #{postContent})
+	<insert id="joinCommit" parameterType="com.ibreed_project.model.AccountVO">
+		INSERT INTO user (user_id, user_password, user_nickname,user_name,user_gender,user_phone_number,user_email, user_birth, user_kids_select, user_fetus_old, user_kids_old, user_location_agree, user_address, user_address_detail,user_auth_address, user_hint, user_hint_sub, user_rate, user_profile_image, user_timestamp)
+		VALUES (#{user_id}, #{user_password}, #{user_nickname}, #{user_name}, #{user_gender}, #{user_phone_number}, #{user_email}, #{user_birth}, #{user_kids_select}, #{user_fetus_old}, #{user_kids_old}, #{user_location_agree}, #{user_address}, #{user_address_detail}, #{user_auth_address}, #{user_hint}, #{user_hint_sub}, 1, default, #{user_timestamp})
 	</insert>
 
 
