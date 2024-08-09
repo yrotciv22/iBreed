@@ -10,10 +10,12 @@
 	<meta charset="UTF-8">
 	<title>iBreed</title>
 
+
 	<!-- 공통 layout: head.jsp -->
 	<c:import url="/WEB-INF/views/layout/head.jsp" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/index.css'/>" />
 	<script src="<c:url value='/js/index.js'/>"></script>
+
 
 </head>
 
