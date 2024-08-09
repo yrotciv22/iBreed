@@ -5,7 +5,7 @@
 <footer >
       <div class="footer">
         <div class="ft_title_wrap">
-          <div class="ft_title">iBreed</div>
+          <div class="ft_title">iBREED</div>
          <select class="family_site" id="familySiteSelect">
             <option value="">패밀리 사이트</option>
           </select> 
