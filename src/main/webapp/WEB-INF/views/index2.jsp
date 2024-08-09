@@ -19,23 +19,19 @@
 <script src="<c:url value='/js/index.js'/>"></script>
 
  <script>
-        function openPopup() {
-        	console.log("openPopup");
-            let popupUrl = "/mydiary"; 
+        function openMyDiary() {
+        	console.log("Open MyDiary");
+            let requestUrl = "/mydiary"; 
             let popupTitle = "iBreed Diary"; 
-            var popupWidth = 900; // 팝업 창 너비
-            var popupHeight = 600; // 팝업 창 높이
-            var leftPosition = (screen.width - popupWidth) / 2;
-            var topPosition = (screen.height - popupHeight) / 2;
+            let popupWidth = 1200; 
+            let popupHeight = 700; 
 
-            window.open(popupUrl, popupTitle, 
+            window.open(requestUrl, popupTitle, 
                         "width=" + popupWidth + 
                         ",height=" + popupHeight + 
-                        ",top=100px"  + 
-                        ",left=100px"  + 
-                        ",resizable=yes,scrollbars=yes");
+                        ",top=0px" + ",left=0px");
         }
-    </script>
+</script>
 
 </head>
 
@@ -197,7 +193,7 @@
 						<div class="loggedin_box2">
 					
 					
-					<div class="main_diary_btn"  onclick="openPopup()">마이다이어리</div>
+					<div class="main_diary_btn" onclick="openMyDiary()">마이다이어리</div>
 					
 						<div class="circle_btn"><span>쪽지</span></div>
 							<div class="circle_btn"><span>설정</span></div>
