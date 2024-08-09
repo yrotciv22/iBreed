@@ -123,6 +123,13 @@ input:focus, input:active, input:hover {
 	overflow: hidden;
 }
 
+.map{
+	display: flex;
+	flex-direction: column;
+	align-items:center;
+	
+}
+
 .board_title {
 	display: flex;
 	align-items: center;
@@ -157,6 +164,16 @@ input:focus, input:active, input:hover {
 
 .main_short_cut_wrap div {
 	display: flex;
+}
+
+.main_board_map{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 380px;
+	height: 200px;
+	border-radius: 5px;
+	background: #ccc;
 }
 
 .see_more {
@@ -219,6 +236,7 @@ input:focus, input:active, input:hover {
 
 .member_btns {
 	display: flex;
+	align-items: center;
 	font-size: 12px;
 }
 
@@ -345,15 +363,15 @@ input:focus, input:active, input:hover {
 	position: fixed;
 	bottom: 3%;
 	right: 7%;
-	width: 56px;
-	height: 56px;
+	width: 50px;
+	height: 50px;
 	border: 1px solid #ccc;
 	border-radius: 50%;
 	cursor: pointer;
 	z-index: 99;
 	background-color: #fff;
 	display: none;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 #to_top_Btn:hover {

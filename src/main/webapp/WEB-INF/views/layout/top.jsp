@@ -35,13 +35,13 @@
 				<a href="<c:url value='/'/>">i다이어리</a>
 			</div>
 			<div>
-				<a href="<c:url value='/'/>">i마켓</a>
+				<a href="<c:url value='/shop'/>">i마켓</a>
 			</div>
 			<div>
 				<a href="<c:url value='/community'/>">커뮤니티</a>
 			</div>
 			<div>
-				<a href="<c:url value='/'/>">동네정보</a>
+				<a href="<c:url value='/map'/>">동네정보</a>
 			</div>
 			<div>
 				<a href="<c:url value='/'/>">공지사항</a>

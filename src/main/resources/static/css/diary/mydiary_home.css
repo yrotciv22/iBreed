@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+.left_wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 280px;
+	height: 100%;
+	border-right: 1px solid #ccc;
+}
+
+.today_feeling {
+	display: flex;
+	width: 100%;
+	height: 40px;
+	border: 1px solid #ccc;
+	font-size: 12px;
+}
+
+.profile_photo {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 140px;
+	background: #ccc;
+	border-radius: 10px;
+}
+
+.profile_text {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: calc(100% - 180px);
+	border: 1px solid #ccc;
+}
+
+.diary_title {
+	display: flex;
+	width: 100%;
+	height: 40px;
+	border: 1px solid #ccc;
+}
+
+.right_wrap {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+}
+
+.recent_posts {
+	display: flex;
+	width: 100%;
+	height: 140px;
+	border: 1px solid #ccc;
+}
