@@ -13,7 +13,7 @@
     <!-- 공통 layout: head.jsp -->
     <c:import url="/WEB-INF/views/layout/head.jsp" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/index.css'/>" />
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/join/join.css'/>" />
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/account/join.css'/>" />
     <script src="<c:url value='/js/index.js'/>"></script>
 
 
@@ -201,54 +201,54 @@
             const userEmail = document.getElementById('user_email').value.trim();
 
             // 각 필드가 비어있는지 확인하고 경고 메시지를 표시합니다
-            if (!userName) {
-                alert("이름을 입력해주세요.");
-                return false;
-            }
-            if (!userNickname) {
-                alert("닉네임을 입력해주세요.");
-                return false;
-            }
-            if (!userId) {
-                alert("아이디를 입력해주세요.");
-                return false;
-            }
-            if (!password) {
-                alert("비밀번호를 입력해주세요.");
-                return false;
-            }
-            if (!confirmPassword) {
-                alert("비밀번호 확인을 입력해주세요.");
-                return false;
-            }
-            if (!userHint) {
-                alert("비밀번호 질문을 선택해주세요.");
-                return false;
-            }
-            if (!userHintSub) {
-                alert("비밀번호 질문의 답변을 입력해주세요.");
-                return false;
-            }
-            if (!userGender) {
-                alert("성별을 선택해주세요.");
-                return false;
-            }
-            if (!userBirth) {
-                alert("생년월일을 입력해주세요.");
-                return false;
-            }
-            if (!userAddress) {
-                alert("주소를 입력해주세요.");
-                return false;
-            }
-            if (!userPhoneNumber) {
-                alert("휴대폰 번호를 입력해주세요.");
-                return false;
-            }
-            if (!userEmail) {
-                alert("이메일을 입력해주세요.");
-                return false;
-            }
+            // if (!userName) {
+            //     alert("이름을 입력해주세요.");
+            //     return false;
+            // }
+            // if (!userNickname) {
+            //     alert("닉네임을 입력해주세요.");
+            //     return false;
+            // }
+            // if (!userId) {
+            //     alert("아이디를 입력해주세요.");
+            //     return false;
+            // }
+            // if (!password) {
+            //     alert("비밀번호를 입력해주세요.");
+            //     return false;
+            // }
+            // if (!confirmPassword) {
+            //     alert("비밀번호 확인을 입력해주세요.");
+            //     return false;
+            // }
+            // if (!userHint) {
+            //     alert("비밀번호 질문을 선택해주세요.");
+            //     return false;
+            // }
+            // if (!userHintSub) {
+            //     alert("비밀번호 질문의 답변을 입력해주세요.");
+            //     return false;
+            // }
+            // if (!userGender) {
+            //     alert("성별을 선택해주세요.");
+            //     return false;
+            // }
+            // if (!userBirth) {
+            //     alert("생년월일을 입력해주세요.");
+            //     return false;
+            // }
+            // if (!userAddress) {
+            //     alert("주소를 입력해주세요.");
+            //     return false;
+            // }
+            // if (!userPhoneNumber) {
+            //     alert("휴대폰 번호를 입력해주세요.");
+            //     return false;
+            // }
+            // if (!userEmail) {
+            //     alert("이메일을 입력해주세요.");
+            //     return false;
+            // }
 
             if(!isIdChecked){
                 alert("아이디 중복 확인을 해 주세요.");
@@ -299,39 +299,39 @@
                     <tr>
                         <td><label>이름</label></td>
                         <td>
-                            <input type="text" id="user_name" name="user_name" class="text" size="20">
+                            <input type="text" id="user_name" name="user_name" class="text" size="20" required>
                         </td>
                     </tr>
                     <tr>
                         <td><label>닉네임</label></td>
                         <td>
-                            <input type="text" id="user_nickname" name="user_nickname" class="text" size="20">
+                            <input type="text" id="user_nickname" name="user_nickname" class="text" size="20"required>
                             <input type="button" value="닉네임중복확인" class="overlapbtn" onClick="nickCheck()">
                         </td>
                     </tr>
                     <tr>
                         <td><label>아이디</label></td>
                         <td>
-                            <input type="text" id="user_id" name="user_id" class="text" size="20">
+                            <input type="text" id="user_id" name="user_id" class="text" size="20"required>
                             <input type="button" value="ID중복확인" class="overlapbtn" onClick="idCheck()">
                         </td>
                     </tr>
                     <tr>
                         <td><label>비밀번호</label></td>
                         <td>
-                            <input type="password" id="user_password" name="user_password" class="text" size="20" placeholder=" (영문자+숫자+특수문자: 8자 이상)">
+                            <input type="password" id="user_password" name="user_password" class="text" size="20" placeholder=" (영문자+숫자+특수문자: 8자 이상)" required>
                         </td>
                     </tr>
                     <tr>
                         <td><label>비밀번호 확인</label></td>
                         <td>
-                            <input type="password" id="confirm_password" name="confirm_password">
+                            <input type="password" id="confirm_password" name="confirm_password" required>
                         </td>
                     </tr>
                     <tr>
                         <td><label>비밀번호 질문</label></td>
                         <td>
-                            <select id="hint" name="user_hint" class="text">
+                            <select id="hint" name="user_hint" class="text" required>
                                 <option value="">선택하세요</option>
                                 <option value="first_pet">어릴 적 애완동물 이름은?</option>
                                 <option value="mother_maiden_name">어머니의 성(성씨)은?</option>
@@ -343,15 +343,15 @@
                     <tr>
                         <td><label>비밀번호 정답</label></td>
                         <td>
-                            <input type="text" id="user_hint_sub" name="user_hint_sub">
+                            <input type="text" id="user_hint_sub" name="user_hint_sub" required>
                         </td>
                     </tr>
 
                     <tr>
                         <td>성별</td>
                         <td>
-                            <label><input type="radio" name="user_gender" value="true">남성</label>
-                            <label><input type="radio" name="user_gender" value="false">여성</label>
+                            <label><input type="radio" name="user_gender" value="true" required>남성</label>
+                            <label><input type="radio" name="user_gender" value="false" required>여성</label>
                         </td>
                     </tr>
 
@@ -359,15 +359,15 @@
                     <tr>
                         <td><label for="user_birth">생년월일</label></td>
                         <td>
-                            <input type="date" id="user_birth" name="user_birth" class="text">
+                            <input type="date" id="user_birth" name="user_birth" class="text" required>
                         </td>
                     </tr>
                     <tr>
                         <td><label for="user_address">주소</label></td>
                         <td>
-                            <input type="text" id="user_address" name="user_address" class="text" readonly>
+                            <input type="text" id="user_address" name="user_address" class="text" readonly required>
                             <input type="button" value="도로명주소검색" class="overlapbtn" onClick="searchAddress()">
-                            <label for="user_address_detail"></label><input type="text" id="user_address_detail" name="user_address_detail" class="text" placeholder="상세주소 입력" style="width:357px">
+                            <label for="user_address_detail"></label><input type="text" id="user_address_detail" name="user_address_detail" class="text" placeholder="상세주소 입력" style="width:357px" required>
 
                         </td>
 
@@ -376,14 +376,14 @@
                     <tr>
                         <td><label for="user_phone_number">휴대폰 번호</label></td>
                         <td>
-                            <input type="text" id="user_phone_number" name="user_phone_number" class="text" value="010" maxlength="11" style="width: 170px;" />
+                            <input type="text" id="user_phone_number" name="user_phone_number" class="text" value="010" maxlength="11" style="width: 170px;" required />
                         </td>
                     </tr>
                     <tr>
                         <td><label>이메일</label></td>
                         <td>
-                            <input type="text" id="user_email" name="user_email" class="user_email" style="width: calc(50% - 10px);"> @
-                            <select name="emailDomain" id="emailDomain">
+                            <input type="text" id="user_email" name="user_email" class="user_email" style="width: calc(50% - 10px);" required> @
+                            <select name="emailDomain" id="emailDomain" required>
                                 <option value="naver.com">naver.com</option>
                                 <option value="gmail.com">gmail.com</option>
                                 <option value="daum.net">daum.net</option>
@@ -394,29 +394,29 @@
                     <tr>
                         <td><label>유형 선택</label></td>
                         <td colspan="2">
-                            <label><input type="radio" name="user_kids_select" value="fetus" onclick="toggleInput('user_fetus_old', true)"> 임산부</label>
-                            <input type="number" id="user_fetus_old" name="user_fetus_old" class="text"  max="64" placeholder="개월 수 입력" style="max-width: 200px;" disabled>
+                            <label><input type="radio" name="user_kids_select" value="fetus" onclick="toggleInput('user_fetus_old', true)" required> 임산부</label>
+                            <input type="number" id="user_fetus_old" name="user_fetus_old" class="text"  max="64" placeholder="개월 수 입력" style="max-width: 200px;" disabled required>
                         </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td colspan="2">
-                            <label><input type="radio" name="user_kids_select" value="mom"  onclick="toggleInput('user_kids_old', true)"> 육아맘</label>
-                            <input type="number" id="user_kids_old" name="user_kids_old" class="text" max="64" placeholder="개월 수 입력" style="max-width: 200px;" disabled>
+                            <label><input type="radio" name="user_kids_select" value="mom"  onclick="toggleInput('user_kids_old', true)" required> 육아맘</label>
+                            <input type="number" id="user_kids_old" name="user_kids_old" class="text" max="64" placeholder="개월 수 입력" style="max-width: 200px;" disabled required>
                         </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td colspan="2">
-                            <label><input type="radio" name="user_kids_select" value="general" onclick="toggleInput('', false)"> 일반인</label>
+                            <label><input type="radio" name="user_kids_select" value="general" onclick="toggleInput('', false)" required> 일반인</label>
                         </td>
                     </tr>
 
                     <tr>
                         <td>위치정보 제공<span><br></span>
                         <td>
-                            <label><input type="radio" name="user_location_aggree" value="true">동의</label>
-                            <label><input type="radio" name="user_location_aggree" value="false">거부</label>
+                            <label><input type="radio" name="user_location_aggree" value="true" required>동의</label>
+                            <label><input type="radio" name="user_location_aggree" value="false" required>거부</label>
                         </td>
                     </tr>
                     <tr>

@@ -13,6 +13,8 @@
     <!-- 공통 layout: head.jsp -->
     <c:import url="/WEB-INF/views/layout/head.jsp" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/index.css'/>" />
+    <link rel="stylesheet" type="text/css" href="<c:url value='/css/account/login.css'/>" />
+
     <script src="<c:url value='/js/index.js'/>"></script>
 
 </head>
@@ -27,17 +29,18 @@
     <!-- 메인 -->
     <main class="container">
         <section>
+            <h1>로그인</h1><br><br>
+
+
             <form id="loginForm" class="login-form" action="<c:url value="/login/check"/>" method="post">
                 <div class="input-group">
                     <label for="user_id"></label>
                     <input type="text" id="user_id" name="user_id" placeholder="아이디를 입력해 주세요." required>
-                    <span class="error-message" id="idError" style="display: none;"></span>
                 </div>
 
                 <div class="input-group">
                     <label for="user_password"></label>
                     <input type="password" id="user_password" name="user_password" placeholder="비밀번호를 입력해 주세요." required>
-                    <span class="error-message" id="passwordError" style="display: none;"></span>
                 </div>
                 <button type="submit">로그인</button>
                 <div class="options">
@@ -49,17 +52,8 @@
             </form>
         </section>
 
-        <section class="sns-login">
-            <p>개인정보 보호를 위해 공용 PC에서 사용 시 SNS계정의 로그아웃 상태를 꼭 확인해 주세요.</p>
-            <div class="sns-icons">
-                <a href="#"><img src="<%= request.getContextPath() %>/img/login/naver.png"></a>
-                <a href="#"><img src="<%= request.getContextPath() %>/img/login/kakao.png"></a>
-                <a href="#"><img src="<%= request.getContextPath() %>/img/login/google.png"></a>
-            </div>
-        </section>
         <section class="buttons">
-            <button type="button" onclick="location.href='<%= request.getContextPath() %>/join.jsp'">회원가입</button>
-            <button type="button" onclick="location.href='#'">비회원 주문조회</button>
+            <button type="button" onclick="location.href='<%= request.getContextPath() %>/join'">회원가입</button>
         </section>
     </main>
     <!-- 메인 끝 -->
