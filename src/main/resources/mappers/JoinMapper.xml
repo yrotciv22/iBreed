@@ -4,8 +4,18 @@
 
 	<insert id="joinCommit" parameterType="com.ibreed_project.model.AccountVO">
 		INSERT INTO user (user_id, user_password, user_nickname,user_name,user_gender,user_phone_number,user_email, user_birth, user_kids_select, user_fetus_old, user_kids_old, user_location_agree, user_address, user_address_detail,user_auth_address, user_hint, user_hint_sub, user_rate, user_profile_image, user_timestamp)
-		VALUES (#{user_id}, #{user_password}, #{user_nickname}, #{user_name}, #{user_gender}, #{user_phone_number}, #{user_email}, #{user_birth}, #{user_kids_select}, #{user_fetus_old}, #{user_kids_old}, #{user_location_agree}, #{user_address}, #{user_address_detail}, #{user_auth_address}, #{user_hint}, #{user_hint_sub}, 1, default, #{user_timestamp})
+		VALUES (#{user_id}, #{user_password}, #{user_nickname}, #{user_name}, #{user_gender}, #{user_phone_number}, #{user_email}, #{user_birth}, #{user_kids_select}, #{user_fetus_old}, #{user_kids_old}, #{user_location_agree}, #{user_address}, #{user_address_detail}, #{user_auth_address}, #{user_hint}, #{user_hint_sub}, 1, 'default', #{user_timestamp})
 	</insert>
 
+	<select id="checkIdDuplicate" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM user WHERE user_id = #{id}
+	</select>
+
+	<select id="checkNicknameDuplicate" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM user WHERE user_nickname = #{nickname}
+	</select>
+	<select id="checkEmailDuplicate" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM user WHERE user_email = #{email}
+	</select>
 
 </mapper>

@@ -189,4 +189,14 @@ public class AccountVO {
     private String ueer_profile_image;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date User_timestamp;
+
+    public String getEmailDomain() {
+        return emailDomain;
+    }
+
+    public void setEmailDomain(String emailDomain) {
+        this.emailDomain = emailDomain;
+    }
+
+    private String emailDomain;
 }
