@@ -2,11 +2,57 @@ package com.ibreed_project.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class AccountVO {
 
+    // 기존 AccountVO 필드
+    private String user_id;
+    private String user_password;
+    private String user_nickname;
+    private String user_name;
+    private boolean user_gender;
+    private String user_phone_number;
+    private String user_email;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date user_birth;
+    private String user_kids_select;
+    private int user_fetus_old;
+    private int user_kids_old;
+    private boolean user_location_agree;
+    private String user_address;
+    private String user_address_detail;
+    private String user_auth_address;
+    private String user_hint;
+    private String user_hint_sub;
+    private String user_rate;
+    private String user_profile_image;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date user_timestamp;
+    private String emailDomain;
 
+    public String getReset_Token() {
+        return reset_Token;
+    }
+
+    public void setReset_Token(String reset_Token) {
+        this.reset_Token = reset_Token;
+    }
+
+    public LocalDateTime getToken_Expiration() {
+        return token_Expiration;
+    }
+
+    public void setToken_Expiration(LocalDateTime token_Expiration) {
+        this.token_Expiration = token_Expiration;
+    }
+
+    // 기존 FindAccountVO 필드
+    private String reset_Token;
+    private LocalDateTime token_Expiration;
+
+    // Getters and Setters for all fields
     public String getUser_id() {
         return user_id;
     }
@@ -16,11 +62,11 @@ public class AccountVO {
     }
 
     public String getUser_password() {
-        return User_password;
+        return user_password;
     }
 
     public void setUser_password(String user_password) {
-        User_password = user_password;
+        this.user_password = user_password;
     }
 
     public String getUser_nickname() {
@@ -151,44 +197,21 @@ public class AccountVO {
         this.user_rate = user_rate;
     }
 
-    public String getUeer_profile_image() {
-        return ueer_profile_image;
+    public String getUser_profile_image() {
+        return user_profile_image;
     }
 
-    public void setUeer_profile_image(String ueer_profile_image) {
-        this.ueer_profile_image = ueer_profile_image;
+    public void setUser_profile_image(String user_profile_image) {
+        this.user_profile_image = user_profile_image;
     }
 
     public Date getUser_timestamp() {
-        return User_timestamp;
+        return user_timestamp;
     }
 
     public void setUser_timestamp(Date user_timestamp) {
-        User_timestamp = user_timestamp;
+        this.user_timestamp = user_timestamp;
     }
-
-    private String user_id;
-    private String User_password;
-    private String user_nickname;
-    private String user_name;
-    private boolean user_gender;
-    private String user_phone_number;
-    private String user_email;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date user_birth;
-    private String user_kids_select;
-    private int user_fetus_old;
-    private int user_kids_old;
-    private boolean user_location_agree;
-    private String user_address;
-    private String user_address_detail;
-    private String user_auth_address;
-    private String user_hint;
-    private String user_hint_sub;
-    private String user_rate;
-    private String ueer_profile_image;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date User_timestamp;
 
     public String getEmailDomain() {
         return emailDomain;
@@ -198,5 +221,5 @@ public class AccountVO {
         this.emailDomain = emailDomain;
     }
 
-    private String emailDomain;
+
 }
