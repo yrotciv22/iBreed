@@ -18,8 +18,23 @@
 			<result property="" column=""/>
 		</resultMap>
 		
-		<!-- shop 메인 top 10 뽑아오기 -->
+		<!-- shop 메인 top 10 뽑아오기(판매량이 높은 순서) -->
 		<select id="selectTopTen" resultMap="prdResult">
-			SELECT * FROM product ORDER BY product_stock LIMIT 0,10
+			SELECT * FROM product ORDER BY product_sales DESC LIMIT 0,10
+		</select>
+		
+		<!-- 신상품 뽑아오기(메인 카테고리가 신상품인것들) -->
+		<select id="selectNewItem" resultMap="prdResult">
+			SELECT * FROM product WHERE product_main_category = '신상품'
+		</select>
+		
+		<!-- 베스트상품 뽑아오기(판매량 50개 이상부터 베스트상품으로 지정) -->
+		<select id="bestItem" resultMap="prdResult">
+			SELECT * FROM product WHERE product_sales >= 50
+		</select>
+		
+		<!-- 인기상품 뽑아오기(재고량이 얼마 안남은 순서로) -->
+		<select id="soldOutItem" resultMap="prdResult">
+			SELECT * FROM product ORDER BY product_stock LIMIT 0,6
 		</select>
 	</mapper>

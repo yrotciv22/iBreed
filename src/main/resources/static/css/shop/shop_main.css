@@ -16,14 +16,14 @@ a {
 
 #wrap {
 	width: 1280px;
-	height: 10000px;
-	background-color: pink;
+	/* background-color: pink; */
 	padding-top: 25px;
+	margin: 0 auto;
 }
 
 /* 왼쪽 카테고리 */
 #category {
-	background-color: green;
+	/* background-color: green; */
 	width: 210px;
 	margin-left: 25px;
 	margin-right: 0px;
@@ -35,26 +35,43 @@ a {
 #home {
 	width: 200px;
 	height: 200px;
-	background-color: blue;
+	/* background-color: blue; */
 	margin: 5px;
+}
+
+#home img {
+	width: 200px;
+}
+
+#categoryList {
+	border-top: 2px solid black;
 }
 
 #categoryList ul {
 	padding-left: 5px;
 }
 
-#categoryList li {
-	text-align: left;
-	line-height: 45px;
-	padding-left: 0px;
+#categoryList a {
+	display: block;
+    text-align: left;
 }
 
+#categoryList li {
+	text-align: left;
+	line-height: 55px;
+	padding-left: 0px;
+	font-weight: 600;
+}
+
+#categoryList li:hover {
+	color: #53AFB2;
+}
 /* 카테고리 끝 */
 
 /* 오른쪽 콘텐트 */
 #content {
 	width: 1020px;
-	background-color: yellow;
+	/* background-color: yellow; */
 	float: right;
 	list-style-type: none;
 }
@@ -119,7 +136,7 @@ a {
 
 #popularItem {
 	width: 810px;
-    height: 400px;
+    height: 410px;
     margin: 20px auto;
     padding-top: 10px;
     overflow: hidden;
@@ -134,7 +151,7 @@ a {
 #popularItem .menuBox {
 	width: 240px;
 	float: left;
-	margin: 20px 0;
+	margin: 20px 15px;
 	padding: 0 15px;
 	text-align: left;
 }
@@ -211,7 +228,8 @@ a {
 	text-align: center;
 	display: block;
 	text-decoration: none;
-	color: black;
+	color: #53AFB2;
+	font-weight: 600;
 }
 
 #arrowBox {
@@ -219,24 +237,24 @@ a {
 }
 
 #arrow2-R {
-    top: -270px;
-    right: -418px;
+    top: -280px;
+    right: -436px;
     opacity: 100%;
 }
 
 #arrow2-L {
-    top: -270px;
-    left: -428px;
+    top: -280px;
+    left: -407px;
     opacity: 100%;
     visibility: hidden;
 }
 
-#newItem {
+#newItem, #bestItem, #soldOutItem {
 	margin: 20px 0;
 	height: 955px;
 }
 
-#bestItem ul,#newItem ul {
+#bestItem ul,#newItem ul, #soldOutItem ul {
 	padding-left: 12px;
 }
 
@@ -247,14 +265,19 @@ a {
 	text-align: left;
 }
 
-.thumbnail {
+.thumbnail, .newThumbnail {
 	width: 319px;
 	height: 319px;
-	background-image: black;
+}
+
+#popularSlide .titleBox {
+	width: 240px;
+    position: absolute;
+    text-align: left;
 }
 
 .titleBox {
-	width: 240px;
+	width: 319px;
     position: absolute;
     text-align: left;
 }

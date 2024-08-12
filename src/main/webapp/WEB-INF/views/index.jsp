@@ -215,7 +215,6 @@
 		<!-- 공통 layout: botton.jsp -->
 		<c:import url="/WEB-INF/views/layout/bottom.jsp" />
 
-
 	</div>
 </body>
 </html>
