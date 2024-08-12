@@ -4,10 +4,9 @@ import com.ibreed_project.model.AccountVO;
 import com.ibreed_project.service.IJoinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Controller
 public class JoinController {
@@ -15,15 +14,19 @@ public class JoinController {
     @Autowired
     private IJoinService joinService;
 
+    //페이지 진입
     @RequestMapping("/join")
     public String join() {
         return "account/join";
     }
 
+    //회원가입 commit
     @RequestMapping("/join/commit")
     @ResponseBody
     public String joinCommit(@ModelAttribute AccountVO vo) {
         try {
+            vo.setUser_email(vo.getUser_email() +"@"+ vo.getEmailDomain());
+            System.out.println("이메일 머지 : " + vo.getUser_email());
             boolean result = joinService.joinCommit(vo);
             if(result) {
                 System.out.println("성공");
@@ -40,19 +43,39 @@ public class JoinController {
     }
 
 
-    @RequestMapping("/join/idCheck")
-    public String idCheck(@RequestParam String account) {
-        //서비스 연결 오네가이 시마수ㅡ
 
-        //if로 제대로 처리하면 안내
-        return "account/join";
+    @GetMapping("/checkId")
+    @ResponseBody
+    public String checkIdDuplicate(@RequestParam String id) {
+        System.out.println("컨트롤러 id 값 : " + id);
+        if (joinService.isIdDuplicate(id)) {
+            return "duplicate";
+        } else {
+            return "ok";
+        }
     }
 
-    @RequestMapping("/join/nicknameCheck")
-    public String nicknameCheck(@RequestParam String account) {
-        //서비스 연결 오네가이 시마수ㅡ
-
-        //if로 제대로 처리하면 안내
-        return "account/join";
+    @GetMapping("/checkNick")
+    @ResponseBody
+    public String checkNicknameDuplicate(@RequestParam String nickname) {
+        System.out.println("컨트롤러 닉네임 값 : " + nickname);
+        if (joinService.isNicknameDuplicate(nickname)) {
+            return "duplicate";
+        } else {
+            return "ok";
+        }
     }
+
+    @GetMapping("/checkEmail")
+    @ResponseBody
+    public String checkEmailDuplicate(@RequestParam String email) {
+        System.out.println("컨트롤러 닉네임 값 : " + email);
+        if (joinService.isEmailDuplicate(email)) {
+            return "duplicate";
+        } else {
+            return "ok";
+        }
+    }
+
+
 }
