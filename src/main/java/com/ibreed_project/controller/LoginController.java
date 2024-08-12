@@ -43,6 +43,7 @@ public class LoginController {
             System.out.println(session.getAttribute("user_id"));
             System.out.println(session.getAttribute("user_nickname"));
             System.out.println(session.getAttribute("user_rate"));
+            System.out.println(session.getAttribute("user_timestamp"));
             return "account/loginResult";
         } else {
             model.addAttribute("loginSuccess", false);

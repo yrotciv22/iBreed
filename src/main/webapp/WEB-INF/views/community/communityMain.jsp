@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<c:set var="userId" value="${sessionScope.user_id}" />  
 <!DOCTYPE html>
 <html>
   <head>
@@ -23,15 +24,16 @@
                 <nav class="sidebar">
                 <!-- 로그인 상태에 따라 다른 내용을 표시 -->
                 <c:choose>
-                    <c:when test="${not empty user}">
+                    <c:when test="${not empty userId}">
                         <!-- 로그인된 상태 -->
-                        <div id="after-login" class="profile-container">
+                        <div id="after-login" class="profile-container" style="display: none;">
                             <div class="profile-header">
                             <!-- 프사없으면 기본프사적용, 경로재설정필요 -->
                                 <img src="${user.profileImage != null ? user.profileImage : '/images/default-profile.png'}" alt="Profile Image" class="profile-img">
                                 <div>
-                                    <p>닉네임: ${user.username}</p>
-                                    <p>가입일: ${user.joinDate}</p>
+                                   <p>${sessionScope.user_nickname}님</p>
+                                   <p>${sessionScope.user_id}
+                                   <p>가입일:${sessionScope.user_timestamp}</p>
                                     <p>레벨/등급: ${user.level}</p>
                                     <p>(뭐 더 적을거 있음적고)</p>
                                 </div>
@@ -42,13 +44,14 @@
                                 <p><a href="/user/likes">좋아요한 게시글</a></p>
                             </div>
                             <a href="/community/write" class="community-write-btn">커뮤니티 글쓰기</a>
+                            <a href="/logout" class="logout-btn">로그아웃</a>
                         </div>
                     </c:when>
                     <c:otherwise>
                         <!-- 로그인되지 않은 상태 -->
                         <div class="login-container" id="before-login">	
                             <div class="login-button">
-                                <a href="<c:url value='/communityAfterlogin'/>" class="login-link" id="login-Btn">IBREED 로그인</a>
+                                <a href="<c:url value='/login'/>" class="login-link" id="login-Btn">IBREED 로그인</a>
                                 <div class="add-links">
                                     <a href="<c:url value='/findID' />" class="add-link">아이디찾기</a>
                                     <span>|</span>

@@ -25,7 +25,7 @@
                         <div class="profile-container">
                             <div class="profile-info">
                                 <div class="profile-header">
-                                    <img src="<c:url value='/static/images/profile.png' />" alt="프로필" class="profile-img">
+                                 <img src="${user.profileImageUrl}" alt="프로필" class="profile-img">
                                     <div>
                                         <p>닉네임:${user.nickname}</p>
                                         <p>가입일: ${user.joinDate}</p>
@@ -43,6 +43,7 @@
                                 </div>
                                 <hr>
                                 <button class="community-write-btn">커뮤니티 글쓰기</button>
+                                   <a href="/logout" class="logout-btn">로그아웃</a>
                             </div>
                         </div>
                       
