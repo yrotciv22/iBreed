@@ -37,7 +37,7 @@
 				<div>
 					<input />
 				</div>
-				<button class="search_btn">통합검색</button>
+				<button class="search_btn">통합검색 수정33</button>
 			</div>
 
 			<div class="contents_wrap">
