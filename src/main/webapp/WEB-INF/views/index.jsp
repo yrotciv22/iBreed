@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8">
-<title>iBreed</title>
+<title>iBreed Main</title>
 
 
 <!-- 공통 layout: head.jsp -->
 <c:import url="/WEB-INF/views/layout/head.jsp" />
+
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/index.css'/>" />
 <script src="<c:url value='/js/index.js'/>"></script>
@@ -29,7 +29,7 @@
 
 
 		<!-- 메인 -->
-		<!-- 0809 am push -->
+		<!-- 0812 6pm push -->
 		<div class="main">
 
 
@@ -51,9 +51,31 @@
 						<div class="main_row_wrap">
 							<div class="main_best border">
 								<div class="board_title">이달의 베스트 다이어리</div>
+
+								<ul class="main_board_ul">
+									<c:set var="index" value="0" />
+									<c:forEach var="post" items="${recentPosts}">
+										<c:if test="${index < 3}">
+											<li><a href="#">${post.postTitle}</a></li>
+											<c:set var="index" value="${index + 1}" />
+										</c:if>
+									</c:forEach>
+								</ul>
+
 							</div>
 							<div class="main_best border">
 								<div class="board_title">인기 게시글</div>
+
+								<ul class="main_board_ul">
+									<c:set var="index" value="0" />
+									<c:forEach var="post" items="${popularPosts}">
+										<c:if test="${index < 3}">
+											<li><a href="#">${post.postTitle}</a></li>
+											<c:set var="index" value="${index + 1}" />
+										</c:if>
+									</c:forEach>
+								</ul>
+
 							</div>
 						</div>
 
@@ -63,14 +85,9 @@
 
 								<!-- 게시판 텍스트 샘플 -->
 								<ul class="main_board_ul">
-									<li>임신 10주차</li>
-									<li>만삭 사진</li>
-									<li>만삭 사진 찍었어요</li>
-									<li>만삭 사진 촬영</li>
-									<li>만삭 촬영 후기 올려요~</li>
-									<li>만삭사진이라니</li>
-									<li>드디어 만삭 촬영 했어요.</li>
-
+									<c:forEach var="post" items="${pregnancyPosts}">
+										<li><a href="#">${post.postTitle}</a></li>
+									</c:forEach>
 								</ul>
 								<div class="see_more">더보기 ></div>
 								<!-- 샘플끝 -->
@@ -82,14 +99,9 @@
 								<div class="board_title">육아 정보</div>
 								<!-- 게시판 텍스트 샘플 -->
 								<ul class="main_board_ul">
-									<li>임신 10주차</li>
-									<li>만삭 사진</li>
-									<li>만삭 사진 찍었어요</li>
-									<li>만삭 사진 촬영</li>
-									<li>만삭 촬영 후기 올려요~</li>
-									<li>만삭사진이라니</li>
-									<li>드디어 만삭 촬영 했어요.</li>
-
+									<c:forEach var="post" items="${parentingPosts}">
+										<li><a href="#">${post.postTitle}</a></li>
+									</c:forEach>
 								</ul>
 								<div class="see_more">더보기 ></div>
 								<!-- 샘플끝 -->
@@ -101,14 +113,9 @@
 								<div class="board_title">중고 마켓</div>
 								<!-- 게시판 텍스트 샘플 -->
 								<ul class="main_board_ul">
-									<li>임신 10주차</li>
-									<li>만삭 사진</li>
-									<li>만삭 사진 찍었어요</li>
-									<li>만삭 사진 촬영</li>
-									<li>만삭 촬영 후기 올려요~</li>
-									<li>만삭사진이라니</li>
-									<li>드디어 만삭 촬영 했어요.</li>
-
+									<c:forEach var="post" items="${marketPosts}">
+										<li><a href="#">${post.postTitle}</a></li>
+									</c:forEach>
 								</ul>
 								<div class="see_more">더보기 ></div>
 								<!-- 샘플끝 -->
@@ -117,13 +124,9 @@
 								<div class="board_title">구인 구직</div>
 								<!-- 게시판 텍스트 샘플 -->
 								<ul class="main_board_ul">
-									<li>임신 10주차</li>
-									<li>만삭 사진</li>
-									<li>만삭 사진 찍었어요</li>
-									<li>만삭 사진 촬영</li>
-									<li>만삭 촬영 후기 올려요~</li>
-									<li>만삭사진이라니</li>
-									<li>드디어 만삭 촬영 했어요.</li>
+									<c:forEach var="post" items="${jobPosts}">
+										<li><a href="#">${post.postTitle}</a></li>
+									</c:forEach>
 
 								</ul>
 								<div class="see_more">더보기 ></div>
@@ -159,23 +162,53 @@
 
 				<div class="right_contents">
 					<div class="main_login border">
+
+						<!-- 로그인 X -->
 						<span>아이브리드만의 다이어리를 이용해보세요.</span> <a
-							href="<c:url value='/loggedin'/>">
+							href="<c:url value='/login'/>">
 							<button class="main_login_btn">
 								<span>iBREED</span> 로그인
 							</button>
 						</a>
 
 						<div class="member_btns">
-							<a href="<c:url value='/join/idcheck'/>">
+							<a href="<c:url value='/find-id'/>">
 								<div class="find_id">아이디 찾기</div>
-							</a> | <a href="<c:url value='/join/nicknamecheck'/>">
+							</a> | <a href="<c:url value='/reset-password'/>">
 								<div class="find_pw">비밀번호 찾기</div>
 
 							</a> | <a href="<c:url value='/join'/>">
 								<div class="join">회원가입</div>
 							</a>
 						</div>
+						<!-- 로그인 X 끝 -->
+
+						<!-- 로그인됨  
+					<div class="loggedin_box1">
+					
+						<div class="circle"></div>
+						<div class="user_wrap">
+							<div class="user_nickname"> 맘편한세상 님</div>
+							<div class="user_id">mompyunhan</div>
+							
+								<div class="user_level">레벨 10</div>
+								<div class="user_level_bar">
+								<div class="level"></div>
+								
+								</div>
+								</div>
+					</div>
+						<div class="loggedin_box2">
+
+					<div class="main_diary_btn" onclick="openMyDiary()">마이다이어리</div>
+					
+						<div class="circle_btn"><span>쪽지</span></div>
+							<div class="circle_btn"><span>설정</span></div>
+							<div class="circle_btn"><span>로그아웃</span></div>
+						</div>
+					<div></div>
+					 로그인된 상태 끝 -->
+
 					</div>
 
 					<div class="main_market border">
@@ -214,7 +247,6 @@
 
 		<!-- 공통 layout: botton.jsp -->
 		<c:import url="/WEB-INF/views/layout/bottom.jsp" />
-
 
 	</div>
 </body>

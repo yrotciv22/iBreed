@@ -7,25 +7,29 @@
 <head>
 <meta charset="UTF-8">
 <title>iBreed 쇼핑몰</title>
-<link rel="stylesheet"   type="text/css"  href="../css/shop_main.css">
+<c:import url="/WEB-INF/views/layout/head.jsp" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/community.css' />" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/shop/shop_main.css' />" />
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 <script src="<c:url value='/js/slideShow.js'/>"></script>
 <script src="<c:url value='/js/shop_main.js'/>"></script>
 </head>
 <body>
-	<header></header>
-	<nav></nav>
+
+	<c:import url="/WEB-INF/views/layout/top.jsp" />
+
+	<!-- 메인 -->
 	<section>
 		<div id="wrap">
 			<div id="category"> <!-- 왼쪽 카테고리 박스 -->
 				<div id="home">
-					<img src="">
+					<img src="https://play-lh.googleusercontent.com/yB5gop9KPTmwTHEjm89FDNkEgNWXW_CVVwWTsfA05rT66McI_3jxGfxwhsFaDvfsRqg=w240-h480-rw">
 				</div>
 				<div id="categoryList">
 					<ul>
 						<li><a href='#'>베스트</a></li>
-						<li><a href="#">i다이어리</a></li>
 						<li><a href="#">전체상품</a></li>
+						<li><a href="#">i다이어리</a></li>
 						<li><a href="#">i달력</a></li>
 						<li><a href="#">의류/잡화/소품</a></li>
 						<li><a href="#">임신/출산 선물세트</a></li>
@@ -59,28 +63,32 @@
 					<div class=""><strong class="bigMenu">실시간 인기 TOP 10⭐</strong></div>
 					<div id="popularSlide">
 						<c:forEach items="${topTenList}" var="prd" varStatus="status">
-							<div class="menuBox">
+							<div class="popularMenuBox" OnClick="location.href ='#'">
 								<div class="bestIcon">
 									<img class="tagIcon" src="../image/tag.png">
 									<strong class="bestRating">${status.count}</strong>
 								</div>
-								<div class="thumbnail">
-								<img class="thumbnailImg" src="${prd.product_img}">
+								<div class="P_thumbnail">
+									<img class="P_thumbnailImg" src="${prd.product_img}">
+									<div class="P_likeCartBox">
+										<a href="#"><img src="<c:url value='/image/cart_btn.png'/>"></a>
+										<a href="#"><img src="<c:url value='/image/like_btn.png'/>"></a>
+									</div>
 								</div>
-								<div class="titleBox">
-									<strong class="menuTitle">${prd.product_name}</strong><br>
+								<div class="P_titleBox">
+									<strong class="P_menuTitle">${prd.product_name}</strong><br>
 								</div>
-								<div class="prdExplain">
-									<strong class="price"><fmt:formatNumber value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}"
+								<div class="P_prdExplain">
+									<strong class="P_price"><fmt:formatNumber value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}"
 																			type="number" pattern="##,#00"/>원</strong>
-									<span class="existingPrice">${prd.product_price}원</span>
-									<strong class="discount">${prd.product_discount}%</strong>
+									<span class="P_existingPrice">${prd.product_price}원</span>
+									<strong class="P_discount">${prd.product_discount}%</strong>
 									<p>${prd.product_coment}</p>
 								</div>
 							</div>
 						</c:forEach>
 						
-						<div class="menuBox">
+						<div class="allViewBox">
 							<div id="allViewBtn"><a href="#">						
 								<img id="allView" src="../image/arrow-R.png">
 								<span id="allViewText">전체보기</span>
@@ -95,107 +103,86 @@
 				<div id="newItem">
 					<div><strong class="bigMenu">신상 육아 아이템⭐</strong><br></div>
 					<ul>
-						<li><div class="menuBox">
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">상품 제목</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div></li>
-						<li><div class="menuBox">
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">상품 제목</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div></li>
-						<li><div class="menuBox">
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">상품 제목</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div></li>
-						<li><div class="menuBox">
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">상품 제목</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div></li>
-						<li><div class="menuBox">
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">상품 제목</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div></li>
-						<li><div class="menuBox">
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">상품 제목</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div></li>
+						<c:forEach items="${newItemList}" var="prd">
+							<li><div class="menuBox"  OnClick="location.href ='#'">
+								<div class="thumbnail">
+									<img class="newThumbnail" src="${prd.product_img}">
+									<div class="likeCartBox1">
+										<a href="www.naver.com"><img src="<c:url value='/image/cart_btn.png'/>"></a>
+										<a href="#"><img src="<c:url value='/image/like_btn.png'/>"></a>
+									</div>
+								</div>
+								<div class="titleBox">
+									<strong class="menuTitle">${prd.product_name}</strong><br>
+								</div>
+								<div class="prdExplain">
+									<strong class="price"><fmt:formatNumber value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}"
+																			type="number" pattern="##,#00"/>원</strong>
+									<span class="existingPrice">${prd.product_price}원</span>
+									<strong class="discount">${prd.product_discount}%</strong>
+									<p>${prd.product_coment}</p>
+								</div>
+							</div></li>
+						</c:forEach>
 					</ul>
 				</div>
 				
 				<div id="bestItem">
 					<div><strong class="bigMenu">아이브리드 베스트⭐</strong></div>
 					<ul>
-						<li><div class="menuBox">
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">상품 제목</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div></li>
-						<li><div class="menuBox">
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">상품 제목</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div></li>
-						<li><div class="menuBox">
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">상품 제목</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div></li>
+						<c:forEach items="${bestItemList}" var="prd" begin="0" end="5">
+							<li><div class="menuBox" OnClick="location.href ='#'">
+								<div class="thumbnail">
+									<img class="newThumbnail" src="${prd.product_img}">
+									<div class="likeCartBox1">
+										<a href="www.naver.com"><img src="<c:url value='/image/cart_btn.png'/>"></a>
+										<a href="#"><img src="<c:url value='/image/like_btn.png'/>"></a>
+									</div>
+								</div>
+								<div class="titleBox">
+									<strong class="menuTitle">${prd.product_name}</strong><br>
+								</div>
+								<div class="prdExplain">
+									<strong class="price"><fmt:formatNumber value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}"
+																			type="number" pattern="##,#00"/>원</strong>
+									<span class="existingPrice">${prd.product_price}원</span>
+									<strong class="discount">${prd.product_discount}%</strong>
+									<p>${prd.product_coment}</p>
+								</div>
+							</div></li>
+						</c:forEach>
+					</ul>
+				</div>
+				
+				<div id="soldOutItem">
+					<div><strong class="bigMenu">⏰재고 50개 이하 품절임박!</strong></div>
+					<ul>
+						<c:forEach items="${soldOutItemList}" var="prd">
+							<li><div class="menuBox" OnClick="location.href ='#'">
+								<div class="thumbnail">
+									<img class="newThumbnail" src="${prd.product_img}">
+									<div class="likeCartBox1">
+										<a href="www.naver.com"><img src="<c:url value='/image/cart_btn.png'/>"></a>
+										<a href="#"><img src="<c:url value='/image/like_btn.png'/>"></a>
+									</div>
+								</div>
+								<div class="titleBox">
+									<strong class="menuTitle">${prd.product_name}</strong><br>
+								</div>
+								<div class="prdExplain">
+									<strong class="price"><fmt:formatNumber value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}"
+																			type="number" pattern="##,#00"/>원</strong>
+									<span class="existingPrice">${prd.product_price}원</span>
+									<strong class="discount">${prd.product_discount}%</strong>
+									<p>${prd.product_coment}</p>
+								</div>
+							</div></li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div> <!-- 오른쪽 콘텐트 박스 끝 -->
 		</div> <!-- wrap 끝 -->
 	</section>
-	<footer></footer>
+	<c:import url="/WEB-INF/views/layout/bottom.jsp" />
 </body>
 </html>
