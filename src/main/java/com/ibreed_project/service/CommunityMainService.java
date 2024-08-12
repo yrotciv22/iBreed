@@ -1,6 +1,6 @@
 package com.ibreed_project.service;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,22 +9,40 @@ import com.ibreed_project.dao.ICommunityDAO;
 import com.ibreed_project.model.PostVO;
 
 @Service
-public class CommunityMainService {
-	   @Autowired
+public class CommunityMainService implements ICommunityMainService {
+
+	  @Autowired
 	    private ICommunityDAO communityDAO;
 
-	    public List<PostVO> getPopularPosts() {
-	        //return communityDAO.selectPopularPosts();
-	    	 System.out.println("getPopularPosts 메서드가 호출되었습니다.");
-	    	List<PostVO> posts = communityDAO.selectPopularPosts();
-	        System.out.println("조회된 인기 게시글 수: " + posts.size()); // 디버깅 출력
-	        return posts;
-	    }
-	    public List<PostVO> getRecentPosts() {
-	        return communityDAO.selectRecentPosts();
+	    // 전체 불러오기
+	    @Override
+	    public ArrayList<PostVO> getPopularPosts() {
+	        return new ArrayList<>(communityDAO.selectPopularPosts());
 	    }
 
-	    public List<PostVO> getPostsByBoardId(int boardId) {
-	        return communityDAO.selectPostsByBoardId(boardId);
+	    @Override
+	    public ArrayList<PostVO> getRecentPosts() {
+	        return new ArrayList<>(communityDAO.selectRecentPosts());
 	    }
-}
+
+	    @Override
+	    public ArrayList<PostVO> getPostsByBoardId(int boardId) {
+	        return new ArrayList<>(communityDAO.selectPostsByBoardId(boardId));
+	    }
+
+	    // 10개 리밋
+	    @Override
+	    public ArrayList<PostVO> getPopularPostsWithLimit() {
+	        return new ArrayList<>(communityDAO.selectPopularPostsWithLimit());
+	    }
+
+	    @Override
+	    public ArrayList<PostVO> getRecentPostsWithLimit() {
+	        return new ArrayList<>(communityDAO.selectRecentPostsWithLimit());
+	    }
+
+	    @Override
+	    public ArrayList<PostVO> getPostsByBoardIdWithLimit(int boardId) {
+	        return new ArrayList<>(communityDAO.selectPostsByBoardIdWithLimit(boardId));
+	    }
+	}
