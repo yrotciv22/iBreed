@@ -67,6 +67,7 @@
                         alert("이미 사용 중인 닉네임 입니다.");
                     } else if (data.includes('ok')) {
                         alert("사용 가능한 닉네임 입니다.");
+                        isNicknameChecked = true;
                     } else {
                         errorMessageElement.innerText = '알 수 없는 오류가 발생했습니다.';
                     }
@@ -95,6 +96,7 @@
                         alert("이미 사용 중인 이메일 입니다.");
                     } else if (data.includes('ok')) {
                         alert("사용 가능한 이메일 입니다.");
+                        isEmailChecked = true;
                     } else {
                         errorMessageElement.innerText = '알 수 없는 오류가 발생했습니다.';
                     }
@@ -200,55 +202,6 @@
             const userPhoneNumber = document.getElementById('user_phone_number').value.trim();
             const userEmail = document.getElementById('user_email').value.trim();
 
-            // 각 필드가 비어있는지 확인하고 경고 메시지를 표시합니다
-            // if (!userName) {
-            //     alert("이름을 입력해주세요.");
-            //     return false;
-            // }
-            // if (!userNickname) {
-            //     alert("닉네임을 입력해주세요.");
-            //     return false;
-            // }
-            // if (!userId) {
-            //     alert("아이디를 입력해주세요.");
-            //     return false;
-            // }
-            // if (!password) {
-            //     alert("비밀번호를 입력해주세요.");
-            //     return false;
-            // }
-            // if (!confirmPassword) {
-            //     alert("비밀번호 확인을 입력해주세요.");
-            //     return false;
-            // }
-            // if (!userHint) {
-            //     alert("비밀번호 질문을 선택해주세요.");
-            //     return false;
-            // }
-            // if (!userHintSub) {
-            //     alert("비밀번호 질문의 답변을 입력해주세요.");
-            //     return false;
-            // }
-            // if (!userGender) {
-            //     alert("성별을 선택해주세요.");
-            //     return false;
-            // }
-            // if (!userBirth) {
-            //     alert("생년월일을 입력해주세요.");
-            //     return false;
-            // }
-            // if (!userAddress) {
-            //     alert("주소를 입력해주세요.");
-            //     return false;
-            // }
-            // if (!userPhoneNumber) {
-            //     alert("휴대폰 번호를 입력해주세요.");
-            //     return false;
-            // }
-            // if (!userEmail) {
-            //     alert("이메일을 입력해주세요.");
-            //     return false;
-            // }
 
             if(!isIdChecked){
                 alert("아이디 중복 확인을 해 주세요.");
