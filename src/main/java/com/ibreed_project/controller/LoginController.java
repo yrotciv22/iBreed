@@ -3,11 +3,12 @@ package com.ibreed_project.controller;
 import com.ibreed_project.model.AccountVO;
 import com.ibreed_project.service.FindAccountService;
 import com.ibreed_project.service.LoginService;
+import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -99,7 +100,7 @@ public class LoginController {
 
         String resetUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/reset-password-form?token=" + token;
         String subject = "Password Reset Request";
-        String text = "Click the link to reset your password: " + resetUrl;
+        String text = "Click the link to reset your password: <a href=\"" + resetUrl + "\">" + resetUrl + "</a>";
 
         sendEmail(email, subject, text);
 
@@ -137,13 +138,19 @@ public class LoginController {
 
     // 이메일 전송 메서드
     private void sendEmail(String to, String subject, String text) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
-        message.setFrom("ibreed003@gmail.com"); // 발신자 이메일 주소
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-        mailSender.send(message);
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(text, true); // 두 번째 매개변수를 true로 설정하여 HTML을 활성화
+            helper.setFrom("ibreed003@gmail.com"); // 발신자 이메일 주소
+
+            mailSender.send(message);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
