@@ -23,20 +23,32 @@
 	        <result property="likes" column="likes" />
 	    </resultMap>
 
-    <!-- 인기글 불러오기 전부 최대 5개임-->
+    <!-- 인기글 불러오기-->
     <select id="selectPopularPosts" resultMap="postResultMap">
-        SELECT * FROM post WHERE post_status = 1 ORDER BY post_count DESC LIMIT 5
+        SELECT * FROM post WHERE post_status = 1 ORDER BY post_count DESC
     </select>
 
     <!-- 최신글 불러오기 -->
     <select id="selectRecentPosts" resultMap="postResultMap">
-        SELECT * FROM post WHERE post_status = 1 ORDER BY post_create DESC LIMIT 5
+        SELECT * FROM post WHERE post_status = 1 ORDER BY post_create DESC
     </select>
 
     <!-- 특정 게시판의 게시글 불러오기 -->
     <select id="selectPostsByBoardId" parameterType="int" resultMap="postResultMap">
-        SELECT * FROM post WHERE board_id2 = #{boardId} AND post_status = 1 ORDER BY post_create DESC LIMIT 5
+        SELECT * FROM post WHERE board_id2 = #{boardId} AND post_status = 1 ORDER BY post_create DESC 
     </select>
 
-
+	<!--10개 리밋  -->
+	<select id="selectPopularPostsWithLimit" resultMap="postResultMap">
+    SELECT * FROM post WHERE post_status = 1 ORDER BY post_count DESC LIMIT 10
+	</select>
+	<select id="selectRecentPostsWithLimit" resultMap="postResultMap">
+    SELECT * FROM post WHERE post_status = 1 ORDER BY post_create DESC LIMIT 10
+	</select>
+	<select id="selectPostsByBoardIdWithLimit" parameterType="int" resultMap="postResultMap">
+    SELECT * FROM post WHERE board_id2 = #{boardId} AND post_status = 1 ORDER BY post_create DESC LIMIT 10
+	</select>
+	
+	
+	
 </mapper>
