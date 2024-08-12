@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+<c:set var="userId" value="${sessionScope.user_id}" />
+
 <!DOCTYPE html>
 <html>
 
@@ -25,6 +27,15 @@
     <!-- 공통 layout: top.jsp -->
     <c:import url="/WEB-INF/views/layout/top.jsp" />
 
+
+    <c:choose>
+        <c:when test="${not empty userId}">
+            <h1>로그인 성공상태</h1>
+        </c:when>
+        <c:otherwise>
+            <h1>로그인 실패상태</h1>
+        </c:otherwise>
+    </c:choose>
 
     <!-- 메인 -->
     <main class="container">

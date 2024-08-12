@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/index.css'/>" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/account/join.css'/>" />
     <script src="<c:url value='/js/index.js'/>"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 
     <script>
@@ -160,7 +161,24 @@
 
 
 
+        function searchAddress() {
+            new daum.Postcode({
+                oncomplete:function(data){
+                    let findaddress='  ';
 
+                    if(data.userSelectedType==='R'){
+                        findaddress=data.roadAddress;
+                    }else{
+                        findaddress=data.jibunAddress;
+                    }
+                    document.getElementById('user_address').value = findaddress;
+                }
+
+            }).open();
+
+
+
+        }
 
 
 
