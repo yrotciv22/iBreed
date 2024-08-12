@@ -12,6 +12,7 @@ li {
 a {
 	text-decoration: none;
 	color:black;
+	cursor: pointer;
 }
 
 #wrap {
@@ -136,7 +137,7 @@ a {
 
 #popularItem {
 	width: 810px;
-    height: 410px;
+    height: 433px;
     margin: 20px auto;
     padding-top: 10px;
     overflow: hidden;
@@ -148,15 +149,48 @@ a {
 	position: relative;
 }
 
-#popularItem .menuBox {
+.popularMenuBox {
 	width: 240px;
 	float: left;
 	margin: 20px 15px;
-	padding: 0 15px;
 	text-align: left;
+	cursor: pointer;
 }
 
-#popularItem .thumbnail, .thumbnailImg {
+.P_likeCartBox {
+	position: relative;
+    width: 128px;
+    height: 58px;
+    top: -80px;
+    left: 58px;
+    visibility: hidden;
+}
+
+.P_likeCartBox img {
+	width: 50px;
+    margin: 5px;
+}
+
+.P_prdExplain {
+    margin-top: 50px;
+    text-align: left;
+}
+
+.likeCartBox1 {
+	position: relative;
+    width: 128px;
+    height: 58px;
+    top: -80px;
+    left: 100px;
+    visibility: hidden;
+}
+
+.likeCartBox1 img {
+	width: 50px;
+    margin: 5px;
+}
+
+.P_thumbnail, .P_thumbnailImg {
 	width: 240px;
 	height: 240px;
 }
@@ -189,7 +223,7 @@ a {
 }
 
 .bestRating:last-child {
-	left: 136px;
+	left: 141px;
 }
 
 .prdExplain {
@@ -197,15 +231,15 @@ a {
     text-align: left;
 }
 
-#popularItem .menuTitle {
+.P_menuTitle {
 	font-size: 20px;
 }
 
-#popularItem .price {
+.P_price {
 	font-size: 18px;
 }
 
-#popularItem .menuBox p {
+.popularMenuBox p {
 	width: 240px;
 	font-size: 13px;
 	text-overflow: ellipsis;
@@ -214,6 +248,7 @@ a {
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
 	text-align: left;
+	color: #aaa;
 }
 
 #allView {
@@ -232,19 +267,27 @@ a {
 	font-weight: 600;
 }
 
+.allViewBox {
+	width: 240px;
+    float: left;
+    margin: 20px 15px;
+    text-align: left;
+    cursor: pointer;
+}
+
 #arrowBox {
 	height: 0;
 }
 
 #arrow2-R {
-    top: -280px;
-    right: -436px;
+    top: -305px;
+    right: -433px;
     opacity: 100%;
 }
 
 #arrow2-L {
-    top: -280px;
-    left: -407px;
+    top: -305px;
+    left: -433px;
     opacity: 100%;
     visibility: hidden;
 }
@@ -263,6 +306,7 @@ a {
 	margin: 20px 3px;
 	padding: 0 3px;
 	text-align: left;
+	cursor: pointer;
 }
 
 .thumbnail, .newThumbnail {
@@ -270,7 +314,7 @@ a {
 	height: 319px;
 }
 
-#popularSlide .titleBox {
+.P_titleBox {
 	width: 240px;
     position: absolute;
     text-align: left;
@@ -290,10 +334,21 @@ a {
 	font-size: 18px;
 }
 
+.P_existingPrice {
+	font-size: 14px;
+	color: #888;
+	text-decoration: line-through;
+}
+
 .existingPrice {
 	font-size: 14px;
 	color: #888;
 	text-decoration: line-through;
+}
+
+.P_discount {
+	font-size: 18px;
+	color: #d03935;
 }
 
 .discount {
