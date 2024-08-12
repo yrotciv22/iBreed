@@ -21,4 +21,18 @@ public class ProductService implements IProductService {
 		return dao.selectTopTen();
 	}
 
+	@Override
+	public ArrayList<ProductVO> selectNewItem() {
+		return dao.selectNewItem();
+	}
+	
+	@Override
+	public ArrayList<ProductVO> bestItem() {
+		return dao.bestItem();
+	}
+	
+	@Override
+	public ArrayList<ProductVO> soldOutItem() {
+		return dao.soldOutItem();
+	}
 }

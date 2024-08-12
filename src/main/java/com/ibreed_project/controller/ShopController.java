@@ -20,8 +20,14 @@ public class ShopController {
 	public String viewIndex(Model model) {
 		
 		ArrayList<ProductVO> topTenList = prdService.selectTopTen();
+		ArrayList<ProductVO> newItemList = prdService.selectNewItem();
+		ArrayList<ProductVO> bestItemList = prdService.bestItem();
+		ArrayList<ProductVO> soldOutItemList = prdService.soldOutItem();
 		
 		model.addAttribute("topTenList", topTenList);
+		model.addAttribute("newItemList", newItemList);
+		model.addAttribute("bestItemList", bestItemList);
+		model.addAttribute("soldOutItemList", soldOutItemList);
 		
 		return "shop/shop_main";
 	}

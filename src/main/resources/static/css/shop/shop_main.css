@@ -12,18 +12,19 @@ li {
 a {
 	text-decoration: none;
 	color:black;
+	cursor: pointer;
 }
 
 #wrap {
 	width: 1280px;
-	height: 10000px;
-	background-color: pink;
+	/* background-color: pink; */
 	padding-top: 25px;
+	margin: 0 auto;
 }
 
 /* 왼쪽 카테고리 */
 #category {
-	background-color: green;
+	/* background-color: green; */
 	width: 210px;
 	margin-left: 25px;
 	margin-right: 0px;
@@ -35,26 +36,43 @@ a {
 #home {
 	width: 200px;
 	height: 200px;
-	background-color: blue;
+	/* background-color: blue; */
 	margin: 5px;
+}
+
+#home img {
+	width: 200px;
+}
+
+#categoryList {
+	border-top: 2px solid black;
 }
 
 #categoryList ul {
 	padding-left: 5px;
 }
 
-#categoryList li {
-	text-align: left;
-	line-height: 45px;
-	padding-left: 0px;
+#categoryList a {
+	display: block;
+    text-align: left;
 }
 
+#categoryList li {
+	text-align: left;
+	line-height: 55px;
+	padding-left: 0px;
+	font-weight: 600;
+}
+
+#categoryList li:hover {
+	color: #53AFB2;
+}
 /* 카테고리 끝 */
 
 /* 오른쪽 콘텐트 */
 #content {
 	width: 1020px;
-	background-color: yellow;
+	/* background-color: yellow; */
 	float: right;
 	list-style-type: none;
 }
@@ -119,7 +137,7 @@ a {
 
 #popularItem {
 	width: 810px;
-    height: 400px;
+    height: 433px;
     margin: 20px auto;
     padding-top: 10px;
     overflow: hidden;
@@ -131,15 +149,48 @@ a {
 	position: relative;
 }
 
-#popularItem .menuBox {
+.popularMenuBox {
 	width: 240px;
 	float: left;
-	margin: 20px 0;
-	padding: 0 15px;
+	margin: 20px 15px;
 	text-align: left;
+	cursor: pointer;
 }
 
-#popularItem .thumbnail, .thumbnailImg {
+.P_likeCartBox {
+	position: relative;
+    width: 128px;
+    height: 58px;
+    top: -80px;
+    left: 58px;
+    visibility: hidden;
+}
+
+.P_likeCartBox img {
+	width: 50px;
+    margin: 5px;
+}
+
+.P_prdExplain {
+    margin-top: 50px;
+    text-align: left;
+}
+
+.likeCartBox1 {
+	position: relative;
+    width: 128px;
+    height: 58px;
+    top: -80px;
+    left: 100px;
+    visibility: hidden;
+}
+
+.likeCartBox1 img {
+	width: 50px;
+    margin: 5px;
+}
+
+.P_thumbnail, .P_thumbnailImg {
 	width: 240px;
 	height: 240px;
 }
@@ -172,7 +223,7 @@ a {
 }
 
 .bestRating:last-child {
-	left: 136px;
+	left: 141px;
 }
 
 .prdExplain {
@@ -180,15 +231,15 @@ a {
     text-align: left;
 }
 
-#popularItem .menuTitle {
+.P_menuTitle {
 	font-size: 20px;
 }
 
-#popularItem .price {
+.P_price {
 	font-size: 18px;
 }
 
-#popularItem .menuBox p {
+.popularMenuBox p {
 	width: 240px;
 	font-size: 13px;
 	text-overflow: ellipsis;
@@ -197,6 +248,7 @@ a {
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
 	text-align: left;
+	color: #aaa;
 }
 
 #allView {
@@ -211,7 +263,16 @@ a {
 	text-align: center;
 	display: block;
 	text-decoration: none;
-	color: black;
+	color: #53AFB2;
+	font-weight: 600;
+}
+
+.allViewBox {
+	width: 240px;
+    float: left;
+    margin: 20px 15px;
+    text-align: left;
+    cursor: pointer;
 }
 
 #arrowBox {
@@ -219,24 +280,24 @@ a {
 }
 
 #arrow2-R {
-    top: -270px;
-    right: -418px;
+    top: -305px;
+    right: -433px;
     opacity: 100%;
 }
 
 #arrow2-L {
-    top: -270px;
-    left: -428px;
+    top: -305px;
+    left: -433px;
     opacity: 100%;
     visibility: hidden;
 }
 
-#newItem {
+#newItem, #bestItem, #soldOutItem {
 	margin: 20px 0;
 	height: 955px;
 }
 
-#bestItem ul,#newItem ul {
+#bestItem ul,#newItem ul, #soldOutItem ul {
 	padding-left: 12px;
 }
 
@@ -245,16 +306,22 @@ a {
 	margin: 20px 3px;
 	padding: 0 3px;
 	text-align: left;
+	cursor: pointer;
 }
 
-.thumbnail {
+.thumbnail, .newThumbnail {
 	width: 319px;
 	height: 319px;
-	background-image: black;
+}
+
+.P_titleBox {
+	width: 240px;
+    position: absolute;
+    text-align: left;
 }
 
 .titleBox {
-	width: 240px;
+	width: 319px;
     position: absolute;
     text-align: left;
 }
@@ -267,10 +334,21 @@ a {
 	font-size: 18px;
 }
 
+.P_existingPrice {
+	font-size: 14px;
+	color: #888;
+	text-decoration: line-through;
+}
+
 .existingPrice {
 	font-size: 14px;
 	color: #888;
 	text-decoration: line-through;
+}
+
+.P_discount {
+	font-size: 18px;
+	color: #d03935;
 }
 
 .discount {
