@@ -29,4 +29,24 @@ public class JoinService implements IJoinService{
         vo.setUser_timestamp(new Date());
         return joinDAO.joinCommit(vo);
     }
+
+    @Override
+    public boolean isIdDuplicate(String id) {
+        System.out.println("id 값 : " + id);
+        return joinDAO.checkIdDuplicate(id) > 0;
+    }
+
+    @Override
+    public boolean isNicknameDuplicate(String nickname) {
+        System.out.println("닉네임 값 : " + nickname);
+        return joinDAO.checkNicknameDuplicate(nickname) > 0;
+    }
+
+    @Override
+    public boolean isEmailDuplicate(String email) {
+        System.out.println("이메일 값 : " + email);
+        return joinDAO.checkEmailDuplicate(email) > 0;
+    }
+
+
 }
