@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,7 @@
 <link rel="stylesheet"   type="text/css"  href="../css/shop_main.css">
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 <script src="<c:url value='/js/slideShow.js'/>"></script>
+<script src="<c:url value='/js/shop_main.js'/>"></script>
 </head>
 <body>
 	<header></header>
@@ -37,10 +39,10 @@
 			<div id="content"> <!-- 오른쪽 콘텐트 박스 -->
 				<div id="slideShow">
 					<div id="slidePanel">
-						<img src="" class="slideImage">
-						<img src="" class="slideImage">
-						<img src="" class="slideImage">
-						<img src="" class="slideImage">
+						<a href="#"><img src="https://shop-phinf.pstatic.net/20240628_116/1719557405922c9A0U_JPEG/%BD%BA%B8%B6%C6%AE%BD%BA%C5%E4%BE%EE_%C4%AB%C5%D7%B0%ED%B8%AE%B9%E8%B3%CA_%C1%DF%BF%E4%B8%DE%C0%CE_%BD%B4%C6%DB%BD%BD%B8%B2.jpg?type=m1280" class="slideImage"></a>
+						<a href="#"><img src="https://shop-phinf.pstatic.net/20240423_137/1713835385166khqLf_JPEG/%BD%BA%B8%B6%C6%AE%BD%BA%C5%E4%BE%EE_%C4%AB%C5%D7%B0%ED%B8%AE%B9%E8%B3%CA_%BF%C0%B8%AE%C1%F6%B3%CE%C5%D7%C0%CC%C7%C1.jpg?type=m1280" class="slideImage"></a>
+						<a href="#"><img src="https://shop-phinf.pstatic.net/20240523_28/1716428431361mCzJC_JPEG/%BD%BA%B8%B6%C6%AE%BD%BA%C5%E4%BE%EE_%C4%AB%C5%D7%B0%ED%B8%AE%B9%E8%B3%CA_%BD%BD%B8%B2%C5%D7%C0%CC%C7%C1.jpg?type=m1280" class="slideImage"></a>
+						<a href="#"><img src="https://shop-phinf.pstatic.net/20240523_229/1716428472811DUkzk_JPEG/%BD%BA%B8%B6%C6%AE%BD%BA%C5%E4%BE%EE_%C4%AB%C5%D7%B0%ED%B8%AE%B9%E8%B3%CA_%C3%BC%C7%E8%C6%D1_W.jpg?type=m1280" class="slideImage"></a>
 					</div>
 					<div>
 						<img id="arrow-R" src="../image/arrow-R.png">
@@ -54,160 +56,30 @@
 					</div>
 				</div>
 				<div id="popularItem">
-					<div class=""><strong class="bigMenu">실시간 인기 TOP</strong></div>
-					<!-- <div>
-						<ul id="ratingCtrl">
-							<li><a href="#">실시간</a></li>
-							<li>|</li>
-							<li><a href="#">일간</a></li>
-							<li>|</li>
-							<li><a href="#">주간</a></li>
-							<li>|</li>
-							<li><a href="#">월간</a></li>
-						</ul>
-						<a id="allView" href="#">☞ 전체보기</a>
-					</div> -->
+					<div class=""><strong class="bigMenu">실시간 인기 TOP 10⭐</strong></div>
 					<div id="popularSlide">
-						<div class="menuBox">
-							<div class="bestIcon">
-								<img class="starIcon" src="../image/star.png">
-								<strong class="bestRating">1</strong>
+						<c:forEach items="${topTenList}" var="prd" varStatus="status">
+							<div class="menuBox">
+								<div class="bestIcon">
+									<img class="tagIcon" src="../image/tag.png">
+									<strong class="bestRating">${status.count}</strong>
+								</div>
+								<div class="thumbnail">
+								<img class="thumbnailImg" src="${prd.product_img}">
+								</div>
+								<div class="titleBox">
+									<strong class="menuTitle">${prd.product_name}</strong><br>
+								</div>
+								<div class="prdExplain">
+									<strong class="price"><fmt:formatNumber value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}"
+																			type="number" pattern="##,#00"/>원</strong>
+									<span class="existingPrice">${prd.product_price}원</span>
+									<strong class="discount">${prd.product_discount}%</strong>
+									<p>${prd.product_coment}</p>
+								</div>
 							</div>
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">인기 상품</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div>
-						<div class="menuBox">
-							<div class="bestIcon">
-								<img class="starIcon" src="../image/star.png">
-								<strong class="bestRating">2</strong>
-							</div>
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">인기 상품</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div>
-						<div class="menuBox">
-							<div class="bestIcon">
-								<img class="starIcon" src="../image/star.png">
-								<strong class="bestRating">3</strong>
-							</div>
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">인기 상품</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div>
-						<div class="menuBox">
-							<div class="bestIcon">
-								<img class="starIcon" src="../image/star.png">
-								<strong class="bestRating">4</strong>
-							</div>
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">인기 상품</strong><br>
-							<strong class="price">10,000원</strong>
-							<span>20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div>
-						<div class="menuBox">
-							<div class="bestIcon">
-								<img class="starIcon" src="../image/star.png">
-								<strong class="bestRating">5</strong>
-							</div>
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">인기 상품</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div>
-						<div class="menuBox">
-							<div class="bestIcon">
-								<img class="starIcon" src="../image/star.png">
-								<strong class="bestRating">6</strong>
-							</div>
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">인기 상품</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div>
-						<div class="menuBox">
-							<div class="bestIcon">
-								<img class="starIcon" src="../image/star.png">
-								<strong class="bestRating">7</strong>
-							</div>
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">인기 상품</strong><br>
-							<strong class="price">10,000원</strong>
-							<span>20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div>
-						<div class="menuBox">
-							<div class="bestIcon">
-								<img class="starIcon" src="../image/star.png">
-								<strong class="bestRating">8</strong>
-							</div>
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">인기 상품</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div>
-						<div class="menuBox">
-							<div class="bestIcon">
-								<img class="starIcon" src="../image/star.png">
-								<strong class="bestRating">9</strong>
-							</div>
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">인기 상품</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div>
-						<div class="menuBox">
-							<div class="bestIcon">
-								<img class="starIcon" src="../image/star.png">
-								<strong class="bestRating">10</strong>
-							</div>
-							<div class="thumbnail">
-								<img alt="" src="">
-							</div>
-							<strong class="menuTitle">인기 상품</strong><br>
-							<strong class="price">10,000원</strong>
-							<span class="existingPrice">20,000원</span>
-							<strong class="discount">50%</strong>
-							<p>상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.상품에 대한 설명을 적어주는 칸입니다.</p>
-						</div>
+						</c:forEach>
+						
 						<div class="menuBox">
 							<div id="allViewBtn"><a href="#">						
 								<img id="allView" src="../image/arrow-R.png">
@@ -216,7 +88,7 @@
 						</div>
 					</div>
 				</div>
-				<div>
+				<div id="arrowBox">
 					<img id="arrow2-R" src="../image/arrow-R.png">
 					<img id="arrow2-L" src="../image/arrow-L.png">
 				</div>

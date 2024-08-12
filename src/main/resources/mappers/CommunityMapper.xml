@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.ibreed_project.dao.ICommunityDAO">
+	  <resultMap id="postResultMap" type="com.ibreed_project.model.PostVO">
+	        <id property="postId" column="post_id" />
+	        <result property="postTitle" column="post_title" />
+	        <result property="postContent" column="post_content" />
+	        <result property="postCreate" column="post_create" />
+	        <result property="postUpdate" column="post_update" />
+	        <result property="postCount" column="post_count" />
+	        <result property="postHeading" column="post_heading" />
+	        <result property="userId" column="user_id" />
+	        <result property="postStatus" column="post_status" />
+	        <result property="boardId2" column="board_id2" />
+	        <result property="postImage" column="post_image" />
+	        <result property="postVideo" column="post_video" />
+	        <result property="postUrl" column="post_url" />
+	        <result property="likes" column="likes" />
+	    </resultMap>
+
+    <!-- 인기글 불러오기 전부 최대 5개임-->
+    <select id="selectPopularPosts" resultMap="postResultMap">
+        SELECT * FROM post WHERE post_status = 1 ORDER BY post_count DESC LIMIT 5
+    </select>
+
+    <!-- 최신글 불러오기 -->
+    <select id="selectRecentPosts" resultMap="postResultMap">
+        SELECT * FROM post WHERE post_status = 1 ORDER BY post_create DESC LIMIT 5
+    </select>
+
+    <!-- 특정 게시판의 게시글 불러오기 -->
+    <select id="selectPostsByBoardId" parameterType="int" resultMap="postResultMap">
+        SELECT * FROM post WHERE board_id2 = #{boardId} AND post_status = 1 ORDER BY post_create DESC LIMIT 5
+    </select>
+
+
+</mapper>
