@@ -4,7 +4,7 @@
 
 
 		<nav class="diary_taps">
-			<a href="<c:url value='/mydiary'/>"><div>홈</div></a> 
+			<a href="<c:url value='/mydiary/${sessionScope.user_id}'/>"><div>홈</div></a> 
 			<a href="<c:url value='/mydiary/diary'/>"><div>일기</div></a> 
 			<a href="<c:url value='/mydiary/emotion'/>"><div>감정관리</div></a> 
 			<a href="<c:url value='/mydiary/photos'/>"><div>사진첩</div></a> 

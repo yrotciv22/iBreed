@@ -3,33 +3,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8" />
-	<title>My Diary Home</title>
+<title>My Diary Emotion</title>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/mydiary_layout.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/mydiary_home.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/mydiary_photos.css' />" />
 </head>
-
 <body>
-	<div class="all">
+ 
+<div class="all">
 		<div class="diary_wrap">
 			<div class="diary_content">
 
 
 			<!-- 각 페이지 작업 구간  -->
-				<div class="left_wrap">
-					<div class="today_feeling">오늘의 기분</div>
-					<div class="profile_photo">프로필 사진</div>
-					<div class="profile_text">${sessionScope.user_nickname}</div>
-				</div>
-
-				<div class="right_wrap">
-					<div class="diary_title">다이어리 제목</div>
-					<div class="recent_posts">최근 게시물</div>
-					<div class="home_photos">사진첩</div>
-				</div>
-
+			
+			<div id="wrap">
+			앨범 폴더 클릭 시
+			</div>
+			
 			<!-- 각 페이지 작업 구간 끝  -->
 
 

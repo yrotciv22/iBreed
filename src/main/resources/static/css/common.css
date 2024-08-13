@@ -109,7 +109,8 @@ body {
 	background: red;
 	position: absolute;
 	font-size: 7px;
-	border-radius: 50%; color : #fff;
+	border-radius: 50%;
+	color: #fff;
 	top: 12px;
 	left: 14px;
 	z-index: 99;
@@ -176,6 +177,7 @@ footer {
 	width: 100vw;
 	height: 500px;
 	background: #eee;
+	width: 100vw;
 }
 
 .footer {
@@ -188,6 +190,7 @@ footer {
 	background: #eee;
 	color: #888;
 	font-family: "GmarketSansMedium";
+	align-items: stretch;
 }
 
 .ft_title_wrap {

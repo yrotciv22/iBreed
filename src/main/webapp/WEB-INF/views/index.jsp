@@ -15,8 +15,10 @@
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/index.css'/>" />
-<script src="<c:url value='/js/index.js'/>"></script>
-
+<script src="<c:url value='/js/index.js'/>" defer></script>
+<script>
+	var userId = "${sessionScope.user_id}";
+</script>
 </head>
 
 <body>
@@ -89,8 +91,10 @@
 										<li><a href="#">${post.postTitle}</a></li>
 									</c:forEach>
 								</ul>
-								<div class="see_more">더보기 ></div>
-								<!-- 샘플끝 -->
+								<div class="see_more">
+									<a href="<c:url value='/communityMain'/>">더보기 ></a>
+								</div>
+
 
 							</div>
 
@@ -103,8 +107,10 @@
 										<li><a href="#">${post.postTitle}</a></li>
 									</c:forEach>
 								</ul>
-								<div class="see_more">더보기 ></div>
-								<!-- 샘플끝 -->
+								<div class="see_more">
+									<a href="<c:url value='/communityMain'/>">더보기 ></a>
+								</div>
+
 							</div>
 						</div>
 
@@ -117,8 +123,10 @@
 										<li><a href="#">${post.postTitle}</a></li>
 									</c:forEach>
 								</ul>
-								<div class="see_more">더보기 ></div>
-								<!-- 샘플끝 -->
+								<div class="see_more">
+									<a href="<c:url value='/communityMain'/>">더보기 ></a>
+								</div>
+
 							</div>
 							<div class="main_board border">
 								<div class="board_title">구인 구직</div>
@@ -129,7 +137,9 @@
 									</c:forEach>
 
 								</ul>
-								<div class="see_more">더보기 ></div>
+								<div class="see_more">
+									<a href="<c:url value='/communityMain'/>">더보기 ></a>
+								</div>
 								<!-- 샘플끝 -->
 							</div>
 						</div>
@@ -153,6 +163,9 @@
 
 								</ul>
 								<!-- 샘플끝 -->
+								<div class="see_more">
+									<a href="<c:url value='/communityMain'/>">더보기 ></a>
+								</div>
 							</div>
 						</div>
 
@@ -164,74 +177,86 @@
 					<div class="main_login border">
 
 						<!-- 로그인 X -->
-						<span>아이브리드만의 다이어리를 이용해보세요.</span> <a
-							href="<c:url value='/login'/>">
-							<button class="main_login_btn">
-								<span>iBREED</span> 로그인
-							</button>
-						</a>
-
-						<div class="member_btns">
-							<a href="<c:url value='/find-id'/>">
-								<div class="find_id">아이디 찾기</div>
-							</a> | <a href="<c:url value='/reset-password'/>">
-								<div class="find_pw">비밀번호 찾기</div>
-
-							</a> | <a href="<c:url value='/join'/>">
-								<div class="join">회원가입</div>
+						<c:if test="${empty sessionScope.user_id }">
+							<span>아이브리드만의 다이어리를 이용해보세요.</span>
+							<a href="<c:url value='/login'/>">
+								<button class="main_login_btn">
+									<span>iBREED</span> 로그인
+								</button>
 							</a>
-						</div>
+
+							<div class="member_btns">
+								<a href="<c:url value='/find-id'/>">
+									<div class="find_id">아이디 찾기</div>
+								</a> | <a href="<c:url value='/reset-password'/>">
+									<div class="find_pw">비밀번호 찾기</div>
+
+								</a> | <a href="<c:url value='/join'/>">
+									<div class="join">회원가입</div>
+								</a>
+							</div>
+						</c:if>
 						<!-- 로그인 X 끝 -->
 
-						<!-- 로그인됨  
-					<div class="loggedin_box1">
-					
-						<div class="circle"></div>
-						<div class="user_wrap">
-							<div class="user_nickname"> 맘편한세상 님</div>
-							<div class="user_id">mompyunhan</div>
-							
-								<div class="user_level">레벨 10</div>
-								<div class="user_level_bar">
-								<div class="level"></div>
-								
+
+
+						<!-- 로그인 성공시 -->
+
+						<c:if test="${not empty sessionScope.user_id }">
+							<div class="loggedin_box1">
+
+								<div class="circle"></div>
+								<div class="user_wrap">
+									<div class="user_nickname">${sessionScope.user_nickname}
+										님</div>
+									<div class="user_id">${sessionScope.user_id}</div>
+
+									<div class="user_level">레벨 ${sessionScope.user_rate}</div>
+									<div class="user_level_bar">
+										<div class="level"></div>
+
+									</div>
 								</div>
+							</div>
+							<div class="loggedin_box2">
+
+								<div class="main_diary_btn">마이다이어리</div>
+
+								<div class="circle_btn">
+									<span>쪽지</span>
 								</div>
+								<div class="circle_btn">
+									<span>설정</span>
+								</div>
+								<a href="<c:url value='logout'/>"><div class="circle_btn">
+									<span>로그아웃</span>
+								</div></a>
+							</div>
+							<div></div>
+						</c:if>
+						<!-- 로그인 성공시 끝 -->
+
+
+
 					</div>
-						<div class="loggedin_box2">
 
-					<div class="main_diary_btn" onclick="openMyDiary()">마이다이어리</div>
-					
-						<div class="circle_btn"><span>쪽지</span></div>
-							<div class="circle_btn"><span>설정</span></div>
-							<div class="circle_btn"><span>로그아웃</span></div>
-						</div>
-					<div></div>
-					 로그인된 상태 끝 -->
-
-					</div>
-
-					<div class="main_market border">
-						<span>아이브리드 마켓</span> <img
-							src="https://images.unsplash.com/photo-1559659133-8781d8f3b673?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-						<!-- 					<img src="https://images.unsplash.com/photo-1546074176-abecd33d2b53?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
+					<a href="<c:url value='/shop'/>"><div
+							class="main_market border">
+							<span>아이브리드 마켓</span> <img
+								src="https://images.unsplash.com/photo-1559659133-8781d8f3b673?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+							<!-- 					<img src="https://images.unsplash.com/photo-1546074176-abecd33d2b53?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
  -->
-					</div>
-
-
-					<div class="main_event border">
-						<span> Event 1</span> <img class="event1_img"
-							src="https://plus.unsplash.com/premium_photo-1664453890782-2807855161fa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-					</div>
-
-					<div class="main_event border">
-						<span>Event 2</span>
-						<!-- 						<img class="event2_img" src="https://images.unsplash.com/photo-1559659133-8781d8f3b673?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
+						</div></a> <a href="<c:url value='/#'/>"><div class="main_event border">
+							<span> Event 1</span> <img class="event1_img"
+								src="https://plus.unsplash.com/premium_photo-1664453890782-2807855161fa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+						</div></a> <a href="<c:url value='/#'/>"><div class="main_event border">
+							<span>Event 2</span>
+							<!-- 						<img class="event2_img" src="https://images.unsplash.com/photo-1559659133-8781d8f3b673?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
  -->
-						<img class="event2_img"
-							src="https://images.unsplash.com/photo-1546074176-abecd33d2b53?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+							<img class="event2_img"
+								src="https://images.unsplash.com/photo-1546074176-abecd33d2b53?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
 
-					</div>
+						</div></a>
 
 				</div>
 
