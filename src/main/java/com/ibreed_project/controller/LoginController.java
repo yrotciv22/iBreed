@@ -51,6 +51,15 @@ public class LoginController {
         }
     }
 
+    @RequestMapping("/logout")
+    public String logout(HttpSession session, HttpServletRequest request) {
+        session.invalidate();
+        // 이전 페이지 URL 가져오기
+        String referer = request.getHeader("Referer");
+
+        return "redirect:" + referer;
+    }
+
 
     //아이디 비밀번호 찾기
 
