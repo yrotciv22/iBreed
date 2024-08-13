@@ -1,3 +1,43 @@
 @charset "UTF-8";
 
-.diary_content {color : orange;}
+li {
+	list-style-type: none;
+}
+
+#wrap {
+	width: 794px;
+	height: 148%;
+}
+
+.diary_content {
+	overflow-y: scroll; 
+}
+
+.albumBox {
+  	width: 182px;
+    height: 217px;
+    margin: 10px 8px;
+    padding: 5px;
+    float: left;
+    text-align: center;
+}
+
+.albumBox::-webkit-scrollbar-thumb {
+	background: white;
+	border-radius: 10px;
+}
+
+.album_thimbnail {
+	width: 172px;
+    height: 161px;
+    -webkit-border-radius: 5px;
+}
+
+.album_title {
+	
+}
+
+.update {
+	color: #aaa;
+	font-size: 12px;
+}
