@@ -14,7 +14,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Gmarket Sans;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -97,14 +97,34 @@ body {
 }
 
 .search-bar {
-    display: flex;
-    gap: 10px;
-    border-radius:4px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 500px;
+	height: 50px;
+	border: 1px solid #aaa;
+	border-radius: 30px;
+	padding: 0 10px;
+	margin: 50px 0;
+	overflow:hidden;
 }
 
 .search-bar input {
-    padding: 5px;
-    font-size: 16px;
+	
+	border:none;
+	outline:none;
+	width: 400px;
+	height: 44px;
+}
+
+.search-bar button {
+	border: none;
+	background: #fff;
+	font-weight: 600;
+}
+.search-bar button:hover {
+    color: #53AFB2; 
+    font-weight: 800;
 }
 
 .section {
@@ -143,16 +163,28 @@ body {
     text-decoration: underline;
 }
 
-.top-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+#to_top_Btn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	bottom: 3%;
+	right: 7%;
+	width: 50px;
+	height: 50px;
+	border: 1px solid #ccc;
+	border-radius: 50%;
+	cursor: pointer;
+	z-index: 99;
+	background-color: #fff;
+	display: none;
+	font-size: 12px;
+}
+
+#to_top_Btn:hover {
+	color: #53AFB2;
+	font-weight: 600;
 }
    /*after login*/
    
@@ -170,6 +202,7 @@ body {
 
 .profile-info {
     text-align: center;
+    font-size: 0.85em;
 }
 
 .profile-header {
@@ -179,8 +212,8 @@ body {
 }
 
 .profile-img {
-    width: 28px;
-    height: 28px;
+    width: 50%;
+    height: auto;
     margin-right: 10px;
     border-radius: 50%;
 }
@@ -232,18 +265,19 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    text-align: center;
 }
 
 .community-write-btn:hover {
-    background-color: #b89ad0;
+    background-color: #429296;
 }
  .logout-btn {
     display: inline-block;
     width:100%;
-    margin-top: 10px;
+    margin-top: 0px;
     padding: 10px 20px;
     background-color: #d3d3d3; 
-    color: white; /* 검은색 텍스트 */
+    color: black;
     text-align: center;
     border-radius: 5px;
     text-decoration: none;

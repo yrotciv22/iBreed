@@ -3,6 +3,7 @@ package com.ibreed_project.service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.ibreed_project.dao.ICommunityDAO;
@@ -12,7 +13,9 @@ import com.ibreed_project.model.PostVO;
 public class CommunityMainService implements ICommunityMainService {
 
 	  @Autowired
-	    private ICommunityDAO communityDAO;
+	  @Qualifier("ICommunityDAO")
+	  ICommunityDAO communityDAO;
+	  
 
 	    // 전체 불러오기
 	    @Override
