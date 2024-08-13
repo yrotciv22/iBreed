@@ -18,11 +18,11 @@ public class MapController {
     private String naverCloudMapClientId;
 
     // 네이버 API
-    @Value("${naver.api.client-id}")
-    private String naverClientId;
-
-    @Value("${naver.api.client-secret}")
-    private String naverClientSecret;
+	/*
+	 * @Value("${naver.api.client-id}") private String naverClientId;
+	 * 
+	 * @Value("${naver.api.client-secret}") private String naverClientSecret;
+	 */
 
     @Value("${kakao.api.id}")
     private String kakaoApiKey;
