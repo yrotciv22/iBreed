@@ -31,15 +31,18 @@ public class CommunityController {
 	
 	    return "redirect:/communityMain"; 
 	  }
-	  //로그인버트누르면 열리는거 ->js,백엔드 작업하고 없앨것
-	  @RequestMapping("/communityAfterlogin") 
-	  public String viewcommunityAfterlogin() {
-	
-	    return "community/communityAfterlogin"; 
-	  }
-	  
+		/*
+		 * //로그인버트누르면 열리는거 ->js,백엔드 작업하고 없앨것
+		 * 
+		 * @RequestMapping("/communityAfterlogin") public String
+		 * viewcommunityAfterlogin() {
+		 * 
+		 * return "community/communityAfterlogin"; }
+		 */
+	  //서버에서글가져오기
 	  @GetMapping("/communityMain")
 	    public String communityMain(Model model) {
+		  model.addAttribute("boardName", "IBREED 커뮤니티");
 	        // 인기글 및 최신글 가져오기
 		  List<PostVO> popularPosts = communityMainService.getPopularPostsWithLimit();
 		  List<PostVO> recentPosts = communityMainService.getRecentPostsWithLimit();
@@ -98,4 +101,7 @@ public class CommunityController {
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 	    }
 	}
+
+
+	
 }
