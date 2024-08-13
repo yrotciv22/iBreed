@@ -21,7 +21,7 @@
 				<div class="left_wrap">
 					<div class="today_feeling">오늘의 기분</div>
 					<div class="profile_photo">프로필 사진</div>
-					<div class="profile_text">프로필</div>
+					<div class="profile_text">${sessionScope.user_nickname}</div>
 				</div>
 
 				<div class="right_wrap">

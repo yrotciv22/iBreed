@@ -11,6 +11,7 @@
 			</h1>
 
 			<div class="hd_icon_wrap">
+			
 				<div>
 					<a href="<c:url value='/'/>"> 
 					<img class="user"
@@ -24,7 +25,26 @@
 						src="<c:url value='/image/cart.png'/>">
 					</a>
 				</div>
-				
+
+			<!-- 로그인 성공한 경우 추가 -->
+			
+			<c:if test="${not empty sessionScope.user_id}">
+			<div>
+					<a href="<c:url value='/'/>"> 
+					<img class="bell"
+						src="<c:url value='/image/bell.png'/>"/>
+						<div class="bell_circle">11</div>
+					</a>
+			</div>
+			
+			<div>
+					<a href="<c:url value='logout'/>"> 
+					<img class="logout"
+						src="<c:url value='/image/logout.png'/>">
+					</a>
+			</div>
+			</c:if>
+			
 
 			</div>
 		</div>
