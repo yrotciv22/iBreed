@@ -37,6 +37,7 @@ public class LoginController {
             session.setAttribute("user_id", user_id.getUser_id());
             session.setAttribute("user_nickname", user_id.getUser_nickname());
             session.setAttribute("user_rate", user_id.getUser_rate());
+            session.setAttribute("user_timestamp", user_id.getUser_timestamp());
             model.addAttribute("loginSuccess", true);
             System.out.println("로그인 성공");
             System.out.println(session.getAttribute("user_id"));
@@ -49,6 +50,15 @@ public class LoginController {
             System.out.println("로그인 실패");
             return "account/loginResult";
         }
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpSession session, HttpServletRequest request) {
+        session.invalidate();
+        // 이전 페이지 URL 가져오기
+        String referer = request.getHeader("Referer");
+
+        return "redirect:" + referer;
     }
 
 

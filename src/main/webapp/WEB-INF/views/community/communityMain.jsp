@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/community.css' />" />
     <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
     <script src="<c:url value='/js/communitymain.js' />"></script>
+    
   </head>
   <body>
     <div class="All">
@@ -29,20 +30,25 @@
                         <div id="after-login" class="profile-container" style="display: none;">
                             <div class="profile-header">
                             <!-- 프사없으면 기본프사적용, 경로재설정필요 -->
-                                <img src="${user.profileImage != null ? user.profileImage : '/images/default-profile.png'}" alt="Profile Image" class="profile-img">
+                                <!-- 프사 없으면 기본 프사 적용 -->
+								<img src="${user.profileImage != null ? user.profileImage : '/image/default-profile.png'}" alt="Profile Image" class="profile-img">
+
                                 <div>
                                    <p>${sessionScope.user_nickname}님</p>
-                                   <p>${sessionScope.user_id}
-                                   <p>가입일:${sessionScope.user_timestamp}</p>
-                                    <p>레벨/등급: ${user.level}</p>
-                                    <p>(뭐 더 적을거 있음적고)</p>
+                                   <p>${sessionScope.user_id}</p>
+                                 
+                                   <p>${sessionScope.user_rate}.Lv</p>
+                                    
+                                    
                                 </div>
                             </div>
+                            <hr>
                             <div class="profile-links">
                                 <p><a href="/user/posts">내가 쓴 게시글</a></p>
                                 <p><a href="/user/comments">내가 쓴 댓글</a></p>
                                 <p><a href="/user/likes">좋아요한 게시글</a></p>
                             </div>
+                            <hr>
                             <a href="/community/write" class="community-write-btn">커뮤니티 글쓰기</a>
                             <a href="/logout" class="logout-btn">로그아웃</a>
                         </div>
@@ -65,20 +71,22 @@
                 </c:choose>
                 
                 <ul>
-                    <li><a href="#" class="nav-link">임신출산</a></li>
-                    <li><a href="#" class="nav-link">육아정보</a></li>
-                    <li><a href="#" class="nav-link">후기정보</a></li>
-                    <li><a href="#" class="nav-link">중고마켓</a></li>
-                    <li><a href="#" class="nav-link">구인구직</a></li>
+                    <li><a href="/community/board/1" class="nav-link">임신출산</a></li>
+                    <li><a href="/community/board/2" class="nav-link">육아정보</a></li>
+                    <li><a href="/community/board/3" class="nav-link">후기정보</a></li>
+                    <li><a href="/community/board/4" class="nav-link">중고마켓</a></li>
+                    <li><a href="/community/board/5" class="nav-link">구인구직</a></li>
                 </ul>
                 </nav>
                 <main class="main-section">
 	                <div class="header-content">
-	                        <h1>IBREED 커뮤니티</h1>
+	                        <h1>${boardName}</h1>
 	                        <div class="search-bar">
-	                            <input type="text" placeholder="검색어를 입력하세요">
-	                            <button>검색</button>
-	                        </div>
+							    <form action="/community/search" method="get">
+							        <input type="text" name="keyword" placeholder="검색어를 입력하세요">
+							        <button type="submit">통합검색</button>
+							    </form>
+							</div>
 	                    </div>
                     <section class="section category-section">
                         <h2>인기글</h2>
@@ -159,6 +167,7 @@
 					    </div>
 					</section>
                 </main>
+                <div id="to_top_Btn">Top</div>
             </div>
         </div>
 
