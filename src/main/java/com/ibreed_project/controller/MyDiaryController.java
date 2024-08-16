@@ -18,7 +18,7 @@ public class MyDiaryController {
 
 	/* 마이 다이어리 <홈>(메인) 예은 */
 	@RequestMapping("/mydiary/{user_id}/home")
-	public String view_mydiary_home(@PathVariable String user_id, Model model) {
+	public String view_mydiary_home(@PathVariable("user_id") String user_id, Model model) {
 
 		MydiaryVO mydiary = mydiaryService.viewMydiary(user_id);
 		model.addAttribute("mydiary", mydiary);

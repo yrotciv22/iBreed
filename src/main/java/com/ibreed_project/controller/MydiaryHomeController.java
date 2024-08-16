@@ -18,12 +18,10 @@ public class MydiaryHomeController {
 
 	/* 마이다이어리 제목 수정 */
 	@RequestMapping("/mydiary/{user_id}/updateDiary")
-	public String updateMydiary(@PathVariable String user_id, MydiaryVO vo) {
+	public String updateMydiary(@PathVariable("user_id") String user_id, MydiaryVO vo) {
 
 		mydiaryService.updateMydiary(vo);
 		return "redirect:/mydiary/{user_id}/home";
 	}
 
 }
-
-

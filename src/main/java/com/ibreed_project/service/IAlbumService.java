@@ -18,9 +18,12 @@ public interface IAlbumService {
 	// 앨범 list 이름반대순으로 뽑아내기
 	public ArrayList<AlbumVO> selectBackSpelling();
 	
+	// 앨범 추가하기
+	public void addAlbum(AlbumVO vo);
+	
 	// 앨범 삭제하기
 	public void deleteAlbum(int album_id);
 	
 	// 앨범 이름 수정하기
-	public void updateAlbumName(int album_id);
+	public void updateAlbumName(AlbumVO vo);
 }

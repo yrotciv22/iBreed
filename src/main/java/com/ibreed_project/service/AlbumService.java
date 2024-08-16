@@ -37,12 +37,17 @@ public class AlbumService implements IAlbumService {
 	}
 	
 	@Override
+	public void addAlbum(AlbumVO vo) {
+		dao.addAlbum(vo);
+	}
+	
+	@Override
 	public void deleteAlbum(int album_id) {
 		dao.deleteAlbum(album_id);
 	}
 	
 	@Override
-	public void updateAlbumName(int album_id) {
-		dao.updateAlbumName(album_id);
+	public void updateAlbumName(AlbumVO vo) {
+		dao.updateAlbumName(vo);
 	}
 }

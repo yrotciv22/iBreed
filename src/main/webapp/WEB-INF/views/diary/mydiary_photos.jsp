@@ -45,7 +45,7 @@
 				<div>
 					<ul>
 					<c:if test=""></c:if>
-						<c:forEach items="${latestList}" var="album">
+						<c:forEach items="${latestList}" var="album" varStatus="status">
 							<li>
 								<!-- <div class="albumBox" onclick="location.href='/mydiary/album/앨범1'"> -->
 								<div class="albumBox">
@@ -57,15 +57,28 @@
 									<strong class="album_title">${album.album_name}</strong>
 									<p class="update"><fmt:formatDate value="${album.album_date}" pattern="yyyy-MM-dd" />에 생성됨</p>
 								</div>
-								<div id="menu">
+								<div id="menu" class="menu">
 									<ul>
 										<li><a>🖱️열기</a></li>
-										<li><a id="deleteBtn">🗑️삭제</a></li>
-										<li><a id="changeBtn">이름바꾸기</a></li>
+										<li><a class="deleteBtn"  data-del="${status.index}">🗑️삭제</a></li>
+										<li><a class="changeBtn" data-ch="${status.index}">이름바꾸기</a></li>
 									</ul>
 								</div>
 							</li>
 							<div id="modalBox">
+								<form method="post" action="<c:url value='/album/addAlbum' />">
+									<div class="modal add_modal">
+										<div class="modal_body add_body">
+											<button class="xBtn">✕</button>
+											<strong>새 앨범 만들기</strong>
+											<input type="text" id="update_text" placeholder=" 앨범명을 입력해주세요" name="album_name">
+											<p>앨범 생성 후 사진을 넣어주세요.</p>
+											<button class="modal_okBtn okBtn3">확인</button>
+											<input id="album_changeBtn" class="modal_noBtn noBtn3" type="reset" value="취소" />
+										</div>
+									</div>
+								</form>
+								
 								<form method="post" action="<c:url value='/album/deleteAlbum/${album.album_id}'/>">
 									<div class="modal delete_modal">
 										<div class="modal_body delete_body">
@@ -79,12 +92,12 @@
 									</div>
 								</form>
 								
-								<form method="post" action="<c:url value='/album/updateAlbum/${album.album_id}'/>">
+								<form method="post" action="<c:url value='/album/updateAlbum'/>">
 									<div class="modal change_modal">
 										<div class="modal_body change_body">
 											<button class="xBtn">✕</button>
 											<strong>이름 바꾸기</strong>
-											<input type="text" id="change_text" value="${album.album_name}" name="album_name">
+											<input type="text" class="change_text" name="album_name" placeholder="${album.album_name}">
 											<button class="modal_okBtn okBtn2">확인</button>
 											<input id="album_changeBtn" class="modal_noBtn noBtn2" type="reset" value="취소" />
 										</div>
