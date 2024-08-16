@@ -32,7 +32,7 @@ body {
 	align-items: flex-start;
 	width: 100%;
 	height: 100%;
-	padding: 50px;
+	padding: 40px;
 	align-items: flex-start;
 }
 
@@ -41,6 +41,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	width: 900px;
+	min-width:900px;
 	height: 600px;
 	background: #F6DEC8;
 	border-radius: 20px;
@@ -50,72 +51,18 @@ body {
 
 .diary_content {
 	display: flex;
-	width: 840px;
-	height: 540px;
+	width: 850px;
+	height: 550px;
 	background: #FFF4F1;
 	border-radius: 10px;
 	padding: 20px;
 	border: 3px solid #111;
 }
 
-.left_wrap {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 280px;
-	height: 100%;
-	border-right: 1px solid #ccc;
+nav a {
+	display: block;
 }
 
-.today_feeling {
-	display: flex;
-	width: 100%;
-	height: 40px;
-	border: 1px solid #ccc;
-	font-size: 12px;
-}
-
-.profile_photo {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: 140px;
-	background: #ccc;
-	border-radius: 10px;
-}
-
-.profile_text {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: calc(100% - 180px);
-	border: 1px solid #ccc;
-}
-
-.diary_title {
-	display: flex;
-	width: 100%;
-	height: 40px;
-	border: 1px solid #ccc;
-}
-
-.right_wrap {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 100%;
-}
-
-.recent_posts {
-	display: flex;
-	width: 100%;
-	height: 140px;
-	border: 1px solid #ccc;
-}
 
 .diary_taps {
 	display: flex;
@@ -130,15 +77,23 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 100;
+	width: 100px;
+	min-width:100px;
 	height: 60px;
 	/* box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2); */
 	margin-top: 10px;
-	background: #eee;
 	border-top-right-radius: 12px;
 	border-bottom-right-radius: 12px;
 	border: 3px solid #111;
 	border-left: none;
+	background-color: #ddd;
+	color: #555;	
+}
+
+.diary_taps div.active-tab {
+		background-color: #fff;
+		height: 70px;
+		color: #222;
 }
 
 @font-face {
