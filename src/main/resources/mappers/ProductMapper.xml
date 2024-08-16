@@ -16,6 +16,7 @@
 			<result property="product_main_category" column="product_main_category"/>
 			<result property="product_sub_category" column="product_sub_category"/>
 			<result property="" column=""/>
+			
 		</resultMap>
 		
 		<!-- shop 메인 top 10 뽑아오기(판매량이 높은 순서) -->

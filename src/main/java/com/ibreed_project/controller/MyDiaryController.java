@@ -43,12 +43,6 @@ public class MyDiaryController {
 		return "diary/mydiary_emotion";
 	}
 	
-	/* <사진첩> 승우 */
-	@RequestMapping("/mydiary/photos")
-	public String view_mydiary_photos() {
-		return "diary/mydiary_photos";
-	}
-	
 	/* <캘린더> 승우 */
 	@RequestMapping("/mydiary/calendar")
 	public String view_mydiary_calendar() {

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="com.ibreed_project.dao.IAlbumDAO">
+	
+		<resultMap type="com.ibreed_project.model.AlbumVO" id="albumResult">
+			<result property="album_id" column="album_id"/>
+			<result property="album_name" column="album_name"/>
+			<result property="album_date" column="album_date"/>
+			<result property="album_update" column="album_update"/>
+			<result property="album_public" column="album_public"/>
+			<result property="diary_id" column="diary_id"/>
+			
+		</resultMap>
+	
+		<select id="selectLatest" resultMap="albumResult">
+			SELECT * FROM album ORDER BY album_date;
+		</select>
+		
+		<select id="selectOld" resultMap="albumResult">
+			SELECT * FROM album ORDER BY album_date DESC;
+		</select>
+		
+		<select id="selectSpelling" resultMap="albumResult">
+			SELECT * FROM album ORDER BY album_name;
+		</select>
+	
+		<select id="selectBackSpelling" resultMap="albumResult">
+			SELECT * FROM album ORDER BY album_name DESC;
+		</select>
+			
+		<delete id="deleteAlbum" parameterType="int">
+			DELETE FROM album WHERE album_id=#{album_id}
+		</delete>
+			
+		<update id="updateAlbumName" parameterType="int">
+			UPDATE album SET album_name=#{album_name} WHERE album_id=#{album_id}
+		</update>
+	</mapper>
