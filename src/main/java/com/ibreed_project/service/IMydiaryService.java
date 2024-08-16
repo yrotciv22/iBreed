@@ -1,6 +1,7 @@
 package com.ibreed_project.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.ibreed_project.model.MydiaryVO;
 
@@ -12,12 +13,14 @@ public interface IMydiaryService {
 	// user_id에 해당하는 다이어리 조회 
 	public MydiaryVO viewMydiary(String user_id);
 	
+	// 다이어리 등록 
+	
 	// 다이어리 수정
-	public void updateMydiary(String user_id);
+	public void updateMydiary(MydiaryVO vo);
 	
 	// 인기 다이어리
 	public ArrayList<MydiaryVO> selectBestDiary();
 	
 	// 다이어리 검색 ? 
-	public ArrayList<MydiaryVO> searchMydiary(String user_id);
+	public ArrayList<MydiaryVO> searchMydiary(HashMap<String, Object> map);
 }

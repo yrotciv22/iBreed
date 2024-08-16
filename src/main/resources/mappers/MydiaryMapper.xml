@@ -16,11 +16,14 @@
 	</resultMap>
 
 	<!-- 마이 다이어리 조회 -->
-	 <select id="viewMydiary" resultMap="mydiaryResultMap">
+	<select id="viewMydiary" resultType="com.ibreed_project.model.MydiaryVO">
 		SELECT * FROM diary WHERE user_id = #{user_id};
 	</select>	
 	 
 	<!-- 마이 다이어리 수정 -->
+	 <update id="updateMydiary" >
+		UPDATE diary SET diary_title=#{diary_title} WHERE user_id=#{user_id};
+	</update >	
 	
 	
 	<!-- 베스트 다이어리 -->
