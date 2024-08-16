@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+body {
+    font-family: Gmarket Sans;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .Wrap {
     width: 1280px;
     margin: 0 auto;
@@ -13,15 +20,8 @@
     margin-top: 10px;
 }
 
-body {
-    font-family: Gmarket Sans;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .sidebar {
-    width: 250px;
+    width: 250px; !important;
     background-color: #f8f8f8;
     padding: 20px;
     border-right: 1px solid #ddd;
@@ -35,41 +35,48 @@ body {
 .sidebar ul li {
     padding: 10px 0;
 }
-.login-container{
-	border:1px solid lightgray;
-	border-radius:5px;
-	padding:8px;
-	text-align:center;
-	margin-bottom:10px;
+
+.login-container {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 8px;
+    text-align: center;
+    margin-bottom: 10px;
+    width: 100%;
 }
+
 .sidebar .login-link {
     display: block;
     padding: 10px;
     background-color: #53afb2;
-    color: white; 
+    color: white;
     text-align: center;
     text-decoration: none;
     border-radius: 5px;
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
-.add-links{
-	margin-top:10px;
-	text-align:center;
-	display:flex;
-	justify-content:center;
-	alighn-item:center;
+
+.add-links {
+    margin-top: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.add-link{
-	color:gray;
-	text-decoration:none;
-	margin:0 5px;
-	display:inline-block;
-	font-size:10px;
+
+.add-link {
+    color: gray;
+    text-decoration: none;
+    margin: 0 5px;
+    display: inline-block;
+    font-size: 10px;
 }
-.add-link:hover{
-	text-decoration:underline;
-	color:lightblue;
+
+.add-link:hover {
+    text-decoration: underline;
+    color: lightblue;
 }
+
 .sidebar .nav-link {
     color: gray;
     text-decoration: none;
@@ -86,7 +93,7 @@ body {
     flex-grow: 1;
     padding: 20px;
     background-color: #ffffff;
-    overflow: hidden; /* 폭 안넓어지게  */
+    overflow: hidden; /* 폭 안 넓어지게 */
 }
 
 .header-content {
@@ -97,107 +104,73 @@ body {
 }
 
 .search-bar {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 500px;
-	height: 50px;
-	border: 1px solid #aaa;
-	border-radius: 30px;
-	padding: 0 10px;
-	margin: 50px 0;
-	overflow:hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+    height: 50px;
+    border: 1px solid #aaa;
+    border-radius: 30px;
+    padding: 0 10px;
+    margin: 50px 0;
+    overflow: hidden;
 }
 
 .search-bar input {
-	
-	border:none;
-	outline:none;
-	width: 400px;
-	height: 44px;
+    border: none;
+    outline: none;
+    width: 400px;
+    height: 44px;
 }
 
 .search-bar button {
-	border: none;
-	background: #fff;
-	font-weight: 600;
+    border: none;
+    background: #fff;
+    font-weight: 600;
 }
+
 .search-bar button:hover {
-    color: #53AFB2; 
+    color: #53AFB2;
     font-weight: 800;
 }
 
-.section {
-    margin-bottom: 20px;
-}
 
-.section .content-box {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-top: 10px;
-    overflow: hidden; /* 내용이 박스를 넘어가지 않도록 설정 */
-    border-radius:3px;
-}
-
-.section .content-box ul {
-    list-style: none; /* 동그라미 제거 */
-    padding: 0;
-    margin: 0;
-}
-
-.section .content-box li {
-    margin-bottom: 10px; /* 간격을 조금 늘림 */
-    white-space: nowrap; /* 줄바꿈 방지 */
-    overflow: hidden; /* 내용이 박스를 넘어가지 않도록 설정 */
-    text-overflow: ellipsis; /* 넘친 부분 생략 표시 */
-    max-width: 100%; /* 폭 크기에 맞춤 */
-}
-
-.section .content-box a {
-    color: black; /* 링크 색상을 검정으로 설정 */
-    text-decoration: none;
-}
-
-.section .content-box a:hover {
-    text-decoration: underline;
-}
 
 #to_top_Btn {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	position: fixed;
-	bottom: 3%;
-	right: 7%;
-	width: 50px;
-	height: 50px;
-	border: 1px solid #ccc;
-	border-radius: 50%;
-	cursor: pointer;
-	z-index: 99;
-	background-color: #fff;
-	display: none;
-	font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 3%;
+    right: 7%;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 99;
+    background-color: #fff;
+    display: none;
+    font-size: 12px;
 }
 
 #to_top_Btn:hover {
-	color: #53AFB2;
-	font-weight: 600;
+    color: #53AFB2;
+    font-weight: 600;
 }
-   /*after login*/
-   
-   
- .profile-container{
+
+/* after login */
+
+.profile-container {
     border: 1px solid lightgray;
     border-radius: 5px;
     padding: 10px;
-    width: 200px;
+    width: 100%;
     margin: 0 auto;
-    margin-bottom:10px;
+    margin-bottom: 10px;
     background-color: #f9f9f9;
-	text-align:left;
+    text-align: left;
 }
 
 .profile-info {
@@ -271,12 +244,13 @@ body {
 .community-write-btn:hover {
     background-color: #429296;
 }
- .logout-btn {
+
+.logout-btn {
     display: inline-block;
-    width:100%;
+    width: 100%;
     margin-top: 0px;
     padding: 10px 20px;
-    background-color: #d3d3d3; 
+    background-color: #d3d3d3;
     color: black;
     text-align: center;
     border-radius: 5px;
