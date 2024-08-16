@@ -33,10 +33,10 @@ public class MapController {
         return "map/map";
     }
 
-    @GetMapping(value = "/search/hospitals", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/search/hospitals", produces = "application/json")
     @ResponseBody
-    public String searchHospitals(@RequestParam("lat") double lat, @RequestParam("lng") double lng) {
-        String apiUrl = "https://dapi.kakao.com/v2/local/search/keyword.json?query=병원&x=" + lng + "&y=" + lat + "&radius=2000&size=15";
+    public String searchHospitals(@RequestParam("lat") double lat, @RequestParam("lng") double lng, @RequestParam("map_name") String mapName) {
+        String apiUrl = "https://dapi.kakao.com/v2/local/search/keyword.json?query=" + mapName + "&x=" + lng + "&y=" + lat + "&radius=2000&size=15";
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -47,6 +47,35 @@ public class MapController {
 
         return response.getBody();  // JSON 형태로 클라이언트에 반환
     }
+
+    @GetMapping(value = "/search/address", produces = "application/json")
+    @ResponseBody
+    public String searchAddress(@RequestParam("query") String query) {
+        String addressApiUrl = "https://dapi.kakao.com/v2/local/search/address.json?query=" + query;
+        String keywordApiUrl = "https://dapi.kakao.com/v2/local/search/keyword.json?query=" + query;
+
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "KakaoAK " + kakaoApiKey);  // API 키를 헤더에 추가
+
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        // 1. 주소 검색 시도
+        ResponseEntity<String> addressResponse = restTemplate.exchange(addressApiUrl, HttpMethod.GET, entity, String.class);
+        String addressResponseBody = addressResponse.getBody();
+
+        // 주소 검색 결과 확인
+        if (addressResponseBody != null && !addressResponseBody.contains("\"documents\":[]")) {
+            return addressResponseBody;  // 주소 검색 결과 반환
+        }
+
+        // 2. 주소 검색 결과가 없을 경우 키워드 검색 시도
+        ResponseEntity<String> keywordResponse = restTemplate.exchange(keywordApiUrl, HttpMethod.GET, entity, String.class);
+        return keywordResponse.getBody();  // 키워드 검색 결과 반환
+    }
+
+
+
 
 
     @GetMapping("/locationPopup")
