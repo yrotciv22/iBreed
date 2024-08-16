@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+li {
+	list-style-type: none;
+}
+
+#wrap {
+	width: 794px;
+	height: 100%;
+}
+
+.diary_content {
+	overflow-y: scroll;
+}
+
+#topBox {
+	height: 33px;
+}
+
+#title {
+	width: 300px;
+	position: relative;
+}
+
+#title h3 {
+	display: inline-block;
+}
+
+#search {
+	width: 231px;
+	position: relative;
+	top: -26px;
+	left: 557px;
+}
+
+#middleBox {
+	height: 15px;
+}
+
+#upload {
+	width: 300px;
+	position: relative;
+}
+
+#ctrl {
+	width: 74px;
+	position: relative;
+	top: -26px;
+	left: 657px;
+}
+
+.albumBox {
+	width: 182px;
+	height: 217px;
+	margin: 8px 8px;
+	padding: 5px;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+}
+
+.albumBox::-webkit-scrollbar-thumb {
+	background: white;
+	border-radius: 10px;
+}
+
+.photoCheck {
+	position: relative;
+	width: 0;
+	height: 0;
+	visibility: hidden;
+}
+
+.album_thimbnail {
+	width: 172px;
+	height: 161px;
+	-webkit-border-radius: 5px;
+}
+
+.photoCount {
+	position: relative;
+	top: -33px;
+	left: 135px;
+	width: 0;
+	height: 0;
+	font-size: 16px;
+}
+
+.countNum {
+	background: black;
+	color: white;
+	display: block;
+	width: 32px;
+	border-radius: 10px;
+	opacity: 50%;
+}
+
+.countCircle {
+	opacity: 50%;
+	width: 10px;
+	height: 10px;
+}
+
+.album_title {
+	
+}
+
+.update {
+	color: #aaa;
+	font-size: 12px;
+}
+
