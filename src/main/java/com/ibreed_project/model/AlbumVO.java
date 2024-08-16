@@ -1,0 +1,65 @@
+package com.ibreed_project.model;
+
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+public class AlbumVO {
+	private int album_id;
+	private String album_name;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date album_date;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date album_update;
+	private int album_public;
+	private int diary_id;
+
+	public int getAlbum_id() {
+		return album_id;
+	}
+
+	public void setAlbum_id(int album_id) {
+		this.album_id = album_id;
+	}
+
+	public String getAlbum_name() {
+		return album_name;
+	}
+
+	public void setAlbum_name(String album_name) {
+		this.album_name = album_name;
+	}
+
+	public Date getAlbum_date() {
+		return album_date;
+	}
+
+	public void setAlbum_date(Date album_date) {
+		this.album_date = album_date;
+	}
+
+	public Date getAlbum_update() {
+		return album_update;
+	}
+
+	public void setAlbum_update(Date album_update) {
+		this.album_update = album_update;
+	}
+
+	public int getAlbum_public() {
+		return album_public;
+	}
+
+	public void setAlbum_public(int album_public) {
+		this.album_public = album_public;
+	}
+
+	public int getDiary_id() {
+		return diary_id;
+	}
+
+	public void setDiary_id(int diary_id) {
+		this.diary_id = diary_id;
+	}
+
+}
