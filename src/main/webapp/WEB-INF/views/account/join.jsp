@@ -246,6 +246,33 @@
         }
 
 
+        //위치정보기반 처리 코드
+        document.addEventListener('DOMContentLoaded', function() {
+            const locationAgreeRadios = document.querySelectorAll('input[name="user_location_aggree"]');
+            const locationButton = document.getElementById('locationButton');  // 위치찾기 버튼
+            const authAddressInput = document.getElementById('use_auth_address');  // 위치 입력란
+
+            // 라디오 버튼의 상태가 변경될 때마다 호출되는 함수
+            function handleLocationAgreeChange() {
+                if (this.value === 'true') {
+                    locationButton.disabled = false;  // 동의하면 버튼 활성화
+                } else {
+                    authAddressInput.value = '';  // 거부하면 입력란 비우기
+                    locationButton.disabled = true;  // 버튼 비활성화
+                }
+            }
+
+            // 모든 라디오 버튼에 변경 이벤트 리스너 추가
+            locationAgreeRadios.forEach(function(radio) {
+                radio.addEventListener('change', handleLocationAgreeChange);
+            });
+
+            // 페이지 로드 시 초기 상태 설정
+            handleLocationAgreeChange.call(document.querySelector('input[name="user_location_aggree"]:checked'));
+        });
+
+
+
 
 
 
@@ -394,7 +421,7 @@
                         <td><label for="use_auth_address">위치 찾기</label></td>
                         <td>
                             <input type="text" id="use_auth_address" name="use_auth_address" class="text" readonly>
-                            <input type="button" value="위치찾기" class="overlapbtn" onClick="searchLocation()">
+                            <input type="button" value="위치찾기" id="locationButton" class="overlapbtn" onClick="searchLocation()">
                         </td>
                     </tr>
                     <tr>
