@@ -27,8 +27,8 @@ public class MydiaryService implements IMydiaryService {
 	}
 
 	@Override
-	public void updateMydiary(MydiaryVO vo) {
-		dao.updateMydiary(vo);
+	public void updateMydiary(MydiaryVO vo, String category) {
+		dao.updateMydiary(vo,category);
 	}
 	
 	@Override

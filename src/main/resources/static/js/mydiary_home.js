@@ -3,8 +3,7 @@
  */
  
  
- // 다이어리홈 제목 수정 
-
+ // 다이어리 홈 제목 수정 
  
  $(document).ready(function(){
  	console.log("home js");
@@ -16,36 +15,28 @@
 		
 		document.getElementById("diaryTitleInput").style.display = "block";
 		document.getElementById("saveButton").style.display = "block";
+		document.getElementById("cancelBtn").style.display = "block";
+		
+	});	
+	
+	document.getElementById("cancelBtn").addEventListener("click", function() {
+	
+		document.getElementById("editButton").style.display = "block";
+		document.getElementById("diaryTitleDisplay").style.display = "block";
+		
+		document.getElementById("diaryTitleInput").style.display = "none";
+		document.getElementById("saveButton").style.display = "none";
+		document.getElementById("cancelBtn").style.display = "none";
+		
 	});	
  
  
- 
-   //  $('#diaryTitleUpdateForm').on('submit', function(event) {
-    //    event.preventDefault();
-                
-//        let title = $('#diaryTitleInput').val();
-  //      console.log("title",title);
-
-//        $.ajax({
-  //          type: "POST",
-    //        url: "/mydiary/{user_id}/home/updateDiary/title", 
-// 			data:'',
-       //     dataType: 'text',
-       //     success: function(result) {
-          //      if (result == "success") {
-           //         alert("수정이 완료되었습니다.");
-          //          location.href = "/"; 
-            //    } else {
-          //          alert("수정 실패");
-           //     }
-         //   },
-         //   error: function() {
-         //       alert("오류가 발생했습니다");
-        //    }
-      //  });
-   // });
-    
- 
-
+ document.getElementById("edit_feeling_btn").addEventListener("click", function() {
+	
+		document.getElementById("select_feeling_select").style.display = "flex";
+			document.getElementById("save_feeling_btn").style.display = "flex";
+	
+			document.getElementById("today_feeling").style.display = "none";
+	});	
 	
  });
