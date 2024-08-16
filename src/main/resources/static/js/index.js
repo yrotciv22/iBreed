@@ -8,7 +8,7 @@
   $(".main_diary_btn").on("click", function openMyDiary() {
    console.log("openMyDiary");
 
-            let requestUrl = "/mydiary/"+userId;             
+            let requestUrl = "/mydiary/"+userId+"/home";             
             let popupTitle = "iBreed Diary"; 
             let popupWidth = 1200; 
             let popupHeight = 700; 

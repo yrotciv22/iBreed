@@ -1,6 +1,10 @@
+
+
+
 package com.ibreed_project.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,8 +27,8 @@ public class MydiaryService implements IMydiaryService {
 	}
 
 	@Override
-	public void updateMydiary(String user_id) {
-		dao.updateMydiary(user_id);
+	public void updateMydiary(MydiaryVO vo) {
+		dao.updateMydiary(vo);
 	}
 	
 	@Override
@@ -33,7 +37,7 @@ public class MydiaryService implements IMydiaryService {
 	}
 
 	@Override
-	public ArrayList<MydiaryVO> searchMydiary(String user_id) {
+	public ArrayList<MydiaryVO> searchMydiary(HashMap<String, Object> map) {
 		return null;
 	}
 

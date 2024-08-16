@@ -9,7 +9,7 @@ public interface IMydiaryDAO {
 
 	public MydiaryVO viewMydiary(String user_id);
 
-	public void updateMydiary(String user_id);
+	public void updateMydiary(MydiaryVO vo);
 	
 	public ArrayList<MydiaryVO> selectBestDiary();
 	
