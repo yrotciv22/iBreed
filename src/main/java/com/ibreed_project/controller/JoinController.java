@@ -25,20 +25,22 @@ public class JoinController {
     @ResponseBody
     public String joinCommit(@ModelAttribute AccountVO vo) {
         try {
-            vo.setUser_email(vo.getUser_email() +"@"+ vo.getEmailDomain());
+            vo.setUser_email(vo.getUser_email() + "@" + vo.getEmailDomain());
             System.out.println("이메일 머지 : " + vo.getUser_email());
             boolean result = joinService.joinCommit(vo);
-            if(result) {
+            boolean diaryResult = joinService.diaryCommit(vo);
+
+            if(result && diaryResult) {
                 System.out.println("성공");
-                return "<script>alert('회원 가입이 완료되었습니다.')</script>";
+                return "<script>alert('회원 가입이 완료되었습니다.'); location.href='/';</script>";
             } else {
                 System.out.println("실패");
-                return "<script>alert('회원 가입에 실패하였습니다. 다시 시도해 주십시오.')</script>";
+                return "<script>alert('회원 가입에 실패하였습니다. 다시 시도해 주십시오.'); history.back();</script>";
             }
         } catch (Exception e) {
             System.err.println("회원 가입 중 오류 발생: " + e.getMessage());
             e.printStackTrace();
-            return "<script>alert('회원 가입 중 오류가 발생하였습니다. 다시 시도해 주십시오.')</script>";
+            return "<script>alert('회원 가입 중 오류가 발생하였습니다. 다시 시도해 주십시오.'); history.back();</script>";
         }
     }
 

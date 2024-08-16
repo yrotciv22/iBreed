@@ -31,6 +31,14 @@ public class JoinService implements IJoinService{
     }
 
     @Override
+    public boolean diaryCommit(AccountVO vo) {
+        //여기에 실질적으로 작업 해야 하는 내용을 다 넣으면됩니다.
+        System.out.println("다이어리 커밋 진입 성공");
+        vo.setUser_timestamp(new Date());
+        return joinDAO.diaryCommit(vo);
+    }
+
+    @Override
     public boolean isIdDuplicate(String id) {
         System.out.println("id 값 : " + id);
         return joinDAO.checkIdDuplicate(id) > 0;
