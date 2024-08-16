@@ -16,11 +16,11 @@
 		</resultMap>
 	
 		<select id="selectLatest" resultMap="albumResult">
-			SELECT * FROM album ORDER BY album_date;
+			SELECT * FROM album ORDER BY album_date DESC;
 		</select>
 		
 		<select id="selectOld" resultMap="albumResult">
-			SELECT * FROM album ORDER BY album_date DESC;
+			SELECT * FROM album ORDER BY album_date;
 		</select>
 		
 		<select id="selectSpelling" resultMap="albumResult">
@@ -31,11 +31,16 @@
 			SELECT * FROM album ORDER BY album_name DESC;
 		</select>
 			
+		<insert id="addAlbum" parameterType="com.ibreed_project.model.AlbumVO">
+			INSERT INTO album (album_name, album_date, album_update, diary_id)
+			VALUES(#{album_name}, now(), null, 1)
+		</insert>
+			
 		<delete id="deleteAlbum" parameterType="int">
 			DELETE FROM album WHERE album_id=#{album_id}
 		</delete>
 			
-		<update id="updateAlbumName" parameterType="int">
-			UPDATE album SET album_name=#{album_name} WHERE album_id=#{album_id}
+		<update id="updateAlbumName">
+			UPDATE album SET album_name=#{album_name},album_update=now() WHERE album_id=#{album_id}
 		</update>
 	</mapper>

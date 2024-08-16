@@ -2,7 +2,6 @@ package com.ibreed_project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,6 +17,7 @@ public class MydiaryHomeController {
 	
 
 	/* 마이다이어리 제목 수정 */
+
 	@RequestMapping("/mydiary/{user_id}/updateDiary/{category}")
 	public String updateMydiary(@PathVariable("user_id") String user_id,
 								@PathVariable("category") String category,
@@ -30,5 +30,3 @@ public class MydiaryHomeController {
 	}
 
 }
-
-
