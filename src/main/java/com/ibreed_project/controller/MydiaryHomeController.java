@@ -2,8 +2,8 @@ package com.ibreed_project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ibreed_project.model.MydiaryVO;
 import com.ibreed_project.service.MydiaryService;
@@ -18,7 +18,8 @@ public class MydiaryHomeController {
 
 	/* 마이다이어리 제목 수정 */
 	@RequestMapping("/mydiary/{user_id}/updateDiary")
-	public String updateMydiary(@PathVariable("user_id") String user_id, MydiaryVO vo) {
+
+	public String updateMydiary(@RequestParam("user_id") String user_id, MydiaryVO vo) {
 
 		mydiaryService.updateMydiary(vo);
 		return "redirect:/mydiary/{user_id}/home";
