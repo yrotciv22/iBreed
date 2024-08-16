@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+
+.section {
+    margin-bottom: 20px;
+}
+
+.section .content-box {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 10px;
+    overflow: hidden; /* 내용이 박스를 넘어가지 않도록 설정 */
+    border-radius:3px;
+}
+
+.section .content-box ul {
+    list-style: none; /* 동그라미 제거 */
+    padding: 0;
+    margin: 0;
+}
+
+.section .content-box li {
+    margin-bottom: 10px; /* 간격을 조금 늘림 */
+    white-space: nowrap; /* 줄바꿈 방지 */
+    overflow: hidden; /* 내용이 박스를 넘어가지 않도록 설정 */
+    text-overflow: ellipsis; /* 넘친 부분 생략 표시 */
+    max-width: 100%; /* 폭 크기에 맞춤 */
+}
+
+.section .content-box a {
+    color: black; /* 링크 색상을 검정으로 설정 */
+    text-decoration: none;
+}
+
+.section .content-box a:hover {
+    text-decoration: underline;
+}
+

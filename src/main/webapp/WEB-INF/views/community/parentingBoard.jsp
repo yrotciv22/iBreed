@@ -1,18 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="userId" value="${sessionScope.user_id}" />  
-
 <!DOCTYPE html>
 <html>
 
 <head>
 	<meta charset="UTF-8">
-	<title>iBreed 커뮤니티</title>
+	
 	<!-- 공통 layout: head.jsp -->
 	<c:import url="/WEB-INF/views/layout/head.jsp" />
 	
-	
+	<title>iBreed 커뮤니티</title>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/community/communitycommon.css' />" />
 	<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
     <script src="<c:url value='/js/communitycommon.js' />"></script>
@@ -86,7 +85,8 @@
                 </nav>
                 <main class="main-section">
 	                <div class="header-content">
-	                      <h1>${board.boardName}</h1>
+	                       <h1>${board.boardName}</h1>
+	                       <%--  <p>${board.boardDescription}</p> --%>
 	                        <div class="search-bar">
 							    <form action="/community/search" method="get">
 							        <input type="text" name="keyword" placeholder="검색어를 입력하세요">
@@ -95,13 +95,16 @@
 							</div>
 	                    </div>
 		<!--  여기까진 커뮤니티에 공통으로 포함되어야함.나머지 페이지별 다른건 아래에 작성-->
-		 
-		임신출산페이지입니다
+		  
+	  	
+					육아정보페이지입니다
 	
 		<!-- 본문 끝 -->
 
-		<div id="to_top_Btn">Top</div>
+
 		
+		
+        <div id="to_top_Btn">Top</div>		
 		<!-- 공통 layout: botton.jsp -->
 		<c:import url="/WEB-INF/views/layout/bottom.jsp" />
 
