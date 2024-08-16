@@ -8,20 +8,65 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 280px;
+	width: 300px;
 	height: 100%;
-	border-right: 2px solid #333;
-	padding-right: 14px;
+	border-right: 3px dotted #333;
+	padding-right: 30px;
 	font-family: "GmarketSansMedium";
 }
 
-.today_feeling {
+.today_feeling_wrap {
 	display: flex;
+	flex-direction: column;
 	width: 100%;
-	height: 40px;
-	font-size: 12px;
+	height:70px;
+	font-size: 14px;
+}
+#today_feeling {
+	display: flex;
+}
+.today_feeling_wrap span {
+	margin-bottom: 10px;
+	}
+	
+#edit_feeling_btn{
+	height: 18px;
+	cursor:pointer;
+	margin:0;
+	padding:0;
+	display: inline-block;
 }
 
+#select_feeling_wrap {
+	display:flex;
+	width: 100px;
+}
+
+#select_feeling_wrap form{
+		display:flex;
+}
+#select_feeling_select{
+	width: 100%;
+	height: 100%;
+	margin:0;
+	padding:0;
+	display:none;
+}
+
+#save_feeling_btn{
+	height: 24px;
+	overflow:hidden;
+	text-decoration: none;
+	border:none;
+	display:none;
+}
+#save_feeling_btn img{
+	border:none;
+	height:100%;
+	width:100%;
+	object-fit:contain;
+	cursor:pointer;
+}
 .profile_photo {
 	display: flex;
 	flex-direction: column;
@@ -31,7 +76,6 @@
 	height: 140px;
 	background: #ccc;
 	border-radius: 10px;
-	border: 2px solid #333;
 	overflow: hidden;
 }
 
@@ -53,13 +97,14 @@
 
 .diary_title {
 	display: flex;
-	height: 40px;
+	height: 50px;
 	width: 560px;
+	font-size:20px;
 }
 
 #diaryTitleDisplay {
 	max-width: 500px;
-	height: 30px;
+	height: 50px;
 	font-family: "yg-jalnan";
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -68,8 +113,8 @@
 
 #diaryTitleInput {
 	width: 100%;
-	max-width: 500px;
-	height: 30px;
+	max-width: 440px;
+	height: 34px;
 	font-family: "yg-jalnan";
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -80,7 +125,6 @@
 	padding: 0;
 	margin:0;
 	background: #fff;
-	text-indent: 10px;
 	display: none;
 }
 
@@ -100,18 +144,25 @@
 	height: 30px;
 	object-fit: contain;
 	cursor: pointer;
-	margin-left: 10px;
+	margin-left: 6px;
+	margin-right:20px;
 	display: none;
 	border: none;
 }
 
+#cancelBtn {
+	display:none;
+	cursor:pointer;
+	font-weight:900;
+	line-height:34px;
+}
 
 .right_wrap {
 	display: flex;
 	flex-direction: column;
-	width: 100%;
+	width: 560px;
 	height: 100%;
-	padding-left: 14px;
+	padding-left: 30px;
 	font-family: "GmarketSansMedium";
 }
 
@@ -120,10 +171,21 @@
 	flex-direction: column;
 	width: 100%;
 	height: 140px;
-	border-bottom: 1px solid #ccc;
 }
 
 .recent_posts ul {
 	margin-left: 20px;
 	font-size: 14px;
+}
+
+.home_photo_wrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width:100%;
+	height:300px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	background:#ddd;
 }

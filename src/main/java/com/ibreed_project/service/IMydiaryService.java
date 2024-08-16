@@ -16,7 +16,7 @@ public interface IMydiaryService {
 	// 다이어리 등록 
 	
 	// 다이어리 수정
-	public void updateMydiary(MydiaryVO vo);
+	public void updateMydiary(MydiaryVO vo, String category);
 	
 	// 인기 다이어리
 	public ArrayList<MydiaryVO> selectBestDiary();
