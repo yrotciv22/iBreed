@@ -18,6 +18,7 @@ public class MydiaryHomeController {
 
 	/* 마이다이어리 제목 수정 */
 	@RequestMapping("/mydiary/{user_id}/updateDiary")
+
 	public String updateMydiary(@RequestParam("user_id") String user_id, MydiaryVO vo) {
 
 		mydiaryService.updateMydiary(vo);
@@ -25,5 +26,3 @@ public class MydiaryHomeController {
 	}
 
 }
-
-

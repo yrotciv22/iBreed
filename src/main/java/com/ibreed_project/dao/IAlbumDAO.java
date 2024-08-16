@@ -14,7 +14,9 @@ public interface IAlbumDAO {
 	
 	public ArrayList<AlbumVO> selectBackSpelling();
 	
+	public void addAlbum(AlbumVO vo);
+	
 	public void deleteAlbum(int album_id);
 	
-	public void updateAlbumName(int album_id);
+	public void updateAlbumName(AlbumVO vo);
 }

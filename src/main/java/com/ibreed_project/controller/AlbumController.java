@@ -32,6 +32,12 @@ public class AlbumController {
 
 		return "diary/mydiary_photos";
 	}
+	
+	@RequestMapping("/album/addAlbum")
+	public String addAlbum(AlbumVO vo) {
+		albumService.addAlbum(vo);
+		return "redirect:/mydiary/photos";
+	}
 
 	@RequestMapping("/album/deleteAlbum/{album_id}")
 	public String deleteAlbum(@PathVariable("album_id") int album_id) {
@@ -39,12 +45,12 @@ public class AlbumController {
 		return "redirect:/mydiary/photos";
 	}
 	
-	@RequestMapping("/album/updateAlbum/{album_id}")
-	public String updateAlbum(@PathVariable("album_id") int album_id) {
-		albumService.updateAlbumName(album_id);
+	@RequestMapping("/album/updateAlbum")
+	public String updateAlbum(AlbumVO vo) {
+		albumService.updateAlbumName(vo);
 		return "redirect:/mydiary/photos";
 	}
-
+	
 	@RequestMapping("/mydiary/photos/앨범1")
 	public String viewDetatilPhoto() {
 		return "diary/photos/detail_photos";
