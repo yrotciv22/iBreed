@@ -16,15 +16,12 @@ $(function() {
 	let photoBox = $('.photoCheck');
 	
 	$('.albumBox').each(function(i) {
-		let checked = $(this).is(':checked');
 		$(this).hover(
 			function() {
 				photoBox[i].style.visibility = 'visible';
 			},
 			function() {
-				if(checked) {
-					photoBox[i].style.visibility = 'hidden';
-				}
+				photoBox[i].style.visibility = 'hidden';
 			}
 		);
 	});
@@ -54,15 +51,20 @@ $(function() {
 	// 배열 albumBox와 .chk 관계에서 순서대로 매칭
 	// 배열 albumBox는 인덱스 i로 구분, .chk는 each로 구분해낸 this번째 
 	let albumBox = $('.albumBox');
+	let newAlbumBox = $('.newAlbumBtn');
+	let newDeleteAlbumBox = $('.albumBox');
 	
 	$('.chk').on('click', function() {
 		
 		$('.chk').each(function(i) {
-			let checked = $(this).is(':checked');
-			if(checked){
+			if($(this).is(':checked')){
 				albumBox[i].style.background = 'lightskyblue';
+				$('#newAlbumBtn').css('display','none');
+				$('#albumDeleteBtn').css('display','inline-block');
 			} else {
 				albumBox[i].style.background = 'none';
+				$('#newAlbumBtn').css('display','inline-block');
+				$('#albumDeleteBtn').css('display','none');
 			}
 		});
 	});
@@ -72,21 +74,16 @@ $(function() {
 		if($('.chk').is(':checked')) {
 			$('.albumBox').css('background', 'lightskyblue');
 			$('.photoCheck').css('visibility', 'visible');
+			$('#newAlbumBtn').css('display','none');
+			$('#albumDeleteBtn').css('display','inline-block');
 		} else {
 			$('.albumBox').css('background', 'none');
 			$('.photoCheck').css('visibility', 'hidden');
+			$('#newAlbumBtn').css('display','inline-block');
+			$('#albumDeleteBtn').css('display','none');
 		}
 	});
-	
-	// 우클릭 이벤트 만들기
-	/* $('.albumBox').on('contextmenu', function(event) {
-	  event.preventDefault();
-	  $('#menu').css({
-	        display: 'block',
-	        left: event.pageX,
-	        top: event.pageY
-	    });
-	}); */
+
 	
 	// 우클릭 이벤트 만들기
 	let menu = $('.menu');
@@ -130,6 +127,7 @@ $(function() {
 	// 새 앨범 모달
 	$('#newAlbumBtn').on('click', function() {
 		$('.add_modal').css({"display":"flex"});
+		$('#update_text').select();
 	});
 	
 	// 삭제모달
@@ -147,13 +145,15 @@ $(function() {
 	// 이름변경모달
 	let changeModal = $('.change_modal');
 	let changeBtn = $('.changeBtn');
+	let changeText = $('.change_text');
    
 	$('.changeBtn').each(function(i) {
 		$(this).on('click', function() {
 			if(changeBtn[i].dataset.ch == i) {
 				changeModal[i].style.display = 'flex';
+				changeText[i].select();
 			}
-			});
+		});
 	});
 	
 	
