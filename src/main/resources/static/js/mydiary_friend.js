@@ -1,34 +1,76 @@
 /**
  * 
  */
- 
- 
+
  
  $(document).ready(function(){
  	console.log("friend js");
- 	
-	// 친구 
-	
-	 document.querySelector('.trigger').addEventListener('click', function(event) {
-	 console.log("trigger");
-        var popover = document.getElementById('popover');
-        var trigger = event.currentTarget;
+ 			
         
-        // 팝오버의 위치를 트리거 요소에 맞추어 설정
-        var rect = trigger.getBoundingClientRect();
-        popover.style.top = rect.bottom + 'px';
-        popover.style.left = rect.left + 'px';
+	// 친구 버튼 클릭시 
+	
+	document.querySelectorAll('.trigger').forEach(function(trigger) {
+    
+    	trigger.addEventListener('click', function(event) {
+          let popover = this.parentNode.querySelector('.click_see_more');
 
-        // 팝오버를 보이거나 숨기는 토글
-        popover.style.display = popover.style.display === 'block' ? 'none' : 'block';
-    });
+        if (popover) {
+            // trigger의 위치 정보를 가져옴
+            let rect = this.getBoundingClientRect();
 
-    // 팝오버 외부를 클릭했을 때 팝오버를 숨김
-    document.addEventListener('click', function(event) {
-        var popover = document.getElementById('popover');
-        var trigger = document.querySelector('.trigger');
-        if (!popover.contains(event.target) && !trigger.contains(event.target)) {
-            popover.style.display = 'none';
+            // popover의 위치를 설정
+            popover.style.top = (rect.bottom + 10) + 'px';
+            popover.style.left = (rect.right - 60) + 'px';
+
+            // popover를 표시 (display 속성 설정 등)
+            popover.style.display = 'block';
+            
+               document.addEventListener('click', function hidePopover(event) {
+                if (!popover.contains(event.target) && !trigger.contains(event.target)) {
+                    popover.style.display = 'none';
+                    document.removeEventListener('click', hidePopover);
+                }
+            });
+            
+        } else {
+            console.error('Popover element not found.');
         }
+    
+    	});
+     });
+     
+     
+     
+
+    document.querySelectorAll('.delete_friend').forEach(function(element) {
+      element.addEventListener('click', function() {
+      
+        const friend_id = this.getAttribute('data-userid');
+	console.log("friend_id",friend_id);
+		console.log("userId",userId);
+	
+        if (confirm('정말 친구를 끊으시겠습니까?')) {
+          fetch('/deleteFriend', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ user_id: userId, friend_id: friend_id })
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              alert('친구가 성공적으로 삭제되었습니다.');
+              location.reload();
+            } else {
+              alert('친구 삭제에 실패했습니다.');
+            }
+          })
+          .catch(error => console.error('Error:', error));
+        }
+      });
     });
+
+     
+            
  });
