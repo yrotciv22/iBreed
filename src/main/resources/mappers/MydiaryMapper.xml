@@ -33,6 +33,12 @@
 		<if test="category == 'diary_sentiment'">
 			#{vo.diary_sentiment}
 		</if>
+		<if test="category == 'diary_profile_text'">
+			#{vo.diary_profile_text}
+		</if>
+		<if test="category == 'diary_profile_image'">
+			#{vo.diary_profile_image}
+		</if>
 		WHERE user_id=#{vo.user_id};
 	</update>
 
