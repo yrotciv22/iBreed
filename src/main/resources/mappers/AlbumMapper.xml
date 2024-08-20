@@ -16,26 +16,48 @@
 		</resultMap>
 	
 		<select id="selectLatest" resultMap="albumResult">
-			SELECT * FROM album ORDER BY album_date;
+			SELECT * FROM album ORDER BY album_date DESC
 		</select>
+			
+		<insert id="addAlbum" parameterType="com.ibreed_project.model.AlbumVO">
+			INSERT INTO album (album_name, album_date, album_update, diary_id)
+			VALUES(#{album_name}, now(), null, 1)
+		</insert>
 		
-		<select id="selectOld" resultMap="albumResult">
-			SELECT * FROM album ORDER BY album_date DESC;
-		</select>
-		
-		<select id="selectSpelling" resultMap="albumResult">
-			SELECT * FROM album ORDER BY album_name;
-		</select>
-	
-		<select id="selectBackSpelling" resultMap="albumResult">
-			SELECT * FROM album ORDER BY album_name DESC;
+		<select id="albumCheck" parameterType="string" resultType="string">
+			SELECT * FROM album WHERE album_name=#{album_name};
 		</select>
 			
 		<delete id="deleteAlbum" parameterType="int">
 			DELETE FROM album WHERE album_id=#{album_id}
 		</delete>
 			
-		<update id="updateAlbumName" parameterType="int">
-			UPDATE album SET album_name=#{album_name} WHERE album_id=#{album_id}
+		<update id="updateAlbumName" parameterType="com.ibreed_project.model.AlbumVO">
+			UPDATE album SET album_name=#{album_name},album_update=now() WHERE album_id=#{album_id}
 		</update>
+		
+		<select id="albumSearch" parameterType="hashmap" resultMap="albumResult">
+			SELECT * FROM album WHERE album_name LIKE CONCAT('%', #{album_name}, '%');
+		</select>
+		
+		<select id="arrangeAlbum" parameterType="hashmap" resultMap="albumResult">
+			SELECT * FROM album ORDER BY
+				<choose>
+					<when test="type.equals('latest')">
+						album_date DESC
+					</when>
+					<when test="type.equals('old')">
+						album_date
+					</when>
+					<when test="type.equals('spelling')">
+						album_name
+					</when>
+					<when test="type.equals('back_spelling')">
+						album_name DESC
+					</when>
+				</choose>	
+		</select>
+		
+		
+		
 	</mapper>

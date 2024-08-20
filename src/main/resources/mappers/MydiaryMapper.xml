@@ -4,39 +4,54 @@
 
 <mapper namespace="com.ibreed_project.dao.IMydiaryDAO">
 
-	<resultMap id="mydiaryResultMap"  type="com.ibreed_project.model.MydiaryVO">
-			<result property="diary_id" column="diary_id"/>
-			<result property="diary_sentiment" column="diary_sentiment"/>
-			<result property="diary_title" column="diary_title"/>
-			<result property="diary_count" column="diary_count"/>
-			<result property="diary_public" column="diary_public"/>
-			<result property="diary_profile_image" column="diary_profile_image"/>
-			<result property="diary_profile_text" column="diary_profile_text"/>
-			<result property="user_id" column="user_id"/>
+	<resultMap id="mydiaryResultMap"
+		type="com.ibreed_project.model.MydiaryVO">
+		<result property="diary_id" column="diary_id" />
+		<result property="diary_sentiment" column="diary_sentiment" />
+		<result property="diary_title" column="diary_title" />
+		<result property="diary_count" column="diary_count" />
+		<result property="diary_public" column="diary_public" />
+		<result property="diary_profile_image"
+			column="diary_profile_image" />
+		<result property="diary_profile_text"
+			column="diary_profile_text" />
+		<result property="user_id" column="user_id" />
 	</resultMap>
 
 	<!-- 마이 다이어리 조회 -->
-	<select id="viewMydiary" resultType="com.ibreed_project.model.MydiaryVO">
+	<select id="viewMydiary"
+		resultType="com.ibreed_project.model.MydiaryVO">
 		SELECT * FROM diary WHERE user_id = #{user_id};
-	</select>	
-	 
+	</select>
+
 	<!-- 마이 다이어리 수정 -->
-	 <update id="updateMydiary" >
-		UPDATE diary SET diary_title=#{diary_title} WHERE user_id=#{user_id};
-	</update >	
-	
-	
+	<update id="updateMydiary">
+		UPDATE diary SET ${category}=
+		<if test="category == 'diary_title'">
+			#{vo.diary_title}
+		</if>
+		<if test="category == 'diary_sentiment'">
+			#{vo.diary_sentiment}
+		</if>
+		<if test="category == 'diary_profile_text'">
+			#{vo.diary_profile_text}
+		</if>
+		<if test="category == 'diary_profile_image'">
+			#{vo.diary_profile_image}
+		</if>
+		WHERE user_id=#{vo.user_id};
+	</update>
+
+
 	<!-- 베스트 다이어리 -->
 	<!-- 우선은 다이어리 홈 조회수 기준, 추후 1개의 다이어리 게시글에 대한 좋아요수로 수정 -->
-	 <select id="selectBestDiary" resultMap="mydiaryResultMap">
-		SELECT * FROM diary ORDER BY diary_count DESC LIMIT 0,10
-	</select>	
-	
-	
-	<!--
-	다이어리 검섹
-	<select id="searchMydiary" resultMap="mydiaryResultMap">
-		SELECT * FROM diary WHERE user_id LIKE %#(user_id)%;
-	</select>	 -->
-	
+	<select id="selectBestDiary" resultMap="mydiaryResultMap">
+		SELECT * FROM diary ORDER
+		BY diary_count DESC LIMIT 0,10
+	</select>
+
+
+	<!-- 다이어리 검섹 <select id="searchMydiary" resultMap="mydiaryResultMap"> SELECT 
+		* FROM diary WHERE user_id LIKE %#(user_id)%; </select> -->
+
 </mapper>

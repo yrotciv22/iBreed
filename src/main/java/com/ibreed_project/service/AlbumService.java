@@ -1,6 +1,7 @@
 package com.ibreed_project.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,20 +21,18 @@ public class AlbumService implements IAlbumService {
 	public ArrayList<AlbumVO> selectLatest() {
 		return dao.selectLatest();
 	}
-
-	@Override
-	public ArrayList<AlbumVO> selectOld() {
-		return dao.selectOld();
-	}
 	
 	@Override
-	public ArrayList<AlbumVO> selectSpelling() {
-		return dao.selectSpelling();
-	}
-	
-	@Override
-	public ArrayList<AlbumVO> selectBackSpelling() {
-		return dao.selectBackSpelling();
+	public String addAlbum(AlbumVO vo) {
+		String result = "available";
+		
+		if(dao.albumCheck(vo.getAlbum_name()) == null) {
+			dao.addAlbum(vo);
+		} else {
+			result = "not_available";
+		}
+		
+		return result;
 	}
 	
 	@Override
@@ -42,7 +41,17 @@ public class AlbumService implements IAlbumService {
 	}
 	
 	@Override
-	public void updateAlbumName(int album_id) {
-		dao.updateAlbumName(album_id);
+	public void updateAlbumName(AlbumVO vo) {
+		dao.updateAlbumName(vo);
+	}
+	
+	@Override
+	public ArrayList<AlbumVO> albumSearch(HashMap<String, Object> map) {
+		return dao.albumSearch(map);
+	}
+	
+	@Override
+	public ArrayList<AlbumVO> arrangeAlbum(HashMap<String, Object> map) {
+		return dao.arrangeAlbum(map);
 	}
 }
