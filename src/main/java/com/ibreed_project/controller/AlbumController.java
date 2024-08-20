@@ -24,8 +24,8 @@ public class AlbumController {
 	@Autowired
 	AlbumService albumService;
 
-	@RequestMapping("/mydiary/photos")
-	public String view_mydiary_album(Model model) {
+	@RequestMapping("/mydiary/{user_id}/photos")
+	public String view_mydiary_album(@PathVariable("user_id") String user_id, Model model) {
 
 		ArrayList<AlbumVO> latestList = albumService.selectLatest();
 
