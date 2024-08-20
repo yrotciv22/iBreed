@@ -77,7 +77,7 @@ public class LoginController {
     }
 
     // 아이디 찾기 처리
-    @GetMapping("/find-id")
+    @PostMapping("/find-id")
     public String findId(@RequestParam("email") String email, Model model) {
         AccountVO user = IFindAccountService.findByEmail(email);
         System.out.println("user : " + user.getUser_id());
