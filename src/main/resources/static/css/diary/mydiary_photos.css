@@ -33,6 +33,12 @@ li {
 	left: 557px;
 }
 
+#noSearch {
+	position: relative;
+    text-align: center;
+    margin-top: 160px;
+}
+
 input[type=text] {
 	width: 224px;
 	height: 30px;
@@ -107,6 +113,10 @@ select {
 
 #newAlbumBtn {
 	
+}
+
+#albumDeleteBtn {
+	display: none;	
 }
 
 #ctrl {
