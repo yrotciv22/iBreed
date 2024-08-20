@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +15,9 @@
 
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 <script src="<c:url value='/js/mydiary_friend.js'/>"></script>
-
+<script>
+	const userId = "${sessionScope.user_id}";
+</script>
 </head>
 <body>
 
@@ -26,148 +30,30 @@
 
 				<div class="friends_all">
 
-					<!-- 친구 샘플 -->
-					<div class="friend_wrap">
-						<div class="frd_profile_img">
-							<img src="<c:url value='/image/profile_woman.png'/>" />
+					 <c:forEach var="f" items="${friendList}">
+						<div class="friend_wrap">
+						
+							<div class="frd_profile_img">
+								<img src="${f.user_profile_image}" />
+							</div>
+							
+							<div class="column_wrap">
+								<div class="frd_profile_nickname">${f.user_nickname}</div>
+								<div class="frd_profile_id">${f.user_id}</div>
+								<div class="trigger see_more">...</div>
+								
+								<div class="click_see_more">
+									 <ul>
+										<li>다이어리 방문하기</li>
+										<li>프로필 보기</li>
+										<li class="delete_friend" data-userid="${f.user_id}">친구 끊기</li> 
+									</ul>  
+								</div>
+								
+							</div>
+							
 						</div>
-						<div class="column_wrap">
-							<div class="frd_profile_nickname">친구 닉네임</div>
-							<div class="frd_profile_id">친구 아이디</div>
-							<div class="see_more trigger">...</div>
-							<div id="popover" class="popover">친구 끊기</div>
-
-						</div>
-
-					</div>
-
-					<!-- 친구 샘플끝 -->
-
-					<!-- 친구 샘플 -->
-					<div class="friend_wrap">
-						<div class="frd_profile_img">
-							<img src="<c:url value='/image/profile_woman.png'/>" />
-						</div>
-						<div class="column_wrap">
-							<div class="frd_profile_nickname">친구 닉네임</div>
-							<div class="frd_profile_id">친구 아이디</div>
-							<div class="see_more trigger">...</div>
-							<div id="popover" class="popover">친구 끊기</div>
-
-						</div>
-					</div>
-					<!-- 친구 샘플끝 -->
-					<!-- 친구 샘플 -->
-					<div class="friend_wrap">
-						<div class="frd_profile_img">
-							<img src="<c:url value='/image/profile_woman.png'/>" />
-						</div>
-						<div class="column_wrap">
-							<div class="frd_profile_nickname">친구 닉네임</div>
-							<div class="frd_profile_id">친구 아이디</div>
-							<div class="see_more">...</div>
-
-						</div>
-					</div>
-					<!-- 친구 샘플끝 -->
-					<!-- 친구 샘플 -->
-					<div class="friend_wrap">
-						<div class="frd_profile_img">
-							<img src="<c:url value='/image/profile_woman.png'/>" />
-						</div>
-						<div class="column_wrap">
-							<div class="frd_profile_nickname">친구 닉네임</div>
-							<div class="frd_profile_id">친구 아이디</div>
-							<div class="see_more">...</div>
-						</div>
-					</div>
-					<!-- 친구 샘플끝 -->
-					<!-- 친구 샘플 -->
-					<div class="friend_wrap">
-						<div class="frd_profile_img">
-							<img src="<c:url value='/image/profile_woman.png'/>" />
-						</div>
-						<div class="column_wrap">
-							<div class="frd_profile_nickname">친구 닉네임</div>
-							<div class="frd_profile_id">친구 아이디</div>
-							<div class="see_more">...</div>
-						</div>
-					</div>
-					<!-- 친구 샘플끝 -->
-					<!-- 친구 샘플 -->
-					<div class="friend_wrap">
-						<div class="frd_profile_img">
-							<img src="<c:url value='/image/profile_woman.png'/>" />
-						</div>
-						<div class="column_wrap">
-							<div class="frd_profile_nickname">친구 닉네임</div>
-							<div class="frd_profile_id">친구 아이디</div>
-							<div class="see_more">...</div>
-						</div>
-					</div>
-					<!-- 친구 샘플끝 -->
-					<!-- 친구 샘플 -->
-					<div class="friend_wrap">
-						<div class="frd_profile_img">
-							<img src="<c:url value='/image/profile_woman.png'/>" />
-						</div>
-						<div class="column_wrap">
-							<div class="frd_profile_nickname">친구 닉네임</div>
-							<div class="frd_profile_id">친구 아이디</div>
-							<div class="see_more">...</div>
-						</div>
-					</div>
-					<!-- 친구 샘플끝 -->
-					<!-- 친구 샘플 -->
-					<div class="friend_wrap">
-						<div class="frd_profile_img">
-							<img src="<c:url value='/image/profile_woman.png'/>" />
-						</div>
-						<div class="column_wrap">
-							<div class="frd_profile_nickname">친구 닉네임</div>
-							<div class="frd_profile_id">친구 아이디</div>
-							<div class="see_more">...</div>
-						</div>
-					</div>
-					<!-- 친구 샘플끝 -->
-					<!-- 친구 샘플 -->
-					<div class="friend_wrap">
-						<div class="frd_profile_img">
-							<img src="<c:url value='/image/profile_woman.png'/>" />
-						</div>
-						<div class="column_wrap">
-							<div class="frd_profile_nickname">친구 닉네임</div>
-							<div class="frd_profile_id">친구 아이디</div>
-							<div class="see_more">...</div>
-						</div>
-					</div>
-					<!-- 친구 샘플끝 -->
-					<!-- 친구 샘플 -->
-					<div class="friend_wrap">
-						<div class="frd_profile_img">
-							<img src="<c:url value='/image/profile_woman.png'/>" />
-						</div>
-						<div class="column_wrap">
-							<div class="frd_profile_nickname">친구 닉네임</div>
-							<div class="frd_profile_id">친구 아이디</div>
-							<div class="see_more">...</div>
-						</div>
-					</div>
-					<!-- 친구 샘플끝 -->
-					<!-- 친구 샘플 -->
-					<div class="friend_wrap">
-						<div class="frd_profile_img">
-							<img src="<c:url value='/image/profile_woman.png'/>" />
-						</div>
-						<div class="column_wrap">
-							<div class="frd_profile_nickname">친구 닉네임</div>
-							<div class="frd_profile_id">친구 아이디</div>
-							<div class="see_more">...</div>
-						</div>
-					</div>
-					<!-- 친구 샘플끝 -->
-
-
+					</c:forEach> 
 
 				</div>
 

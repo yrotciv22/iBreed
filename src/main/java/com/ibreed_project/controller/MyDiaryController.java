@@ -29,27 +29,27 @@ public class MyDiaryController {
 	/* 마이 다이어리 탭별 이동 */
 
 	/* <일기> 규현 */
-	@RequestMapping("/mydiary/diary")
-	public String view_mydiary_diary() {
+	@RequestMapping("/mydiary/{user_id}/diary")
+	public String view_mydiary_diary(@PathVariable("user_id") String user_id) {
 		return "diary/mydiary_diary";
 	}
 
 	/* <감정분석> 성목 */
-	@RequestMapping("/mydiary/emotion")
-	public String view_mydiary_emotion() {
+	@RequestMapping("/mydiary/{user_id}/emotion")
+	public String view_mydiary_emotion(@PathVariable("user_id") String user_id) {
 		return "diary/mydiary_emotion";
 	}
 
  
 	/* <캘린더> 승우 */
-	@RequestMapping("/mydiary/calendar")
-	public String view_mydiary_calendar() {
+	@RequestMapping("/mydiary/{user_id}/calendar")
+	public String view_mydiary_calendar(@PathVariable("user_id") String user_id) {
 		return "diary/mydiary_calendar";
 	}
 
-	/* <친구> 예은 */
-	@RequestMapping("/mydiary/friends")
-	public String view_mydiary_friends() {
+	/* <친구> 예은 
+	@RequestMapping("/mydiary/{user_id}/friends")
+	public String view_mydiary_friends(@PathVariable("user_id") String user_id) {
 		return "diary/mydiary_friends";
-	}
+	}*/
 }

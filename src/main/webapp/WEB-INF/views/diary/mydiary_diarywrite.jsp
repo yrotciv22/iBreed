@@ -18,7 +18,7 @@
 		<div class="diary_wrap">
 
 			<div class="diary_content">
-				<form action="/mydiary/diarywrite" method="post"
+				<form id="diary-form" action="/mydiary/diarywrite" method="post"
 					enctype="multipart/form-data" class="diary_form">
 					<div>
 						<label for="category">카테고리</label> <select id="category"
@@ -61,9 +61,8 @@
 						<input type="text" placeholder="제목" name="title"
 							class="diary-title">
 					</div>
-					<div id="content-area" class="content-area" contenteditable="true">
-					 
-					</div>
+					<div id="content-area" class="content-area" contenteditable="true"></div>
+					<textarea id="hidden-content" name="content" style="display:none;"></textarea>
 
 
 					<!-- 공개 설정 -->
