@@ -139,7 +139,7 @@ $(function() {
 			if(deleteBtn[i].dataset.del == i) {
 				deleteModal[i].style.display = 'flex';
 			}
-			});
+		});
 	});
 	
 	// 이름변경모달
