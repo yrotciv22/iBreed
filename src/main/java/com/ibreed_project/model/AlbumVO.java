@@ -13,9 +13,49 @@ public class AlbumVO {
 	private Date album_update;
 	private int album_public;
 	private int diary_id;
+	private int photo_count;
+
+	private int photo_id;
+	private String photo_name;
+
+	public int getPhoto_count() {
+		return photo_count;
+	}
+
+	public void setPhoto_count(int photo_count) {
+		this.photo_count = photo_count;
+	}
+
+	private Date photo_date;
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 
 	public int getAlbum_id() {
 		return album_id;
+	}
+
+	public int getPhoto_id() {
+		return photo_id;
+	}
+
+	public void setPhoto_id(int photo_id) {
+		this.photo_id = photo_id;
+	}
+
+	public String getPhoto_name() {
+		return photo_name;
+	}
+
+	public void setPhoto_name(String photo_name) {
+		this.photo_name = photo_name;
+	}
+
+	public Date getPhoto_date() {
+		return photo_date;
+	}
+
+	public void setPhoto_date(Date photo_date) {
+		this.photo_date = photo_date;
 	}
 
 	public void setAlbum_id(int album_id) {

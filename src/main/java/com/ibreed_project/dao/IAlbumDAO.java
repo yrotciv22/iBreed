@@ -9,6 +9,12 @@ public interface IAlbumDAO {
 	
 	public ArrayList<AlbumVO> selectLatest();
 	
+	public int photoCount(String album_id);
+	
+	public ArrayList<AlbumVO> selectPhoto(String album_id);
+	
+	public String getAlbumName(String album_id);
+	
 	public void addAlbum(AlbumVO vo);
 	
 	public String albumCheck(String album_name);

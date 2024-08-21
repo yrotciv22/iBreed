@@ -59,7 +59,7 @@
 									<div class="photoCheck"><input type="checkbox" class="chk"></div>
 									<img class="album_thimbnail" src="https://mblogthumb-phinf.pstatic.net/MjAyMDA4MDZfMTIg/MDAxNTk2NjkwNjY5OTM0.6ESYhF5_BT3wtos4zBrAbh58xrpbVCoxYm0V_7D-UGIg.nTGkJFqxOCt3BIb-SCscWMWY5IkfUE-Ejwml0xAdZ3Ig.PNG.goms1101/B2C1B4EB.png?type=w800">
 									<div class="photoCount">
-										<span class="countNum">2</span> <!-- 앨범에 들어가있는 사진이 몇장인지 표시 -->
+										<span class="countNum">${album.photo_count}</span>
 									</div>
 									<strong class="album_title">${album.album_name}</strong>
 									<p class="update">
@@ -75,9 +75,9 @@
 								</div></a>
 								<div id="menu" class="menu">
 									<ul>
-										<li><a>🖱️열기</a></li>
+										<li><a href="/mydiary/detailAlbum/${album.album_id}">🖱️열기</a></li>
 										<li><a class="deleteBtn"  data-del="${status.index}">🗑️삭제</a></li>
-										<li><a class="changeBtn" data-ch="${status.index}">이름바꾸기</a></li>
+										<li><a class="changeBtn" data-ch="${status.index}">🪪이름바꾸기</a></li>
 									</ul>
 								</div>
 							</li>

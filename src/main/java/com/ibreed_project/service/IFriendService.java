@@ -16,5 +16,5 @@ public interface IFriendService {
 	public void addFriend (String user_id1, String user_id2);
 	
 	// 친구 삭제
-	public void deleteFriend (String user_id1, String user_id2);
+	public void deleteFriend (String user_id, String friend_id);
 }

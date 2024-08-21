@@ -39,10 +39,18 @@
 								<c:when test="${mydiary.diary_sentiment == 'angry'}"> 화남 &#128544; </c:when>
 								<c:when test="${mydiary.diary_sentiment == 'depressed'}"> 우울 &#128532;</c:when>
 								<c:when test="${mydiary.diary_sentiment == 'touched'}"> 감동 &#128532;</c:when>
-								<c:otherwise> ?? </c:otherwise>
+								<c:when test="${mydiary.diary_sentiment == 'love'}"> 사랑 &#128525;;</c:when>
+								<c:when test="${mydiary.diary_sentiment == 'surprised'}"> 놀람 &#128561;</c:when>
+								<c:when test="${mydiary.diary_sentiment == 'embarrassed'}"> 당황 &#128517;</c:when>
+								<c:when test="${mydiary.diary_sentiment == 'hilarious'}"> 웃김 &#128513;</c:when>
+								<c:otherwise> &#127881;&#127881;&#127881;&#127881; </c:otherwise>
 							</c:choose>
-							<img src="<c:url value='/image/pencil_color.png'/>"
-								id="edit_feeling_btn" />
+
+
+							<c:if test="${sessionScope.user_id == user_id}">
+								<img src="<c:url value='/image/pencil_color.png'/>"
+									id="edit_feeling_btn" />
+							</c:if>
 						</div>
 
 
@@ -62,12 +70,20 @@
 										${mydiary.diary_sentiment == 'depressed' ? 'selected' : ''}>우울</option>
 									<option value="touched"
 										${mydiary.diary_sentiment == 'touched' ? 'selected' : ''}>감동</option>
+									<option value="love"
+										${mydiary.diary_sentiment == 'love' ? 'selected' : ''}>사랑</option>
+									<option value="surprised"
+										${mydiary.diary_sentiment == 'surprised' ? 'selected' : ''}>놀람</option>
+									<option value="embarrassed"
+										${mydiary.diary_sentiment == 'embarrassed' ? 'selected' : ''}>당황</option>
+									<option value="hilarious"
+										${mydiary.diary_sentiment == 'hilarious' ? 'selected' : ''}>웃김</option>
 								</select> <input type="hidden" name="diary_id"
 									value="${mydiary.diary_id}">
 
 								<button id="save_feeling_btn" type="submit">
 									<img src="<c:url value='/image/save_file.png'/>" />
-									
+
 								</button>
 							</form>
 						</div>
@@ -77,11 +93,11 @@
 
 					<div class="profile_photo">
 						<img src="${mydiary.diary_profile_image}" />
-							
-							  <div class="overlay">
-							  <img src="<c:url value='/image/pencil_color.png'/>"
+
+						<div class="overlay">
+							<img src="<c:url value='/image/pencil_color.png'/>"
 								id="edit_profile_img_btn" />
-								</div>
+						</div>
 					</div>
 
 
@@ -97,21 +113,22 @@
 							<div id="profile_text">${mydiary.diary_profile_text}</div>
 
 							<textarea autofocus id="diary_profile_text"
-								name="diary_profile_text"
-								wrap="hard">
+								name="diary_profile_text" wrap="hard">
 						   	${mydiary.diary_profile_text}
 							</textarea>
 
 						</div>
 
-						<div class="edit_profile_text_btn_wrap">
-							<div id="edit_profile_text_btn">
-								edit &nbsp;<img src="<c:url value='/image/pencil_color.png'/>" />
+						<c:if test="${sessionScope.user_id == user_id}">
+							<div class="edit_profile_text_btn_wrap">
+								<div id="edit_profile_text_btn">
+									edit &nbsp;<img src="<c:url value='/image/pencil_color.png'/>" />
+								</div>
+								<button id="save_profile_text_btn" type="submit">
+									save &nbsp;<img src="<c:url value='/image/save_file.png'/>" />
+								</button>
 							</div>
-							<button id="save_profile_text_btn" type="submit">
-								save &nbsp;<img src="<c:url value='/image/save_file.png'/>" />
-							</button>
-						</div>
+						</c:if>
 
 					</form>
 
@@ -129,14 +146,16 @@
 								maxlength="20" />
 
 							<div id="diaryTitleDisplay">${mydiary.diary_title}</div>
-							<img src="<c:url value='/image/pencil_color.png'/>"
-								id="editButton" />
+							<c:if test="${sessionScope.user_id == user_id}">
+								<img src="<c:url value='/image/pencil_color.png'/>"
+									id="editButton" />
 
-							<button id="saveButton" type="submit">
-								<img src="<c:url value='/image/save_file.png'/>" />
-							</button>
+								<button id="saveButton" type="submit">
+									<img src="<c:url value='/image/save_file.png'/>" />
+								</button>
 
-							<span id="cancelBtn">X</<span>
+								<span id="cancelBtn">X</<span>
+							</c:if>
 						</div>
 					</form>
 
@@ -152,7 +171,7 @@
 						</ul>
 					</div>
 					<div class="home_photo_wrap">
-						<div>사진첩</div>
+						<div>사진첩 </div>
 					</div>
 				</div>
 

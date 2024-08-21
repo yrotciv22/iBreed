@@ -18,11 +18,12 @@
 		<div class="diary_wrap">
 
 			<div class="diary_content">
-				<form id="diary-form" action="/mydiary/diarywrite" method="post"
+				
+				<form id="diary-form" action="<c:url value='/mydiary/diarywrite'/>" method="post"
 					enctype="multipart/form-data" class="diary_form">
 					<div>
-						<label for="category">카테고리</label> <select id="category"
-							name="category">
+						<label for="category">카테고리</label> 
+						<select id="category" name="diaryCategory">
 							<option value="임신">임신</option>
 							<option value="출산">출산</option>
 							<option value="육아">육아</option>
@@ -55,34 +56,36 @@
 							<button type="button" id="confirm-link">확인</button>
 						</div>
 					</div>
-
-
+						
 					<div class="input-group">
-						<input type="text" placeholder="제목" name="title"
+						<input type="text" placeholder="제목" name="diaryTitle"
 							class="diary-title">
 					</div>
-					<div id="content-area" class="content-area" contenteditable="true"></div>
-					<textarea id="hidden-content" name="content" style="display:none;"></textarea>
-
+					<div id="content-area" class="content-area" contenteditable="true">
+						<textarea id="hidden-content" name="diaryContent"></textarea>
+					</div>
+<!-- 					<textarea id="hidden-content" name="diaryContent" style="display:none;"></textarea>
+ -->
 
 					<!-- 공개 설정 -->
 					<div class="diary_visibility">
-						<label><input type="radio" name="privacy" value="전체공개">전체공개</label> 
-						<label><input type="radio" name="privacy" value="친구공개"> 친구공개</label> 
-						<label><input type="radio" name="privacy" value="비공개"> 비공개</label>
+						<label><input type="radio" name="diaryPublic" value="전체공개">전체공개</label> 
+						<label><input type="radio" name="diaryPublic" value="친구공개"> 친구공개</label> 
+						<label><input type="radio" name="diaryPublic" value="비공개"> 비공개</label>
 					</div>
 
 					<div class="diary_buttons">
 					    <div class="diary_buttons-left">
+					    <!--임시저장인지아닌지 구분학;  -->
+					<input type="hidden" id="diary_upload_status" name="diary_upload_status" value="true">
 					        <button type="button" class="save-button">임시 저장</button>
-					        <button type="button" class="submit-button">등록하기</button>
+					        <input type="submit" class="submit-button" value="등록하기">
 					    </div>
 					    <div class="diary_buttons-right">
 					        <button type="button" class="cancel-button" onclick="location.href='/mydiary/diary'">목록으로</button>
 					    </div>
 					</div>
-					<!--임시저장인지아닌지 구분학;  -->
-					<input type="hidden" id="diary_upload_status" name="diary_upload_status" value="true">
+					
 				</form>
 			</div>
 		</div>
