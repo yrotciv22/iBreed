@@ -36,14 +36,7 @@ public class MyDiaryController {
 
 	/* 마이 다이어리 탭별 이동 */
 
-	
-	/* <일기> 규현 
-	@RequestMapping("/mydiary/{user_id}/diary")
-	public String view_mydiary_diary(@PathVariable("user_id") String user_id) {
-		return "diary/mydiary_diary";
-	}
-	*/
-	
+
 	/* <감정분석> 성목 */
 	@RequestMapping("/mydiary/{user_id}/emotion")
 	public String view_mydiary_emotion(@PathVariable("user_id") String user_id) {

@@ -31,28 +31,15 @@
         </thead>
         <tbody>
             <!-- 하드코딩된 다이어리 목록 -->
-            <tr>
-                <td>2024-08-10</td>
-                <td>임신</td>
-                <td><a href="/diary/view/1">오늘의 일기</a></td>
-                <td>5</td>
-                <td>공개</td>
-            </tr>
-            <tr>
-                <td>2024-08-09</td>
-                <td>육아</td>
-                <td><a href="/diary/view/2">어린이집 첫 등원</a></td>
-                <td>10</td>
-                <td>비공개</td>
-            </tr>
-            <tr>
-                <td>2024-08-08</td>
-                <td>출산</td>
-                <td><a href="/diary/view/3">아이 첫 울음</a></td>
-                <td>15</td>
-                <td>공개</td>
-            </tr>
-            <!-- 추가 항목들 -->
+        <c:forEach var="diary" items="${diaryList}">
+                <tr>
+                    <td>${diary.diaryCreate}</td>
+                    <td>${diary.diaryCategory}</td>
+                    <td><a href="/diary/view/${diary.diaryPostId}">${diary.diaryTitle}</a></td>
+                    <td>${diary.diaryViews}</td>
+                    <td>${diary.diaryPublic}</td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 

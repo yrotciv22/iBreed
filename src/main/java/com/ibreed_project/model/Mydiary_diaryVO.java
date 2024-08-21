@@ -20,8 +20,15 @@ public class Mydiary_diaryVO {
 	private String diaryCategory; // diary_category (ENUM('임신', '출산', '육아', '산모'))
 	private int commentCount; // comment_count
 	private boolean isDeleted; // is_deleted
+	 private String userId;
 	
-	    public int getDiaryPostId() {
+	    public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+		public int getDiaryPostId() {
 		return diaryPostId;
 	}
 	public void setDiaryPostId(int diaryPostId) {
@@ -117,5 +124,6 @@ public class Mydiary_diaryVO {
 	public void setDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
+	
 
 }
