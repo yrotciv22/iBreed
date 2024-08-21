@@ -86,7 +86,7 @@
 
 	<!-- 친구 삭제 -->
 
-	<delete id="deleteFriend">
+	<delete id="deleteFriend"  parameterType="string">
 		DELETE FROM friend
 		WHERE (requester_id = #{user_id} AND receiver_id = #{friend_id})
 		OR (requester_id = #{friend_id} AND receiver_id = #{user_id});

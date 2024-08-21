@@ -32,8 +32,8 @@ public class FriendService implements IFriendService {
 	}
 
 	@Override
-	public void deleteFriend(String user_id1, String user_id2) {
-		dao.deleteFriend(user_id1, user_id2);
+	public void deleteFriend(String user_id, String friend_id) {
+		dao.deleteFriend(user_id, friend_id);
 	}
 
 }
