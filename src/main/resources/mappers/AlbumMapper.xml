@@ -12,6 +12,9 @@
 			<result property="album_update" column="album_update"/>
 			<result property="album_public" column="album_public"/>
 			<result property="diary_id" column="diary_id"/>
+			<result property="photo_id" column="photo_id"/>
+			<result property="photo_name" column="photo_name"/>
+			<result property="photo_date" column="photo_date"/>
 			
 		</resultMap>
 	
@@ -19,13 +22,21 @@
 			SELECT * FROM album ORDER BY album_date DESC
 		</select>
 			
+		<select id="selectPhoto" resultMap="albumResult">
+			SELECT * FROM photo P, album A WHERE P.album_id=#{album_id} AND P.album_id = A.album_id
+		</select>
+		
+		<select id="getAlbumName" parameterType="string" resultType="string">
+			SELECT album_name FROM album WHERE album_id=#{album_id}
+		</select>
+
 		<insert id="addAlbum" parameterType="com.ibreed_project.model.AlbumVO">
-			INSERT INTO album (album_name, album_date, album_update, diary_id)
-			VALUES(#{album_name}, now(), null, 1)
+			INSERT INTO album (album_name, album_date, diary_id, photo_count)
+			VALUES(#{album_name}, now(), #{diary_id}, 0)
 		</insert>
 		
 		<select id="albumCheck" parameterType="string" resultType="string">
-			SELECT * FROM album WHERE album_name=#{album_name};
+			SELECT * FROM album WHERE album_name=#{album_name}
 		</select>
 			
 		<delete id="deleteAlbum" parameterType="int">
