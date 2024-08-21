@@ -2,6 +2,8 @@
  * albumCheck.js
  */
  
+ // 앨범 추가할 때 중복 확인 & 앨범 추가
+ 
   $(document).ready(function() {
  	$('#album_Add').on('submit', function() {
  		event.preventDefault();
@@ -21,8 +23,7 @@
 	 				if(result == "not_available") {
 	 					alert("사용할 수 없는 앨범명입니다");
 	 				} else {
-	 					// 어떻게 해야?
-	 					return "redirect:/mydiary/photos";
+	 					location.href = "/mydiary/photos";
 	 				}
 	 			},
 	 			error:function() {

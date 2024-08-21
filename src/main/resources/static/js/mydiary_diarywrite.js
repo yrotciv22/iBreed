@@ -11,10 +11,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const closeBtn = document.querySelector(".close-btn");
     const confirmLinkBtn = document.getElementById("confirm-link");
     const contentArea = document.getElementById("content-area");
+     const hiddenContent = document.getElementById("hidden-content");
     const saveButton = document.querySelector(".save-button");
     const submitButton = document.querySelector(".submit-button");
 
-    // 사진 버튼 클릭 시 파일 선택 창 열기
     imageUploadBtn.addEventListener("click", function() {
         document.getElementById("image-upload").click();
     });
@@ -24,12 +24,11 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("video-upload").click();
     });
 
-    // 링크 버튼 클릭 시 팝업 열기
     linkUploadBtn.addEventListener("click", function() {
         linkPopup.style.display = "block";
     });
 
-    // 팝업닫시
+    
     closeBtn.addEventListener("click", function() {
         linkPopup.style.display = "none";
     });
@@ -41,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // 확인 버튼 클릭 시 링크를 내용 칸에 추가
     confirmLinkBtn.addEventListener("click", function() {
         const linkValue = document.getElementById("link-input").value;
         const linkElement = document.createElement("a");
@@ -52,8 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
         linkPopup.style.display = "none";
     });
 
-    // 사진 업로드 시 내용 칸에 이미지 표시
-    document.getElementById('image-upload').addEventListener('change', function(event) {
+     document.getElementById('image-upload').addEventListener('change', function(event) {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
@@ -84,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 // 임시 저장 및 등록하기 버튼 클릭 시 처리
     function submitForm(isFinal) {
+    	hiddenContent.value = contentArea.innerHTML;
         document.getElementById('diary_upload_status').value = isFinal;
         document.getElementById('diary-form').submit();
     }

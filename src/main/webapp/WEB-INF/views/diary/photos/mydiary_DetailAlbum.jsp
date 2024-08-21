@@ -14,6 +14,7 @@
 	<script src="<c:url value='/js/albumSearch.js'/>"></script>
 	<script src="<c:url value='/js/arrangeAlbum.js'/>"></script>
 	<script src="<c:url value='/js/albumCheck.js'/>"></script>
+	<script src="<c:url value='/js/imageFileUpload.js'/>"></script>
 </head>
 <body>
  
@@ -23,7 +24,8 @@
 				<div id="wrap">
 				<div id="topBox">
 					<div id="title">
-						<h3>전체앨범</h3>
+						<a href="/mydiary/photos"><h3>전체앨범</h3></a>
+						<h3>앨범 name</h3>
 					</div>
 					<form id="albumSearchForm">
 						<div id="search">
@@ -51,11 +53,18 @@
 					</div>
 				</div>
 				<div id="albumResultBox">
+				
+					<h3>이미지 파일 업로드</h3>
+					<form id="imageFileFrm">
+						파일 : <input type="file" id="uploadFile" name= "uploadFile"><br><br>
+						<input type="submit" value="업로드">
+					</form><br>
+					
 					<ul>
-						<c:forEach items="${latestList}" var="album" varStatus="status">
+						<%-- <c:forEach items="${latestList}" var="album" varStatus="status">
 							<li>
 								<!-- <div class="albumBox" onclick="location.href='/mydiary/album/앨범1'"> -->
-								<a href="/mydiary/detailAlbum/${album.album_id}"><div class="albumBox">
+								<div class="albumBox">
 									<div class="photoCheck"><input type="checkbox" class="chk"></div>
 									<img class="album_thimbnail" src="https://mblogthumb-phinf.pstatic.net/MjAyMDA4MDZfMTIg/MDAxNTk2NjkwNjY5OTM0.6ESYhF5_BT3wtos4zBrAbh58xrpbVCoxYm0V_7D-UGIg.nTGkJFqxOCt3BIb-SCscWMWY5IkfUE-Ejwml0xAdZ3Ig.PNG.goms1101/B2C1B4EB.png?type=w800">
 									<div class="photoCount">
@@ -72,7 +81,7 @@
 											</c:otherwise>
 										</c:choose>
 									</p>
-								</div></a>
+								</div>
 								<div id="menu" class="menu">
 									<ul>
 										<li><a>🖱️열기</a></li>
@@ -109,7 +118,7 @@
 									</div>
 								</form>
 							</div>
-						</c:forEach>
+						</c:forEach> --%>
 					</ul>
 					
 				</div>

@@ -17,7 +17,7 @@
 	href="<c:url value='/css/index.css'/>" />
 <script src="<c:url value='/js/index.js'/>" defer></script>
 <script>
-	var userId = "${sessionScope.user_id}";
+	const userId = "${sessionScope.user_id}";
 </script>
 </head>
 

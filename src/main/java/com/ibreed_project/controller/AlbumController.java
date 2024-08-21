@@ -1,7 +1,10 @@
 package com.ibreed_project.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ibreed_project.model.AlbumVO;
 import com.ibreed_project.service.AlbumService;
@@ -20,8 +24,8 @@ public class AlbumController {
 	@Autowired
 	AlbumService albumService;
 
-	@RequestMapping("/mydiary/photos")
-	public String view_mydiary_album(Model model) {
+	@RequestMapping("/mydiary/{user_id}/photos")
+	public String view_mydiary_album(@PathVariable("user_id") String user_id, Model model) {
 
 		ArrayList<AlbumVO> latestList = albumService.selectLatest();
 
@@ -66,4 +70,32 @@ public class AlbumController {
 		model.addAttribute("albumList", albumList);
 		return "diary/photos/albumSearchResult";
 	}
+	
+	@RequestMapping("/mydiary/detailAlbum/{album_id}")
+	/*@RequestMapping("/mydiary/detailAlbum/{album_id}")*/
+	public String detailAlbum() {
+		return "diary/photos/mydiary_DetailAlbum";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/imageUpload")
+	public String imageUpload(@RequestParam("uploadImage") MultipartFile file) throws IOException {
+		
+		String uploadPath = "C:/iBreedWorkspace/images/";
+		
+		String originalFileName = file.getOriginalFilename();
+		
+		UUID uuid = UUID.randomUUID();
+		
+		String savedFileName = uuid.toString() + "_" + originalFileName;
+				
+		File sendFile = new File(uploadPath + savedFileName);
+		
+		file.transferTo(sendFile);
+		
+		String result = "success";
+		
+		return result;
+	}
+	
 }

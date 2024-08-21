@@ -11,6 +11,6 @@ public class WebConfig implements WebMvcConfigurer {
 		// 프로젝트 외부 경로 이미지 맵핑 설정 
 		// 변경 필요
 		registry.addResourceHandler("/prd_image/**")
-		.addResourceLocations("file:///C:/iBreedWorkspace/images/");		
+		.addResourceLocations("file:///C:/iBreedWorkspace/images/");
 		}
 }
