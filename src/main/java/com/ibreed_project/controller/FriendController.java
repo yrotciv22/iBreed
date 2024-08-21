@@ -16,45 +16,38 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ibreed_project.model.FriendVO;
 import com.ibreed_project.service.FriendService;
 
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class FriendController {
 
-		@Autowired
-		FriendService friendService;
-		
-		
-		@RequestMapping("/mydiary/{user_id}/friends")
-	    public String view_mydiary_friendList(@PathVariable("user_id") String user_id, Model model) {
+	@Autowired
+	FriendService friendService;
 
+	// 친구 리스트
+	@RequestMapping("/mydiary/{user_id}/friends")
+	public String view_mydiary_friendList(@PathVariable("user_id") String user_id, Model model) {
 
-	        ArrayList<FriendVO> friendList  = friendService.getFriendList(user_id);
-	        model.addAttribute("friendList", friendList);
-	        model.addAttribute("user_id", user_id);
-	        	        
-			return "diary/mydiary_friends"; 
+		ArrayList<FriendVO> friendList = friendService.getFriendList(user_id);
+		model.addAttribute("friendList", friendList);
+		model.addAttribute("user_id", user_id);
+
+		return "diary/mydiary_friends";
+	}
+
+	// 친구 삭제
+	@RequestMapping("/mydiary/{user_id}/deleteFriend/{friend_id}")
+	public String deleteFriend(HttpSession session, @PathVariable("friend_id") String friend_id) {
+
+		String user_id = (String) session.getAttribute("user_id");
+
+		if (user_id != null) {
+			friendService.deleteFriend(user_id, friend_id);
+			return "redirect:/mydiary/{user_id}/friends";
+		} else {
+			// user_id가 세션에 없는 경우 처리 (예: 로그인 페이지로 리다이렉트)
+			return "redirect:/account/login";
 		}
-		
-		 @PostMapping("/deleteFriend")
-		    @ResponseBody
-		    public  Map<String, Object> deleteFriend(@RequestBody Map<String, String> payload) {
-		        String user_id = payload.get("user_id");
-		        String friend_id = payload.get("friend_id");
-		        
-				System.out.println("user_id? "+user_id);
-				System.out.println("friend_id? "+friend_id);
+	}
 
-			    Map<String, Object> response = new HashMap<>();
-
-			    try {
-			        friendService.deleteFriend(user_id, friend_id);
-			        response.put("success", true);
-			    } catch (Exception e) {
-			        response.put("success", false);
-			        response.put("error", e.getMessage());
-			    }
-
-			    return response;
-		    }
-	
 }
