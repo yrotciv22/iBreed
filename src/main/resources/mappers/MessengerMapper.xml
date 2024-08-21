@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibreed_project.dao.IMessengerDAO">
+
+    <resultMap id="messageResultMap" type="com.ibreed_project.model.MessengerVO">
+        <result property="msgId" column="msg_id" />
+        <result property="msgSubject" column="msg_subject" />
+        <result property="msgContent" column="msg_content" />
+        <result property="msgTimestamp" column="msg_timestamp" />
+        <result property="msgIsRead" column="msg_is_read" />
+        <result property="senderId" column="sender_id" />
+        <result property="senderNickname" column="sender_nickname" />
+        <result property="receiverId" column="receiver_id" />
+        <result property="receiverNickname" column="receiver_nickname" />
+    </resultMap>
+
+    <select id="getReceivedMessages" resultMap="messageResultMap">
+        SELECT m.*, u1.user_nickname AS sender_nickname, u2.user_nickname AS receiver_nickname
+        FROM messages m
+                 JOIN user u1 ON m.sender_id = u1.user_id
+                 JOIN user u2 ON m.receiver_id = u2.user_id
+        WHERE m.receiver_id = #{receiverId}
+        ORDER BY m.msg_timestamp DESC;
+    </select>
+
+    <select id="getMessageById" resultMap="messageResultMap">
+        SELECT m.*, u1.user_nickname AS sender_nickname, u2.user_nickname AS receiver_nickname
+        FROM messages m
+                 JOIN user u1 ON m.sender_id = u1.user_id
+                 JOIN user u2 ON m.receiver_id = u2.user_id
+        WHERE m.msg_id = #{msgId};
+    </select>
+
+    <insert id="insertMessage">
+        INSERT INTO messages (msg_subject, msg_content, msg_is_read, sender_id, receiver_id)
+        VALUES (#{msgSubject}, #{msgContent}, #{msgIsRead}, #{senderId},
+                (SELECT user_id FROM user WHERE user_nickname = #{receiverNickname}));
+    </insert>
+
+    <update id="markAsRead">
+        UPDATE messages
+        SET msg_is_read = true
+        WHERE msg_id = #{msgId};
+    </update>
+
+    <delete id="deleteMessage">
+        DELETE FROM messages
+        WHERE msg_id = #{msgId};
+    </delete>
+
+    <!-- 닉네임 확인 쿼리 추가 -->
+    <select id="countByNickname" resultType="int">
+        SELECT COUNT(*) FROM user WHERE user_nickname = #{nickname}
+    </select>
+
+</mapper>

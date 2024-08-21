@@ -23,6 +23,16 @@ public class AlbumService implements IAlbumService {
 	}
 	
 	@Override
+	public ArrayList<AlbumVO> selectPhoto(String album_id) {
+		return dao.selectPhoto(album_id);
+	}
+	
+	@Override
+	public String getAlbumName(String album_id) {
+		return dao.getAlbumName(album_id);
+	}
+	
+	@Override
 	public String addAlbum(AlbumVO vo) {
 		String result = "available";
 		

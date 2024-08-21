@@ -8,7 +8,7 @@
 <meta charset="UTF-8" />
 <title>앨범</title>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/mydiary_layout.css' />" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/mydiary_photos.css' />" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/album/mydiary_detail_photos.css' />" />
 	<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 	<script src="<c:url value='/js/album_main.js'/>"></script>
 	<script src="<c:url value='/js/albumSearch.js'/>"></script>
@@ -24,21 +24,18 @@
 				<div id="wrap">
 				<div id="topBox">
 					<div id="title">
-						<a href="/mydiary/photos"><h3>전체앨범</h3></a>
-						<h3>앨범 name</h3>
+						<a href="/mydiary/${user_id}/photos"><h3>전체앨범</h3></a>
+						<h3>${album_name}</h3>
 					</div>
-					<form id="albumSearchForm">
-						<div id="search">
-							<input id="albumTitle" name="album_name" type="text" placeholder=" 앨범 제목으로 검색해보세요.">
-							<input id="searchBtn" type="image" src="/image/magnifier.png">
-						</div>
-					</form>
 				</div>
 				<div id="middleBox">
 					<div id="upload">
 						<div class="allBtn btn"><input type="checkbox" class="allCheck" name="check"></div>
-						<button id="uploadBtn" class="upBtn btn">⏫올리기</button>
-						<button id="newAlbumBtn" class="btn">새 앨범</button>
+						<form id="imageFileFrm">
+							<!-- <button id="uploadBtn" class="upBtn btn">⏫올리기</button> -->
+							<input type="file" id="uploadFile" class="upBtn btn"  value="⏫올리기">
+							<input type="submit" value="업로드">
+						</form><br>
 						<button id="albumDeleteBtn" class="btn">삭제</button>
 					</div>
 					<div id="ctrl">
@@ -46,57 +43,38 @@
 							<select name="type" id="type">
 								<option value="latest" selected/>생성일 - 최신순
 								<option value="old" />생성일 - 오래된 순
-								<option value="spelling" />이름 - ㄱ-ㅎ(a-z)
-								<option value="back_spelling" />이름 - ㅎ-ㄱ(z-a)
 							</select>
 						</form>					
 					</div>
 				</div>
 				<div id="albumResultBox">
-				
-					<h3>이미지 파일 업로드</h3>
-					<form id="imageFileFrm">
-						파일 : <input type="file" id="uploadFile" name= "uploadFile"><br><br>
-						<input type="submit" value="업로드">
-					</form><br>
-					
 					<ul>
-						<%-- <c:forEach items="${latestList}" var="album" varStatus="status">
+						<c:forEach items="${photoList}" var="photo" varStatus="status">
 							<li>
-								<!-- <div class="albumBox" onclick="location.href='/mydiary/album/앨범1'"> -->
 								<div class="albumBox">
 									<div class="photoCheck"><input type="checkbox" class="chk"></div>
-									<img class="album_thimbnail" src="https://mblogthumb-phinf.pstatic.net/MjAyMDA4MDZfMTIg/MDAxNTk2NjkwNjY5OTM0.6ESYhF5_BT3wtos4zBrAbh58xrpbVCoxYm0V_7D-UGIg.nTGkJFqxOCt3BIb-SCscWMWY5IkfUE-Ejwml0xAdZ3Ig.PNG.goms1101/B2C1B4EB.png?type=w800">
-									<div class="photoCount">
-										<span class="countNum">2</span> <!-- 앨범에 들어가있는 사진이 몇장인지 표시 -->
-									</div>
-									<strong class="album_title">${album.album_name}</strong>
-									<p class="update">
-										<c:choose>
-											<c:when test="${empty album_update}">
-												<fmt:formatDate value="${album.album_date}" pattern="yyyy-MM-dd" />에 생성됨
-											</c:when>
-											<c:otherwise>
-												<fmt:formatDate value="${album.album_update}" pattern="yyyy-MM-dd" />에 업데이트됨
-											</c:otherwise>
-										</c:choose>
-									</p>
+									<img class="album_thimbnail" src="/image/${photo.photo_name}">
 								</div>
 								<div id="menu" class="menu">
 									<ul>
-										<li><a>🖱️열기</a></li>
+										<li><a>👁️‍🗨️미리보기</a></li>
+										<li><a>📥내려받기</a></li>
 										<li><a class="deleteBtn"  data-del="${status.index}">🗑️삭제</a></li>
-										<li><a class="changeBtn" data-ch="${status.index}">이름바꾸기</a></li>
+										<li><a>🗂️폴더이동</a></li>
+										<li><a class="changeBtn" data-ch="${status.index}">🪪이름바꾸기</a></li>
+										<li><a>📚굿즈 만들기</a></li>
+										<li><a>📖상세정보</a></li>
+										<li><a>🖼️앨범커버 지정</a></li>
 									</ul>
 								</div>
 							</li>
-							<div id="modalBox">
+							<%-- <div id="modalBox">
 								<form method="post" action="<c:url value='/album/deleteAlbum/${album.album_id}'/>">
 									<div class="modal delete_modal">
 										<div class="modal_body delete_body">
 											<span class="xBtn">✕</span>
 											<img class="warningImg" src="/image/warning.png">
-											<strong>${album.album_name} 앨범을 삭제하시겠습니까?</strong>
+											<strong>${photo.photo_name} 앨범을 삭제하시겠습니까?</strong>
 											<p>앨범 삭제 시<br>사진 파일도 함께 삭제됩니다.</p>
 											<button id="album_deleteBtn" class="modal_okBtn okBtn">확인</button>
 											<input class="modal_noBtn noBtn" type="reset" value="취소" />
@@ -110,19 +88,19 @@
 											
 											<span class="xBtn">✕</span>
 											<strong>이름 바꾸기</strong>
-											<input type="text" class="change_text" name="album_name" value="${album.album_name}">
-											<input type="hidden" name="album_id" value="${album.album_id}">
+											<input type="text" class="change_text" name="album_name" value="${photo.photo_name}">
+											<input type="hidden" name="album_id" value="${photo.photo_id}">
 											<button class="modal_okBtn okBtn2">확인</button>
 											<input id="album_changeBtn" class="modal_noBtn noBtn2" type="reset" value="취소" />
 										</div>
 									</div>
 								</form>
-							</div>
-						</c:forEach> --%>
+							</div> --%>
+						</c:forEach>
 					</ul>
 					
 				</div>
-					<form id="album_Add" name="albumAdd">
+					<!-- <form id="album_Add" name="albumAdd">
 						<div class="modal add_modal">
 							<div class="modal_body add_body">
 								<span class="xBtn">✕</span>
@@ -133,7 +111,7 @@
 								<input id="album_changeBtn" class="modal_noBtn noBtn3" type="reset" value="취소" />
 							</div>
 						</div>
-					</form>
+					</form> -->
 				</div>
 				
 			</div>

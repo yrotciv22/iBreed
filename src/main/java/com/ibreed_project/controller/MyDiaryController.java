@@ -25,9 +25,16 @@ public class MyDiaryController {
 		model.addAttribute("user_id", user_id);
 		return "diary/mydiary_home";
 	}
+	
+	@RequestMapping("/mydiary/{currentUserId}/test")
+	public String view_mydiary_test(@PathVariable("currentUserId") String currentUserId, Model model) {
+		
+		model.addAttribute("currentUserId", currentUserId);
+		
+		return "diary/mydiary_test";
+	}
 
 	/* 마이 다이어리 탭별 이동 */
-
 
 
 	/* <감정분석> 성목 */

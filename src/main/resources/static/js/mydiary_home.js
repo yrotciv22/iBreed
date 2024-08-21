@@ -8,6 +8,37 @@
  $(document).ready(function(){
  	console.log("home js");
  	
+ 		
+    const currentUrl = window.location.href;
+    const urlParts = currentUrl.split('/');
+    const currentUserId = urlParts[urlParts.length - 2];
+	console.log("currentUserId", currentUserId);
+	
+	// URL에 currentUserId를 삽입하여 href 속성 업데이트
+    
+    const homeTab = document.getElementById('homeTab');
+    homeTab.href = '/mydiary/' + currentUserId + '/home';
+    
+    const diaryTab = document.getElementById('diaryTab');
+    diaryTab.href = '/mydiary/' + currentUserId + '/diary';
+    
+    const emotionTab = document.getElementById('emotionTab');
+    emotionTab.href = '/mydiary/' + currentUserId + '/emotion';
+    
+   	const photosTab = document.getElementById('photosTab');
+    photosTab.href = '/mydiary/' + currentUserId + '/photos';
+    
+    const calendarTab = document.getElementById('calendarTab');
+    calendarTab.href = '/mydiary/' + currentUserId + '/calendar';
+    
+    const friendsTab = document.getElementById('friendsTab');
+    friendsTab.href = '/mydiary/' + currentUserId + '/friends';
+    
+    const testTab = document.getElementById('testTab');
+    testTab.href = '/mydiary/' + currentUserId + '/test';
+    
+	
+ 	
  	document.getElementById("editButton").addEventListener("click", function() {
 		document.getElementById("editButton").style.display = "none";
 		document.getElementById("diaryTitleDisplay").style.display = "none";

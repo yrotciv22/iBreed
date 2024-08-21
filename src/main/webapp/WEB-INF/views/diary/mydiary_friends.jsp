@@ -30,30 +30,38 @@
 
 				<div class="friends_all">
 
-					 <c:forEach var="f" items="${friendList}">
+					<c:forEach var="f" items="${friendList}">
 						<div class="friend_wrap">
-						
+
 							<div class="frd_profile_img">
 								<img src="${f.user_profile_image}" />
 							</div>
-							
+
 							<div class="column_wrap">
 								<div class="frd_profile_nickname">${f.user_nickname}</div>
 								<div class="frd_profile_id">${f.user_id}</div>
 								<div class="trigger see_more">...</div>
-								
+
 								<div class="click_see_more">
-									 <ul>
-										<li>다이어리 방문하기</li>
+									<ul>
+										<a href="<c:url value='/mydiary/${f.user_id}/home'/>"><li>다이어리
+												방문하기</li></a>
 										<li>프로필 보기</li>
-										<li class="delete_friend" data-userid="${f.user_id}">친구 끊기</li> 
-									</ul>  
+
+										<c:if test="${sessionScope.user_id == user_id}">
+											<a href="<c:url value='/mydiary/${user_id}/deleteFriend/${f.user_id}'/>"
+												onclick="return confirm('정말 삭제하시겠습니까?');">
+												<li class="delete_friend">친구 끊기</li>
+											</a>
+										</c:if>
+
+									</ul>
 								</div>
-								
+
 							</div>
-							
+
 						</div>
-					</c:forEach> 
+					</c:forEach>
 
 				</div>
 
