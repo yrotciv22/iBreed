@@ -28,12 +28,27 @@ public class AlbumController {
 	public String view_mydiary_album(@PathVariable("user_id") String user_id, Model model) {
 
 		ArrayList<AlbumVO> latestList = albumService.selectLatest();
-
+		
 		model.addAttribute("latestList", latestList);
-
+		
 		return "diary/mydiary_photos";
 	}
 
+	@RequestMapping("/mydiary/detailAlbum/{album_id}")
+	public String detailAlbum(@PathVariable("album_id") String album_id,
+							  Model model) {
+		
+		String album_name= albumService.getAlbumName(album_id);
+		ArrayList<AlbumVO> photoList = albumService.selectPhoto(album_id);
+		
+		model.addAttribute("album_name", album_name);
+		model.addAttribute("photoList", photoList);
+		
+		System.out.println(album_name);
+		
+		return "diary/photos/mydiary_DetailAlbum";
+	}
+	
 	@ResponseBody
 	@RequestMapping("/album/addAlbum")
 	public String addAlbum(AlbumVO vo) {
@@ -46,13 +61,13 @@ public class AlbumController {
 	@RequestMapping("/album/deleteAlbum/{album_id}")
 	public String deleteAlbum(@PathVariable("album_id") int album_id) {
 		albumService.deleteAlbum(album_id);
-		return "redirect:/mydiary/photos";
+		return "redirect:/mydiary/a/photos";
 	}
 
 	@RequestMapping("/album/updateAlbum")
 	public String updateAlbum(AlbumVO vo) {
 		albumService.updateAlbumName(vo);
-		return "redirect:/mydiary/photos";
+		return "redirect:/mydiary/a/photos";
 	}
 
 	@RequestMapping("/mydiary/albumSearch")
@@ -71,25 +86,16 @@ public class AlbumController {
 		return "diary/photos/albumSearchResult";
 	}
 	
-	@RequestMapping("/mydiary/detailAlbum/{album_id}")
-	/*@RequestMapping("/mydiary/detailAlbum/{album_id}")*/
-	public String detailAlbum() {
-		return "diary/photos/mydiary_DetailAlbum";
-	}
-	
 	@ResponseBody
 	@RequestMapping("/imageUpload")
-	public String imageUpload(@RequestParam("uploadImage") MultipartFile file) throws IOException {
+	public String imageFileUpload(@RequestParam("uploadFile") MultipartFile file) throws IOException {
 		
 		String uploadPath = "C:/iBreedWorkspace/images/";
 		
+		// 이 부분에서 이름을 고쳐줘야함
 		String originalFileName = file.getOriginalFilename();
 		
-		UUID uuid = UUID.randomUUID();
-		
-		String savedFileName = uuid.toString() + "_" + originalFileName;
-				
-		File sendFile = new File(uploadPath + savedFileName);
+		File sendFile = new File(uploadPath + originalFileName);
 		
 		file.transferTo(sendFile);
 		
