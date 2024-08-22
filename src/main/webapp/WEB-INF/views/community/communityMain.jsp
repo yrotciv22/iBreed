@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
+
 <c:set var="userId" value="${sessionScope.user_id}" />  
 <!DOCTYPE html>
 <html>
@@ -93,12 +95,19 @@
 	                    </div>
 	                    <!--  여기까진 커뮤니티에 공통으로 포함되어야함.나머지 페이지별 다른건 아래에 작성-->
                     <section class="section category-section">
-                        <h2>인기글</h2>
+                        <h1>인기글</h1>
                         <div class="content-box">
                             <ul class="latest-news-list">
-                             	<c:forEach var="post" items="${popularPosts}">
-                             		<li><a href="#">${post.postTitle}</a></li>
-                             	</c:forEach>
+                             	 <c:forEach var="post" items="${popularPosts}">
+						            <li class="post-item">
+						                <a href="#">${post.postTitle}</a>
+						                <span class="post-meta">
+						                    <span class="post-author">${post.userId}</span>
+						                    <span class="post-separator"> · </span>
+						                    <span class="post-date"><fmt:formatDate value="${post.postCreate}" pattern="yyyy-MM-dd"/></span>
+						                </span>
+						            </li>
+						        </c:forEach>
                             </ul>
                         </div>
                     </section>
@@ -107,7 +116,14 @@
                         <div class="content-box">
                             <ul class="latest-news-list">
                          		 <c:forEach var="post" items="${recentPosts}">
-					              <li><a href="#">${post.postTitle}</a></li>
+					              <li class="post-item">
+						                <a href="#">${post.postTitle}</a>
+						                <span class="post-meta">
+						                    <span class="post-author">${post.userId}</span>
+						                    <span class="post-separator"> · </span>
+						                    <span class="post-date"><fmt:formatDate value="${post.postCreate}" pattern="yyyy-MM-dd"/></span>
+						                </span>
+						            </li>
 					             </c:forEach>
                             </ul>
                         </div>
@@ -118,7 +134,14 @@
 					    <div class="content-box">
 					        <ul class="latest-news-list">
 					            <c:forEach var="post" items="${pregnancyPosts}">
-					                <li><a href="#">${post.postTitle}</a></li>
+					                <li class="post-item">
+						                <a href="#">${post.postTitle}</a>
+						                <span class="post-meta">
+						                    <span class="post-author">${post.userId}</span>
+						                    <span class="post-separator"> · </span>
+						                    <span class="post-date"><fmt:formatDate value="${post.postCreate}" pattern="yyyy-MM-dd"/></span>
+						                </span>
+						            </li>
 					            </c:forEach>
 					        </ul>
 					    </div>
@@ -129,7 +152,14 @@
 					    <div class="content-box">
 					        <ul class="latest-news-list">
 					            <c:forEach var="post" items="${parentingPosts}">
-					                <li><a href="#">${post.postTitle}</a></li>
+					                 <li class="post-item">
+						                <a href="#">${post.postTitle}</a>
+						                <span class="post-meta">
+						                    <span class="post-author">${post.userId}</span>
+						                    <span class="post-separator"> · </span>
+						                    <span class="post-date"><fmt:formatDate value="${post.postCreate}" pattern="yyyy-MM-dd"/></span>
+						                </span>
+						            </li>
 					            </c:forEach>
 					        </ul>
 					    </div>
@@ -141,7 +171,14 @@
 					    <div class="content-box">
 					        <ul class="latest-news-list">
 					            <c:forEach var="post" items="${reviewPosts}">
-					                <li><a href="#">${post.postTitle}</a></li>
+					                <li class="post-item">
+						                <a href="#">${post.postTitle}</a>
+						                <span class="post-meta">
+						                    <span class="post-author">${post.userId}</span>
+						                    <span class="post-separator"> · </span>
+						                    <span class="post-date"><fmt:formatDate value="${post.postCreate}" pattern="yyyy-MM-dd"/></span>
+						                </span>
+						            </li>
 					            </c:forEach>
 					        </ul>
 					    </div>
@@ -153,7 +190,14 @@
 					    <div class="content-box">
 					        <ul class="latest-news-list">
 					            <c:forEach var="post" items="${marketPosts}">
-					                <li><a href="#">${post.postTitle}</a></li>
+					                 <li class="post-item">
+						                <a href="#">${post.postTitle}</a>
+						                <span class="post-meta">
+						                    <span class="post-author">${post.userId}</span>
+						                    <span class="post-separator"> · </span>
+						                    <span class="post-date"><fmt:formatDate value="${post.postCreate}" pattern="yyyy-MM-dd"/></span>
+						                </span>
+						            </li>
 					            </c:forEach>
 					        </ul>
 					    </div>
@@ -165,7 +209,14 @@
 					    <div class="content-box">
 					        <ul class="latest-news-list">
 					            <c:forEach var="post" items="${jobPosts}">
-					                <li><a href="#">${post.postTitle}</a></li>
+					                 <li class="post-item">
+						                <a href="#">${post.postTitle}</a>
+						                <span class="post-meta">
+						                    <span class="post-author">${post.userId}</span>
+						                    <span class="post-separator"> · </span>
+						                    <span class="post-date"><fmt:formatDate value="${post.postCreate}" pattern="yyyy-MM-dd"/></span>
+						                </span>
+						            </li>
 					            </c:forEach>
 					        </ul>
 					    </div>

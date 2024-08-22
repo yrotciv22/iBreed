@@ -19,7 +19,7 @@
 <body>
 	<div class="all">
 		<div class="diary_wrap">
-
+<input type="hidden" name="userId" value="${userId}">
 			<div class="diary_content">
 				
 				<form id="diary-form" action="<c:url value='/mydiary/diarywrite'/>" method="post"
