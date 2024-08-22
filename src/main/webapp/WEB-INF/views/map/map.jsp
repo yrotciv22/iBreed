@@ -11,15 +11,183 @@
 
 	<!-- 공통 layout: head.jsp -->
 	<c:import url="/WEB-INF/views/layout/head.jsp" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/css/map/map.css'/>" />
 	<script src="<c:url value='/js/index.js'/>"></script>
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${naverMapClientId}&submodules=geocoder"></script>
 
 	<style>
+		/* Reset some basic styles */
+		body, h2, p, button, input, table {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+		}
+
+		/* Basic container setup */
+		.all {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			min-height: 100vh;
+			background-color: #f9f9f9;
+			padding: 20px;
+		}
+
+		#main {
+			display: grid;
+			grid-template-columns: 0.2fr 0.4fr 1fr;
+			gap: 20px;
+			width: 100%;
+			max-width: 1200px;
+			background-color: #ffffff;
+			box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+			border-radius: 8px;
+			padding: 20px;
+		}
+
+		#menu {
+			background-color: #f0f0f0;
+			padding: 20px;
+			border-radius: 8px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		#menuList {
+			margin-top: 20px;
+			width: 100%;
+		}
+
+		#menuList button {
+			padding: 12px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			margin-bottom: 10px;
+			width: 100%;
+			text-align: center;
+		}
+
+		#menuList button:hover {
+			background-color: #45a049;
+		}
+
+		#myPage {
+			margin-top: auto;
+			text-align: center;
+		}
+
+		#checklist {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			background-color: #ffffff;
+			border-radius: 8px;
+			padding: 20px;
+			box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+		}
+
+		#nowLocation {
+			margin-bottom: 20px;
+			font-size: 18px;
+			font-weight: bold;
+			color: #333;
+		}
+
+		#searchContainer {
+			width: 100%;
+			position: relative; /* 검색 결과를 입력창 아래에 위치시키기 위해 설정 */
+		}
+
+		#searchResult {
+			display: flex;
+			width: 100%;
+		}
+
+		#searchQuery {
+			flex: 1;
+			padding: 10px;
+			border-radius: 4px 0 0 4px;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+		}
+
+		button[type="submit"] {
+			padding: 10px;
+			background-color: #4CAF50;
+			color: white;
+			border: 1px solid #4CAF50;
+			border-radius: 0 4px 4px 0;
+			cursor: pointer;
+			border-left: none;
+			height: 100%;
+		}
+
+		button[type="submit"]:hover {
+			background-color: #45a049;
+		}
+
+		/* 검색 결과 스타일링 */
+		#searchResults {
+			position: absolute; /* 입력창 아래에 고정되도록 설정 */
+			top: calc(100% + 5px); /* 입력창 바로 아래에 위치 */
+			left: 0;
+			width: 100%; /* 입력창과 동일한 너비 유지 */
+			max-height: 300px; /* 최대 높이를 설정하여 스크롤 가능하도록 */
+			overflow-y: auto;
+			background-color: white;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+			box-sizing: border-box;
+			z-index: 9999; /* 다른 요소 위에 표시 */
+		}
+
+		.search-item {
+			padding: 10px;
+			border-bottom: 1px solid #eee;
+			cursor: pointer;
+		}
+
+		.search-item:last-child {
+			border-bottom: none;
+		}
+
+		.search-item:hover {
+			background-color: #f0f0f0;
+		}
+
+		table {
+			width: 100%;
+			border: 1px solid #ccc;
+			margin-top: 10px;
+			font-size: 14px;
+			table-layout: fixed;
+			border-collapse: collapse;
+		}
+
+		th, td {
+			border: 1px solid #ccc;
+			padding: 12px;
+			text-align: center;
+			width: 33.33%;
+		}
+
+		td:hover, th:focus {
+			background-color: #e0e0e0;
+		}
+
 		#map {
+			position: relative;
+			background-color: #f0f0f0;
 			width: 100%;
 			height: 500px;
-			position: relative;
+			border-radius: 8px;
+			box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 		}
 
 		#centerMarker {
@@ -53,76 +221,56 @@
 			background-color: #45a049;
 		}
 
-		#menuList {
-			display: flex;
-			flex-direction: column;
-			gap: 10px;
-			margin-top: 10px;
+		/* Toggle Switch CSS */
+		.switch {
+			position: relative;
+			display: inline-block;
+			width: 60px;
+			height: 34px;
+			margin-bottom: 10px;
 		}
 
-		#menuList button {
-			padding: 10px;
-			background-color: #2196F3;
-			color: white;
-			border: none;
-			border-radius: 4px;
-			cursor: pointer;
-			text-align: center;
+		.switch input {
+			opacity: 0;
+			width: 0;
+			height: 0;
 		}
 
-		#menuList button:hover {
-			background-color: #1976D2;
-		}
-
-		#searchResults {
+		.slider {
 			position: absolute;
-			top: 100%; /* 검색 입력란 바로 아래에 위치 */
+			cursor: pointer;
+			top: 0;
 			left: 0;
-			width: 100%; /* 입력창과 동일한 너비로 설정 */
-			max-height: 300px; /* 검색 결과 목록의 최대 높이 설정 */
-			overflow-y: auto; /* 검색 결과가 많을 경우 스크롤 가능하게 설정 */
+			right: 0;
+			bottom: 0;
+			background-color: #ccc;
+			transition: .4s;
+			border-radius: 34px;
+		}
+
+		.slider:before {
+			position: absolute;
+			content: "";
+			height: 26px;
+			width: 26px;
+			left: 4px;
+			bottom: 4px;
 			background-color: white;
-			z-index: 1000;
-			border: 1px solid #ccc; /* 검색 결과 목록의 테두리 설정 */
-			border-radius: 4px;
-			box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 그림자 효과 추가 */
-			box-sizing: border-box; /* 패딩과 보더를 포함한 크기 설정 */
+			transition: .4s;
+			border-radius: 50%;
 		}
 
-		.search-item {
-			padding: 10px;
-			border-bottom: 1px solid #eee;
-			cursor: pointer;
+		input:checked + .slider {
+			background-color: #2196F3;
 		}
 
-		.search-item:last-child {
-			border-bottom: none; /* 마지막 항목의 아래쪽 테두리 제거 */
+		input:checked + .slider:before {
+			transform: translateX(26px);
 		}
 
-		.search-item:hover {
-			background-color: #f0f0f0;
-		}
-
-
-		#searchQuery {
-			width: calc(100% - 90px);
-			padding: 10px;
-			border-radius: 4px;
-			border: 1px solid #ccc;
-			margin-right: 10px;
-		}
-
-		button[type="submit"] {
-			padding: 10px 20px;
-			background-color: #4CAF50;
-			color: white;
-			border: none;
-			border-radius: 4px;
-			cursor: pointer;
-		}
-
-		button[type="submit"]:hover {
-			background-color: #45a049;
+		#hospitalList {
+			margin-top: 30px; /* 진료 과목 섹션의 위쪽 여백을 추가하여 입력란과의 간격을 확보 */
+			width: 100%;
 		}
 	</style>
 </head>
@@ -149,15 +297,13 @@
 
 		<section id="checklist">
 			<h2 id="nowLocation">현재 위치 : 서울</h2>
-			<div id="searchContainer" style="position: relative;">
-				<form id="searchResult" onsubmit="searchByAddress(event)" style="display: flex; align-items: center;">
-					<input type="text" placeholder="검색어를 입력 해 주세요." id="searchQuery" name="query" style="flex: 1; padding: 8px;">
-					<button type="submit" style="padding: 8px 12px; margin-left: 8px;">검색</button>
+			<div id="searchContainer">
+				<form id="searchResult" onsubmit="searchByAddress(event)">
+					<input type="text" placeholder="검색어를 입력 해 주세요." id="searchQuery" name="query">
+					<button type="submit">검색</button>
 				</form>
 				<div id="searchResults"></div> <!-- 검색 결과를 표시할 영역 -->
 			</div>
-
-
 
 			<div id="hospitalList">
 				<h2>진료 과목</h2>
@@ -178,17 +324,17 @@
 						<td><a href="#" onclick="searchNearbyHospitalsByName('안과')">안과</a></td>
 					</tr>
 					<tr>
-						<td><a href="#"></a></td>
+						<td></td>
 						<td><a href="#" onclick="searchNearbyHospitalsByName('이비인후과')">이비인후과</a></td>
-						<td><a href="#"></a></td>
+						<td></td>
 					</tr>
 				</table>
 			</div>
 		</section>
 
 		<section id="map">
-			<div id="centerMarker"></div> <!-- 지도 중심에 표시할 십자마크 -->
-			<button id="searchCurrentLocation" onclick="searchFromCenterLocation()">현재 위치에서 찾기</button> <!-- 현재 지도 중심에서 찾기 버튼 -->
+			<div id="centerMarker"></div>
+			<button id="searchCurrentLocation" onclick="searchFromCenterLocation()">현재 위치에서 찾기</button>
 		</section>
 	</div>
 
@@ -452,11 +598,6 @@
 		// 검색 결과 창을 보이도록 설정
 		searchResults.style.display = 'block';
 	}
-
-
-
-
-
 
 	window.onload = function() {
 		initMap();
