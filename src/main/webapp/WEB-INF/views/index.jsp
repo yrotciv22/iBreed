@@ -188,9 +188,9 @@
 							</a>
 
 							<div class="member_btns">
-								<a href="<c:url value='/find-id'/>">
+								<a href="<c:url value='/join/idcheck'/>">
 									<div class="find_id">아이디 찾기</div>
-								</a> | <a href="<c:url value='/reset-password'/>">
+								</a> | <a href="<c:url value='/join/nicknamecheck'/>">
 									<div class="find_pw">비밀번호 찾기</div>
 
 								</a> | <a href="<c:url value='/join'/>">

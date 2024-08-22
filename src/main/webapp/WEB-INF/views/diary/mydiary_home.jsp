@@ -16,16 +16,12 @@
 
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 <script src="<c:url value='/js/mydiary_home.js'/>"></script>
-<script>
-	const userId = "${sessionScope.user_id}";
-</script>
+<script>const userId = "${sessionScope.user_id}";</script>
 </head>
-
 <body>
 	<div class="all">
 		<div class="diary_wrap">
 			<div class="diary_content">
-
 
 				<!-- 각 페이지 작업 구간  -->
 				<div class="left_wrap">

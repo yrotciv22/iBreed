@@ -12,6 +12,9 @@
 	href="<c:url value='/css/diary/mydiary_diarywrite.css' />" />
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 <script src="<c:url value='/js/mydiary_diarywrite.js' />"></script>
+<script>
+	const userId = "${sessionScope.user_id}";
+</script>
 </head>
 <body>
 	<div class="all">
@@ -62,10 +65,10 @@
 							class="diary-title">
 					</div>
 					<div id="content-area" class="content-area" contenteditable="true">
-						<textarea id="hidden-content" name="diaryContent"></textarea>
+						
 					</div>
-<!-- 					<textarea id="hidden-content" name="diaryContent" style="display:none;"></textarea>
- -->
+				<textarea id="hidden-content" name="diaryContent" style="display:none;"></textarea>
+ 
 
 					<!-- 공개 설정 -->
 					<div class="diary_visibility">
@@ -76,13 +79,11 @@
 
 					<div class="diary_buttons">
 					    <div class="diary_buttons-left">
-					    <!--임시저장인지아닌지 구분학;  -->
-					<input type="hidden" id="diary_upload_status" name="diary_upload_status" value="true">
-					        <button type="button" class="save-button">임시 저장</button>
+					    <!--임시저장 없앰 -->
 					        <input type="submit" class="submit-button" value="등록하기">
 					    </div>
 					    <div class="diary_buttons-right">
-					        <button type="button" class="cancel-button" onclick="location.href='/mydiary/diary'">목록으로</button>
+					        <button type="button" class="cancel-button"onclick="location.href='/mydiary/' + userId + '/diary'">목록으로</button>
 					    </div>
 					</div>
 					

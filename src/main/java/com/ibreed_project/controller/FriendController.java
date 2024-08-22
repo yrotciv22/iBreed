@@ -41,6 +41,8 @@ public class FriendController {
 
 		String user_id = (String) session.getAttribute("user_id");
 
+		System.out.println(user_id + "//" + friend_id);
+		
 		if (user_id != null) {
 			friendService.deleteFriend(user_id, friend_id);
 			return "redirect:/mydiary/{user_id}/friends";

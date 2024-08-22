@@ -1,6 +1,8 @@
 package com.ibreed_project.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ibreed_project.model.Mydiary_diaryVO;
 import com.ibreed_project.service.Mydiary_diaryService;
@@ -29,15 +32,30 @@ public class MydiaryDiaryController {
 	
 	/* <일기> 규현 */
 	@RequestMapping("/mydiary/{user_id}/diary")
-	public String view_mydiary_diary(@PathVariable("user_id") String user_id,
+	public String view_mydiary_diary(@PathVariable("user_id") String userId,
+															@RequestParam(value = "page", defaultValue = "1") int page,
+															 @RequestParam(value = "size", defaultValue = "6") int size,
 															Model model) {
 		
-		 // 서비스에서 일기 목록을 가져옴
-	    List<Mydiary_diaryVO> diaryList = mydiary_diaryService.getDiaryListByUserId(user_id);
+			int offset = (page - 1) * size;
+		    Map<String, Object> params = new HashMap<>();
+		    params.put("userId", userId);
+		    params.put("offset", offset);
+		    params.put("size", size);
+		 // 일기 목록을 가져옴
+		// List<Mydiary_diaryVO> diaryList = mydiary_diaryService.getDiaryListByUserId(userId);
+		//model.addAttribute("diaryList", diaryList);
+		//페이지네이션추가하기~~!
+		// 페이지네이션을 적용한 일기 목록을 가져옴
+		 List<Mydiary_diaryVO> diaryList = mydiary_diaryService.getDiaryListByUserId(params);		// 전체 일기 수를 가져오기~~ (페이지 수 계산을 위해 필요)
+		 model.addAttribute("diaryList", diaryList);
+		 //일기,페이지
+		 int totalDiaryCount = mydiary_diaryService.getTotalDiaryCountByUserId(userId);
+		 int totalPages = (int) Math.ceil((double) totalDiaryCount / size);
+		 model.addAttribute("currentPage", page);
+		 model.addAttribute("totalPages", totalPages);
 
-	    // 모델에 일기 목록을 추가하여 JSP로 전달
-	    model.addAttribute("diaryList", diaryList);
-
+		//  System.out.println(diaryList);
 		return "diary/mydiary_diary";
 	}
 	
@@ -113,7 +131,7 @@ public class MydiaryDiaryController {
 		mydiary_diaryService.saveDiary(vo) ;
 		
 
-	    return "diary/mydiary_diary";
+	    return "redirect:/mydiary/" + userId + "/diary";
 	}
 	
 	// 특정 일기 데이터를 가져와 수정 폼에 표시하는 메서드 (GET 요청 처리)

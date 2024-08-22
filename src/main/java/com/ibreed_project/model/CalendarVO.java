@@ -1,36 +1,60 @@
 package com.ibreed_project.model;
 
 public class CalendarVO {
-	private int Key;
-	private String calendar_memo;
-	private String calendar_notice;
+	private int CALENDAR_NO;
+	private String CALENDAR_TITLE;
+	private String CALENDAR_MEMO;
+	private String CALENDAR_START;
+	private String CALENDAR_END;
 	private int diary_id;
-	private String calendar_title;
-	private String calendar_start;
-	private String calendar_end;
+	private String color;
 
-	public int getKey() {
-		return Key;
+	public String getColor() {
+		return color;
 	}
 
-	public void setKey(int key) {
-		Key = key;
+	public void setColor(String color) {
+		this.color = color;
 	}
 
-	public String getCalendar_memo() {
-		return calendar_memo;
+	public int getCALENDAR_NO() {
+		return CALENDAR_NO;
 	}
 
-	public void setCalendar_memo(String calendar_memo) {
-		this.calendar_memo = calendar_memo;
+	public void setCALENDAR_NO(int cALENDAR_NO) {
+		CALENDAR_NO = cALENDAR_NO;
 	}
 
-	public String getCalendar_notice() {
-		return calendar_notice;
+	public String getCALENDAR_TITLE() {
+		return CALENDAR_TITLE;
 	}
 
-	public void setCalendar_notice(String calendar_notice) {
-		this.calendar_notice = calendar_notice;
+	public void setCALENDAR_TITLE(String cALENDAR_TITLE) {
+		CALENDAR_TITLE = cALENDAR_TITLE;
+	}
+
+	public String getCALENDAR_MEMO() {
+		return CALENDAR_MEMO;
+	}
+
+	public void setCALENDAR_MEMO(String cALENDAR_MEMO) {
+		CALENDAR_MEMO = cALENDAR_MEMO;
+	}
+
+	public String getCALENDAR_START() {
+		return CALENDAR_START;
+	}
+
+	public void setCALENDAR_START(String cALENDAR_START) {
+		CALENDAR_START = cALENDAR_START;
+	}
+
+	public String getCALENDAR_END() {
+		return CALENDAR_END;
+	}
+
+	public void setCALENDAR_END(String cALENDAR_END) {
+		CALENDAR_END = cALENDAR_END;
 	}
 
 	public int getDiary_id() {
@@ -39,30 +63,6 @@ public class CalendarVO {
 
 	public void setDiary_id(int diary_id) {
 		this.diary_id = diary_id;
-	}
-
-	public String getCalendar_title() {
-		return calendar_title;
-	}
-
-	public void setCalendar_title(String calendar_title) {
-		this.calendar_title = calendar_title;
-	}
-
-	public String getCalendar_start() {
-		return calendar_start;
-	}
-
-	public void setCalendar_start(String calendar_start) {
-		this.calendar_start = calendar_start;
-	}
-
-	public String getCalendar_end() {
-		return calendar_end;
-	}
-
-	public void setCalendar_end(String calendar_end) {
-		this.calendar_end = calendar_end;
 	}
 
 }
