@@ -27,14 +27,16 @@ public class MydiaryDiaryController {
 	// 다이어리 작성 페이지로 이동
 	@RequestMapping("/mydiary/diarywrite")
 	public String view_mydiary_diarywrite() {
-		return "diary/mydiary_diarywrite";
-	}
+		
+		    return "diary/mydiary_diarywrite";
+		}
 	
-	/* <일기> 규현 */
+	
+	/* <일기>일기리스트페이지 규현 */
 	@RequestMapping("/mydiary/{user_id}/diary")
 	public String view_mydiary_diary(@PathVariable("user_id") String userId,
 															@RequestParam(value = "page", defaultValue = "1") int page,
-															 @RequestParam(value = "size", defaultValue = "6") int size,
+															 @RequestParam(value = "size", defaultValue = "7") int size,
 															Model model) {
 		
 			int offset = (page - 1) * size;
@@ -60,71 +62,26 @@ public class MydiaryDiaryController {
 	}
 	
 	 
-//	// 일기 데이터를 저장
-//	@PostMapping("/mydiary/diarywrite")
-//	public String saveDiary(@RequestParam("title") String title, 
-//	                        @RequestParam("category") String category,
-//	                        @RequestParam("content") String content, 
-//	                        @RequestParam("privacy") String privacy,
-//	                        @RequestParam(value = "diary_upload_status", required = false, defaultValue = "false") boolean isFinal,
-//	                        @RequestParam(value = "id", required = false) Integer diaryPostId,
-//	                        
-//	                        HttpSession session,  
-//	                        Model model) {
-//
-//	    Mydiary_diaryVO diary = new Mydiary_diaryVO();
-//	    
-//	    // 세션에서 userId를 가져옴
-//	    String userId = (String) session.getAttribute("userId");
-//	    diary.setUserId(userId);  
-//
-//	    // diaryId 설정 (임시로 1로 설정해두었으나, 실제 구현에서는 동적으로 설정해야 합니다)
-//	    diary.setDiaryId(1);
-//	    
-//	    // 일기 ID가 있으면 수정, 없으면 새로 생성
-//	    if (diaryPostId != null && diaryPostId > 0) {
-//	        diary.setDiaryPostId(diaryPostId);
-//	    }
-//
-//	    diary.setDiaryTitle(title);
-//	    diary.setDiaryCategory(category);
-//	    diary.setDiaryContent(content);
-//	    diary.setDiaryPublic(privacy);
-//	    diary.setDiaryUploadStatus(isFinal);
-//
-//	    mydiary_diaryService.saveDiary(diary);
-//
-//	    return "diary/mydiary_diary";
-//	}
-	
-	
-	// 일기 데이터를 저장
-	@PostMapping("/mydiary/diarywrite")
-	public String saveDiary(Mydiary_diaryVO vo,
+	// 일기 작성하고데이터를 저장
+	@PostMapping("/mydiary/{user_id}/diarywrite")
+	public String saveDiary(Mydiary_diaryVO vo,											
 	//		@RequestParam("image-upload") MultipartFile file,
+	                        				HttpSession session,  
+	                        				Model model) throws Exception, Exception  {
 		
-			
-	                        HttpSession session,  
-	                        Model model) throws Exception, Exception  {
-		
-//
+
 //		// 1. 파일 저장 경로 설정
 //		// 맨 마지막에 / 있어야 함
 //		String uploadPath = "D:/projectWorkspace/Upload/";
 //		
 //		// 2. 원본 파일 이름 저장
 //		String originalFileName = file.getOriginalFilename();
-//		
-//				
-//		
+
 //		// 3. 파일 (객체) 생성
-//		File sendFile = new File(uploadPath + originalFileName);
-//		
+//		File sendFile = new File(uploadPath + originalFileName);	
 //		
 //		// 4. 서버로 전송 
-//		file.transferTo(sendFile);
-//		
-//		
+//		file.transferTo(sendFile);	
 		
 		String userId = (String) session.getAttribute("user_id");
 	    vo.setUserId(userId); 
@@ -133,10 +90,26 @@ public class MydiaryDiaryController {
 
 	    return "redirect:/mydiary/" + userId + "/diary";
 	}
+	//다이어리상세보기
+	 @GetMapping("/mydiary/{userId}/diarydetail/{diaryPostId}")
+	    public String viewDiaryDetail(@PathVariable("userId") String userId,
+	                                 					@PathVariable("diaryPostId") int diaryPostId,
+	                                 					Model model) {
+		 System.out.println("UserId: " + userId);
+		    System.out.println("DiaryPostId: " + diaryPostId);
+	        Mydiary_diaryVO diary = mydiary_diaryService.getDiary(diaryPostId);
+
+	        // 모델에 다이어리 정보를 추가
+	        model.addAttribute("diary", diary);
+	        model.addAttribute("userId", userId);
+
+	        return "diary/mydiary_diarydetail";
+	    }
 	
 	// 특정 일기 데이터를 가져와 수정 폼에 표시하는 메서드 (GET 요청 처리)
-	@GetMapping("/mydiary/diaryedit/{id}")
-	public String editDiary(@PathVariable("id") int diaryPostId, Model model) {
+	@GetMapping("/mydiary/diaryedit/{diaryPostId}")
+	public String editDiary(@PathVariable("diaryPostId") int diaryPostId, 
+											Model model) {
 		Mydiary_diaryVO diary = mydiary_diaryService.getDiary(diaryPostId);
 
 		if (diary == null) {

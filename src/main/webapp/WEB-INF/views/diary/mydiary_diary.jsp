@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,9 @@
 <title>My Diary diary</title>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/mydiary_layout.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/mydiary_diary.css' />" />
+	<script>
+	const userId = "${sessionScope.user_id}";
+</script>
 </head>
 <body>
  
@@ -30,12 +34,12 @@
             </tr>
         </thead>
         <tbody>
-            <!-- 하드코딩된 다이어리 목록 -->
+            <!-- 백엔드연동완 -->
         <c:forEach var="diary" items="${diaryList}">
                 <tr>
-                    <td>${diary.diaryCreate}</td>
-                    <td>${diary.diaryCategory}</td>
-                    <td><a href="/diary/view/${diary.diaryPostId}">${diary.diaryTitle}</a></td>
+                    <td><fmt:formatDate value="${diary.diaryCreate}" pattern="yyyy-MM-dd" /></td>
+                    <td>${diary.diaryCategory}</td>                    
+                    <td><a href="/mydiary/${diary.userId}/diarydetail/${diary.diaryPostId}">${diary.diaryTitle}</a></td>  
                     <td>${diary.diaryViews}</td>
                     <td>${diary.diaryPublic}</td>
                 </tr>

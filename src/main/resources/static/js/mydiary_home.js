@@ -34,9 +34,9 @@
     const friendsTab = document.getElementById('friendsTab');
     friendsTab.href = '/mydiary/' + currentUserId + '/friends';
     
-  //  const testTab = document.getElementById('testTab');
-  //  testTab.href = '/mydiary/' + currentUserId + '/test';
-    
+
+    /*const testTab = document.getElementById('testTab');
+    testTab.href = '/mydiary/' + currentUserId + '/test';*/
 	
  	
  	document.getElementById("editButton").addEventListener("click", function() {
