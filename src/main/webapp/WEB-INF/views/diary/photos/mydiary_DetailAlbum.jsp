@@ -14,6 +14,7 @@
 	<script src="<c:url value='/js/albumSearch.js'/>"></script>
 	<script src="<c:url value='/js/arrangeAlbum.js'/>"></script>
 	<script src="<c:url value='/js/albumCheck.js'/>"></script>
+	<script src="<c:url value='/js/detail_photo.js'/>"></script>
 	<script src="<c:url value='/js/imageFileUpload.js'/>"></script>
 </head>
 <body>
@@ -24,7 +25,7 @@
 				<div id="wrap">
 				<div id="topBox">
 					<div id="title">
-						<a href="/mydiary/${user_id}/photos"><h3>전체앨범</h3></a>
+						<a href="/mydiary/${user_id}/photos"><h3>전체앨범</h3></a> >
 						<h3>${album_name}</h3>
 					</div>
 				</div>
@@ -39,8 +40,8 @@
 						<button id="albumDeleteBtn" class="btn">삭제</button>
 					</div>
 					<div id="ctrl">
-						<form id="arrangeAlbumForm">
-							<select name="type" id="type">
+						<form>
+							<select>
 								<option value="latest" selected/>생성일 - 최신순
 								<option value="old" />생성일 - 오래된 순
 							</select>
@@ -57,11 +58,10 @@
 								</div>
 								<div id="menu" class="menu">
 									<ul>
-										<li><a>👁️‍🗨️미리보기</a></li>
+										<li><a class="detailBtn">👁️‍🗨️미리보기</a></li>
 										<li><a>📥내려받기</a></li>
 										<li><a class="deleteBtn"  data-del="${status.index}">🗑️삭제</a></li>
 										<li><a>🗂️폴더이동</a></li>
-										<li><a class="changeBtn" data-ch="${status.index}">🪪이름바꾸기</a></li>
 										<li><a>📚굿즈 만들기</a></li>
 										<li><a>📖상세정보</a></li>
 										<li><a>🖼️앨범커버 지정</a></li>
@@ -96,6 +96,13 @@
 									</div>
 								</form>
 							</div> --%>
+							
+							<form id="detail_photo" name="detail_photo">
+								<div class="modal detail_modal">
+									<span class="xBtn">✕</span>
+									<input type="image" class="detail_image" src="/image/${photo.photo_name}">
+								</div>
+							</form>
 						</c:forEach>
 					</ul>
 					
@@ -112,6 +119,7 @@
 							</div>
 						</div>
 					</form> -->
+					
 				</div>
 				
 			</div>

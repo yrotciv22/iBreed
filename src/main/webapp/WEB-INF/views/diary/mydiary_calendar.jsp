@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="java.util.List"%>
+<%@page import="com.ibreed_project.model.CalendarVO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +22,7 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/diary/mydiary_calendar.css' />" />
 <script src="<c:url value='/js/calendar.js'/>"></script>
+
 </head>
 <body>
 

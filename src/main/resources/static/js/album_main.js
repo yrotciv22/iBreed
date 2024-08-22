@@ -28,7 +28,7 @@ $(function() {
 	
 	
 	//앨범 검색 버튼(돋보기 이미지) 효과 주기
-	$('input[type=image]').hover(
+	$('#searchBtn').hover(
 		function () {
 			$(this).css('opacity', '85%');
 		},
@@ -155,7 +155,6 @@ $(function() {
 			}
 		});
 	});
-	
 	
 	// 모달창 끄기
 	$('.xBtn').on('click', function() {

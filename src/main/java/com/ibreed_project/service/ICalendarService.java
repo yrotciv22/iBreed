@@ -1,9 +1,10 @@
-package com.ibreed_project.dao;
+package com.ibreed_project.service;
 
 import java.util.Calendar;
 import java.util.List;
 
-public interface ICalendarDAO {
+public interface ICalendarService {
+	
 	public List<Calendar> getAllEvents();
 	
 	public void addEvent(Calendar event);
