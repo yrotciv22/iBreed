@@ -23,7 +23,7 @@
 	 				if(result == "not_available") {
 	 					alert("사용할 수 없는 앨범명입니다");
 	 				} else {
-	 					location.href = "/mydiary/{diary_id}/photos";
+	 					location.href = "/mydiary/" + userId + "/photos";
 	 				}
 	 			},
 	 			error:function() {

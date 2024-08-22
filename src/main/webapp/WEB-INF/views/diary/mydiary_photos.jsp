@@ -14,6 +14,7 @@
 	<script src="<c:url value='/js/albumSearch.js'/>"></script>
 	<script src="<c:url value='/js/arrangeAlbum.js'/>"></script>
 	<script src="<c:url value='/js/albumCheck.js'/>"></script>
+	<script>const userId = "${sessionScope.user_id}"</script>
 </head>
 <body>
  

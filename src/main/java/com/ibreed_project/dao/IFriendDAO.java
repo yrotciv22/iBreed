@@ -2,6 +2,8 @@ package com.ibreed_project.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ibreed_project.model.FriendVO;
 
 
@@ -17,6 +19,6 @@ public interface IFriendDAO {
 	public void addFriend (String user_id1, String user_id2);
 	
 	// 친구 삭제
-	public void deleteFriend (String user_id, String friend_id);
+	public void deleteFriend (@Param("user_id") String user_id, @Param("friend_id") String friend_id);
 
 }

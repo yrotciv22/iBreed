@@ -32,7 +32,7 @@
 
 		<insert id="addAlbum" parameterType="com.ibreed_project.model.AlbumVO">
 			INSERT INTO album (album_name, album_date, diary_id, photo_count)
-			VALUES(#{album_name}, now(), #{diary_id}, 0)
+			VALUES(#{album_name}, now(), 1, 0)
 		</insert>
 		
 		<select id="albumCheck" parameterType="string" resultType="string">

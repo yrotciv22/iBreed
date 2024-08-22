@@ -26,7 +26,7 @@ public class AlbumController {
 
 	@RequestMapping("/mydiary/{user_id}/photos")
 	public String view_mydiary_album(@PathVariable("user_id") String user_id, Model model) {
-
+		
 		ArrayList<AlbumVO> latestList = albumService.selectLatest();
 		
 		model.addAttribute("latestList", latestList);
@@ -43,8 +43,6 @@ public class AlbumController {
 		
 		model.addAttribute("album_name", album_name);
 		model.addAttribute("photoList", photoList);
-		
-		System.out.println(album_name);
 		
 		return "diary/photos/mydiary_DetailAlbum";
 	}
