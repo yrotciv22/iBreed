@@ -47,28 +47,39 @@
     <select id="getDiaryById" resultMap="DiaryResultMap" parameterType="int">
         SELECT * FROM diaryboard WHERE diary_post_id = #{diaryPostId} AND is_deleted = FALSE
     </select>
-    <!--일기리스트가져오는 쿼리문  -->
     
     
+    <!--일기리스트가져오는 쿼리문  페이지네이션추가함-->
+	<select id="getDiaryListByUserId"  resultMap="DiaryResultMap" parameterType="map" resultType="com.ibreed_project.model.Mydiary_diaryVO">
+	    SELECT db.diary_post_id, db.diary_id, db.diary_title, db.diary_content, db.diary_create, db.diary_category, db.diary_views, db.diary_public
+	    FROM diaryboard db
+	    INNER JOIN diary d ON db.diary_id = d.diary_id
+	    WHERE d.user_id = #{userId}
+	    ORDER BY db.diary_create DESC
+	    LIMIT #{offset}, #{size}
+	</select>
+	
+	<!-- 일기 개수 가져오기-페이지네이션에필요 -->
+	<select id="getTotalDiaryCountByUserId" resultType="java.lang.Integer" parameterType="java.lang.String">
+	    SELECT COUNT(*)
+	    FROM diaryboard db
+	    INNER JOIN diary d ON db.diary_id = d.diary_id
+	    WHERE d.user_id = #{userId}
+	</select>
 	<select id="getDiaryListByUserIdAndVisibility" parameterType="map" resultType="com.ibreed_project.model.Mydiary_diaryVO">
-    SELECT diary_post_id, diary_id, diary_title, diary_create, diary_category, diary_views, diary_public
-    FROM diaryboard 
-    WHERE diary_id = (
-        SELECT diary_id 
-        FROM diary 
-        WHERE user_id = #{userId}
-    )
-    <if test="isOwner">
-        
-    </if>
-    <if test="!isOwner and isFriend">
-        AND diary_public IN ('전체공개', '친구공개')
-    </if>
-    <if test="!isOwner and !isFriend">
-        AND diary_public = '전체공개'
-    </if>
-    ORDER BY diary_create DESC
-</select>
+	    SELECT db.diary_post_id, db.diary_id, db.diary_title, db.diary_create, db.diary_category, db.diary_views, db.diary_public
+	    FROM diaryboard db
+	    INNER JOIN diary d ON db.diary_id = d.diary_id
+	    WHERE d.user_id = #{userId}
+	    <if test="isOwner"></if>
+	    <if test="!isOwner and isFriend">
+	        AND db.diary_public IN ('전체공개', '친구공개')</if>
+	    <if test="!isOwner and !isFriend">
+	        AND db.diary_public = '전체공개'</if>
+	    ORDER BY db.diary_create DESC
+	</select>
+
+
     <!-- UPDATE 쿼리 -->
     <update id="updateDiary" parameterType="com.ibreed_project.model.Mydiary_diaryVO">
         UPDATE diaryboard

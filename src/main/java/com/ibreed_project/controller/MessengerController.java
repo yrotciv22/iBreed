@@ -1,5 +1,6 @@
 package com.ibreed_project.controller;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,7 @@ public class MessengerController {
     }
 
     @GetMapping("/read")
-    public String read(Model model, int msgId, HttpSession session) {
+    public String read(Model model,@RequestParam("msgId") int msgId, HttpSession session) {
         String userId = (String) session.getAttribute("user_id");
         if (userId != null) {
             model.addAttribute("message", messengerService.readMessage(msgId));

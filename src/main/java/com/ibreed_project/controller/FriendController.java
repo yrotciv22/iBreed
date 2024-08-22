@@ -41,11 +41,12 @@ public class FriendController {
 
 		String user_id = (String) session.getAttribute("user_id");
 
+		System.out.println(user_id + "//" + friend_id);
+		
 		if (user_id != null) {
 			friendService.deleteFriend(user_id, friend_id);
 			return "redirect:/mydiary/{user_id}/friends";
 		} else {
-			// user_id가 세션에 없는 경우 처리 (예: 로그인 페이지로 리다이렉트)
 			return "redirect:/account/login";
 		}
 	}

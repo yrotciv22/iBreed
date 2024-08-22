@@ -1,11 +1,12 @@
-package com.ibreed_project.dao;
+package com.ibreed_project.service;
 
 import java.util.Calendar;
 import java.util.List;
 
 import com.ibreed_project.model.CalendarVO;
 
-public interface ICalendarDAO {
+public interface ICalendarService {
+	
 	public List<Calendar> getAllEvents();
 	
 	public void addEvent(CalendarVO event);

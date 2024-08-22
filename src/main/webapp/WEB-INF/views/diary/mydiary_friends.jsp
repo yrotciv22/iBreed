@@ -28,44 +28,54 @@
 
 				<!-- 각 페이지 작업 구간  -->
 
-				<div class="friends_all">
+				<c:choose>
+					<c:when test="${not empty friendList}">
+						<div class="friends_all">
 
-					<c:forEach var="f" items="${friendList}">
-						<div class="friend_wrap">
+							<c:forEach var="f" items="${friendList}">
+								<div class="friend_wrap">
 
-							<div class="frd_profile_img">
-								<img src="${f.user_profile_image}" />
-							</div>
+									<div class="frd_profile_img">
 
-							<div class="column_wrap">
-								<div class="frd_profile_nickname">${f.user_nickname}</div>
-								<div class="frd_profile_id">${f.user_id}</div>
-								<div class="trigger see_more">...</div>
+										<c:url var="defaultImageUrl" value="/image/profile_woman.png" />
+										<img
+											src="${f.user_profile_image != 'default' ? f.user_profile_image : defaultImageUrl}" />
 
-								<div class="click_see_more">
-									<ul>
-										<a href="<c:url value='/mydiary/${f.user_id}/home'/>"><li>다이어리
-												방문하기</li></a>
-										<li>프로필 보기</li>
+									</div>
 
-										<c:if test="${sessionScope.user_id == user_id}">
-											<a href="<c:url value='/mydiary/${user_id}/deleteFriend/${f.user_id}'/>"
-												onclick="return confirm('정말 삭제하시겠습니까?');">
-												<li class="delete_friend">친구 끊기</li>
-											</a>
-										</c:if>
+									<div class="column_wrap">
+										<div class="frd_profile_nickname">${f.user_nickname}</div>
+										<div class="frd_profile_id">${f.user_id}</div>
+										<div class="trigger see_more">...</div>
 
-									</ul>
+										<div class="click_see_more">
+											<ul>
+												<a href="<c:url value='/mydiary/${f.user_id}/home'/>"><li>다이어리
+														방문하기</li></a>
+												<li>프로필 보기</li>
+
+												<c:if test="${sessionScope.user_id == user_id}">
+													<a
+														href="<c:url value='/mydiary/${user_id}/deleteFriend/${f.user_id}'/>"
+														onclick="return confirm('정말 삭제하시겠습니까?');">
+														<li class="delete_friend">친구 끊기</li>
+													</a>
+												</c:if>
+
+											</ul>
+										</div>
+
+									</div>
+
 								</div>
-
-							</div>
+							</c:forEach>
 
 						</div>
-					</c:forEach>
-
-				</div>
-
-				<!-- 각 페이지 작업 구간 끝  -->
+					</c:when>
+					<c:otherwise>
+						<div>아직 친구가 없습니다.</div>
+					</c:otherwise>
+				</c:choose>
 
 
 			</div>

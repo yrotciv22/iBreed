@@ -147,9 +147,9 @@
 						<div class="main_row_wrap">
 							<div class="main_board map border">
 								<div class="board_title">동네정보</div>
-								
+
 								<div class="main_board_map">
-								
+									<img src="<c:url value='/image/main_map.png'/>">
 								</div>
 							</div>
 							<div class="main_board border">
@@ -209,6 +209,9 @@
 
 								<div class="user_profile_img">
 									<img src="<c:url value='/image/profile_woman.png'/>" />
+
+									<%--	<img src="${sessionScope.user_profile_img}" /> --%>
+
 								</div>
 								<div class="user_wrap">
 									<div class="user_nickname">${sessionScope.user_nickname}
@@ -226,15 +229,21 @@
 
 								<div class="main_diary_btn">마이다이어리</div>
 
-								<div class="circle_btn">
-									<img src="<c:url value='/image/letter.png'/>" /> <span>쪽지</span>
-								</div>
-								<div class="circle_btn">
-									<img src="<c:url value='/image/settings.png'/>" /> <span>설정</span>
-								</div>
-								<a href="<c:url value='logout'/>"><div class="circle_btn">
+
+								<a href="<c:url value='/messenger'/>">
+									<div class="circle_btn">
+										<img src="<c:url value='/image/letter.png'/>" /> <span>쪽지</span>
+									</div>
+								</a> <a href="<c:url value=''/>">
+									<div class="circle_btn">
+										<img src="<c:url value='/image/settings.png'/>" /> <span>설정</span>
+									</div>
+								</a> <a href="<c:url value='/logout'/>">
+									<div class="circle_btn">
 										<img src="<c:url value='/image/logout.png'/>" /> <span>로그아웃</span>
-									</div></a>
+									</div>
+								</a>
+
 							</div>
 							<div></div>
 						</c:if>

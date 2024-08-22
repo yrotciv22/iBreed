@@ -94,7 +94,7 @@
 	border-radius: 10px;
 	overflow: hidden;
 	border: 2px solid #ccc;
-	 position: relative;
+	position: relative;
 }
 
 .profile_photo  img {
@@ -102,41 +102,40 @@
 	height: 100%;
 	cursor: pointer;
 	object-fit: cover;
-	  transition: opacity 0.3s ease;
+	transition: opacity 0.3s ease;
 }
 
 .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.2); 
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.2);
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10px;
 }
-
 
 .overlay img {
-    width: 30px;
-    height: 30px;
+	width: 30px;
+	height: 30px;
 }
 
-.profile_photo:hover .overlay{
-	cursor:pointer;
-	  opacity: 1;
-	  border: 3px solid #ccc;
+.profile_photo:hover .overlay {
+	cursor: pointer;
+	opacity: 1;
+	border: 3px solid #ccc;
 }
 
 .profile_text_wrap {
 	display: flex;
 	flex-direction: column;
 	width: 240px;
-	min-width:240px;
+	min-width: 240px;
 	height: 240px;
 	border: 2px solid #ccc;
 	margin: 10px; 0;
@@ -306,9 +305,63 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
+	width: 500px;
 	height: 300px;
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	background: #ddd;
+	 overflow: hidden; 
+}
+
+.home_photo_wrap img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.slider {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height:  100%;
+}
+
+.slick-slide {
+/* 	margin: 0 20px; */
+  margin: 0;
+    transition: all ease-in-out 0.3s;
+    opacity: 1;
+}
+
+.slick-slide img {
+	/* width: 100%; 
+	heigh: 100%; */
+	   width: 100%; /* 이미지가 슬라이더 전체 너비를 차지하도록 */
+    height:  auto; /* 이미지 비율을 유지하면서 높이를 자동으로 조정 */
+}
+
+.slick-prev:before, .slick-next:before {
+	color: black;
+}
+
+.slick-prev:hover, .slick-next:hover {
+    color: red; /* 마우스 오버 시 화살표 색상 */
+}
+
+.slick-slide {
+	transition: all ease-in-out .3s;
+	opacity: .2;
+}
+
+.slick-active {
+	opacity: .5;
+}
+
+.slick-current {
+	opacity: 1;
+}
+
+.slick-current img {
+	/* width: 120%; */
+	width: 500px;
 }

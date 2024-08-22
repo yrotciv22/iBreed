@@ -18,8 +18,8 @@ public class AlbumService implements IAlbumService {
 	IAlbumDAO dao;
 
 	@Override
-	public ArrayList<AlbumVO> selectLatest() {
-		return dao.selectLatest();
+	public ArrayList<AlbumVO> selectLatest(String user_id) {
+		return dao.selectLatest(user_id);
 	}
 	
 	@Override

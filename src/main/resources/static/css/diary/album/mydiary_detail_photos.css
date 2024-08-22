@@ -48,17 +48,6 @@ input[type=text] {
 	border-radius: 5px;
 }
 
-input[type=image] {
-	position: relative;
-	width: 30px;
-	height: 30px;
-	top: -30px;
-	right: -194px;
-	border: 0;
-	opacity: 70%;
-	background: rgba(0, 0, 0, 0.04);
-}
-
 input[type=file] {
     width: 74px;
     height: 25px;
@@ -238,6 +227,16 @@ select {
 	display: none;
 	left: -116px;
 	width: 113%;
+}
+
+.detail_modal {
+	display: none;
+	left: -116px;
+	width: 113%;
+}
+
+.detail_image {
+   	width: 60%;
 }
 
 .change_modal {

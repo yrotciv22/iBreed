@@ -20,7 +20,7 @@
 	        <result property="postImage" column="post_image" />
 	        <result property="postVideo" column="post_video" />
 	        <result property="postUrl" column="post_url" />
-	        <result property="likes" column="likes" />
+	        <result property="postLikes" column="postLikes" />
 	    </resultMap>
 
     <!-- 인기글 불러오기-->

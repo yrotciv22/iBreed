@@ -67,35 +67,33 @@
 
 				<!-- 각 페이지 작업 구간  -->
 
-
+<%-- 	<img src="<c:url value='/image/pencil_color.png'/>" /> --%>
 				<section class="center slider">
 					<div>
-						<img src="<c:url value='/image/pencil_color.png'/>" />
+						<img src="<c:url value='https://images.unsplash.com/photo-1605713288610-00c1c630ca1e?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
 					</div>
 					<div>
-						<img src="<c:url value='/image/pencil_color.png'/>" />
+						<img src="<c:url value='https://images.unsplash.com/photo-1605713288610-00c1c630ca1e?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
 					</div>
 					<div>
-						<img src="<c:url value='/image/pencil_color.png'/>" />
+						<img src="<c:url value='https://images.unsplash.com/photo-1605713288610-00c1c630ca1e?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
 					</div>
 					<div>
-						<img src="<c:url value='/image/pencil_color.png'/>" />
+						<img src="<c:url value='https://images.unsplash.com/photo-1605713288610-00c1c630ca1e?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
 					</div>
 					<div>
-						<img src="<c:url value='/image/pencil_color.png'/>" />
+						<img src="<c:url value='https://images.unsplash.com/photo-1605713288610-00c1c630ca1e?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
 					</div>
 					<div>
-						<img src="<c:url value='/image/pencil_color.png'/>" />
+						<img src="<c:url value='https://images.unsplash.com/photo-1605713288610-00c1c630ca1e?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
 					</div>
 					<div>
-						<img src="<c:url value='/image/pencil_color.png'/>" />
+						<img src="<c:url value='https://images.unsplash.com/photo-1605713288610-00c1c630ca1e?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
 					</div>
 					<div>
-						<img src="<c:url value='/image/pencil_color.png'/>" />
+						<img src="<c:url value='https://images.unsplash.com/photo-1605713288610-00c1c630ca1e?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
 					</div>
-					<div>
-						<img src="<c:url value='/image/pencil_color.png'/>" />
-					</div>
+					
 				</section>
 
 				<!-- 각 페이지 작업 구간 끝  -->
