@@ -1,6 +1,6 @@
 package com.ibreed_project.model;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Mydiary_diaryVO {
 	
@@ -9,8 +9,8 @@ public class Mydiary_diaryVO {
 	private String diaryTitle; // diary_title
 	private String diaryContent; // diary_content
 	private String diaryFile; // diary_file
-	private LocalDateTime diaryCreate; // diary_create
-	private LocalDateTime diaryUpdate; // diary_update
+	private Date diaryCreate; // diary_create
+	private Date diaryUpdate; // diary_update
 	private int diaryViews; // diary_views
 	private int diaryLike; // diary_like
 	private boolean diaryUploadStatus; // diary_upload_status
@@ -58,16 +58,16 @@ public class Mydiary_diaryVO {
 	public void setDiaryFile(String diaryFile) {
 		this.diaryFile = diaryFile;
 	}
-	public LocalDateTime getDiaryCreate() {
+	public Date getDiaryCreate() {
 		return diaryCreate;
 	}
-	public void setDiaryCreate(LocalDateTime diaryCreate) {
+	public void setDiaryCreate(Date diaryCreate) {
 		this.diaryCreate = diaryCreate;
 	}
-	public LocalDateTime getDiaryUpdate() {
+	public Date getDiaryUpdate() {
 		return diaryUpdate;
 	}
-	public void setDiaryUpdate(LocalDateTime diaryUpdate) {
+	public void setDiaryUpdate(Date diaryUpdate) {
 		this.diaryUpdate = diaryUpdate;
 	}
 	public int getDiaryViews() {
