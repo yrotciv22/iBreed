@@ -27,6 +27,12 @@ public class JoinController {
         try {
             vo.setUser_email(vo.getUser_email() + "@" + vo.getEmailDomain());
             System.out.println("이메일 머지 : " + vo.getUser_email());
+            if(vo.isUser_gender()){
+                vo.setUser_profile_image("/image/icon-man.png");
+            }
+            else{
+                vo.setUser_profile_image("/image/profile_woman.png");
+            }
             boolean result = joinService.joinCommit(vo);
             boolean diaryResult = joinService.diaryCommit(vo);
 
