@@ -3,7 +3,7 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-    <mapper namespace="com.ibreed_project.dao.CalendarDao">
+    <mapper namespace="com.ibreed_project.dao.ICalendarDAO">
 	  <resultMap id="calendarRM" type="com.ibreed_project.model.CalendarVO">
 	    <id property="CALENDAR_NO" column="CALENDAR_NO" />
 	    <result property="CALENDAR_TITLE" column="CALENDAR_TITLE" />
@@ -14,9 +14,29 @@
 	    <result property="color" column="color" />
 	  </resultMap>
 	
-	<select id="addEvent" resultMap="calendarRM">
-		SELECT * FROM calendar WHERE diary_id=#{diary_id}
+	<select id="getAllEvents" resultType="com.ibreed_project.model.CalendarVO">
+		SELECT * FROM calendar
 	</select>
+	
+	 <insert id="addEvent" parameterType="com.ibreed_project.model.CalendarVO">
+        INSERT INTO calendar (CALENDAR_TITLE, CALENDAR_MEMO, CALENDAR_START, CALENDAR_END, diary_id, color)
+        VALUES (#{CALENDAR_TITLE}, #{CALENDAR_MEMO}, #{CALENDAR_START}, #{CALENDAR_END}, 1, #{color})
+    </insert>
+
+    <update id="updateEvent" parameterType="com.ibreed_project.model.CalendarVO">
+        UPDATE calendar
+        SET CALENDAR_TITLE = #{CALENDAR_TITLE},
+            CALENDAR_MEMO = #{CALENDAR_MEMO},
+            CALENDAR_START = #{CALENDAR_START},
+            CALENDAR_END = #{CALENDAR_END},
+            diary_id = #{diary_id},
+            color = #{color}
+        WHERE CALENDAR_NO = #{CALENDAR_NO}
+    </update>
+
+    <delete id="deleteEvent" parameterType="int">
+        DELETE FROM calendar WHERE CALENDAR_NO = #{CALENDAR_NO}
+    </delete>
 	
 </mapper>
     

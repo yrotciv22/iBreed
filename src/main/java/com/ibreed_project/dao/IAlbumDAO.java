@@ -7,7 +7,7 @@ import com.ibreed_project.model.AlbumVO;
 
 public interface IAlbumDAO {
 	
-	public ArrayList<AlbumVO> selectLatest();
+	public ArrayList<AlbumVO> selectLatest(String user_id);
 	
 	public int photoCount(String album_id);
 	

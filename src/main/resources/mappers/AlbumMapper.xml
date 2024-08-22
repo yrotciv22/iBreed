@@ -15,13 +15,15 @@
 			<result property="photo_id" column="photo_id"/>
 			<result property="photo_name" column="photo_name"/>
 			<result property="photo_date" column="photo_date"/>
-			
+			<result property="user_id" column="user_id"/>
 		</resultMap>
 	
 		<select id="selectLatest" resultMap="albumResult">
-			SELECT * FROM album ORDER BY album_date DESC
+			SELECT * FROM album WHERE diary_id =
+			(SELECT diary_id FROM diary WHERE user_id = #{user_id})
+			ORDER BY album_date DESC;
 		</select>
-			
+
 		<select id="selectPhoto" resultMap="albumResult">
 			SELECT * FROM photo P, album A WHERE P.album_id=#{album_id} AND P.album_id = A.album_id
 		</select>
@@ -32,7 +34,7 @@
 
 		<insert id="addAlbum" parameterType="com.ibreed_project.model.AlbumVO">
 			INSERT INTO album (album_name, album_date, diary_id, photo_count)
-			VALUES(#{album_name}, now(), 1, 0)
+			VALUES(#{album_name}, now(), 2, 0)
 		</insert>
 		
 		<select id="albumCheck" parameterType="string" resultType="string">

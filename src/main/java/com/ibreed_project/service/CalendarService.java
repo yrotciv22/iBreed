@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ibreed_project.dao.ICalendarDAO;
+import com.ibreed_project.model.CalendarVO;
 
 @Service
 public class CalendarService implements ICalendarService {
@@ -20,12 +21,12 @@ public class CalendarService implements ICalendarService {
 	}
 	
 	@Override
-	public void addEvent(Calendar event) {
+	public void addEvent(CalendarVO event) {
 		dao.addEvent(event);
 	}
 	
 	@Override
-	public void updateEvent(Calendar event) {
+	public void updateEvent(CalendarVO event) {
 		dao.updateEvent(event);
 	}
 	
