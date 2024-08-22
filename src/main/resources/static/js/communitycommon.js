@@ -50,8 +50,8 @@ $(document).ready(function(){
                     $('#after-login').show();
 
                     // 프로필 사진 설정
-                    let profileImage = response.profileImageUrl || '/image/default-profile.png';  // 기본 프로필 이미지 경로 설정
-                    $('#profile-img').attr('src', profileImage);  // 프로필 이미지 업데이트
+                    let profileImage = response.profileImageUrl;  // 사용자 프로필 이미지 URL을 설정
+					$('#profile-img').attr('src', profileImage); 
                     
                     console.log(response);
                     // 프로필 정보 가져오기

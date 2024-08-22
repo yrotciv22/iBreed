@@ -33,7 +33,7 @@
                             <div class="profile-header">
                             <!-- 프사없으면 기본프사적용, 경로재설정필요 -->
                                 <!-- 프사 없으면 기본 프사 적용 -->
-								<img src="${user.profileImage != null ? user.profileImage : '/image/default-profile.png'}" alt="Profile Image" class="profile-img">
+								<img src="${user.user_profile_image}" /alt="Profile Image" class="profile-img"> 
 
                                 <div>
                                    <p>${sessionScope.user_nickname}님</p>
