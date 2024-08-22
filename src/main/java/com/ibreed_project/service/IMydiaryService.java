@@ -3,6 +3,8 @@ package com.ibreed_project.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ibreed_project.model.MydiaryVO;
 
 public interface IMydiaryService {
@@ -16,7 +18,7 @@ public interface IMydiaryService {
 	// 다이어리 등록 
 	
 	// 다이어리 수정
-	public void updateMydiary(MydiaryVO vo, String category);
+    void updateMydiary(@Param("vo") MydiaryVO vo, @Param("category") String category);
 	
 	// 인기 다이어리
 	public ArrayList<MydiaryVO> selectBestDiary();

@@ -226,15 +226,25 @@
 
 								<div class="main_diary_btn">마이다이어리</div>
 
-								<div class="circle_btn">
-									<img src="<c:url value='/image/letter.png'/>" /> <span>쪽지</span>
-								</div>
-								<div class="circle_btn">
-									<img src="<c:url value='/image/settings.png'/>" /> <span>설정</span>
-								</div>
-								<a href="<c:url value='logout'/>"><div class="circle_btn">
+								
+									<a href="<c:url value='/messenger'/>">
+										<div class="circle_btn">
+										<img src="<c:url value='/image/letter.png'/>" /> <span>쪽지</span>
+										</div>
+									</a>
+									
+								<a href="<c:url value=''/>">
+									<div class="circle_btn">
+										<img src="<c:url value='/image/settings.png'/>" /> <span>설정</span>
+									</div>
+								</a>
+								
+								<a href="<c:url value='/logout'/>">
+									<div class="circle_btn">
 										<img src="<c:url value='/image/logout.png'/>" /> <span>로그아웃</span>
-									</div></a>
+									</div>
+								</a>
+								
 							</div>
 							<div></div>
 						</c:if>

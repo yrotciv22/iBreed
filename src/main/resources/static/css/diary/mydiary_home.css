@@ -311,4 +311,11 @@
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	background: #ddd;
+	oeverflow: hidden;
+}
+
+.home_photo_wrap img {
+	width: 100%;
+	heigth: 100%;
+	object-fit: cover;
 }
