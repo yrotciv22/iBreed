@@ -14,6 +14,15 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/diary/mydiary_home.css' />" />
 
+<!-- Slick  -->
+
+
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/diary/slick.css'/>" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/diary/slick-theme.css'/>" />
+
+
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 <script src="<c:url value='/js/mydiary_home.js'/>"></script>
 <script>const userId = "${sessionScope.user_id}";</script>
@@ -35,7 +44,7 @@
 								<c:when test="${mydiary.diary_sentiment == 'angry'}"> 화남 &#128544; </c:when>
 								<c:when test="${mydiary.diary_sentiment == 'depressed'}"> 우울 &#128532;</c:when>
 								<c:when test="${mydiary.diary_sentiment == 'touched'}"> 감동 &#128532;</c:when>
-								<c:when test="${mydiary.diary_sentiment == 'love'}"> 사랑 &#128525;;</c:when>
+								<c:when test="${mydiary.diary_sentiment == 'love'}"> 사랑 &#128525;</c:when>
 								<c:when test="${mydiary.diary_sentiment == 'surprised'}"> 놀람 &#128561;</c:when>
 								<c:when test="${mydiary.diary_sentiment == 'embarrassed'}"> 당황 &#128517;</c:when>
 								<c:when test="${mydiary.diary_sentiment == 'hilarious'}"> 웃김 &#128513;</c:when>
@@ -92,6 +101,7 @@
 						<img
 							src="${mydiary.diary_profile_image != 'default' ? mydiary.diary_profile_image : 'https://images.unsplash.com/photo-1480985041486-c65b20c01d1f?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dg'}" />
 
+					
 						<c:if test="${not empty sessionScope.user_id}">
 							<div class="overlay">
 								<img src="<c:url value='/image/pencil_color.png'/>"
@@ -173,6 +183,32 @@
 					<div class="home_photo_wrap">
 					<%-- 	<img
 							src="<c:url value='https://images.unsplash.com/photo-1605713288610-00c1c630ca1e?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" /> --%>
+					
+						<section class="center slider">
+					<div>
+						<img src="<c:url value='https://images.unsplash.com/photo-1510154221590-ff63e90a136f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
+					</div>
+					<div>
+						<img src="<c:url value='https://images.unsplash.com/photo-1504439268584-b72c5019471e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDR8fCVFQSVCMCU4MCVFQyVBMSVCMXxlbnwwfHwwfHx8MA%3D%3D'/>" />
+					</div>
+					<div>
+						<img src="<c:url value='https://images.unsplash.com/photo-1609220136736-443140cffec6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
+					</div>
+					<div>
+						<img src="<c:url value='https://plus.unsplash.com/premium_photo-1676049342411-c118fe1570b2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
+					</div>
+					<div>
+						<img src="<c:url value='https://images.unsplash.com/photo-1530047625168-4b29bfbbe1fc?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
+					</div>
+					<div>
+						<img src="<c:url value='https://images.unsplash.com/photo-1510588960070-8e3ebf81324c?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
+					</div>
+					<div>
+						<img src="<c:url value='https://images.unsplash.com/photo-1470843810958-2da815d0e041?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
+					</div>
+					
+					
+				</section>
 					</div>
 				</div>
 
@@ -187,6 +223,29 @@
 		<c:import url="/WEB-INF/views/diary/mydiary_tab_layout.jsp" />
 
 	</div>
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"
+		type="text/javascript"></script>
+	<script type="text/javascript"
+		src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script charset="utf-8" type="text/javascript"
+		src="<c:url value='/js/slick.js'/>"></script>
+	<script type="text/javascript">
+		$(document).on('ready', function() {
 
+			$('.center').slick({
+				centerMode : true,
+			/* 	centerPadding : '0px',
+				slidesToShow : 1, */
+				centerMode: false,  // 중앙 정렬 모드 비활성화
+		        slidesToShow: 1,    // 한 번에 보여줄 슬라이드 수
+		        slidesToScroll: 1,  // 한 번에 스크롤할 슬라이드 수
+		        infinite: true,     // 무한 루프 활성화
+		        speed: 300,         // 슬라이드 전환 속도 (밀리초)
+		        arrows: true,       // 이전/다음 화살표 표시
+		        dots: true          // 네비게이션 도트 표시 (필요시)
+			});
+
+		});
+	</script>
 </body>
 </html>

@@ -19,6 +19,14 @@ a:visited {
 
 body {
 	background: #53AFB2;
+	/*   
+	background-image: url('../../image/diary_background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: -100px -30px;
+    background-attachment: fixed; 
+    background-size: 1440px 740px;  
+    */
 }
 
 * {
@@ -34,6 +42,7 @@ body {
 	height: 100%;
 	padding: 40px;
 	align-items: flex-start;
+	/* padding-left: 200px; */
 }
 
 .diary_wrap {
@@ -41,12 +50,14 @@ body {
 	align-items: center;
 	justify-content: center;
 	width: 900px;
-	min-width:900px;
+	min-width: 900px;
 	height: 600px;
 	background: #F6DEC8;
 	border-radius: 20px;
 	border: 3px solid #111;
 	/* 	box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);*/
+	/* background: inherit;
+	border: none; */
 }
 
 .diary_content {
@@ -63,7 +74,6 @@ nav a {
 	display: block;
 }
 
-
 .diary_taps {
 	display: flex;
 	flex-direction: column;
@@ -78,7 +88,7 @@ nav a {
 	justify-content: center;
 	align-items: center;
 	width: 100px;
-	min-width:100px;
+	min-width: 100px;
 	height: 60px;
 	/* box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2); */
 	margin-top: 10px;
@@ -87,13 +97,13 @@ nav a {
 	border: 3px solid #111;
 	border-left: none;
 	background-color: #ddd;
-	color: #555;	
-}
+	color: #555;
+	/* margin-left: 42px; */}
 
 .diary_taps div.active-tab {
-		background-color: #fff;
-		height: 70px;
-		color: #222;
+	background-color: #fff;
+	height: 70px;
+	color: #222;
 }
 
 @font-face {
