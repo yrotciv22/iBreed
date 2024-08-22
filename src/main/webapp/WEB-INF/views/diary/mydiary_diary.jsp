@@ -44,11 +44,24 @@
     </table>
 
     <div class="pagination">
-        <!-- 하드코딩된 페이지 번호 -->
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>다음 ></span>
+		<c:if test="${currentPage > 1}">
+	        <a href="?page=${currentPage - 1}&size=${pageSize}">&laquo; 이전</a>
+	    </c:if>
+	
+	    <c:forEach var="i" begin="1" end="${totalPages}" step="1">
+	        <c:choose>
+	            <c:when test="${i == currentPage}">
+	                <span>${i}</span>
+	            </c:when>
+	            <c:otherwise>
+	                <a href="?page=${i}&size=${pageSize}">${i}</a>
+	            </c:otherwise>
+	        </c:choose>
+	    </c:forEach>
+	
+	    <c:if test="${currentPage < totalPages}">
+	        <a href="?page=${currentPage + 1}&size=${pageSize}">다음 &raquo;</a>
+	    </c:if>
     </div>
 
     <div class="write-diary">

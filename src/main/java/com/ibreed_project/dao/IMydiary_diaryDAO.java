@@ -1,6 +1,7 @@
 package com.ibreed_project.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -22,8 +23,10 @@ public interface IMydiary_diaryDAO {
     @Select("SELECT diary_id FROM diary WHERE user_id = #{userId}")
     int findDiaryIdByUserId(@Param("userId") String userId);
     
-    //일기리스트가져오기
-    List<Mydiary_diaryVO> getDiaryListByUserId(@Param("userId") String userId);
+    //일기리스트가져오기+페이지네이션
+    List<Mydiary_diaryVO> getDiaryListByUserId(Map<String, Object> params);
+    int getTotalDiaryCountByUserId(@Param("userId") String userId);
+    
     //공개에따라 일기보여주는거 
     List<Mydiary_diaryVO> getDiaryListByUserIdAndVisibility(
     	    @Param("userId") String userId, 

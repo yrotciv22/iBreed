@@ -1,5 +1,7 @@
 package com.ibreed_project.service;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,15 +34,22 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 		    return mydiary_diaryDAO.findDiaryIdByUserId(userId);
 		}
 
-	@Override
-	public List<Mydiary_diaryVO> getDiaryListByUserId(String userId) {
-		// TODO Auto-generated method stub
-		return mydiary_diaryDAO.getDiaryListByUserId(userId);
-	}
-
+	
+	
 	@Override
 	public List<Mydiary_diaryVO> getDiaryListByUserIdAndVisibility(String userId, boolean isOwner, boolean isFriend) {
 		// TODO Auto-generated method stub 공개여부
 		return  mydiary_diaryDAO.getDiaryListByUserIdAndVisibility(userId, isOwner, isFriend);
+	}
+
+	 @Override
+	    public List<Mydiary_diaryVO> getDiaryListByUserId(Map<String, Object> params) {
+	        return mydiary_diaryDAO.getDiaryListByUserId(params);
+	    }
+
+	@Override
+	public int getTotalDiaryCountByUserId(String userId) {
+		// TODO Auto-generated method stub
+		return mydiary_diaryDAO.getTotalDiaryCountByUserId(userId);
 	}
 }

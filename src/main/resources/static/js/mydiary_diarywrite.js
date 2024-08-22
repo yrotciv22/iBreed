@@ -4,6 +4,7 @@
  
 
 document.addEventListener("DOMContentLoaded", function() {
+ console.log("diarywriteJavaScript is working!");
     const imageUploadBtn = document.getElementById("image-upload-btn");
     const videoUploadBtn = document.getElementById("video-upload-btn");
     const linkUploadBtn = document.getElementById("link-upload-btn");
@@ -11,15 +12,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const closeBtn = document.querySelector(".close-btn");
     const confirmLinkBtn = document.getElementById("confirm-link");
     const contentArea = document.getElementById("content-area");
-     const hiddenContent = document.getElementById("hidden-content");
-    const saveButton = document.querySelector(".save-button");
+    const hiddenContent = document.getElementById("hidden-content");
     const submitButton = document.querySelector(".submit-button");
-
+	
+	console.log(submitButton);
     imageUploadBtn.addEventListener("click", function() {
         document.getElementById("image-upload").click();
     });
 
-    
     videoUploadBtn.addEventListener("click", function() {
         document.getElementById("video-upload").click();
     });
@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function() {
         linkPopup.style.display = "block";
     });
 
-    
     closeBtn.addEventListener("click", function() {
         linkPopup.style.display = "none";
     });
@@ -50,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
         linkPopup.style.display = "none";
     });
 
-     document.getElementById('image-upload').addEventListener('change', function(event) {
+    document.getElementById('image-upload').addEventListener('change', function(event) {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
@@ -64,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // 동영상 업로드 시 내용 칸에 동영상 표시
     document.getElementById('video-upload').addEventListener('change', function(event) {
         const file = event.target.files[0];
         if (file) {
@@ -79,17 +77,17 @@ document.addEventListener("DOMContentLoaded", function() {
             reader.readAsDataURL(file);
         }
     });
-// 임시 저장 및 등록하기 버튼 클릭 시 처리
-    function submitForm(isFinal) {
-    	hiddenContent.value = contentArea.innerHTML;
-        document.getElementById('diary_upload_status').value = isFinal;
-        document.getElementById('diary-form').submit();
-    }
 
-    // 임시 저장 버튼 클릭 시 처리
-    saveButton.addEventListener("click", function() {
-        submitForm(false); // 임시 저장
-    });
+    // 등록하기 버튼 클릭 시 처리
+    function submitForm(isFinal) {
+        hiddenContent.value = contentArea.innerHTML; // contentArea의 내용을 hiddenContent로 복사
+        document.getElementById('diary_upload_status').value = isFinal ? 'final' : 'draft'; // 임시 저장 또는 최종 등록 상태 설정
+    	console.log(hiddenContent.value); // 폼 제출 전에 데이터 확인 
+	  document.getElementById('diary-form').submit(); // 폼 제출
+    }
+    
+
+
 
     // 등록하기 버튼 클릭 시 처리
     submitButton.addEventListener("click", function() {
