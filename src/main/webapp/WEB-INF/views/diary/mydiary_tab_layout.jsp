@@ -43,8 +43,8 @@
 			class="${lastPathSegment.contains('friends') ? 'active-tab' : ''}">친구</div>
 	</a> 
 	
-	<a id="testTab" href="#">
+<%-- 	<a id="testTab" href="#">
 		<div class="${lastPathSegment.contains('test') ? 'active-tab' : ''}">TEST</div>
-	</a>
+	</a> --%>
 
 </nav>

@@ -34,7 +34,12 @@
 						<div class="friend_wrap">
 
 							<div class="frd_profile_img">
-								<img src="${f.user_profile_image}" />
+								<%-- <img src="${f.user_profile_image}" /> --%>
+
+
+								<c:url var="defaultImageUrl" value="/image/profile_woman.png" />
+								<img src="${f.user_profile_image != 'default' ? f.user_profile_image : defaultImageUrl}" />
+
 							</div>
 
 							<div class="column_wrap">
@@ -49,7 +54,8 @@
 										<li>프로필 보기</li>
 
 										<c:if test="${sessionScope.user_id == user_id}">
-											<a href="<c:url value='/mydiary/${user_id}/deleteFriend/${f.user_id}'/>"
+											<a
+												href="<c:url value='/mydiary/${user_id}/deleteFriend/${f.user_id}'/>"
 												onclick="return confirm('정말 삭제하시겠습니까?');">
 												<li class="delete_friend">친구 끊기</li>
 											</a>

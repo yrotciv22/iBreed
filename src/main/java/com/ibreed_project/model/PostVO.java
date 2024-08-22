@@ -10,14 +10,15 @@ public class PostVO {
 	    private Date postUpdate;
 	    private int postCount;
 	    private String postHeading;
-	    private boolean postStatus;
 	    private String userId;
+	    private boolean postStatus;
 	    private int boardId2;
-	  	
-	  	
-	  	
-	  	
-	    public int getPostId() {
+	    private String postImage;
+	    private String postVideo;
+	    private String postUrl;
+	    private String postLikes;
+	    
+		public int getPostId() {
 			return postId;
 		}
 		public void setPostId(int postId) {
@@ -59,17 +60,17 @@ public class PostVO {
 		public void setPostHeading(String postHeading) {
 			this.postHeading = postHeading;
 		}
-		public boolean isPostStatus() {
-			return postStatus;
-		}
-		public void setPostStatus(boolean postStatus) {
-			this.postStatus = postStatus;
-		}
 		public String getUserId() {
 			return userId;
 		}
 		public void setUserId(String userId) {
 			this.userId = userId;
+		}
+		public boolean isPostStatus() {
+			return postStatus;
+		}
+		public void setPostStatus(boolean postStatus) {
+			this.postStatus = postStatus;
 		}
 		public int getBoardId2() {
 			return boardId2;
@@ -77,6 +78,30 @@ public class PostVO {
 		public void setBoardId2(int boardId2) {
 			this.boardId2 = boardId2;
 		}
-
-
+		public String getPostImage() {
+			return postImage;
+		}
+		public void setPostImage(String postImage) {
+			this.postImage = postImage;
+		}
+		public String getPostVideo() {
+			return postVideo;
+		}
+		public void setPostVideo(String postVideo) {
+			this.postVideo = postVideo;
+		}
+		public String getPostUrl() {
+			return postUrl;
+		}
+		public void setPostUrl(String postUrl) {
+			this.postUrl = postUrl;
+		}
+		public String getPostLikes() {
+			return postLikes;
+		}
+		public void setPostLikes(String postLikes) {
+			this.postLikes = postLikes;
+		}
+	    
+	  	
 }

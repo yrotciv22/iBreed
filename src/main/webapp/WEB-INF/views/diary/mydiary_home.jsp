@@ -39,7 +39,7 @@
 								<c:when test="${mydiary.diary_sentiment == 'surprised'}"> 놀람 &#128561;</c:when>
 								<c:when test="${mydiary.diary_sentiment == 'embarrassed'}"> 당황 &#128517;</c:when>
 								<c:when test="${mydiary.diary_sentiment == 'hilarious'}"> 웃김 &#128513;</c:when>
-								<c:otherwise> &#127881;&#127881;&#127881;&#127881; </c:otherwise>
+								<c:otherwise>&#128516;</c:otherwise>
 							</c:choose>
 
 
@@ -51,7 +51,8 @@
 
 
 						<div id=select_feeling_wrap>
-							<form id="diaryTitleUpdateForm"
+							<!-- id 중복 -->
+							<form id="diaryFeelingUpdateForm"
 								action="<c:url value='/mydiary/${sessionScope.user_id}/updateDiary/diary_sentiment'/>"
 								method="post">
 
@@ -88,12 +89,15 @@
 					<!--  today_feeling_wrap 끝 -->
 
 					<div class="profile_photo">
-						<img src="${mydiary.diary_profile_image}" />
+						<img
+							src="${mydiary.diary_profile_image != 'default' ? mydiary.diary_profile_image : 'https://images.unsplash.com/photo-1480985041486-c65b20c01d1f?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dg'}" />
 
-						<div class="overlay">
-							<img src="<c:url value='/image/pencil_color.png'/>"
-								id="edit_profile_img_btn" />
-						</div>
+						<c:if test="${not empty sessionScope.user_id}">
+							<div class="overlay">
+								<img src="<c:url value='/image/pencil_color.png'/>"
+									id="edit_profile_img_btn" />
+							</div>
+						</c:if>
 					</div>
 
 
@@ -167,7 +171,8 @@
 						</ul>
 					</div>
 					<div class="home_photo_wrap">
-						<div>사진첩 </div>
+					<%-- 	<img
+							src="<c:url value='https://images.unsplash.com/photo-1605713288610-00c1c630ca1e?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" /> --%>
 					</div>
 				</div>
 
@@ -182,5 +187,6 @@
 		<c:import url="/WEB-INF/views/diary/mydiary_tab_layout.jsp" />
 
 	</div>
+
 </body>
 </html>
