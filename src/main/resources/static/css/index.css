@@ -179,9 +179,19 @@ input:focus, input:active, input:hover {
 	flex-direction: column;
 	justify-content: center;
 	width: 380px;
-	height: 200px;
+	height: 220px;
 	border-radius: 5px;
 	background: #ccc;
+	overflow: hidden;
+}
+
+.main_board_map img {
+	width: 150%;
+	
+}
+.main_board_map img:hover {
+	width: 180%;
+	cursor: pointer;
 }
 
 .see_more {
