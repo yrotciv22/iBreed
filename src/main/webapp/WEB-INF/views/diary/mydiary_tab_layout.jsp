@@ -47,4 +47,12 @@
 		<div class="${lastPathSegment.contains('test') ? 'active-tab' : ''}">TEST</div>
 	</a> --%>
 
+
+	
+
 </nav>
+
+	
+	<a id="go_to_mydiary" href="<c:url value='/mydiary/${sessionScope.user_id}/home'/>"> 
+		<div><img src="<c:url value='/image/home.png'/>"/></div>
+	</a> 
