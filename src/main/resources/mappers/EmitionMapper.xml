@@ -53,7 +53,7 @@
                 db.diary_id = sa.diary_id
         WHERE
             db.user_id = #{userId}
-
+          AND db.diary_title = sa.sentiment_subject AND db.diary_content = sa.sentiment_content
         ORDER BY
             db.diary_create ASC;
     </select>
