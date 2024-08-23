@@ -63,9 +63,9 @@
 			<div>
 				<a href="<c:url value='/map'/>">동네정보</a>
 			</div>
-			<div>
+			<%-- <div>
 				<a href="<c:url value='/'/>">공지사항</a>
-			</div>
+			</div> --%>
 			<div>
 				<a href="<c:url value='/'/>">고객센터</a>
 			</div>

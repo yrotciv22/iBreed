@@ -102,7 +102,7 @@
 							src="${mydiary.diary_profile_image != 'default' ? mydiary.diary_profile_image : 'https://images.unsplash.com/photo-1480985041486-c65b20c01d1f?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dg'}" />
 
 					
-						<c:if test="${not empty sessionScope.user_id}">
+							<c:if test="${sessionScope.user_id == user_id}">
 							<div class="overlay">
 								<img src="<c:url value='/image/pencil_color.png'/>"
 									id="edit_profile_img_btn" />
@@ -171,13 +171,13 @@
 
 
 					<div class="recent_posts">
-						<div>최근 게시물</div>
+						<div>최근 작성한 다이어리</div>
 
 						<ul>
-							<li>게시물</li>
-							<li>게시물</li>
-							<li>게시물</li>
-							<li>게시물</li>
+							<li>다이어리 1</li>
+							<li>다이어리 2</li>
+							<li>다이어리 3</li>
+							<li>다이어리 4</li>
 						</ul>
 					</div>
 					<div class="home_photo_wrap">
