@@ -84,7 +84,7 @@ public class MydiaryDiaryController {
 //		file.transferTo(sendFile);	
 		
 		String userId = (String) session.getAttribute("user_id");
-	    vo.setUserId(userId); 
+	    vo.setUserId(userId);
 		mydiary_diaryService.saveDiary(vo) ;
 		
 

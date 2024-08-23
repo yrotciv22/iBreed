@@ -17,7 +17,7 @@
 			<result property="photo_date" column="photo_date"/>
 			<result property="user_id" column="user_id"/>
 		</resultMap>
-	
+
 		<select id="selectLatest" resultMap="albumResult">
 			SELECT * FROM album WHERE diary_id =
 			(SELECT diary_id FROM diary WHERE user_id = #{user_id})
@@ -27,24 +27,24 @@
 		<select id="selectPhoto" resultMap="albumResult">
 			SELECT * FROM photo P, album A WHERE P.album_id=#{album_id} AND P.album_id = A.album_id
 		</select>
-		
+
 		<select id="getAlbumName" parameterType="string" resultType="string">
 			SELECT album_name FROM album WHERE album_id=#{album_id}
 		</select>
 
 		<insert id="addAlbum" parameterType="com.ibreed_project.model.AlbumVO">
 			INSERT INTO album (album_name, album_date, diary_id, photo_count)
-			VALUES(#{album_name}, now(), 2, 0)
+			VALUES(#{album_name}, now(), (SELECT diary_id FROM diary WHERE user_id = #{user_id}), 0);
 		</insert>
-		
+
 		<select id="albumCheck" parameterType="string" resultType="string">
 			SELECT * FROM album WHERE album_name=#{album_name}
 		</select>
-			
+
 		<delete id="deleteAlbum" parameterType="int">
 			DELETE FROM album WHERE album_id=#{album_id}
 		</delete>
-			
+
 		<update id="updateAlbumName" parameterType="com.ibreed_project.model.AlbumVO">
 			UPDATE album SET album_name=#{album_name},album_update=now() WHERE album_id=#{album_id}
 		</update>
