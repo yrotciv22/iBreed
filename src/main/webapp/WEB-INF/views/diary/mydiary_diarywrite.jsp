@@ -19,7 +19,7 @@
 <body>
 	<div class="all">
 		<div class="diary_wrap">
-<input type="hidden" name="userId" value="${userId}">
+
 			<div class="diary_content">
 				
 				<form id="diary-form" action="<c:url value='/mydiary/diarywrite'/>" method="post"
@@ -80,6 +80,8 @@
 					<div class="diary_buttons">
 					    <div class="diary_buttons-left">
 					    <!--임시저장 없앰 -->
+					    <input type="hidden" id="diary_upload_status" name="diaryUploadStatus" value="">
+					    
 					        <input type="submit" class="submit-button" value="등록하기">
 					    </div>
 					    <div class="diary_buttons-right">
