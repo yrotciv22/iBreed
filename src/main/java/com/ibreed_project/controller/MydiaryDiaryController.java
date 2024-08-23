@@ -66,8 +66,9 @@ public class MydiaryDiaryController {
 	//		@RequestParam("image-upload") MultipartFile file,
 	                        				HttpSession session,  
 	                        				Model model) throws Exception, Exception  {
-		
 
+
+		System.out.println("제대로 일기작성데이터로 진입했는지 확인");
 //		// 1. 파일 저장 경로 설정
 //		// 맨 마지막에 / 있어야 함
 //		String uploadPath = "D:/projectWorkspace/Upload/";
