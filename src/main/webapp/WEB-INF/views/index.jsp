@@ -18,6 +18,10 @@
 <script src="<c:url value='/js/index.js'/>" defer></script>
 <script>
 	const userId = "${sessionScope.user_id}";
+
+	function openMessenger() {
+		window.open('<c:url value="/messenger"/>', 'Messenger', 'width=800,height=600');
+	}
 </script>
 </head>
 
@@ -230,11 +234,11 @@
 								<div class="main_diary_btn">마이다이어리</div>
 
 
-								<a href="<c:url value='/messenger'/>">
+								<a href="javascript:void(0);" onclick="openMessenger();">
 									<div class="circle_btn">
 										<img src="<c:url value='/image/letter.png'/>" /> <span>쪽지</span>
 									</div>
-								</a> <a href="<c:url value=''/>">
+								</a>  <a href="<c:url value=''/>">
 									<div class="circle_btn">
 										<img src="<c:url value='/image/settings.png'/>" /> <span>설정</span>
 									</div>

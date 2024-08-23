@@ -27,16 +27,6 @@
     <!-- 공통 layout: top.jsp -->
     <c:import url="/WEB-INF/views/layout/top.jsp" />
 
-
-    <c:choose>
-        <c:when test="${not empty userId}">
-            <h1>로그인 성공상태</h1>
-        </c:when>
-        <c:otherwise>
-            <h1>로그인 실패상태</h1>
-        </c:otherwise>
-    </c:choose>
-
     <!-- 메인 -->
     <main class="container">
         <section>

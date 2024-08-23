@@ -81,11 +81,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // 등록하기 버튼 클릭 시 처리
     function submitForm(isFinal) {
         hiddenContent.value = contentArea.innerHTML; // contentArea의 내용을 hiddenContent로 복사
-        document.getElementById('diary_upload_status').value = isFinal ? 'final' : 'draft'; // 임시 저장 또는 최종 등록 상태 설정
-    	console.log(hiddenContent.value); // 폼 제출 전에 데이터 확인 
-	  document.getElementById('diary-form').submit(); // 폼 제출
+        // document.getElementById('diary_upload_status').value = isFinal ? 'final' : 'draft'; // 이 부분 제거
+        console.log(hiddenContent.value); // 폼 제출 전에 데이터 확인
+        document.getElementById('diary-form').submit(); // 폼 제출
     }
-    
 
 
 

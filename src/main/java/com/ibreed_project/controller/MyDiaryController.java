@@ -39,10 +39,10 @@ public class MyDiaryController {
 
 	/* <감정분석> 성목 */
 	@RequestMapping("/mydiary/{user_id}/emotion")
-	public String view_mydiary_emotion(@PathVariable("user_id") String user_id) {
-		return "diary/mydiary_emotion";
+	public String viewMydiaryEmotion(@PathVariable("user_id") String userId, Model model) {
+		// 필요시 model에 추가 데이터 전달 가능
+		return "forward:/diary/mydiary_emotion_result?user_id=" + userId;
 	}
-
  
 	/* <캘린더> 승우 */
 	@RequestMapping("/mydiary/{user_id}/calendar")
