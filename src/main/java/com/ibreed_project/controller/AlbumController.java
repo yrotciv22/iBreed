@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ibreed_project.model.AlbumVO;
 import com.ibreed_project.service.AlbumService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AlbumController {
@@ -31,9 +32,6 @@ public class AlbumController {
 		
 		model.addAttribute("latestList", latestList);
 		model.addAttribute("user_id", user_id);
-		
-		System.out.println("유저 아이디 : " + user_id);
-		System.out.println(latestList);
 		
 		return "diary/mydiary_photos";
 	}
@@ -53,25 +51,35 @@ public class AlbumController {
 	
 	@ResponseBody
 	@RequestMapping("/album/addAlbum")
-	public String addAlbum(AlbumVO vo) {
+	public String addAlbum(AlbumVO vo,  HttpSession session) {
+		
+		String user_id = (String) session.getAttribute("user_id");
+		
+		vo.setUser_id(user_id);
 		
 		String result = albumService.addAlbum(vo);
-
-		System.out.println("다이어리 아이디는 " + vo.getDiary_id());
+		
+		System.out.println("유저 아이디는 " + vo.getUser_id());
 		
 		return result;
 	}
 	
 	@RequestMapping("/album/deleteAlbum/{album_id}")
-	public String deleteAlbum(@PathVariable("album_id") int album_id) {
+	public String deleteAlbum(@PathVariable("album_id") int album_id, HttpSession session) {
 		albumService.deleteAlbum(album_id);
-		return "redirect:/mydiary/a/photos";
+		
+		String userId = (String) session.getAttribute("user_id");
+		
+		return "redirect:/mydiary/" + userId + "/photos";
 	}
 
 	@RequestMapping("/album/updateAlbum")
-	public String updateAlbum(AlbumVO vo) {
+	public String updateAlbum(AlbumVO vo, HttpSession session) {
 		albumService.updateAlbumName(vo);
-		return "redirect:/mydiary/a/photos";
+		
+		String userId = (String) session.getAttribute("user_id");
+		
+		return "redirect:/mydiary/" + userId + "/photos";
 	}
 
 	@RequestMapping("/mydiary/albumSearch")

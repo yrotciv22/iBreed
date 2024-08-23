@@ -98,12 +98,43 @@ nav a {
 	border-left: none;
 	background-color: #ddd;
 	color: #555;
-	/* margin-left: 42px; */}
+	/* margin-left: 42px; */
+}
 
 .diary_taps div.active-tab {
 	background-color: #fff;
 	height: 70px;
 	color: #222;
+}
+
+#go_to_mydiary {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #fff;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	border-radius: 50px;
+	font-family: "yg-jalnan";
+	bottom: 50px;
+	right: 50px;
+	overflow: hidden;
+   
+  
+
+ }
+
+#go_to_mydiary img {
+	width: 100%;
+	padding: 10px;
+	text-align: center;
+}
+
+#go_to_mydiary:hover {
+	cursor: pointer;
+ box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+
 }
 
 @font-face {

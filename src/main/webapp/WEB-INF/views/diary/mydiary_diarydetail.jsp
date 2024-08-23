@@ -8,6 +8,7 @@
     <title>My Diary Diary detail</title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/mydiary_layout.css' />" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/mydiary_diarydetail.css' />" />
+
 </head>
 <body>
 <div class="all">

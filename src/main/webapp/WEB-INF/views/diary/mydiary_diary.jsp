@@ -47,6 +47,7 @@
                                 ${diary.diaryTitle}
                         </a>
                     </td>                    <td>${diary.diaryViews}</td>
+
                     <td>${diary.diaryPublic}</td>
                 </tr>
             </c:forEach>
@@ -75,7 +76,7 @@
     </div>
 
     <div class="write-diary">
-           <button onclick="location.href='<c:url value='/mydiary/diarywrite' />'">다이어리 작성하기</button>
+           <button  onclick="location.href='/mydiary/${sessionScope.user_id}/diarywrite'">다이어리 작성하기</button>
     </div>
 </div>
 			<!-- 각 페이지 작업 구간 끝  -->

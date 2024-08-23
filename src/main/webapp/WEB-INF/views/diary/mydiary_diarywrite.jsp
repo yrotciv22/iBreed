@@ -25,6 +25,7 @@
 		<input type="hidden" name="userId" value="<%= userId %>">
 		<div class="diary_content">
 
+
 			<form id="diary-form" action="<%= request.getContextPath() %>/mydiary/<%= userId %>/diarywrite" method="post" enctype="multipart/form-data" class="diary_form">
 
 				<div>
@@ -80,6 +81,7 @@
 				<div class="diary_buttons">
 					<div class="diary_buttons-left">
 						<input type="submit" class="submit-button" value="등록하기">
+
 					</div>
 					<div class="diary_buttons-right">
 						<button type="button" class="cancel-button" onclick="location.href='<%= request.getContextPath() %>/mydiary/' + userId + '/diary'">목록으로</button>

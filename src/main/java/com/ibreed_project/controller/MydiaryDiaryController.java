@@ -25,15 +25,15 @@ public class MydiaryDiaryController {
 	private Mydiary_diaryService mydiary_diaryService;
 
 	// 다이어리 작성 페이지로 이동
-	@RequestMapping("/mydiary/diarywrite")
-	public String view_mydiary_diarywrite() {
+	@RequestMapping("/mydiary/{user_id}/diarywrite")
+	public String view_mydiary_diarywrite(@PathVariable("user_id") String userId) {
 		
 		    return "diary/mydiary_diarywrite";
 		}
 	
 	
 	/* <일기>일기리스트페이지 규현 */
-	@RequestMapping("/mydiary/{user_id}/diary")
+	@PostMapping("/mydiary/{user_id}/diary")
 	public String view_mydiary_diary(@PathVariable("user_id") String userId,
 															@RequestParam(value = "page", defaultValue = "1") int page,
 															 @RequestParam(value = "size", defaultValue = "7") int size,
@@ -60,10 +60,8 @@ public class MydiaryDiaryController {
 		//  System.out.println(diaryList);
 		return "diary/mydiary_diary";
 	}
-	
-	 
 	// 일기 작성하고데이터를 저장
-	@PostMapping("/mydiary/{user_id}/diarywrite")
+	@RequestMapping("/mydiary/{user_id}/diarywrite")
 	public String saveDiary(Mydiary_diaryVO vo,											
 	//		@RequestParam("image-upload") MultipartFile file,
 	                        				HttpSession session,  
@@ -85,19 +83,18 @@ public class MydiaryDiaryController {
 //		file.transferTo(sendFile);	
 		
 		String userId = (String) session.getAttribute("user_id");
-	    vo.setUserId(userId); 
+	    vo.setUserId(userId);
 		mydiary_diaryService.saveDiary(vo) ;
-		
-
 	    return "redirect:/mydiary/" + userId + "/diary";
 	}
 	//다이어리상세보기
 	 @GetMapping("/mydiary/{userId}/diarydetail/{diaryPostId}")
 	    public String viewDiaryDetail(@PathVariable("userId") String userId,
 	                                 					@PathVariable("diaryPostId") int diaryPostId,
+	                                 					HttpSession session,
 	                                 					Model model) {
-		 System.out.println("UserId: " + userId);
-		    System.out.println("DiaryPostId: " + diaryPostId);
+		 	//System.out.println("UserId: " + userId);
+		    //System.out.println("DiaryPostId: " + diaryPostId);
 	        Mydiary_diaryVO diary = mydiary_diaryService.getDiary(diaryPostId);
 
 	        // 모델에 다이어리 정보를 추가

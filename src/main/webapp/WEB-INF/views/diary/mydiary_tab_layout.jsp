@@ -50,4 +50,12 @@
 		<div class="<c:out value='${lastPathSegment == "friends" ? "active-tab" : ""}'/>">친구</div>
 	</a>
 
+
+	
+
 </nav>
+
+	
+	<a id="go_to_mydiary" href="<c:url value='/mydiary/${sessionScope.user_id}/home'/>"> 
+		<div><img src="<c:url value='/image/home.png'/>"/></div>
+	</a> 
