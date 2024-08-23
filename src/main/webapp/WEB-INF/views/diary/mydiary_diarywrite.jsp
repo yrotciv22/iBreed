@@ -26,7 +26,7 @@
 		<div class="diary_content">
 
 
-			<form id="diary-form" action="<%= request.getContextPath() %>/mydiary/<%= userId %>/diarywrite" method="post" enctype="multipart/form-data" class="diary_form">
+			<form id="diary-form" action="<%= request.getContextPath() %>/mydiary/<%= userId %>/save" method="post" enctype="multipart/form-data" class="diary_form">
 
 				<div>
 					<label for="category">카테고리</label>
