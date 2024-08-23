@@ -112,7 +112,9 @@ public class MydiaryDiaryController {
 	}
 
 	// 특정 일기 데이터를 가져와 수정 폼에 표시하는 메서드 (GET 요청 처리)
+
 	@GetMapping("/mydiary/diaryedit/{diaryPostId}")
+
 	public String editDiary(@PathVariable("diaryPostId") int diaryPostId,
 							Model model) {
 		Mydiary_diaryVO diary = mydiary_diaryService.getDiary(diaryPostId);
@@ -123,6 +125,8 @@ public class MydiaryDiaryController {
 
 		model.addAttribute("diary", diary);
 		return "diary/mydiary_diarywrite"; // 일기 작성 JSP 페이지로 이동 (수정 모드)
+
 	}
+
 
 }
