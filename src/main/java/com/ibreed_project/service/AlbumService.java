@@ -38,13 +38,18 @@ public class AlbumService implements IAlbumService {
 	}
 	
 	@Override
+	public int getDiaryId(String user_id) {
+		return dao.getDiaryId(user_id);
+	}
+	
+	@Override
 	public String addAlbum(AlbumVO vo) {
 		String result = "available";
 		
-		if(dao.albumCheck(vo.getAlbum_name()) == null) {
-			dao.addAlbum(vo);
-		} else {
+		if(dao.albumCheck(vo.getAlbum_name()).equals(vo.getAlbum_name())) {
 			result = "not_available";
+		} else {
+			dao.addAlbum(vo);
 		}
 		
 		return result;

@@ -55,11 +55,15 @@ public class AlbumController {
 	
 	@ResponseBody
 	@RequestMapping("/album/addAlbum")
-	public String addAlbum(AlbumVO vo,  HttpSession session) {
+	public String addAlbum(AlbumVO vo, HttpSession session) {
 		
 		String user_id = (String) session.getAttribute("user_id");
 		
-		vo.setUser_id(user_id);
+		System.out.println("유저아이디 확인용" + user_id);
+		
+		vo.setDiary_id(albumService.getDiaryId(user_id));
+		
+		System.out.println(vo.getDiary_id());
 		
 		String result = albumService.addAlbum(vo);
 		
@@ -94,15 +98,18 @@ public class AlbumController {
 	
 	@RequestMapping("/mydiary/arrangeAlbum")
 	public String arrangeAlbum(@RequestParam HashMap<String, Object> map,
-			Model model, HttpSession session) {
+							   Model model, 
+							   HttpSession session) {
 		
+		String user_id = (String) session.getAttribute("user_id");
+		System.out.println("유저아이디는 1 " + user_id);
+		map.put("user_id", user_id);
 		ArrayList<AlbumVO> albumList = albumService.arrangeAlbum(map);
-		String userId = (String) session.getAttribute("user_id");
 		
 		model.addAttribute("albumList", albumList);
-		model.addAttribute("userId", userId);
+		model.addAttribute("userId", user_id);
 		
-		System.out.println("유저아이디는 ~? " + userId);
+		System.out.println("유저아이디는 2 " + user_id);
 		
 		return "diary/photos/albumSearchResult";
 	}
