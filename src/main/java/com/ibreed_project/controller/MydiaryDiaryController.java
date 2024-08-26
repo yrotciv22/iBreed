@@ -22,6 +22,7 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/mydiary/{user_id}")
 public class MydiaryDiaryController {
 
+
     @Autowired
     private Mydiary_diaryService mydiary_diaryService;
 
@@ -104,4 +105,5 @@ public class MydiaryDiaryController {
         model.addAttribute("user_id", userId);
         return "diary/mydiary_diarywrite"; // 일기 작성 JSP 페이지로 이동 (수정 모드)
     }
+
 }

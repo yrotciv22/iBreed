@@ -15,6 +15,8 @@ public interface IAlbumDAO {
 	
 	public String getAlbumName(String album_id);
 	
+	public String getUserId(String user_id);
+	
 	public void addAlbum(AlbumVO vo);
 	
 	public String albumCheck(String album_name);

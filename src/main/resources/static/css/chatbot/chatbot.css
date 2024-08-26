@@ -1,0 +1,192 @@
+/* 추가: 애니메이션 효과 */
+@keyframes scaleUp {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleDown {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+#chatbot_container {
+    position: fixed;
+    bottom: 12%;
+    right: 6%;
+    width: 450px;
+    height: 600px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 100;
+    transform: scale(0);
+    opacity: 0;
+    transform-origin: bottom right; /* 챗봇 버튼 기준으로 설정 */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+#chatbot_container.show {
+    display: flex;
+    animation: scaleUp 0.3s forwards;
+}
+
+#chatbot_container.hide {
+    animation: scaleDown 0.3s forwards;
+    opacity: 0;
+}
+
+#chat_window {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#chat_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #53AFB2;
+    color: #fff;
+}
+
+#chat_content {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: #f7f7f7;
+}
+
+#option_buttons {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    gap: 10px;
+}
+
+#option_buttons button {
+    flex: 1;
+    padding: 10px;
+    background-color: #53AFB2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#option_buttons button:hover {
+    background-color: #47a0a5;
+}
+
+#chat_input {
+    width: 100%;
+    height: 4vh;
+    border: none;
+    border-top: 1px solid #ddd;
+    padding: 10px;
+    box-sizing: border-box;
+    outline: none;
+    resize: none; /* 사용자가 크기를 조정할 수 없도록 */
+    flex-shrink: 0; /* 스크롤이 생겨도 크기 감소 방지 */
+
+}
+
+#chat_input:focus {
+    outline: none;
+}
+
+#end_chat {
+    width: 100%;
+    border: none;
+    padding: 10px;
+    background-color: #e57373;
+    color: white;
+    cursor: pointer;
+    display: none;
+}
+
+#end_chat:hover {
+    background-color: #d32f2f;
+}
+
+.bot_message, .my_message {
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    clear: both;
+}
+
+.bot_message {
+    background-color: #ececec;
+    text-align: left;
+    float: left;
+}
+
+.my_message {
+    background-color: #dcf8c6;
+    text-align: right;
+    float: right;
+}
+
+.bot_message:before, .my_message:before {
+    content: "";
+    position: absolute;
+    border-width: 6px;
+    border-style: solid;
+}
+
+.bot_message:before {
+    border-color: transparent #ececec transparent transparent;
+    left: -12px;
+    top: 10px;
+}
+
+.my_message:before {
+    border-color: transparent transparent transparent #dcf8c6;
+    right: -12px;
+    top: 10px;
+}
+
+#chatbot_btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 12%;
+    right: 6%;
+    width: 80px;
+    height: 80px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 99;
+    background-color: #53AFB2;
+    color: #fff;
+    font-size: 16px;
+}
+
+#close_chatbot {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
