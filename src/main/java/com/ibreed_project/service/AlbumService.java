@@ -33,6 +33,11 @@ public class AlbumService implements IAlbumService {
 	}
 	
 	@Override
+	public String getUserId(String user_id) {
+		return dao.getUserId(user_id);
+	}
+	
+	@Override
 	public String addAlbum(AlbumVO vo) {
 		String result = "available";
 		

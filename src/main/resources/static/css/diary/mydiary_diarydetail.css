@@ -1,1 +1,127 @@
 @charset "UTF-8";
+
+.diary_container {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; /* 스크롤을 가능하게 */
+    padding: 20px;
+    box-sizing: border-box; /* padding을 포함하여 크기 계산 */
+}
+
+.diary_header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* 수정/삭제를 오른쪽으로 이동 */
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 0; /* 아래 구분선 제거 */
+}
+
+.diary_header h1 {
+    font-size: 18px; /* 카테고리 크기 약간 확대 */
+    font-weight: normal; /* 볼드 제거 */
+    margin: 0;
+}
+
+.diary_meta {
+    font-size: 14px; /* 작성 날짜 크기 조절 */
+    margin-top: 10px; /* 타이틀 아래로 이동하기 위해 여백 조절 */
+}
+
+.diary_title {
+    font-size: 24px; /* 타이틀 크기 */
+    margin-top: 20px;
+    margin-bottom: 15px; /* 본문과 구분되도록 간격 추가 */
+}
+
+.diary_body {
+    margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+.diary_body hr {
+    border: 1px solid #ddd;
+    margin: 15px 0; /* 상하단 여백 추가 */
+}
+
+.diary_interaction {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px; /* 버튼 간격을 주기 위해 gap을 사용 */
+}
+
+.diary_interaction button {
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.comment_list {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.comment {
+    margin-bottom: 10px;
+}
+
+.comment_header {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.comment_form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.comment_form textarea {
+    width: 80%;
+    height: 40px;
+    resize: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.comment_form button {
+    width: 15%;
+    height: 40px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.diary_footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.diary_footer button {
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+/* 구분선 스타일 */
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
