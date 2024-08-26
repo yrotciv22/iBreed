@@ -17,4 +17,9 @@ public interface IMydiary_diaryService {
 	    //공갸ㅐ여부
 	    List<Mydiary_diaryVO> getDiaryListByUserIdAndVisibility(String userId, boolean isOwner, boolean isFriend);
 	 
+	    // 일기 삭제 
+	    void deleteDiary(int diaryPostId);
+
+	    // 일기 수정 
+	    void updateDiary(Mydiary_diaryVO vo);
 }

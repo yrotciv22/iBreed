@@ -81,18 +81,23 @@
 
 
     <!-- UPDATE 쿼리 -->
-    <update id="updateDiary" parameterType="com.ibreed_project.model.Mydiary_diaryVO">
+     <update id="updateDiary" parameterType="com.ibreed_project.model.Mydiary_diaryVO">
         UPDATE diaryboard
         SET diary_title = #{diaryTitle},
             diary_content = #{diaryContent},
             diary_file = #{diaryFile},
-            diary_update = NOW(),
+            diary_views = #{diaryViews},
+            diary_like = #{diaryLike},
             diary_upload_status = #{diaryUploadStatus},
-            diary_weather = #{diaryWeather},
-            diary_tag = #{diaryTag},
             diary_public = #{diaryPublic},
-            diary_category = #{diaryCategory}
+            diary_category = #{diaryCategory},
+            comment_count = #{commentCount},
+            is_deleted = #{isDeleted}
         WHERE diary_post_id = #{diaryPostId}
     </update>
+    
+    <delete id="deleteDiary" parameterType="int">
+        DELETE FROM diaryboard WHERE diary_post_id = #{diaryPostId}
+    </delete>
 
 </mapper>
