@@ -11,9 +11,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const hiddenContent = document.getElementById("hidden-content");
     const submitButton = document.querySelector(".submit-button");
 
+
     const diaryTitle = document.querySelector("input[name='diaryTitle']");
     const diaryContent = document.getElementById("content-area");
     const diaryPublicRadios = document.querySelectorAll("input[name='diaryPublic']");
+
 
     imageUploadBtn.addEventListener("click", function() {
         document.getElementById("image-upload").click();
@@ -79,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 등록하기 버튼 클릭 시 처리
     function submitForm(isFinal) {
+
         let isValid = true;
         let errorMessage = "";
 

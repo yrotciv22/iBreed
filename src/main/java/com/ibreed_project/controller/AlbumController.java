@@ -63,8 +63,6 @@ public class AlbumController {
 		
 		String result = albumService.addAlbum(vo);
 		
-		System.out.println("다이어리 아이디는 " + vo.getDiary_id());
-		
 		return result;
 	}
 	

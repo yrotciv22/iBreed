@@ -27,27 +27,29 @@
 
 <nav class="diary_taps">
 	<a id="homeTab" href="<c:url value='/mydiary/${sessionScope.user_id}/home'/>">
-		<div class="<c:out value='${lastPathSegment == "home" ? "active-tab" : ""}'/>">홈</div>
+
+		<div class="<c:out value='${lastPathSegment == "mydiary_home.jsp" ? "active-tab" : ""}'/>">홈</div>
 	</a>
 
 	<a id="diaryTab" href="<c:url value='/mydiary/${sessionScope.user_id}/diary'/>">
-		<div class="<c:out value='${lastPathSegment == "diary" ? "active-tab" : ""}'/>">일기</div>
+		<div class="<c:out value='${lastPathSegment == "mydiary_diary.jsp" ? "active-tab" : ""}'/>">일기</div>
 	</a>
 
 	<a id="emotionTab" href="<c:url value='/mydiary/${sessionScope.user_id}/emotion'/>">
-		<div class="<c:out value='${lastPathSegment == "emotion" ? "active-tab" : ""}'/>">감정관리</div>
+		<div class="<c:out value='${lastPathSegment == "mydiary_emotion.jsp" ? "active-tab" : ""}'/>">감정관리</div>
 	</a>
 
 	<a id="photosTab" href="<c:url value='/mydiary/${sessionScope.user_id}/photos'/>">
-		<div class="<c:out value='${lastPathSegment == "photos" ? "active-tab" : ""}'/>">사진첩</div>
+		<div class="<c:out value='${lastPathSegment == "mydiary_photos.jsp" ? "active-tab" : ""}'/>">사진첩</div>
 	</a>
 
 	<a id="calendarTab" href="<c:url value='/mydiary/${sessionScope.user_id}/calendar'/>">
-		<div class="<c:out value='${lastPathSegment == "calendar" ? "active-tab" : ""}'/>">캘린더</div>
+		<div class="<c:out value='${lastPathSegment == "mydiary_calendar.jsp" ? "active-tab" : ""}'/>">캘린더</div>
 	</a>
 
 	<a id="friendsTab" href="<c:url value='/mydiary/${sessionScope.user_id}/friends'/>">
-		<div class="<c:out value='${lastPathSegment == "friends" ? "active-tab" : ""}'/>">친구</div>
+		<div class="<c:out value='${lastPathSegment == "mydiary_friends.jsp" ? "active-tab" : ""}'/>">친구</div>
+
 	</a>
 
 

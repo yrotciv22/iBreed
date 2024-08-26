@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +26,9 @@
 
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 <script src="<c:url value='/js/mydiary_home.js'/>"></script>
-<script>const userId = "${sessionScope.user_id}";</script>
+<script>
+	const userId = "${sessionScope.user_id}";
+</script>
 </head>
 <body>
 	<div class="all">
@@ -101,8 +104,8 @@
 						<img
 							src="${mydiary.diary_profile_image != 'default' ? mydiary.diary_profile_image : 'https://images.unsplash.com/photo-1480985041486-c65b20c01d1f?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dg'}" />
 
-					
-							<c:if test="${sessionScope.user_id == user_id}">
+
+						<c:if test="${sessionScope.user_id == user_id}">
 							<div class="overlay">
 								<img src="<c:url value='/image/pencil_color.png'/>"
 									id="edit_profile_img_btn" />
@@ -170,45 +173,66 @@
 					</form>
 
 
-					<div class="recent_posts">
+					<div class="recent_posts_wrap">
 						<div>최근 작성한 다이어리</div>
 
-						<ul>
-							<li>다이어리 1</li>
-							<li>다이어리 2</li>
-							<li>다이어리 3</li>
-							<li>다이어리 4</li>
-						</ul>
+
+
+						<c:forEach var="diary" items="${diaryList}">
+							<ul>
+								<%-- <li><fmt:formatDate value="${diary.diaryCreate}"
+										pattern="yyyy-MM-dd" /></li> --%>
+								<li><a
+									href="<%= request.getContextPath() %>/mydiary/${user_id}/diarydetail/${diary.diaryPostId}">
+
+										<div class="recent_post">
+											<div>[${diary.diaryCategory}] ${diary.diaryTitle}</div>
+											<div>
+												<fmt:formatDate value="${diary.diaryCreate}"
+													pattern="yyyy-MM-dd" />
+											</div>
+										</div>
+								</a></li>
+							</ul>
+						</c:forEach>
+
 					</div>
 					<div class="home_photo_wrap">
-					<%-- 	<img
+						<%-- 	<img
 							src="<c:url value='https://images.unsplash.com/photo-1605713288610-00c1c630ca1e?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" /> --%>
-					
+
 						<section class="center slider">
-					<div>
-						<img src="<c:url value='https://images.unsplash.com/photo-1510154221590-ff63e90a136f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
-					</div>
-					<div>
-						<img src="<c:url value='https://images.unsplash.com/photo-1504439268584-b72c5019471e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDR8fCVFQSVCMCU4MCVFQyVBMSVCMXxlbnwwfHwwfHx8MA%3D%3D'/>" />
-					</div>
-					<div>
-						<img src="<c:url value='https://images.unsplash.com/photo-1609220136736-443140cffec6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
-					</div>
-					<div>
-						<img src="<c:url value='https://plus.unsplash.com/premium_photo-1676049342411-c118fe1570b2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
-					</div>
-					<div>
-						<img src="<c:url value='https://images.unsplash.com/photo-1530047625168-4b29bfbbe1fc?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
-					</div>
-					<div>
-						<img src="<c:url value='https://images.unsplash.com/photo-1510588960070-8e3ebf81324c?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
-					</div>
-					<div>
-						<img src="<c:url value='https://images.unsplash.com/photo-1470843810958-2da815d0e041?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
-					</div>
-					
-					
-				</section>
+							<div>
+								<img
+									src="<c:url value='https://images.unsplash.com/photo-1510154221590-ff63e90a136f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
+							</div>
+							<div>
+								<img
+									src="<c:url value='https://images.unsplash.com/photo-1504439268584-b72c5019471e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDR8fCVFQSVCMCU4MCVFQyVBMSVCMXxlbnwwfHwwfHx8MA%3D%3D'/>" />
+							</div>
+							<div>
+								<img
+									src="<c:url value='https://images.unsplash.com/photo-1609220136736-443140cffec6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
+							</div>
+							<div>
+								<img
+									src="<c:url value='https://plus.unsplash.com/premium_photo-1676049342411-c118fe1570b2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
+							</div>
+							<div>
+								<img
+									src="<c:url value='https://images.unsplash.com/photo-1530047625168-4b29bfbbe1fc?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
+							</div>
+							<div>
+								<img
+									src="<c:url value='https://images.unsplash.com/photo-1510588960070-8e3ebf81324c?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
+							</div>
+							<div>
+								<img
+									src="<c:url value='https://images.unsplash.com/photo-1470843810958-2da815d0e041?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" />
+							</div>
+
+
+						</section>
 					</div>
 				</div>
 
@@ -234,15 +258,16 @@
 
 			$('.center').slick({
 				centerMode : true,
-			/* 	centerPadding : '0px',
-				slidesToShow : 1, */
-				centerMode: false,  // 중앙 정렬 모드 비활성화
-		        slidesToShow: 1,    // 한 번에 보여줄 슬라이드 수
-		        slidesToScroll: 1,  // 한 번에 스크롤할 슬라이드 수
-		        infinite: true,     // 무한 루프 활성화
-		        speed: 300,         // 슬라이드 전환 속도 (밀리초)
-		        arrows: true,       // 이전/다음 화살표 표시
-		        dots: true          // 네비게이션 도트 표시 (필요시)
+				/* 	centerPadding : '0px',
+					slidesToShow : 1, */
+				centerMode : false, // 중앙 정렬 모드 비활성화
+				slidesToShow : 1, // 한 번에 보여줄 슬라이드 수
+				slidesToScroll : 1, // 한 번에 스크롤할 슬라이드 수
+				infinite : true, // 무한 루프 활성화
+				speed : 300, // 슬라이드 전환 속도 (밀리초)
+				arrows : true, // 이전/다음 화살표 표시
+				dots : true
+			// 네비게이션 도트 표시 (필요시)
 			});
 
 		});

@@ -22,7 +22,6 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/mydiary/{user_id}")
 public class MydiaryDiaryController {
 
-
     @Autowired
     private Mydiary_diaryService mydiary_diaryService;
 
