@@ -1,7 +1,15 @@
 @charset "UTF-8";
 
 .diary_content {
+	display:flex;
+	flex-direction: column;
 	font-family: "GmarketSansMedium";
+}
+.friend_list_title {
+	width:100%;
+	font-size: 20px;
+	font-weight: 600;
+	margin-bottom: 12px;
 }
 
 .friends_all {

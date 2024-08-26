@@ -57,4 +57,17 @@ $(document).ready(function(){
 		document.getElementById("profile_text").style.display = "none";
 		document.getElementById("edit_profile_text_btn").style.display = "none";
 	});
+	
+	
+		document.getElementById("fileInput").addEventListener("change", function() {
+		 console.log("프로필 사진 선택");
+	 //  document.getElementById('confirmUploadBtn').style.display = 'block';
+	    document.getElementById('uploadProfileImgForm').submit();
+	// });
+	});
+	
+	// document.getElementById("confirmUploadBtn").addEventListener("click", function() {
+	//  console.log("프로필 사진 업로드 요청");
+	//   document.getElementById('uploadProfileImgForm').submit();
+	//});
 });

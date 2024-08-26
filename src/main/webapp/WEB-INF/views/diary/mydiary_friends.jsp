@@ -27,8 +27,10 @@
 
 				<!-- 각 페이지 작업 구간  -->
 
+	
 				<c:choose>
 					<c:when test="${not empty friendList}">
+					<div class="friend_list_title">친구 목록</div>
 						<div class="friends_all">
 
 							<c:forEach var="f" items="${friendList}">
