@@ -38,7 +38,10 @@
 		</insert>
 
 		<select id="albumCheck" parameterType="string" resultType="string">
-			SELECT * FROM album WHERE album_name=#{album_name}
+			SELECT * FROM album WHERE album_name =#{album_name}
+			
+			<!-- SELECT * FROM album
+			WHERE (SELECT album_name FROM album WHERE diary_id = #{diary_id})=#{album_name} -->
 		</select>
 
 		<delete id="deleteAlbum" parameterType="int">
@@ -54,7 +57,9 @@
 		</select>
 		
 		<select id="arrangeAlbum" parameterType="hashmap" resultMap="albumResult">
-			SELECT * FROM album ORDER BY
+			SELECT * FROM album	WHERE diary_id =
+			(SELECT diary_id FROM diary WHERE user_id = #{user_id})
+			ORDER BY
 				<choose>
 					<when test="type.equals('latest')">
 						album_date DESC

@@ -21,7 +21,7 @@
 	href="<c:url value='/css/diary/mydiary_layout.css' />" />
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/diary/mydiary_calendar.css' />" />
-<script src="<c:url value='/js/calendar.js'/>"></script>
+<script src="<c:url value='/js/calendar2.js'/>"></script>
 
 </head>
 <body>
