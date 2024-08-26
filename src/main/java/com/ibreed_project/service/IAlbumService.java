@@ -13,6 +13,9 @@ public interface IAlbumService {
 	// 앨범 상세 페이지에 앨범이름 가져오기
 	public String getAlbumName(String album_id);
 	
+	// 앨범 상세 페이지에 유저이름 가져오기
+	public String getUserId(String user_id);
+	
 	// 사진 뽑아내기
 	public ArrayList<AlbumVO> selectPhoto(String album_id);
 	

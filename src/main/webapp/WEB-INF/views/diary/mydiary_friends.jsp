@@ -35,10 +35,12 @@
 								<div class="friend_wrap">
 
 									<div class="frd_profile_img">
+
 										<%-- <c:url var="defaultImageUrl" value="/image/icon-man.png" /> --%>
 										<img src="${f.user_profile_image}" />
 
 										<%-- 										<img src="${f.user_profile_image != 'default' ? f.user_profile_image : defaultImageUrl}" /> --%>
+
 									</div>
 
 									<div class="column_wrap">

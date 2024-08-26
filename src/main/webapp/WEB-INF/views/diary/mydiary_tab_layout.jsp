@@ -27,6 +27,7 @@
 
 <nav class="diary_taps">
 	<a id="homeTab" href="<c:url value='/mydiary/${sessionScope.user_id}/home'/>">
+
 		<div class="<c:out value='${lastPathSegment == "mydiary_home.jsp" ? "active-tab" : ""}'/>">홈</div>
 	</a>
 
@@ -48,6 +49,7 @@
 
 	<a id="friendsTab" href="<c:url value='/mydiary/${sessionScope.user_id}/friends'/>">
 		<div class="<c:out value='${lastPathSegment == "mydiary_friends.jsp" ? "active-tab" : ""}'/>">친구</div>
+
 	</a>
 
 

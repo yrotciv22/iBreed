@@ -56,7 +56,7 @@
 						<c:forEach items="${latestList}" var="album" varStatus="status">
 							<li>
 								<!-- <div class="albumBox" onclick="location.href='/mydiary/album/앨범1'"> -->
-								<a href="/mydiary/detailAlbum/${album.album_id}"><div class="albumBox">
+								<a href="/mydiary/${user_id}/detailAlbum/${album.album_id}"><div class="albumBox">
 									<div class="photoCheck"><input type="checkbox" class="chk"></div>
 									<img class="album_thimbnail" src="/image/null_album.png">
 									<div class="photoCount">
