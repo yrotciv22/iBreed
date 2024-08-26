@@ -120,14 +120,13 @@ input:focus, input:active, input:hover {
 	width: 424px;
 	height: 300px;
 	margin-bottom: 30px;
-		overflow: hidden;
+	overflow: hidden;
 }
 
-.map{
+.map {
 	display: flex;
 	flex-direction: column;
-	align-items:center;
-	
+	align-items: center;
 }
 
 .board_title {
@@ -174,7 +173,7 @@ input:focus, input:active, input:hover {
 	display: flex;
 }
 
-.main_board_map{
+.main_board_map {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -187,8 +186,8 @@ input:focus, input:active, input:hover {
 
 .main_board_map img {
 	width: 150%;
-	
 }
+
 .main_board_map img:hover {
 	width: 180%;
 	cursor: pointer;
@@ -267,7 +266,7 @@ input:focus, input:active, input:hover {
 	font-weight: 600;
 }
 
-.main_market  {
+.main_market {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -366,12 +365,16 @@ input:focus, input:active, input:hover {
 	height: 80px;
 	border: 1px solid #ccc;
 	border-radius: 50%;
-	cursor: pointer;
 	z-index: 99;
 	background-color: #fff;
 	font-size: 16px;
+	color: #333;
 }
 
+#chatbot_btn:hover {
+	cursor: pointer;
+	color: #53AFB2;
+}
 
 #to_top_Btn {
 	display: flex;
@@ -410,14 +413,16 @@ input:focus, input:active, input:hover {
 	border-radius: 50px;
 	background: #ccc;
 	margin-right: 20px;
-	overflow:hidden;
+	overflow: hidden;
 }
-.user_profile_img img{
+
+.user_profile_img img {
 	height: 100%;
 	width: 100%;
 	object-fit: cover;
 }
-.user_wrap{
+
+.user_wrap {
 	width: 192px;
 }
 
@@ -425,11 +430,13 @@ input:focus, input:active, input:hover {
 	display: flex;
 	width: 100%;
 }
+
 .user_id {
-	font-size:14px;
+	font-size: 14px;
 	color: #888;
 	margin-bottom: 10px;
 }
+
 .user_level {
 	font-size: 13px;
 }
@@ -467,7 +474,7 @@ input:focus, input:active, input:hover {
 	border-radius: 5px;
 	margin-right: 10px;
 	border: 1px solid #ccc;
-	font-size:14px;
+	font-size: 14px;
 }
 
 .main_diary_btn:hover {
@@ -477,7 +484,7 @@ input:focus, input:active, input:hover {
 
 .circle_btn {
 	display: flex;
-	flex-direction : column;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	width: 56px;
@@ -489,27 +496,28 @@ input:focus, input:active, input:hover {
 	position: relative;
 }
 
-.circle_btn img{
-	display:flex;
+.circle_btn img {
+	display: flex;
 	align-items: center;
-	justify-content:center;
-	width:50%;
+	justify-content: center;
+	width: 50%;
 	height: 50%;
 	object-fit: cover;
-	
 }
+
 .circle_btn span {
 	display: block;
 	position: absolute;
 	bottom: -120%;
-	width:100%;
+	width: 100%;
 	height: 100%;
-	font-size:12px;
+	font-size: 12px;
 }
 
-.circle_btn:hover{
-	cursor:pointer;
+.circle_btn:hover {
+	cursor: pointer;
 }
+
 @font-face {
 	font-family: "GmarketSansMedium";
 	src:

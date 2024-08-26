@@ -103,7 +103,7 @@
 											<span class="xBtn">✕</span>
 											<strong>이름 바꾸기</strong>
 											<input type="text" class="change_text" name="album_name" value="${album.album_name}">
-											<input type="hidden" name="album_id" value="${album.album_id}">
+											<input type="hidden" name="album_id" value="${diary_id}">
 											<button class="modal_okBtn okBtn2">확인</button>
 											<input id="album_changeBtn" class="modal_noBtn noBtn2" type="reset" value="취소" />
 										</div>
@@ -120,6 +120,7 @@
 								<span class="xBtn">✕</span>
 								<strong>새 앨범 만들기</strong>
 								<input type="text" id="update_text" placeholder=" 앨범명을 입력해주세요" name="album_name">
+								<input type="hidden" value="${album.diary_id}">
 								<p>앨범 생성 후 사진을 넣어주세요.</p>
 								<input type="submit" class="modal_okBtn okBtn3" value="확인">
 								<input id="album_changeBtn" class="modal_noBtn noBtn3" type="reset" value="취소" />

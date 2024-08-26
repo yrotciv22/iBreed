@@ -33,4 +33,7 @@ public interface IMydiary_diaryDAO {
     	    @Param("isOwner") boolean isOwner, 
     	    @Param("isFriend") boolean isFriend
     	);
+//삭제
+    void deleteDiary(int diaryPostId);
+
 }

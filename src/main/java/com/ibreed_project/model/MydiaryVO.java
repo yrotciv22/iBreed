@@ -2,6 +2,8 @@ package com.ibreed_project.model;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MydiaryVO {
 	private int diary_id;
 	private String diary_sentiment;
@@ -9,10 +11,9 @@ public class MydiaryVO {
 	private Date diary_create_date;
 	private int diary_count;
 	private boolean diary_public;
-	private String diary_profile_image;
 	private String user_id;
 	private String diary_profile_text;
-	
+	private String diary_profile_image;
 	public int getDiary_id() {
 		return diary_id;
 	}
@@ -49,12 +50,6 @@ public class MydiaryVO {
 	public void setDiary_public(boolean diary_public) {
 		this.diary_public = diary_public;
 	}
-	public String getDiary_profile_image() {
-		return diary_profile_image;
-	}
-	public void setDiary_profile_image(String diary_profile_image) {
-		this.diary_profile_image = diary_profile_image;
-	}
 	public String getUser_id() {
 		return user_id;
 	}
@@ -67,7 +62,13 @@ public class MydiaryVO {
 	public void setDiary_profile_text(String diary_profile_text) {
 		this.diary_profile_text = diary_profile_text;
 	}
+	public String getDiary_profile_image() {
+		return diary_profile_image;
+	}
+	public void setDiary_profile_image(String diary_profile_image) {
+		this.diary_profile_image = diary_profile_image;
+	} 
 	
 	
-
+	
 }
