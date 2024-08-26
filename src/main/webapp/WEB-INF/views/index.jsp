@@ -214,7 +214,7 @@
 								<div class="user_profile_img">
 									<img src="<c:url value='/image/profile_woman.png'/>" />
 
-									<%--	<img src="${sessionScope.user_profile_img}" /> --%>
+									<%-- <img src="${sessionScope.user_profile_image}" /> --%>
 
 								</div>
 								<div class="user_wrap">

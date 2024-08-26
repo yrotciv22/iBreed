@@ -1,8 +1,12 @@
 $(document).ready(function(){
 	console.log("home js");
-
+	
 	// JSP에서 전달된 userId를 사용
-	const currentUserId = userId;
+	const path = window.location.pathname;
+	const regex = /\/[^\/]+\/([^\/]+)\/[^\/]+/;
+	const match = path.match(regex);
+	const currentUserId = match[1];
+
 	console.log("currentUserId", currentUserId);
 
 	// URL에 currentUserId를 삽입하여 href 속성 업데이트

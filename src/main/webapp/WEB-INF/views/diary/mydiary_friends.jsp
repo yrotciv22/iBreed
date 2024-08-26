@@ -25,7 +25,6 @@
 		<div class="diary_wrap">
 			<div class="diary_content">
 
-
 				<!-- 각 페이지 작업 구간  -->
 
 				<c:choose>
@@ -36,11 +35,9 @@
 								<div class="friend_wrap">
 
 									<div class="frd_profile_img">
-
-										<c:url var="defaultImageUrl" value="/image/profile_woman.png" />
+										<c:url var="defaultImageUrl" value="/image/icon-man.png" />
 										<img
 											src="${f.user_profile_image != 'default' ? f.user_profile_image : defaultImageUrl}" />
-
 									</div>
 
 									<div class="column_wrap">

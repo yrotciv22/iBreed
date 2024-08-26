@@ -47,8 +47,8 @@
                 <div class="options">
                     <input type="checkbox" id="save-id" checked> <label for="save-id">아이디 저장</label>
                     <nav class="links">
-                        <a href="<c:url value='/find-id'/>">아이디 찾기</a>
-                        | <a href="<c:url value='/reset-password'/>">비밀번호 찾기</a>
+                        <a href="<c:url value='/join/idcheck'/>">아이디 찾기</a>
+                        | <a href="<c:url value='/join/nicknamecheck'/>">비밀번호 찾기</a>
 
                     </nav>
                 </div>
