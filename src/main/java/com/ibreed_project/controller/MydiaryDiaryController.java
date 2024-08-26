@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ibreed_project.model.Mydiary_diaryVO;
 import com.ibreed_project.service.Mydiary_diaryService;
@@ -89,11 +90,11 @@ public class MydiaryDiaryController {
         return "diary/mydiary_diarydetail";
     }
 
-    // 특정 일기 데이터를 가져와 수정 폼에 표시하는 메서드 (GET 요청 처리)
+    //  일기수정  메서드 
     @GetMapping("/diaryedit/{diaryPostId}")
     public String editDiary(@PathVariable("user_id") String userId,
-                            @PathVariable("diaryPostId") int diaryPostId,
-                            Model model) {
+    									@PathVariable("diaryPostId") int diaryPostId,
+    									Model model) {
         Mydiary_diaryVO diary = mydiary_diaryService.getDiary(diaryPostId);
 
         if (diary == null) {
@@ -101,8 +102,20 @@ public class MydiaryDiaryController {
         }
 
         model.addAttribute("diary", diary);
-        model.addAttribute("user_id", userId);
+        model.addAttribute("user_id", userId); 
+      
         return "diary/mydiary_diarywrite"; // 일기 작성 JSP 페이지로 이동 (수정 모드)
     }
-
+    // 일기 삭제 메서드 
+    @PostMapping("/diarydelete/{diaryPostId}")
+    @ResponseBody
+    public String deleteDiary(@PathVariable("user_id") String userId,
+                              					@PathVariable("diaryPostId") int diaryPostId) {
+        try {
+            mydiary_diaryService.deleteDiary(diaryPostId);
+            return "success";
+        } catch (Exception e) {
+            return "error";
+        }
+    }
 }

@@ -9,8 +9,11 @@
     <title>My Diary Detail</title>
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/mydiary_layout.css' />" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/mydiary_diarydetail.css' />" />
-    	<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
+    <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 	<script src="<c:url value='/js/mydiary_diarydetail.js' />"></script>
+	<script>
+	
+	</script>
  
 </head>
 <body>
@@ -23,9 +26,9 @@
                 <h1>${diary.diaryCategory}</h1>
                 <div class="diary_meta">
                     <div class="diary_actions">
-                        <a href="#" class="editBtn" data-diary-id="${diary.diaryPostId}">수정</a>
-                        <span>|</span>
-            			<a href="#" class="deleteBtn" data-diary-id="${diary.diaryPostId}">삭제</a>	
+                         <button class="editBtn" data-diary-id="${diary.diaryPostId}">수정</button>
+   						 <span>|</span>
+    					<button class="deleteBtn" data-diary-id="${diary.diaryPostId}">삭제</button>	
                     </div>
                 </div>
             </div>
@@ -88,7 +91,7 @@
 </div>
 
 <script>
-    console.log("지금 접속자": ${sessionScope.user_id}");
+    console.log("지금 접속자: ${sessionScope.user_id}");
 
 </script>
 </body>

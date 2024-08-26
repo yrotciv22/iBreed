@@ -1,5 +1,4 @@
 package com.ibreed_project.service;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,5 +50,19 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 	public int getTotalDiaryCountByUserId(String userId) {
 		// TODO Auto-generated method stub
 		return mydiary_diaryDAO.getTotalDiaryCountByUserId(userId);
+	}
+
+	@Override
+	public void deleteDiary(int diaryPostId) {
+		// TODO Auto-generated method stub
+		 mydiary_diaryDAO.deleteDiary(diaryPostId);
+		
+	}
+
+	@Override
+	public void updateDiary(Mydiary_diaryVO vo) {
+		// TODO Auto-generated method stub
+		mydiary_diaryDAO.updateDiary(vo);
+		
 	}
 }
