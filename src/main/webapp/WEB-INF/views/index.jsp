@@ -33,12 +33,18 @@
 </script>
 
 
+
+
+
 <script src="<c:url value='/js/index.js'/>" defer></script>
 
 <%--    챗봇 시스템 추가--%>
 <script>
 	var saveChatDataUrl = "${pageContext.request.contextPath}/saveChatData";
 	var clearChatbotSessionUrl = "${pageContext.request.contextPath}/clearChatbotSession";
+	var getChatDataUrl = "${pageContext.request.contextPath}/getChatData"; // 추가된 부분
+	var saveSelectedOptionUrl = "${pageContext.request.contextPath}/saveSelectedOption"; // 추가된 부분
+	var getUserData = "${pageContext.request.contextPath}/getUserData";
 </script>
 
 <script src="<c:url value='/js/chatbot/chatbot.js'/>" defer></script>
