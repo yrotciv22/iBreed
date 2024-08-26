@@ -106,12 +106,37 @@
 
 
 						<c:if test="${sessionScope.user_id == user_id}">
-							<div class="overlay">
-								<img src="<c:url value='/image/pencil_color.png'/>"
-									id="edit_profile_img_btn" />
-							</div>
+							<!-- label을 사용하여 클릭 시 파일 입력 창이 열리도록 설정 -->
+							<label for="fileInput">
+								<div class="overlay">
+
+									<img src="<c:url value='/image/pencil_color.png'/>"
+										id="edit_profile_img_btn" />
+
+								</div>
+							</label>
 						</c:if>
+
+						<!-- 이미지 업로드 폼 -->
+						<form id="uploadProfileImgForm"
+							action="<c:url value='/mydiary/${sessionScope.user_id}/updateDiary/diary_profile_image'/>"
+							method="post" enctype="multipart/form-data"
+							style="display: none;">
+
+							<input type="hidden" name="user_id"
+								value="${sessionScope.user_id}" />
+							<!-- 파일 입력 요소 style="display: none;"  -->
+
+							<input type="file" id="fileInput" name="diary_profile_image"
+								accept="image/*" style="display: none;" />
+
+							<!-- 확인 버튼 
+							<button type="button" id="confirmUploadBtn"
+								style="display: none;">확인</button> -->
+						</form>
 					</div>
+					<!--  profile_photo 끝 -->
+
 
 
 					<!-- 프로필 텍스트 수정  -->
@@ -176,27 +201,32 @@
 					<div class="recent_posts_wrap">
 						<div>최근 작성한 다이어리</div>
 
+					
+								<ul>
+									<c:forEach var="diary" items="${diaryList}">
 
-
-						<c:forEach var="diary" items="${diaryList}">
-							<ul>
-								<%-- <li><fmt:formatDate value="${diary.diaryCreate}"
+										<%-- <li><fmt:formatDate value="${diary.diaryCreate}"
 										pattern="yyyy-MM-dd" /></li> --%>
-								<li><a
-									href="<%= request.getContextPath() %>/mydiary/${user_id}/diarydetail/${diary.diaryPostId}">
+										<li><a
+											href="<%= request.getContextPath() %>/mydiary/${user_id}/diarydetail/${diary.diaryPostId}">
 
-										<div class="recent_post">
-											<div>[${diary.diaryCategory}] ${diary.diaryTitle}</div>
-											<div>
-												<fmt:formatDate value="${diary.diaryCreate}"
-													pattern="yyyy-MM-dd" />
-											</div>
-										</div>
-								</a></li>
-							</ul>
-						</c:forEach>
+												<div class="recent_post">
+													<div>[${diary.diaryCategory}] ${diary.diaryTitle}</div>
+													<div>
+														<fmt:formatDate value="${diary.diaryCreate}"
+															pattern="yyyy-MM-dd" />
+													</div>
+												</div>
+										</a></li>
+
+									</c:forEach>
+								</ul>
+						
 
 					</div>
+					<!-- recent_posts_wrap 끝 -->
+
+
 					<div class="home_photo_wrap">
 						<%-- 	<img
 							src="<c:url value='https://images.unsplash.com/photo-1605713288610-00c1c630ca1e?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'/>" /> --%>
