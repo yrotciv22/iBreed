@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const hiddenContent = document.getElementById("hidden-content");
     const submitButton = document.querySelector(".submit-button");
 
+    const diaryTitle = document.querySelector("input[name='diaryTitle']");
+    const diaryContent = document.getElementById("content-area");
+    const diaryPublicRadios = document.querySelectorAll("input[name='diaryPublic']");
+
     imageUploadBtn.addEventListener("click", function() {
         document.getElementById("image-upload").click();
     });
@@ -75,15 +79,49 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 등록하기 버튼 클릭 시 처리
     function submitForm(isFinal) {
+        let isValid = true;
+        let errorMessage = "";
+
+        // 제목 유효성 검사
+        if (diaryTitle.value.trim() === "") {
+            isValid = false;
+            errorMessage += "제목을 입력하세요.\n";
+        }
+
+        // 내용 유효성 검사
+        if (diaryContent.innerHTML.trim() === "") {
+            isValid = false;
+            errorMessage += "내용을 입력하세요.\n";
+        }
+
+        // 공개 여부 유효성 검사
+        let isPublicSelected = false;
+        for (const radio of diaryPublicRadios) {
+            if (radio.checked) {
+                isPublicSelected = true;
+                break;
+            }
+        }
+
+        if (!isPublicSelected) {
+            isValid = false;
+            errorMessage += "공개 여부를 선택하세요.\n";
+        }
+
+        // 유효하지 않은 경우 폼 제출 중지 및 오류 메시지 표시
+        if (!isValid) {
+            alert(errorMessage);
+            return;
+        }
+
         hiddenContent.value = contentArea.innerHTML; // contentArea의 내용을 hiddenContent로 복사
-        // document.getElementById('diary_upload_status').value = isFinal ? 'final' : 'draft'; // 이 부분 제거
         console.log(hiddenContent.value); // 폼 제출 전에 데이터 확인
         document.getElementById('diary-form').submit(); // 폼 제출
     }
 
-
     // 등록하기 버튼 클릭 시 처리
-    submitButton.addEventListener("click", function() {
+    submitButton.addEventListener("click", function(event) {
+        event.preventDefault();
         submitForm(true); // 최종 등록
     });
 });
