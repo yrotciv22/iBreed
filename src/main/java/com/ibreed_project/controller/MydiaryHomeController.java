@@ -27,6 +27,6 @@ public class MydiaryHomeController {
 		mydiaryService.updateMydiary(vo, category);
 		
 		return "redirect:/mydiary/{user_id}/home";
-	}
+	} 
 
 }

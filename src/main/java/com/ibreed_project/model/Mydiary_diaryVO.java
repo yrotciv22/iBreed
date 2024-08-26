@@ -124,6 +124,7 @@ public class Mydiary_diaryVO {
 	public void setDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
-	
+
+
 
 }

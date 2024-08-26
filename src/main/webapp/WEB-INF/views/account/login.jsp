@@ -27,16 +27,6 @@
     <!-- 공통 layout: top.jsp -->
     <c:import url="/WEB-INF/views/layout/top.jsp" />
 
-
-    <c:choose>
-        <c:when test="${not empty userId}">
-            <h1>로그인 성공상태</h1>
-        </c:when>
-        <c:otherwise>
-            <h1>로그인 실패상태</h1>
-        </c:otherwise>
-    </c:choose>
-
     <!-- 메인 -->
     <main class="container">
         <section>
@@ -57,8 +47,8 @@
                 <div class="options">
                     <input type="checkbox" id="save-id" checked> <label for="save-id">아이디 저장</label>
                     <nav class="links">
-                        <a href="<c:url value='/find-id'/>">아이디 찾기</a>
-                        | <a href="<c:url value='/reset-password'/>">비밀번호 찾기</a>
+                        <a href="<c:url value='/join/idcheck'/>">아이디 찾기</a>
+                        | <a href="<c:url value='/join/nicknamecheck'/>">비밀번호 찾기</a>
 
                     </nav>
                 </div>
