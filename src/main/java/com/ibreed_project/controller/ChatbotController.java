@@ -51,6 +51,8 @@ public class ChatbotController {
             session.removeAttribute("selectedOption");
             session.removeAttribute("chatHistory");
             session.removeAttribute("chatSummary"); // 요약 내용 제거
+            session.removeAttribute("ai_random_name");
+            System.out.println("삭제 완료!");
         }
         return ResponseEntity.ok().build();
     }
@@ -73,6 +75,41 @@ public class ChatbotController {
 
         return ResponseEntity.ok(response);
     }
+
+
+    @PostMapping("/saveAiNameUrl")
+    public ResponseEntity<Void> saveAiNameUrl(@RequestParam("ai_random_name") String ai_random_name,
+                                             HttpSession session) {
+        // 세션에 데이터 저장
+        session.setAttribute("ai_random_name", ai_random_name);
+
+        // 200 OK 응답 반환
+        return ResponseEntity.ok().build();
+    }
+
+
+    @PostMapping("/getAiNameUrl")
+    public ResponseEntity<Map<String, Object>> getAiNameUrl(HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
+
+        // 세션에서 값을 가져오고 null일 경우 기본값 설정
+        String ai_random_name = (String) session.getAttribute("ai_random_name");
+        if (ai_random_name == null) {
+            // 기본값 설정
+        }
+
+        Integer selectedOption = (Integer) session.getAttribute("selectedOption");
+        if (selectedOption == null) {
+            selectedOption = 0; // 기본값 설정
+        }
+
+        response.put("ai_random_name", ai_random_name);
+        response.put("selectedOption", selectedOption);
+
+        return ResponseEntity.ok(response);
+    }
+
+
 
     @PostMapping("/saveSelectedOption")
     public ResponseEntity<Void> saveSelectedOption(@RequestParam("selectedOption") int selectedOption, HttpSession session) {
