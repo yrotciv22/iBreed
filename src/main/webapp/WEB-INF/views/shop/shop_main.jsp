@@ -28,7 +28,7 @@
 				<div id="categoryList">
 					<ul>
 						<li><a href='#'>베스트</a></li>
-						<li><a href="#">전체상품</a></li>
+						<li><a href="/shop_list">전체상품</a></li>
 						<li><a href="#">i다이어리</a></li>
 						<li><a href="#">i달력</a></li>
 						<li><a href="#">의류/잡화/소품</a></li>
@@ -63,7 +63,7 @@
 					<div class=""><strong class="bigMenu">실시간 인기 TOP 10⭐</strong></div>
 					<div id="popularSlide">
 						<c:forEach items="${topTenList}" var="prd" varStatus="status">
-							<div class="popularMenuBox" OnClick="location.href ='#'">
+							<div class="popularMenuBox" OnClick="location.href ='/shop_detail'">
 								<div class="bestIcon">
 									<img class="tagIcon" src="../image/tag.png">
 									<strong class="bestRating">${status.count}</strong>
@@ -89,7 +89,7 @@
 						</c:forEach>
 						
 						<div class="allViewBox">
-							<div id="allViewBtn"><a href="#">						
+							<div id="allViewBtn"><a href="/shop_list">						
 								<img id="allView" src="../image/arrow-R.png">
 								<span id="allViewText">전체보기</span>
 							</a></div>
@@ -104,7 +104,7 @@
 					<div><strong class="bigMenu">신상 육아 아이템⭐</strong><br></div>
 					<ul>
 						<c:forEach items="${newItemList}" var="prd">
-							<li><div class="menuBox"  OnClick="location.href ='#'">
+							<li><div class="menuBox"  OnClick="location.href ='/shop_detail'">
 								<div class="thumbnail">
 									<img class="newThumbnail" src="${prd.product_img}">
 									<div class="likeCartBox1">

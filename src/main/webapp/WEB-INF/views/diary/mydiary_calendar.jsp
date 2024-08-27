@@ -41,6 +41,13 @@
 
 		</div>
 
+		<!-- /js/calendar2.js에서 사용하기 위해서 숨겨둠 -->
+		<c:forEach items="${calList}" var="cal">
+			<input class="calendar_no" type="hidden" value="${cal.CALENDAR_NO }">
+			<input class="calendar_title" type="hidden" value="${cal.CALENDAR_TITLE }">
+			<input class="calendar_start" type="hidden" value="${cal.CALENDAR_START }">			
+			<input class="calendar_end" type="hidden" value="${cal.CALENDAR_END }">			
+		</c:forEach>
 
 		<!-- 공통 layout 다이어리 우측 탭 -->
 		<c:import url="/WEB-INF/views/diary/mydiary_tab_layout.jsp" />

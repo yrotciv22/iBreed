@@ -14,8 +14,8 @@
 	    <result property="color" column="color" />
 	  </resultMap>
 	
-	<select id="getAllEvents" resultType="com.ibreed_project.model.CalendarVO">
-		SELECT * FROM calendar
+	<select id="getAllEvents"  parameterType="int"  resultType="com.ibreed_project.model.CalendarVO">
+		SELECT * FROM calendar WHERE diary_id =  #{diary_id}
 	</select>
 	
 	 <insert id="addEvent" parameterType="com.ibreed_project.model.CalendarVO">

@@ -21,7 +21,7 @@ public interface IAlbumDAO {
 	
 	public void addAlbum(AlbumVO vo);
 	
-	public String albumCheck(String album_name);
+	public String albumCheck(AlbumVO vo);
 	
 	public void deleteAlbum(int album_id);
 	

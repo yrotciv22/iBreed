@@ -31,4 +31,19 @@ public class ShopController {
 		
 		return "shop/shop_main";
 	}
+	
+	@RequestMapping("shop_detail")
+	public String detailView() {
+		return "shop/shop_detail";
+	}
+	
+	@RequestMapping("shop_list")
+	public String listView(Model model) {
+		
+		ArrayList<ProductVO> viewAllPrd = prdService.viewAllPrd();
+		
+		model.addAttribute("viewAllPrd", viewAllPrd);
+		
+		return "shop/shop_list";
+	}
 }

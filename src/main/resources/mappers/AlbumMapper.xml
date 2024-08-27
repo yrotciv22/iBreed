@@ -41,7 +41,7 @@
 			VALUES(#{album_name}, now(), #{diary_id}, 0);
 		</insert>
 
-		<select id="albumCheck" parameterType="hashmap" resultType="string">
+		<select id="albumCheck" parameterType="com.ibreed_project.model.AlbumVO" resultType="string">
 			SELECT DISTINCT album_name FROM album 
 			WHERE album_name = #{album_name} AND
 			album_name IN (SELECT album_name FROM album WHERE diary_id = #{diary_id});
