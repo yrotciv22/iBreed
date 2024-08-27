@@ -18,17 +18,38 @@ public class ShopController {
 
 	@RequestMapping("shop")
 	public String viewIndex(Model model) {
-		
+
 		ArrayList<ProductVO> topTenList = prdService.selectTopTen();
 		ArrayList<ProductVO> newItemList = prdService.selectNewItem();
 		ArrayList<ProductVO> bestItemList = prdService.bestItem();
 		ArrayList<ProductVO> soldOutItemList = prdService.soldOutItem();
-		
+
 		model.addAttribute("topTenList", topTenList);
 		model.addAttribute("newItemList", newItemList);
 		model.addAttribute("bestItemList", bestItemList);
 		model.addAttribute("soldOutItemList", soldOutItemList);
-		
+
 		return "shop/shop_main";
+	}
+
+	// 장바구니 페이지 (예은)
+	@RequestMapping("/shop/cart")
+	public String viewShoppingCart() {
+
+		return "shop/shopping_cart";
+	}
+
+	// 주문 페이지 (예은)
+	@RequestMapping("/shop/order")
+	public String viewOrderPage() {
+
+		return "shop/order";
+	}
+
+	// 주문 확인 페이지 (예은)
+	@RequestMapping("/shop/order_confirm")
+	public String viewOrderConfirmPage() {
+
+		return "shop/order_confirm";
 	}
 }
