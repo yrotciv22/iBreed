@@ -12,4 +12,6 @@ public interface IProductDAO {
 	public ArrayList<ProductVO> bestItem();
 	
 	public ArrayList<ProductVO> soldOutItem();
+	
+	public ArrayList<ProductVO> viewAllPrd();
 }

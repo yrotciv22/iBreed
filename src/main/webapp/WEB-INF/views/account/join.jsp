@@ -393,7 +393,7 @@
                         <td><label>유형 선택</label></td>
                         <td colspan="2">
                             <label><input type="radio" name="user_kids_select" value="fetus" onclick="toggleInput('user_fetus_old', true)" required> 임산부</label>
-                            <input type="number" id="user_fetus_old" name="user_fetus_old" class="text"  max="64" placeholder="개월 수 입력" style="max-width: 200px;" disabled required>
+                            <input type="number" id="user_fetus_old" name="user_fetus_old" class="text"  max="45" placeholder="주차 수 입력" style="max-width: 200px;" disabled required>
                         </td>
                     </tr>
                     <tr>

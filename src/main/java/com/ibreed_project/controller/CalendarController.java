@@ -23,11 +23,6 @@ public class CalendarController {
 	@Autowired
 	CalendarService calendarService;
 
-	@GetMapping
-	public List<Calendar> getAllEvents() {
-		return calendarService.getAllEvents();
-	}
-
 	@PostMapping
 	public void addEvent(@RequestBody CalendarVO event) {
 		calendarService.addEvent(event);

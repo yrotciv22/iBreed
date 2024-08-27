@@ -46,10 +46,10 @@ public class AlbumService implements IAlbumService {
 	public String addAlbum(AlbumVO vo) {
 		String result = "available";
 		
-		if(dao.albumCheck(vo.getAlbum_name()).equals(vo.getAlbum_name())) {
-			result = "not_available";
-		} else {
+		if(dao.albumCheck(vo) == null) {
 			dao.addAlbum(vo);
+		} else {
+			result = "not_available";
 		}
 		
 		return result;

@@ -17,4 +17,9 @@ public interface IProductService {
 	
 	// main 품절상품 뽑아내기 (재고로 파악)
 	public ArrayList<ProductVO> soldOutItem();
+	
+	// 전체상품 뽑아내기
+	public ArrayList<ProductVO> viewAllPrd();
+	
+	
 }

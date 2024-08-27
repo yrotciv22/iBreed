@@ -190,3 +190,13 @@
     cursor: pointer;
     font-size: 16px;
 }
+
+/* 추가: AI 이름을 스타일링하기 위한 CSS */
+.chat_name {
+    font-weight: bold;
+    color: #53AFB2; /* 원하는 색상으로 변경할 수 있음 */
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* 기존 CSS 코드 생략 */
