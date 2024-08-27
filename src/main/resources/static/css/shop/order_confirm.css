@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+* {
+	
+}
+
+.all {
+	display: flex;
+	flex-direction: column;
+	font-family: "GmarketSansMedium";
+	color: #333;
+}
+
+.shopping_title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 140px;
+}
+
+.shopping_title span {
+	margin: 0 20px;
+}
+
+.shopping_title div {
+	font-size: 28px;
+	font-weight: 900;
+	margin: 0 10px;
+}
+
+.confirmation_wrap {
+	display: flex;
+	flex-direction: column; 
+	align-items : center;
+	width: 900px;
+}
+
+.confirmation_message {
+	display: flex;
+	justify-content:center;
+	width: 100%;
+	font-size: 30px;
+	font-weight:800;
+	margin-bottom:50px;
+}
+
+.confirm_title{
+	width:100%;
+	height: 50px;
+	font-size: 22px;
+	font-weight:600;
+	border-bottom:2px solid #222;
+}
+.content_wrap {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	margin-bottom: 30px;
+}
+
+
+.one_item_wrap {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 200px;
+	border-bottom: 1px solid #222;
+	width: 100%
+}
+
+.prd_image {
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+	border: 1px solid #333;
+	margin-left: 14px;
+	margin-right: 26px;
+	border-radius: 10px;
+}
+
+.prd_image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	cursor: pointer;
+}
+
+.prd_name {
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+.one_prd_price {
+	margin-bottom: 10px;
+}
+@font-face {
+	font-family: "yg-jalnan";
+	src:
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "GmarketSansMedium";
+	src:
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
