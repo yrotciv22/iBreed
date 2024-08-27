@@ -1,13 +1,12 @@
 package com.ibreed_project.service;
 
-import java.util.Calendar;
 import java.util.List;
 
 import com.ibreed_project.model.CalendarVO;
 
 public interface ICalendarService {
 	
-	public List<Calendar> getAllEvents();
+	public List<CalendarVO> getAllEvents(String user_id);
 	
 	public void addEvent(CalendarVO event);
 	

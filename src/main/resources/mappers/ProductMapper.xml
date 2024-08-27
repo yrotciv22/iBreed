@@ -38,4 +38,11 @@
 		<select id="soldOutItem" resultMap="prdResult">
 			SELECT * FROM product ORDER BY product_stock LIMIT 0,6
 		</select>
+		
+		<!-- 전체상품 뽑아오기 -->
+		<select id="viewAllPrd" resultMap="prdResult">
+			SELECT * FROM product
+		</select>
+		
+		
 	</mapper>

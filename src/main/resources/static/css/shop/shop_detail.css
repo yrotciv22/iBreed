@@ -1,0 +1,184 @@
+@charset "UTF-8";
+
+#main {
+	margin: 0 auto;
+	text-align: center;
+	width: 1280px;
+	height: 5000px;
+	background-color: pink;
+	padding-top: 25px;
+	box-sizing: border-box;
+}
+
+li {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+}
+
+#category {
+	width: 210px;
+	margin-left: 25px;
+	margin-right: 0px;
+	float: left;
+	border-top: 3px solid black;
+}
+
+#home {
+	width: 200px;
+	height: 200px;
+	/* background-color: blue; */
+	margin: 5px;
+}
+
+#categoryList {
+	border-top: 2px solid black;
+}
+
+#categoryList ul {
+	padding-left: 5px;
+}
+
+#categoryList a {
+	display: block;
+	text-align: left;
+}
+
+#categoryList li {
+	text-align: left;
+	line-height: 55px;
+	padding-left: 0px;
+	font-weight: 600;
+}
+
+#categoryList li:hover {
+	color: #53AFB2;
+}
+
+#content {
+	width: 1020px;
+	height: 5000px;
+	background-color: yellow;
+	float: right;
+}
+
+#topBox {
+	width: 1020px;
+	height: 1000px;
+	background: orange;
+	padding: 7px;
+}
+
+#imgBox {
+	width: 500px;
+	height: 785px;
+	background: red;
+	padding: 25px;
+	float: left;
+}
+
+#thumbmail {
+	width: 450px;
+	height: 450px;
+}
+
+#expBox {
+	width: 500px;
+	height: 785px;
+	background: white;
+	padding: 25px 0 0 10px;
+	float: right;
+	text-align: left;
+	line-height: 30px;
+}
+
+#expMiniBox {
+	float: left;
+}
+
+#expMiniBox h1 {
+	font-weight: 500;
+	font-size: 24px;
+	color: black;
+	line-height: 34px;
+	letter-spacing: -0.5px;
+	margin: 0 20px 0 0;
+}
+
+#total_review {
+	font-size: 14px;
+}
+
+#priceBox {
+	margin: 10px 0 10px 0;
+}
+
+#precent {
+	font-size: 22px;
+	font-weight: 800;
+	color: #6c7580;
+}
+
+#discount {
+	font-size: 33px;
+	font-weight: 800;
+	display: block;
+	padding-right: 4px;
+	font-size: 28px;
+}
+
+#price {
+	text-decoration: line-through;
+	font-size: 17px;
+	color: #a6a9ad;
+}
+
+#put_cart {
+	background: white;
+	border: 1px solid;
+	width: 200px;
+	height: 50px;
+	color: black;
+}
+
+#put_cart:hover {
+	filter: brightness(95%);
+}
+
+#buying {
+	background: #53afb2;
+	border: none;
+	width: 200px;
+	height: 50px;
+	color: white;
+}
+
+#buying:hover {
+	filter: brightness(95%);
+}
+
+#likes {
+	
+}
+
+#midBox {
+	width: 1020px;
+	height: 800px;
+	background-color: green;
+}
+
+#reviewBox {
+	width: 1020px;
+	height: 800px;
+	background-color: gray;
+}
+
+#bottomBox {
+	width: 1020px;
+	height: 800px;
+	background-color: purple;
+}

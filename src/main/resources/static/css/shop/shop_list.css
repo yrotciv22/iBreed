@@ -11,7 +11,7 @@ li {
 
 a {
 	text-decoration: none;
-	color:black;
+	color: black;
 	cursor: pointer;
 }
 
@@ -54,7 +54,7 @@ a {
 
 #categoryList a {
 	display: block;
-    text-align: left;
+	text-align: left;
 }
 
 #categoryList li {
@@ -77,122 +77,41 @@ a {
 	list-style-type: none;
 }
 
-#slidePanel {
-	width: 4080px;
-    height: 400px;
-    position: relative;
-}
-
-
-#slideShow {
-	width: 1020px;
-	height: 400px;
-	background-color: orange;
-	overflow: hidden;
-}
-
-.slideImage {
-	float: left;
-	width:1020px;
-	height: 400px;
-}
-
-#arrow-R, #arrow-L, #arrow2-R, #arrow2-L {
-	position: relative;
-    width: 60px;
-    opacity: 0%;
-    cursor: pointer;
-}
-
-#arrow-R {
-    top: -240px;
-    right: -400px;
-}
-
-#arrow-L {
-    top: -240px;
-    left: -400px;
-}
-
-#slideCtrl {
-	position: relative;
-    top: -120px;
-}
-
-.ctrlBtn {
-	width: 13px;
-	cursor: pointer;
-}
-
 .bigMenu {
 	font-size: 20px;
 	text-align: left;
 }
 
-/* #allView {
-	position: relative;
-    right: -460px;
-    top: -22px;
-} */
-
-#popularItem {
-	width: 810px;
-    height: 433px;
-    margin: 20px auto;
-    padding-top: 10px;
-    overflow: hidden;
+#orderBar {
+	margin: 5px 0 5px 0;
+	font-size: 12px;
 }
 
-#popularSlide {
-	width: 2970px;
-	height: 380px;
-	position: relative;
+#titleBox {
+	
 }
 
-.popularMenuBox {
-	width: 240px;
-	float: left;
-	margin: 20px 15px;
-	text-align: left;
-	cursor: pointer;
+#itemCount {
+	display: inline-block;
 }
 
-.P_likeCartBox {
-	position: relative;
-    width: 128px;
-    height: 58px;
-    top: -80px;
-    left: 58px;
-    visibility: hidden;
-}
-
-.P_likeCartBox img {
-	width: 50px;
-    margin: 5px;
-}
-
-.P_prdExplain {
-    margin-top: 50px;
-    text-align: left;
+#orderSelect {
+	display: inline-block;
+	margin-left: 607px;
 }
 
 .likeCartBox1 {
 	position: relative;
-    width: 128px;
-    height: 58px;
-    top: -80px;
-    left: 100px;
-    visibility: hidden;
+	width: 128px;
+	height: 58px;
+	top: -80px;
+	left: 45px;
+	visibility: hidden;
 }
 
 .likeCartBox1 img {
 	width: 50px;
-    margin: 5px;
-}
-
-.P_thumbnail, .P_thumbnailImg {
-	width: 240px;
-	height: 240px;
+	margin: 5px;
 }
 
 #ratingCtrl {
@@ -207,19 +126,19 @@ a {
 
 .bestIcon {
 	position: relative;
-    top: 10px;
-    left: -100px;
+	top: 10px;
+	left: -100px;
 }
 
 .tagIcon {
 	position: absolute;
-    width: 55px;
+	width: 55px;
 }
 
 .bestRating {
 	position: absolute;
-    left: 141px;
-    top: 9px;
+	left: 141px;
+	top: 9px;
 }
 
 .bestRating:last-child {
@@ -227,8 +146,8 @@ a {
 }
 
 .prdExplain {
-    margin-top: 50px;
-    text-align: left;
+	margin-top: 50px;
+	text-align: left;
 }
 
 .P_menuTitle {
@@ -269,10 +188,10 @@ a {
 
 .allViewBox {
 	width: 240px;
-    float: left;
-    margin: 20px 15px;
-    text-align: left;
-    cursor: pointer;
+	float: left;
+	margin: 20px 15px;
+	text-align: left;
+	cursor: pointer;
 }
 
 #arrowBox {
@@ -280,50 +199,44 @@ a {
 }
 
 #arrow2-R {
-    top: -305px;
-    right: -433px;
-    opacity: 100%;
+	top: -305px;
+	right: -433px;
+	opacity: 100%;
 }
 
 #arrow2-L {
-    top: -305px;
-    left: -433px;
-    opacity: 100%;
-    visibility: hidden;
+	top: -305px;
+	left: -433px;
+	opacity: 100%;
+	visibility: hidden;
 }
 
-#newItem, #bestItem, #soldOutItem {
+#ItemList, #bestItem, #soldOutItem {
 	margin: 20px 0;
 	height: 955px;
 }
 
-#bestItem ul,#newItem ul, #soldOutItem ul {
+#bestItem ul, #ItemList ul, #soldOutItem ul {
 	padding-left: 12px;
 }
 
 .menuBox {
 	float: left;
-	margin: 20px 3px;
+	margin: 20px 16px;
 	padding: 0 3px;
 	text-align: left;
 	cursor: pointer;
 }
 
 .thumbnail, .newThumbnail {
-	width: 319px;
-	height: 319px;
-}
-
-.P_titleBox {
-	width: 240px;
-    position: absolute;
-    text-align: left;
+	width: 210px;
+	height: 210px;
 }
 
 .titleBox {
-	width: 319px;
-    position: absolute;
-    text-align: left;
+	width: 210px;
+	position: absolute;
+	text-align: left;
 }
 
 .menuTitle {
@@ -357,7 +270,7 @@ a {
 }
 
 .menuBox p {
-	width: 320px;
+	width: 210px;
 	font-size: 13px;
 	text-overflow: ellipsis;
 	overflow: hidden;
