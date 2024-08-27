@@ -25,14 +25,11 @@ public interface IMydiary_diaryDAO {
     
     //일기리스트가져오기+페이지네이션
     List<Mydiary_diaryVO> getDiaryListByUserId(Map<String, Object> params);
+    
     int getTotalDiaryCountByUserId(@Param("userId") String userId);
     
     //공개에따라 일기보여주는거 
-    List<Mydiary_diaryVO> getDiaryListByUserIdAndVisibility(
-    	    @Param("userId") String userId, 
-    	    @Param("isOwner") boolean isOwner, 
-    	    @Param("isFriend") boolean isFriend
-    	);
+    List<Mydiary_diaryVO> getDiaryListByUserIdAndVisibility(Map<String, Object> params);
 //삭제
     void deleteDiary(int diaryPostId);
 

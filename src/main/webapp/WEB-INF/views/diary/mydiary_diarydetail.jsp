@@ -11,9 +11,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/mydiary_diarydetail.css' />" />
     <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 	<script src="<c:url value='/js/mydiary_diarydetail.js' />"></script>
-	<script>
-	
-	</script>
+	<meta name="user-id" content="${sessionScope.user_id}">
  
 </head>
 <body>
@@ -26,10 +24,12 @@
                 <h1>${diary.diaryCategory}</h1>
                 <div class="diary_meta">
                     <div class="diary_actions">
-                         <button class="editBtn" data-diary-id="${diary.diaryPostId}">수정</button>
-   						 <span>|</span>
-    					<button class="deleteBtn" data-diary-id="${diary.diaryPostId}">삭제</button>	
-                    </div>
+					    <c:if test="${sessionScope.user_id == diary.userId}">
+					        <button class="editBtn" data-diary-id="${diary.diaryPostId}">수정</button>
+					        <span>|</span>
+					        <button class="deleteBtn" data-diary-id="${diary.diaryPostId}">삭제</button>	
+					    </c:if>
+					</div>
                 </div>
             </div>
 

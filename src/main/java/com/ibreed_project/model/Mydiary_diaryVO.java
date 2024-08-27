@@ -20,7 +20,7 @@ public class Mydiary_diaryVO {
 	private String diaryCategory; // diary_category (ENUM('임신', '출산', '육아', '산모'))
 	private int commentCount; // comment_count
 	private boolean isDeleted; // is_deleted
-	 private String userId;
+	private String userId;
 	
 	    public String getUserId() {
 		return userId;
