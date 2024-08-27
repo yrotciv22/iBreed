@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.ibreed_project.model.Mydiary_diaryVO;
 import com.ibreed_project.service.Mydiary_diaryService;
 
@@ -38,7 +36,18 @@ public class MydiaryDiaryController {
     public String getDiaryList(@PathVariable("user_id") String userId,
                                @RequestParam(value = "page", defaultValue = "1") int page,
                                @RequestParam(value = "size", defaultValue = "7") int size,
-                               Model model) {
+                               Model model,HttpSession session) {
+        
+    	String currentUserId = (String) session.getAttribute("user_id");
+
+        // 사용자가 다이어리의 주인인지 여부를 확인
+        boolean isOwner = userId.equals(currentUserId);
+
+        // 사용자가 다이어리 주인의 친구인지 여부를 확인 (이 로직은 구현에 따라 다름)
+       // boolean isFriend = /* 여기에 친구 여부를 확인하는 로직을 추가하세요 */;
+
+    	
+    	
         int offset = (page - 1) * size;
         Map<String, Object> params = new HashMap<>();
         params.put("userId", userId);
@@ -59,12 +68,12 @@ public class MydiaryDiaryController {
         return "diary/mydiary_diary";
     }
 
-    // 일기 작성하고 데이터를 저장 (POST 요청)
+    // 일기 작성하고 데이터를 저장
     @PostMapping("/save")
     public String saveDiary(@PathVariable("user_id") String userId,
-                            Mydiary_diaryVO vo,
-                            HttpSession session,
-                            Model model) throws Exception {
+				                            Mydiary_diaryVO vo,
+				                            HttpSession session,
+				                            Model model) throws Exception {
 
         System.out.println("제대로 일기 작성 데이터로 진입했는지 확인");
 
@@ -75,7 +84,7 @@ public class MydiaryDiaryController {
         return "redirect:/mydiary/" + userId + "/diary";
     }
 
-    // 다이어리 상세보기 (GET 요청)
+    // 다이어리 상세보기 
     @GetMapping("/diarydetail/{diaryPostId}")
     public String viewDiaryDetail(@PathVariable("user_id") String userId,
                                   @PathVariable("diaryPostId") int diaryPostId,
@@ -107,15 +116,12 @@ public class MydiaryDiaryController {
         return "diary/mydiary_diarywrite"; // 일기 작성 JSP 페이지로 이동 (수정 모드)
     }
     // 일기 삭제 메서드 
-    @PostMapping("/diarydelete/{diaryPostId}")
-    @ResponseBody
+    @GetMapping("/diarydelete/{diaryPostId}")
     public String deleteDiary(@PathVariable("user_id") String userId,
-                              					@PathVariable("diaryPostId") int diaryPostId) {
-        try {
-            mydiary_diaryService.deleteDiary(diaryPostId);
-            return "success";
-        } catch (Exception e) {
-            return "error";
-        }
+                              				@PathVariable("diaryPostId") int diaryPostId) {
+        mydiary_diaryService.deleteDiary(diaryPostId);
+        
+        // 삭제 후 일기 리스트 페이지로 리다이렉트
+        return "redirect:/mydiary/" + userId + "/diary";
     }
 }

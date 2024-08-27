@@ -15,7 +15,7 @@ public interface IMydiary_diaryService {
 	    // 전체 일기 개수 가져오기:페이지네이션해야해서필요허ㅏㅁ
 	    int getTotalDiaryCountByUserId(String userId);
 	    //공갸ㅐ여부
-	    List<Mydiary_diaryVO> getDiaryListByUserIdAndVisibility(String userId, boolean isOwner, boolean isFriend);
+	    List<Mydiary_diaryVO> getDiaryListByUserIdAndVisibility(String diaryOwnerId, String currentUserId, int offset, int size);
 	 
 	    // 일기 삭제 
 	    void deleteDiary(int diaryPostId);
