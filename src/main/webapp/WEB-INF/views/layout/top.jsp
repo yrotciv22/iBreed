@@ -20,7 +20,7 @@
 				</div>
 				
 				<div>
-					<a href="<c:url value='/'/>"> 
+					<a href="<c:url value='/shop/cart'/>"> 
 					<img class="cart"
 						src="<c:url value='/image/cart.png'/>">
 					</a>

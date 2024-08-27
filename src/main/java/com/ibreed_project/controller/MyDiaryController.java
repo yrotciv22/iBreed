@@ -1,6 +1,5 @@
 package com.ibreed_project.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ibreed_project.model.CalendarVO;
 import com.ibreed_project.model.MydiaryVO;
 import com.ibreed_project.model.Mydiary_diaryVO;
+import com.ibreed_project.service.CalendarService;
 import com.ibreed_project.service.MydiaryService;
 import com.ibreed_project.service.Mydiary_diaryService;
 
@@ -25,6 +26,9 @@ public class MyDiaryController {
 	@Autowired
 	Mydiary_diaryService mydiary_diaryService;
 
+	@Autowired
+	CalendarService calendarService;
+	
 	/* 마이 다이어리 <홈>(메인) 예은 */
 	@RequestMapping("/mydiary/{user_id}/home")
 	public String view_mydiary_home(@PathVariable("user_id") String user_id, Model model) {
@@ -69,10 +73,22 @@ public class MyDiaryController {
 	}
 
 	/* <캘린더> 승우 */
+	/*
+	 * @RequestMapping("/mydiary/{user_id}/calendar") public String
+	 * view_mydiary_calendar(@PathVariable("user_id") String user_id) { return
+	 * "diary/mydiary_calendar"; }
+	 */
 	@RequestMapping("/mydiary/{user_id}/calendar")
-	public String view_mydiary_calendar(@PathVariable("user_id") String user_id) {
+	public String view_mydiary_calendar(@PathVariable("user_id") String user_id,
+			Model model) {
+		
+		List<CalendarVO> calList = calendarService.getAllEvents(user_id);
+		model.addAttribute("calList", calList);
+		
 		return "diary/mydiary_calendar";
 	}
+	
+	
 
 	/*
 	 * <친구> 예은

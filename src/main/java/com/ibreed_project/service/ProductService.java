@@ -35,4 +35,9 @@ public class ProductService implements IProductService {
 	public ArrayList<ProductVO> soldOutItem() {
 		return dao.soldOutItem();
 	}
+	
+	@Override
+	public ArrayList<ProductVO> viewAllPrd() {
+		return dao.viewAllPrd();
+	}
 }

@@ -1,18 +1,24 @@
 package com.ibreed_project.service;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ibreed_project.dao.IFriendDAO;
 import com.ibreed_project.dao.IMydiary_diaryDAO;
 import com.ibreed_project.model.Mydiary_diaryVO;
+
+
 @Service
 public class Mydiary_diaryService implements IMydiary_diaryService {
 	
 	@Autowired
 	    private IMydiary_diaryDAO mydiary_diaryDAO;
-	
+	  @Autowired
+	    private IFriendDAO friendDAO;
+	  
 	@Override
 	public void saveDiary(Mydiary_diaryVO diary) {
 		if (diary.getDiaryPostId() > 0) {
@@ -35,11 +41,21 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 
 	
 	
-	@Override
-	public List<Mydiary_diaryVO> getDiaryListByUserIdAndVisibility(String userId, boolean isOwner, boolean isFriend) {
-		// TODO Auto-generated method stub 공개여부
-		return  mydiary_diaryDAO.getDiaryListByUserIdAndVisibility(userId, isOwner, isFriend);
-	}
+	   // 공개여부
+	   @Override
+	   public List<Mydiary_diaryVO> getDiaryListByUserIdAndVisibility(String diaryOwnerId, String currentUserId, int offset, int size) {
+		    boolean isOwner = diaryOwnerId.equals(currentUserId);
+		    boolean isFriend = friendDAO.getFriendInfo(currentUserId, diaryOwnerId) != null;
+
+		    Map<String, Object> params = new HashMap<>();
+		    params.put("userId", diaryOwnerId);
+		    params.put("isOwner", isOwner);
+		    params.put("isFriend", isFriend);
+		    params.put("offset", offset);
+		    params.put("size", size);
+
+		    return mydiary_diaryDAO.getDiaryListByUserIdAndVisibility(params);
+		}
 
 	 @Override
 	    public List<Mydiary_diaryVO> getDiaryListByUserId(Map<String, Object> params) {
