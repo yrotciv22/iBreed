@@ -7,17 +7,15 @@
 
 <head>
 <meta charset="UTF-8">
-<title>iBreed Mypage Wishlist</title>
+<title>iBreed</title>
 
 <!-- 공통 layout: head.jsp -->
 <c:import url="/WEB-INF/views/layout/head.jsp" />
 
 <link rel="stylesheet" type="text/css"
-	href="<c:url value='/css/mypage/mypage_layout.css'/>" />
-
-<!-- 여기에 css, js 파일 링크를 작성하세요. -->
-<link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/mypage/wishlist.css'/>" />
+<script src="<c:url value='/js/wishlist.js'/>" defer></script>
+
 </head>
 
 
@@ -27,13 +25,52 @@
 		<!-- 공통 layout: top.jsp -->
 		<c:import url="/WEB-INF/views/layout/top.jsp" />
 
-		<!-- 공통 마이페이지 mypage_layout.jsp -->
-		<c:import url="/WEB-INF/views/mypage/mypage_layout.jsp" />
 
-		<div class="contents_wrap">
+		<!-- 본문 -->
+		<div class="title">My Page</div>
 
+		<div class="top_wrap">
+			<div class="user_id">
+				<span>맘편한세상</span> 님
+			</div>
+			<div class="top_box_wrap">
+				<div class="top_box">회원 등급</div>
+				<div class="top_box">
+					총 작성한 <br />다이어리
+				</div>
+				<div class="top_box">
+					다이어리<br /> 꾸준히<br /> 작성한지 <br />3일
+				</div>
+				<div class="top_box">총 주문 횟수</div>
+				<div class="top_box">
+					사용가능 <br /> 쿠폰 >
+				</div>
+				<div class="top_box">마일리지 ></div>
+			</div>
 
-			<!-- 아래부터 본문 작성 -->
+		</div>
+
+		<div class="row_wrap">
+			<div class="left_sidebar">
+
+				<div class="nav_label">나의 쇼핑 활동</div>
+				<a href="<c:url value=''/>"><div class="nav_menu">주문/배송 조회</div></a>
+				<a href="<c:url value=''/>"><div class="nav_menu">취소/교환/반품
+						내역</div></a> <a href="<c:url value=''/>"><div class="nav_menu">찜리스트</div></a>
+				<a href="<c:url value=''/>"><div class="nav_menu">최근 본 상품</div></a>
+				<a href="<c:url value=''/>"><div class="nav_menu">리뷰 내역</div></a>
+
+				<div class="nav_label">나의 정보 관리</div>
+
+				<a href="<c:url value=''/>"><div class="nav_menu">회원정보 수정</div></a>
+				<a href="<c:url value=''/>"><div class="nav_menu">알림 설정</div></a>
+
+				<div class="nav_label">고객센터</div>
+			</div>
+
+			<div class="contents_wrap">
+			<!-- 위까지 레이아웃  -->
+			
 				<div class="sub_title">
 					위시리스트&nbsp; <span>(총 <span>10<span>개)</span>
 				</div>
@@ -143,14 +180,16 @@
 
 
 				</div>
-
-
-			<!-- 본문작성 끝 -->
+				
+			</div><!-- 우측 콘텐츠랩 끝 -->
 		</div>
-	</div>
 
-	<!-- 공통 layout: botton.jsp -->
-	<c:import url="/WEB-INF/views/layout/bottom.jsp" />
+		<!-- 본문 끝 -->
+
+
+		<!-- 공통 layout: botton.jsp -->
+		<c:import url="/WEB-INF/views/layout/bottom.jsp" />
+
 
 	</div>
 </body>
