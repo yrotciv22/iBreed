@@ -51,7 +51,7 @@ public class ShopController {
 	public String viewOrderConfirmPage() {
 
 		return "shop/order_confirm";
-	
+	}
 	@RequestMapping("shop_detail")
 	public String detailView() {
 		return "shop/shop_detail";

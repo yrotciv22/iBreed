@@ -24,7 +24,12 @@
 	<div class="diary_wrap">
 		<input type="hidden" name="userId" value="<%= userId %>">
 		<div class="diary_content">
-		 <form id="diary-form" action="<%= request.getContextPath() %>/mydiary/<%= userId %>/save" method="post" enctype="multipart/form-data" class="diary_form">
+
+
+		 <form id="diary-updateform" action="<%= request.getContextPath() %>/mydiary/<%= userId %>/save" method="post" enctype="multipart/form-data" class="diary_updateform">
+
+                <!-- Hidden field for diaryPostId, used during editing -->
+                <input type="hidden" name="diaryPostId" value="${diary != null ? diary.diaryPostId : 0}" />
                 <div>
                     <label for="category">카테고리</label>
                     <select id="category" name="diaryCategory">
@@ -72,7 +77,7 @@
 
                 <div class="diary_buttons">
 				    <div class="diary_buttons-left">
-				        <input type="submit" class="submit-button" value="등록하기">
+				        <input type="submit" class="submit-button" value="수정하기">
 				    </div>
 				    <div class="diary_buttons-right">
 				        <button type="button" class="cancel-button" onclick="location.href='<%= request.getContextPath() %>/mydiary/${userId}/diary'">목록으로</button>
