@@ -16,9 +16,10 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 	
 	@Autowired
 	    private IMydiary_diaryDAO mydiary_diaryDAO;
-	  @Autowired
-	    private IFriendDAO friendDAO;
+    @Autowired
+    	private IFriendDAO friendDAO;
 	  
+    //일기작성후저장
 	@Override
 	public void saveDiary(Mydiary_diaryVO diary) {
 		if (diary.getDiaryPostId() > 0) {
@@ -29,11 +30,12 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 	        mydiary_diaryDAO.insertDiary(diary);
 	    }
 	}
-
+	//일기포스트번호로 
 	@Override
 	public Mydiary_diaryVO getDiary(int diaryPostId) {
 		 return mydiary_diaryDAO.getDiaryById(diaryPostId);
 	}
+		//일기유저아이디조회로 
 	   @Override
 	   public int getDiaryIdByUserId(String userId) {
 		    return mydiary_diaryDAO.findDiaryIdByUserId(userId);
@@ -41,40 +43,38 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 
 	
 	
-	   // 공개여부
 	   @Override
-	   public List<Mydiary_diaryVO> getDiaryListByUserIdAndVisibility(String diaryOwnerId, String currentUserId, int offset, int size) {
-		    boolean isOwner = diaryOwnerId.equals(currentUserId);
-		    boolean isFriend = friendDAO.getFriendInfo(currentUserId, diaryOwnerId) != null;
+	   public List<Mydiary_diaryVO> getDiaryListByUserIdAndVisibility(HashMap<String, Object> params ) {
+	       System.out.println("getDiaryListByUserIdAndVisibility 메서드 진입");
 
-		    Map<String, Object> params = new HashMap<>();
-		    params.put("userId", diaryOwnerId);
-		    params.put("isOwner", isOwner);
-		    params.put("isFriend", isFriend);
-		    params.put("offset", offset);
-		    params.put("size", size);
 
-		    return mydiary_diaryDAO.getDiaryListByUserIdAndVisibility(params);
-		}
+	       // 최종적으로 전달되는 파라미터를 확인하는 로그 추가
+	       System.out.println("파라미터 맵: " + params.get("diary_id"));
 
+	       // DAO 호출
+	       //return mydiary_diaryDAO.getDiaryListByUserIdAndVisibility(params);
+	       return mydiary_diaryDAO.getDiaryListByUserIdAndVisibility(params);
+	   }
+	   //일기리스트
 	 @Override
 	    public List<Mydiary_diaryVO> getDiaryListByUserId(Map<String, Object> params) {
+	    	
 	        return mydiary_diaryDAO.getDiaryListByUserId(params);
 	    }
-
+	    //일기총갯수(페이지네이션)
 	@Override
 	public int getTotalDiaryCountByUserId(String userId) {
 		// TODO Auto-generated method stub
 		return mydiary_diaryDAO.getTotalDiaryCountByUserId(userId);
 	}
-
+	//삭제
 	@Override
 	public void deleteDiary(int diaryPostId) {
 		// TODO Auto-generated method stub
 		 mydiary_diaryDAO.deleteDiary(diaryPostId);
 		
 	}
-
+	//수정
 	@Override
 	public void updateDiary(Mydiary_diaryVO vo) {
 		// TODO Auto-generated method stub

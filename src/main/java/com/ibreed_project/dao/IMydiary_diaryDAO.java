@@ -30,6 +30,8 @@ public interface IMydiary_diaryDAO {
     
     //공개에따라 일기보여주는거 
     List<Mydiary_diaryVO> getDiaryListByUserIdAndVisibility(Map<String, Object> params);
+  //  List<Mydiary_diaryVO> getDiaryListByUserIdAndVisibility(@Param("userId") String userId, @Param("isOwner") boolean isOwner, @Param("isFriend") boolean isFriend, @Param("offset") int offset, @Param("size") int size);
+
 //삭제
     void deleteDiary(int diaryPostId);
 

@@ -38,8 +38,8 @@ public class AlbumController {
 
 	@RequestMapping("/mydiary/{user_id}/detailAlbum/{album_id}")
 	public String detailAlbum(@PathVariable("album_id") String album_id,
-							  @PathVariable("user_id") String user_id,
-							  Model model) {
+									  @PathVariable("user_id") String user_id,
+									  Model model) {
 		
 		String album_name= albumService.getAlbumName(album_id);
 		ArrayList<AlbumVO> photoList = albumService.selectPhoto(album_id);

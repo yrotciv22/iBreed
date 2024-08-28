@@ -11,9 +11,12 @@
 	href="<c:url value='/css/diary/mydiary_layout.css' />" />
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/diary/mydiary_diary.css' />" />
-<script>
+<%-- <script>
         <%String userId = (String) session.getAttribute("user_id");%>
         console.log("제대로 유저 id 가져오는거 맞습니까? <%=userId%>");
+</script> --%>
+<script>
+    console.log("User ID in JSP: ${user_id}");
 </script>
 </head>
 <body>
@@ -44,22 +47,20 @@
 											pattern="yyyy-MM-dd" /></td>
 									<td>${diary.diaryCategory}</td>
 									<td>
-									<a href="<%= request.getContextPath() %>/mydiary/<%= userId %>/diarydetail/${diary.diaryPostId}">
+									<a href="<c:url value='/mydiary/${user_id}/diarydetail/${diary.diaryPostId}'/>">
 											${diary.diaryTitle} </a></td>
+											
 									<td>${diary.diaryViews}</td>
 									
 								    <td>
-								        <!-- JSP 표현식으로 sessionScope.user_id와 diary.userId 출력 -->
-<%-- 								  sessionScope.user_id: <%= session.getAttribute("user_id") %>, diary.userId: ${diary.userId}
- --%>										<!-- userId를 출력하여 올바르게 가져오고 있는지 확인 -->
-											UserId: ${diary.userId} <br/>
+								        
 								        <!-- 공개 여부는 주인에게만 보임 -->
-								        <c:if test="${sessionScope.user_id ==diary.userId}">
-								            ${diary.diaryPublic}
-								        </c:if>
-								        <c:if test="${sessionScope.user_id != diary.userId}">
-								           <!-- 또는 빈 칸 -->
-								        </c:if>
+								        <c:if test="${user_id == diary.userId}">
+										    ${diary.diaryPublic}
+										</c:if>
+										<c:if test="${user_id != diary.userId}">
+										   <!-- 또는 빈 칸 -->
+										</c:if>
 								    </td>		
 								</tr>
 							</c:forEach>
