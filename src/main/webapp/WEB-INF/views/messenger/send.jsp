@@ -52,6 +52,8 @@
     <script type="text/javascript">
         var senderNickname = '${sessionScope.user_nickname}'; // 세션에서 보낸 사람 닉네임 가져오기
 
+        var recieveUserId; // 이 변수에 서버로부터 받은 userId를 저장
+
         function checkNickname() {
             var receiverNickname = $('#receiverNickname').val();
 
@@ -65,7 +67,16 @@
                 type: 'GET',
                 data: { nickname: receiverNickname },
                 success: function(response) {
-                    $('#nicknameCheckResult').text(response);
+                    if (response !== 'notExists') {
+                        recieveUserId = response; // 서버에서 받은 userId를 recieveUserId 변수에 저장
+                        console.log("닉네임 체크하면서 가져온 id : " + recieveUserId);
+                        $('#nicknameCheckResult').text('사용 가능한 닉네임입니다.');
+                        $('#receiverId').val(recieveUserId);
+                    } else {
+                        $('#nicknameCheckResult').text('존재하지 않는 닉네임입니다.');
+                        recieveUserId = null; // 존재하지 않는 닉네임이면 recieveUserId를 null로 설정
+                        $('#receiverId').val(recieveUserId);
+                    }
                 },
                 error: function() {
                     $('#nicknameCheckResult').text('오류가 발생했습니다.');
@@ -82,6 +93,7 @@
     <span id="nicknameCheckResult" class="nickname-check-result"></span>
     <input type="text" name="msgSubject" placeholder="제목" required>
     <textarea name="msgContent" placeholder="내용" required></textarea>
+    <input type="hidden" id="receiverId" name="receiverId">
     <button type="submit">쪽지 보내기</button>
 </form>
 
