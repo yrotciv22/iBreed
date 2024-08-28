@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
@@ -8,56 +8,55 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>iBreed Main</title>
+<meta charset="UTF-8">
+<title>iBreed Main</title>
 
 
-    <!-- 공통 layout: head.jsp -->
-    <c:import url="/WEB-INF/views/layout/head.jsp" />
+<!-- 공통 layout: head.jsp -->
+<c:import url="/WEB-INF/views/layout/head.jsp" />
 
-    <link rel="stylesheet" type="text/css"
-          href="<c:url value='/css/index.css'/>" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/index.css'/>" />
 
-    <link rel="stylesheet" type="text/css"
-          href="<c:url value='/css/chatbot/chatbot.css'/>" />
-
-
-    <link rel="stylesheet" type="text/css"
-          href="<c:url value='/css/index.css'/>" />
-    <script src="<c:url value='/js/index.js'/>" defer></script>
-
-    <script>
-        const userId = "${sessionScope.user_id}";
-        function openMessenger() {
-            window.open('<c:url value="/messenger"/>', 'Messenger',
-                'width=800,height=600');
-        }
-    </script>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/chatbot/chatbot.css'/>" />
 
 
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/index.css'/>" />
+<script src="<c:url value='/js/index.js'/>" defer></script>
+
+<script>
+	const userId = "${sessionScope.user_id}";
+	function openMessenger() {
+		window.open('<c:url value="/messenger"/>', 'Messenger',
+				'width=800,height=600');
+	}
+</script>
 
 
 
-    <script src="<c:url value='/js/index.js'/>" defer></script>
 
-    <%--    챗봇 시스템 추가--%>
-    <script>
-        var saveChatDataUrl = "${pageContext.request.contextPath}/saveChatData";
-        var clearChatbotSessionUrl = "${pageContext.request.contextPath}/clearChatbotSession";
-        var getChatDataUrl = "${pageContext.request.contextPath}/getChatData"; // 추가된 부분
-        var saveSelectedOptionUrl = "${pageContext.request.contextPath}/saveSelectedOption"; // 추가된 부분
-        var getUserData = "${pageContext.request.contextPath}/getUserData";
-        var saveAiNameUrl = "${pageContext.request.contextPath}/saveAiNameUrl";
-        var getAiNameUrl = "${pageContext.request.contextPath}/getAiNameUrl";
-    </script>
 
-    <script src="<c:url value='/js/chatbot/chatbot.js'/>" defer></script>
+<script src="<c:url value='/js/index.js'/>" defer></script>
 
-    <%--    챗봇 시스템 추가 끝--%>
+<%--    챗봇 시스템 추가--%>
+<script>
+	var saveChatDataUrl = "${pageContext.request.contextPath}/saveChatData";
+	var clearChatbotSessionUrl = "${pageContext.request.contextPath}/clearChatbotSession";
+	var getChatDataUrl = "${pageContext.request.contextPath}/getChatData"; // 추가된 부분
+	var saveSelectedOptionUrl = "${pageContext.request.contextPath}/saveSelectedOption"; // 추가된 부분
+	var getUserData = "${pageContext.request.contextPath}/getUserData";
+	var saveAiNameUrl = "${pageContext.request.contextPath}/saveAiNameUrl";
+	var getAiNameUrl = "${pageContext.request.contextPath}/getAiNameUrl";
+</script>
+
+<script src="<c:url value='/js/chatbot/chatbot.js'/>" defer></script>
+
+<%--    챗봇 시스템 추가 끝--%>
 </head>
 
 <body>
-
 
 <div class="all">
 
@@ -295,52 +294,55 @@
                     <span>아이브리드 마켓</span> <img
                         src="https://images.unsplash.com/photo-1559659133-8781d8f3b673?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
                     <!-- 					<img src="https://images.unsplash.com/photo-1546074176-abecd33d2b53?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
+
 -->
-                </div></a> <a href="<c:url value='/#'/>"><div class="main_event border">
-                <span> Event 1</span> <img class="event1_img"
-                                           src="https://plus.unsplash.com/premium_photo-1664453890782-2807855161fa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-            </div></a> <a href="<c:url value='/#'/>"><div class="main_event border">
-                <span>Event 2</span>
-                <!-- 						<img class="event2_img" src="https://images.unsplash.com/photo-1559659133-8781d8f3b673?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
+						</div></a> <a href="<c:url value='/#'/>"><div class="main_event border">
+							<span> Event 1</span> <img class="event1_img"
+								src="https://plus.unsplash.com/premium_photo-1664453890782-2807855161fa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+						</div></a> <a href="<c:url value='/#'/>"><div class="main_event border">
+							<span>Event 2</span>
+							<!-- 						<img class="event2_img" src="https://images.unsplash.com/photo-1559659133-8781d8f3b673?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
 -->
-                <img class="event2_img"
-                     src="https://images.unsplash.com/photo-1546074176-abecd33d2b53?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+							<img class="event2_img"
+								src="https://images.unsplash.com/photo-1546074176-abecd33d2b53?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
 
-            </div> </a>
+						</div> </a>
 
-            </div>
-
-
-            <!-- 챗봇 영역 -->
-            <div id="chatbot_container">
-                <div id="chat_window">
-                    <div id="chat_header">
-                        <span>챗봇</span>
-                        <button id="close_chatbot">X</button>
-                    </div>
-                    <div id="chat_content"></div>
-                    <div id="option_buttons">
-                        <button id="option1">진료과목 상담</button>
-                        <button id="option2">AI 친구</button>
-                        <button id="option3">AI 상담사</button>
-                    </div>
-                    <button id="end_chat" style="display: none;">대화 종료</button>
-                    <input type="text" id="chat_input" placeholder="메시지를 입력하세요..."
-                           style="display: none;" />
-                </div>
-            </div>
-
-            <div id="chatbot_btn">챗봇</div>
-            <div id="to_top_Btn">Top</div>
-        </div>
+				</div>
 
 
-    </div>
-    <!-- 메인 끝 -->
+				<!-- 챗봇 영역 -->
+				<div id="chatbot_container">
+					<div id="chat_window">
+						<div id="chat_header">
+							<span>챗봇</span>
+							<button id="close_chatbot">X</button>
+						</div>
+						<div id="chat_content"></div>
+						<div id="option_buttons">
+							<button id="option1">진료과목 상담</button>
+							<button id="option2">AI 친구</button>
+							<button id="option3">AI 상담사</button>
+						</div>
+						<button id="end_chat" style="display: none;">대화 종료</button>
+						<input type="text" id="chat_input" placeholder="메시지를 입력하세요..."
+							style="display: none;" />
+					</div>
+				</div>
+
+				<div id="chatbot_btn">챗봇</div>
+				<div id="to_top_Btn">Top</div>
+			</div>
+
+
+		</div>
+		<!-- 메인 끝 -->
+
 
     <!-- 공통 layout: botton.jsp -->
     <c:import url="/WEB-INF/views/layout/bottom.jsp" />
 
-</div>
+
+	</div>
 </body>
 </html>
