@@ -51,7 +51,7 @@
 
 				<div class="cart_list">
 
-					<!-- 아이템 한개 -->
+					<!-- 아이템 한개 1 --> 
 					<div class="one_item_wrap">
 						<label class="custom-checkbox"> <input type="checkbox" />
 							<span class="checkmark"></span>
@@ -60,8 +60,8 @@
 							<img
 								src="<c:url value='https://shop-phinf.pstatic.net/20230407_256/1680857947735kpx1f_JPEG/81993836376833409_913438958.jpg?type=f296_296'/>" />
 						</div>
-						<div>
-							<div class="column_wrap" style="width: 560px">
+						<div style="height:100%;">
+							<div class="column_wrap"  style="width:530px;">
 								<div class="prd_name">상품명</div>
 								<div class="one_prd_price">
 									<span>10,000</span><span>원</span>
@@ -71,6 +71,7 @@
 									<div class="minus_btn">-</div>
 									<div class="total_count">10</div>
 									<div class="plus_btn">+</div>
+									<div>변경</div>
 								</div>
 							</div>
 						</div>
@@ -87,7 +88,8 @@
 					</div>
 					<!-- 아이템 한개 끝 -->
 
-					<!-- 아이템 한개 -->
+				
+				<!-- 아이템 한개 2 --> 
 					<div class="one_item_wrap">
 						<label class="custom-checkbox"> <input type="checkbox" />
 							<span class="checkmark"></span>
@@ -96,16 +98,18 @@
 							<img
 								src="<c:url value='https://shop-phinf.pstatic.net/20231127_19/1701065544326boLC2_JPEG/5464822140429117_1991374843.jpg?type=f296_296'/>" />
 						</div>
-						<div>
-							<div class="column_wrap" style="width: 560px">
+						<div style="height:100%;">
+							<div class="column_wrap"  style="width:530px;">
 								<div class="prd_name">상품명</div>
 								<div class="one_prd_price">
 									<span>10,000</span><span>원</span>
+									<div class="prd_option">옵션 : [색상]그레이</div>
 								</div>
 								<div class="prd_count_btn_box">
 									<div class="minus_btn">-</div>
 									<div class="total_count">10</div>
 									<div class="plus_btn">+</div>
+									<div>변경</div>
 								</div>
 							</div>
 						</div>
@@ -121,8 +125,8 @@
 						</div>
 					</div>
 					<!-- 아이템 한개 끝 -->
-
-					<!-- 아이템 한개 -->
+					
+					<!-- 아이템 한개 3 --> 
 					<div class="one_item_wrap">
 						<label class="custom-checkbox"> <input type="checkbox" />
 							<span class="checkmark"></span>
@@ -131,16 +135,18 @@
 							<img
 								src="<c:url value='https://shop-phinf.pstatic.net/20230517_289/1684295649753oyO3N_JPEG/1967134170283075_573486240.jpg?type=f296_296'/>" />
 						</div>
-						<div>
-							<div class="column_wrap" style="width: 560px">
+						<div style="height:100%;">
+							<div class="column_wrap"  style="width:530px;">
 								<div class="prd_name">상품명</div>
 								<div class="one_prd_price">
 									<span>10,000</span><span>원</span>
+									<div class="prd_option">옵션 : [색상]그레이</div>
 								</div>
 								<div class="prd_count_btn_box">
 									<div class="minus_btn">-</div>
 									<div class="total_count">10</div>
 									<div class="plus_btn">+</div>
+									<div>변경</div>
 								</div>
 							</div>
 						</div>
@@ -157,8 +163,7 @@
 					</div>
 					<!-- 아이템 한개 끝 -->
 
-
-					<!-- 아이템 한개 -->
+						<!-- 아이템 한개 4 --> 
 					<div class="one_item_wrap">
 						<label class="custom-checkbox"> <input type="checkbox" />
 							<span class="checkmark"></span>
@@ -167,16 +172,18 @@
 							<img
 								src="<c:url value='https://shop-phinf.pstatic.net/20230915_282/1694763927446sNXFk_JPEG/444711629155010_1834854939.jpg?type=f296_296'/>" />
 						</div>
-						<div>
-							<div class="column_wrap" style="width: 560px">
+						<div style="height:100%;">
+							<div class="column_wrap"  style="width:530px;">
 								<div class="prd_name">상품명</div>
 								<div class="one_prd_price">
 									<span>10,000</span><span>원</span>
+									<div class="prd_option">옵션 : [색상]그레이</div>
 								</div>
 								<div class="prd_count_btn_box">
 									<div class="minus_btn">-</div>
 									<div class="total_count">10</div>
 									<div class="plus_btn">+</div>
+									<div>변경</div>
 								</div>
 							</div>
 						</div>
@@ -193,7 +200,8 @@
 					</div>
 					<!-- 아이템 한개 끝 -->
 
-					<!-- 아이템 한개 -->
+
+						<!-- 아이템 한개 5 --> 
 					<div class="one_item_wrap">
 						<label class="custom-checkbox"> <input type="checkbox" />
 							<span class="checkmark"></span>
@@ -202,16 +210,18 @@
 							<img
 								src="<c:url value='https://shop-phinf.pstatic.net/20230407_256/1680857947735kpx1f_JPEG/81993836376833409_913438958.jpg?type=f296_296'/>" />
 						</div>
-						<div>
-							<div class="column_wrap" style="width: 560px">
+						<div style="height:100%;">
+							<div class="column_wrap"  style="width:530px;">
 								<div class="prd_name">상품명</div>
 								<div class="one_prd_price">
 									<span>10,000</span><span>원</span>
+									<div class="prd_option">옵션 : [색상]그레이</div>
 								</div>
 								<div class="prd_count_btn_box">
 									<div class="minus_btn">-</div>
 									<div class="total_count">10</div>
 									<div class="plus_btn">+</div>
+									<div>변경</div>
 								</div>
 							</div>
 						</div>
@@ -228,40 +238,7 @@
 					</div>
 					<!-- 아이템 한개 끝 -->
 
-					<!-- 아이템 한개 -->
-					<div class="one_item_wrap">
-						<label class="custom-checkbox"> <input type="checkbox" />
-							<span class="checkmark"></span>
-						</label>
-						<div class="prd_image">
-							<img
-								src="<c:url value='https://shop-phinf.pstatic.net/20240131_231/1706687236003M0sfD_JPEG/107823124700504603_304367604.jpg?type=f296_296'/>" />
-						</div>
-						<div>
-							<div class="column_wrap" style="width: 560px">
-								<div class="prd_name">상품명</div>
-								<div class="one_prd_price">
-									<span>10,000</span><span>원</span>
-								</div>
-								<div class="prd_count_btn_box">
-									<div class="minus_btn">-</div>
-									<div class="total_count">10</div>
-									<div class="plus_btn">+</div>
-								</div>
-							</div>
-						</div>
-						<div class="column_wrap" style="align-items: flex-end">
-							<div class="prd_delete_btn">X</div>
-							<div class="all_prd_price">
-								<span>20,000</span><span>원</span>
-							</div>
-							<div>
-								<div class="buy_now_btn">바로구매</div>
-
-							</div>
-						</div>
-					</div>
-					<!-- 아이템 한개 끝 -->
+					
 
 
 				</div>
@@ -270,7 +247,7 @@
 			<div class="right_box">
 				<div class="payment_box">
 
-					<div class="payment_box_title">결제 상세 내역</div>
+					<div class="payment_box_title">주문금액</div>
 					<div class="total_prd_amount">
 						<div>총 상품금액</div>
 						<div>

@@ -4,6 +4,39 @@
  
  $(document).ready(function(){
  
+ // 메인 배너 슬라이드
+ 
+	let firstIndex = 0;
+	let imgWidth = 866;
+	
+	function moveSlide(index) {
+		firstIndex = index;
+		
+		let moveLeft = -(index * imgWidth);
+		$('#main_banner').animate({'left':moveLeft}, 'slow');
+		
+		$('.circleBtn').attr('src', "../image/hollow_circle.png");
+		changeCircleBtn(selectedIndex);
+	}
+	
+	function changeCircleBtn(selectedIndex) { 
+		let circleBtn = $('.circleBtn');
+		
+		circleBtn[selectedIndex].src = '../image/circle.png';
+	}
+
+	$('.circleBtn').each(function (selectedIndex) {
+		$(this).on('click', function() {
+			moveSlide(selectedIndex);
+		});
+	});
+
+
+	
+	
+	
+ 
+ // 슬라이드 끝
  
   $(".main_diary_btn").on("click", function openMyDiary() {
    console.log("openMyDiary");
