@@ -39,6 +39,11 @@
                 (SELECT user_id FROM user WHERE user_nickname = #{receiverNickname}));
     </insert>
 
+    <insert id="insertNoitification">
+        INSERT INTO notification (notice_diary, notice_calender, notice_shop, notice_message, user_id, noti_time)
+        VALUES (0, 0, 0, 1, #{receiverId}, #{msgTimestamp});
+    </insert>
+
     <update id="markAsRead">
         UPDATE messages
         SET msg_is_read = true
@@ -51,8 +56,8 @@
     </delete>
 
     <!-- 닉네임 확인 쿼리 추가 -->
-    <select id="countByNickname" resultType="int">
-        SELECT COUNT(*) FROM user WHERE user_nickname = #{nickname}
+    <select id="countByNickname" resultType="String">
+        SELECT user_id FROM user WHERE user_nickname = #{nickname}
     </select>
 
 </mapper>

@@ -1,5 +1,6 @@
 package com.ibreed_project.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,13 @@ public class MessengerService implements IMessengerService {
 
     // 닉네임 확인 메서드 구현
     @Override
-    public boolean checkNicknameExists(String nickname) {
-        return messengerDAO.countByNickname(nickname) > 0;
+    public String checkNicknameExists(String nickname) {
+        return messengerDAO.countByNickname(nickname);
+    }
+
+    @Override
+    public void insertNoitification(String receiverId, Timestamp msgTimestamp) {
+        System.out.println("reciverId: " + receiverId);
+        messengerDAO.insertNoitification(receiverId, msgTimestamp);
     }
 }
