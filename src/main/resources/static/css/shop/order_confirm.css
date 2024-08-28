@@ -16,7 +16,8 @@
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	height: 140px;
+	height: 160px;
+	font-family: "JalnanGothic";
 }
 
 .shopping_title span {
@@ -25,7 +26,7 @@
 
 .shopping_title div {
 	font-size: 28px;
-	font-weight: 900;
+	font-weight: 800;
 	margin: 0 10px;
 }
 
@@ -108,6 +109,15 @@
 	font-family: "GmarketSansMedium";
 	src:
 		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "JalnanGothic";
+	src:
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
 		format("woff");
 	font-weight: normal;
 	font-style: normal;

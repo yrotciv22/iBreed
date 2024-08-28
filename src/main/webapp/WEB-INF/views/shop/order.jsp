@@ -131,7 +131,7 @@
 								<div>옵션: [색상] Grey</div>
 
 								<div class="one_prd_price">
-									<span>10,000</span><span>원</span> /<span>수량 : 1개</<span>>
+									<span>10,000</span><span>원</span> / <span>수량 : 1개</<span>
 							
 								</div>
 								<div class="coupon">
@@ -155,15 +155,8 @@
 								<div>옵션: [색상] Grey</div>
 
 								<div class="one_prd_price">
-									<span>10,000</span><span>원</span> /<span>수량 : 1개</<span>>
+									<span>10,000</span><span>원</span> / <span>수량 : 1개</<span>
 
-
-
-
-
-
-
-									
 								</div>
 								<div class="coupon">
 									쿠폰적용가 : <span>9,000</span>원
@@ -186,15 +179,8 @@
 								<div>옵션: [색상] Grey</div>
 
 								<div class="one_prd_price">
-									<span>10,000</span><span>원</span> /<span>수량 : 1개</<span>>
-
-
-
-
-
-
-
-									
+									<span>10,000</span><span>원</span> / <span>수량 : 1개</<span>
+		
 								</div>
 								<div class="coupon">쿠폰적용가 : 9,000원</div>
 							</div>

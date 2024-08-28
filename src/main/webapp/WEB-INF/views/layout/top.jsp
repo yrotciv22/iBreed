@@ -13,7 +13,7 @@
 			<div class="hd_icon_wrap">
 			
 				<div>
-					<a href="<c:url value='/'/>"> 
+					<a href="<c:url value='/mypage/wishlist'/>"> 
 					<img class="user"
 						src="<c:url value='/image/user.png'/>">
 					</a>
