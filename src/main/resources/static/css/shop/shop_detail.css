@@ -4,7 +4,6 @@
 	margin: 0 auto;
 	text-align: center;
 	width: 1280px;
-	height: 5000px;
 	/* background-color: pink; */
 	padding-top: 25px;
 	box-sizing: border-box;
@@ -61,7 +60,6 @@ a {
 
 #content {
 	width: 1020px;
-	height: 10000px;
 	background-color: white;
 	float: right;
 }
@@ -99,6 +97,7 @@ a {
 
 #expMiniBox {
 	float: left;
+	width: 485px;
 }
 
 #expMiniBox h1 {
@@ -145,10 +144,15 @@ a {
 	font-weight: bold;
 }
 
+#ship_date {
+	color: #53afb2;
+	font-weight: 600;
+}
+
 #ship_inf {
 	width: 200px;
 	text-align: left;
-	margin-left: 224px;
+	margin-left: 108px;
 }
 
 #sellerBox {
@@ -165,13 +169,14 @@ a {
 .seller_inf {
 	width: 200px;
 	text-align: left;
-	margin-left: 224px;
+	margin-left: 108px;
 }
 
 #price {
 	text-decoration: line-through;
 	font-size: 17px;
 	color: #a6a9ad;
+	display: inline;
 }
 
 #qtyBox {
@@ -208,10 +213,7 @@ a {
 	width: 102px;
 	height: 35px;
 	position: relative;
-	position: relative;
-	top: 28px;
-	left: 4px;
-	top: 28px;
+	top: 46px;
 	left: 4px;
 }
 
@@ -232,6 +234,9 @@ a {
 
 #minusBtn {
 	float: left;
+	position: relative;
+	top: -2px;
+	opacity: 20%;
 }
 
 #qty {
@@ -239,26 +244,31 @@ a {
 	text-align: center;
 	width: 20px;
 	margin-top: 15px;
+	font-weight: bold;
+	font-size: 17px;
 }
 
 #priceBox2 {
 	float: right;
-	margin-top: 10px;
+	margin-top: 30px;
+	margin-right: 12px;
 }
 
 #discount2 {
 	text-decoration: line-through;
 	color: rgb(181, 181, 181);
 	font-size: 12px;
+	display: inline-block;
 }
 
 #price2 {
 	font-size: 12px;
+	display: inline-block;
 }
 
 #finalPrice {
 	float: right;
-	margin: 6px 11px 0 0;
+	margin-top: 7px;
 }
 
 #price3 {
@@ -311,8 +321,7 @@ a {
 /* midBox 시작 */
 #midBox {
 	width: 1020px;
-	height: 6800px;
-	background-color: green;
+	/* background-color: green; */
 }
 
 #content nav {
@@ -360,7 +369,10 @@ a {
 }
 
 #detailImgBox {
-	
+	width: 1020px;
+	overflow: hidden;
+	height: 940px;
+	position: relative;
 }
 
 #detailImg {
@@ -371,12 +383,27 @@ a {
 	width: 100%;
 }
 
+#detailImgBox input[type=button] {
+	position: absolute;
+	left: 409px;
+	border: 3px solid #53afb2;
+	border-radius: 38px;
+	width: 200px;
+	height: 85px;
+	cursor: pointer;
+	z-index: auto;
+	color: #53afb2;
+	font-weight: bold;
+	font-size: 20px;
+}
+
 #openBtn {
-	
+	top: 820px;
 }
 
 #foldBtn {
-	
+	top: 6426px;
+	display: none;
 }
 
 /* midBox 끝 */
@@ -384,17 +411,19 @@ a {
 /* reviewBox 시작 */
 #reviewBox {
 	width: 1020px;
-	height: 800px;
-	background-color: gray;
+	/* background-color: gray; */
+	margin: 120px 0 30px 0;
 }
 
-#reviewBox h2 {
+#reviewBox h2, #bottomBox h2 {
 	float: left;
 	margin-bottom: 25px;
 }
 
 #reviewImgBox {
 	display: inline-block;
+	padding-bottom: 30px;
+	border-bottom: 1px solid rgb(244, 244, 244);
 }
 
 .reviewImg {
@@ -409,19 +438,44 @@ a {
 }
 
 .reviewComent {
-	
+	padding: 15px 0 15px 0;
+	border-bottom: 1px solid rgb(244, 244, 244);
 }
 
 .reviewer {
-	
+	display: inline-block;
+	float: left;
+	width: 200px;
+	height: 200px;
+	font-weight: 500;
+}
+
+.art {
+	display: inline-block;
+	width: 819px;
+	text-align: left;
 }
 
 .rcName {
-	
+	font-size: 12px;
+	font-weight: 400;
+	color: rgb(153, 153, 153);
+}
+
+.reviewRating {
+	margin-top: 4px;
 }
 
 .rcComment {
-	
+	padding: 12px 20px 12px 0;
+	word-break: break-word;
+	/* white-space: pre-wrap; */
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 21px;
+	color: rgb(51, 51, 51);
+	text-align: left;
+	word-break: keep-all;
 }
 
 .rcimage {
@@ -438,21 +492,96 @@ a {
 }
 
 .rcDate {
-	
+	width: 100px;
+	display: inline-block;
+	margin-top: 9px;
+	color: rgb(153, 153, 153);
 }
 
 .rcBtn {
+	float: right;
+	border: 1px solid rgb(226, 226, 226);
+	background: white;
+	width: 100px;
+	height: 30px;
+	color: black;
+	font-size: 15px;
+	font-weight: normal;
+	border-radius: 15px;
+	cursor: pointer;
+	border-radius: 15px;
+}
+
+.rcBtn:hover {
+	color: #53afb2;
+}
+/* reviewBox 끝 */
+
+/* bottomBox 시작 */
+#bottomBox {
+	width: 1020px;
+	height: 750px;
+	/* background-color: purple; */
+}
+
+#returnBox {
 	
 }
 
-/* reviewBox 끝 */
+#returnBox strong {
+	font-size: 18px;
+}
 
+#returnBox p {
+	font-size: 11px;
+	line-height: 3;
+	color: #3f3f3f;
+}
 
-/* bottomBox 시작 */
+#bottomBox table {
+	display: inline-block;
+	border-collapse: collapse;
+}
 
-#bottomBox {
+#bottomBox th {
+	background-color: #fafafa;
+}
+
+#bottomBox td {
+	text-align: left;
+}
+
+#bottomBox td, #bottomBox th {
+	padding: 9px 17px 11px 20px;
+	border-top: 1px solid #ededed;
+	border-bottom: 1px solid #ededed;
+	font-size: 12px;
+	line-height: 18px;
+	color: #000;
+	word-break: keep-all;
+	height: 56px;
+}
+
+#bottomBox li {
+	list-style: auto;
+}
+
+.gray_font {
+	color: #8f8f8f;
+}
+
+#sellerInfo strong {
+	float: left;
+	margin-bottom: 15px;
+	font-size: 14px;
+}
+
+#sellerInfo {
+	margin-top: 20px;
+}
+
+#sellerInfo tr {
+	display: inline-table;
 	width: 1020px;
-	height: 800px;
-	background-color: purple;
 }
 /* bottomBox 끝 */

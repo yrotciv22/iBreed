@@ -63,7 +63,7 @@
 					<div class=""><strong class="bigMenu">실시간 인기 TOP 10⭐</strong></div>
 					<div id="popularSlide">
 						<c:forEach items="${topTenList}" var="prd" varStatus="status">
-							<div class="popularMenuBox" OnClick="location.href ='/shop_detail'">
+							<div class="popularMenuBox" OnClick="location.href ='#'">
 								<div class="bestIcon">
 									<img class="tagIcon" src="../image/tag.png">
 									<strong class="bestRating">${status.count}</strong>
@@ -104,7 +104,7 @@
 					<div><strong class="bigMenu">신상 육아 아이템⭐</strong><br></div>
 					<ul>
 						<c:forEach items="${newItemList}" var="prd">
-							<li><div class="menuBox"  OnClick="location.href ='/shop_detail'">
+							<li><div class="menuBox"  OnClick="location.href ='/shop_detail/${prd.product_id}'">
 								<div class="thumbnail">
 									<img class="newThumbnail" src="${prd.product_img}">
 									<div class="likeCartBox1">

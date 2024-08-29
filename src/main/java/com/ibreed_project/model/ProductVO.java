@@ -9,6 +9,7 @@ public class ProductVO {
 	private String product_coment;
 	private int product_stock;
 	private String product_main_category;
+	private int product_sales;
 	private String product_sub_category;
 
 	public int getProduct_id() {
@@ -17,6 +18,14 @@ public class ProductVO {
 
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
+	}
+
+	public int getProduct_sales() {
+		return product_sales;
+	}
+
+	public void setProduct_sales(int product_sales) {
+		this.product_sales = product_sales;
 	}
 
 	public String getProduct_name() {

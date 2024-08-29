@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ibreed_project.dao.IProductDAO;
 import com.ibreed_project.model.ProductVO;
+import com.ibreed_project.model.ReviewVO;
 
 @Service
 public class ProductService implements IProductService {
@@ -39,5 +40,10 @@ public class ProductService implements IProductService {
 	@Override
 	public ArrayList<ProductVO> viewAllPrd() {
 		return dao.viewAllPrd();
+	}
+	
+	@Override
+	public ProductVO detailViewPrd(int product_id) {
+		return dao.detailViewPrd(product_id);
 	}
 }
