@@ -1,4 +1,4 @@
-function toggleNotification(user_id) {
+function toggleNotification() {
     var dropdown = document.getElementById("notificationDropdown");
     if (dropdown.style.display === "none" || dropdown.style.display === "") {
         dropdown.style.display = "block";
@@ -7,12 +7,12 @@ function toggleNotification(user_id) {
     }
 }
 
-function loadNotifications(user_id) {
-    console.log("알람 전송 전 user_id : " + user_id);
+function loadNotifications() {
+    console.log("알람 전송 전 user_id : " + userId);
     $.ajax({
         type: "post",
         url: "/notification",
-        data: { user_id: user_id },
+        data: { user_id: userId },
         dataType: "json", // 서버에서 JSON 형식으로 응답받기 위해 설정
         success: function(result) {
             console.log("응답 결과: ", result);
@@ -28,7 +28,7 @@ function loadNotifications(user_id) {
                 var formattedDate = notification.timestamp;
 
                 var itemHtml = `
-                    <div class="notification-item" onclick="window.location.href='/link_based_on_message/${notification.noti_id}'">
+                    <div class="notification-item" onclick="handleNotificationClick(${notification.noti_id})">
                         <p class="notification-text">${notification.message}</p>
                         <span class="timestamp">${formattedDate}</span>
                         <button class="delete-btn" onclick="deleteNotification(${notification.noti_id}, event)">삭제</button>
@@ -43,10 +43,47 @@ function loadNotifications(user_id) {
     });
 }
 
+// 별도의 함수를 만들어서 두 가지 작업을 처리
+function handleNotificationClick(noti_id) {
+    // deleteNotification 호출
+    deleteNotification(noti_id, null);
+
+    // 페이지 이동
+    window.location.href = '/link_based_on_message/' + noti_id;
+}
+
+
 function deleteNotification(noti_id, event) {
-    event.stopPropagation(); // 클릭 이벤트가 부모 요소로 전파되지 않도록 방지
+    if(event){
+        event.stopPropagation(); // 클릭 이벤트가 부모 요소로 전파되지 않도록 방지
+    }
     // 삭제 기능 구현 (AJAX 호출 등)
     console.log("삭제할 알림 ID:", noti_id);
+}
+
+function deleteAllNotifications() {
+    $.ajax({
+        type: "post",
+        url: "/notificationAllDelete",
+        data: { user_id: userId },
+        dataType: "json", // 서버에서 JSON 형식으로 응답받기 위해 설정
+        success: function(result) {
+            if(result == 100){
+                loadNotifications(userId);
+                console.log("이미 삭제되어서 문제가발생 할 수 있음.");
+            }
+            else{
+                loadNotifications(userId);
+                console.log("정상 삭제 완료");
+
+            }
+
+        },
+        error: function() {
+            alert("실패");
+        }
+    });
+
 }
 
 

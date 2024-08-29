@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface INotificationDAO {
     List<NotificationVO> getNotifications(String userId);
+
+    void deleteAllNotification(String userId);
 }

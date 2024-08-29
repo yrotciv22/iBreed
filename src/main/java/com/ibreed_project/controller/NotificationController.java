@@ -54,6 +54,25 @@ public class NotificationController {
         return ResponseEntity.ok(responseList);
     }
 
+
+
+
+
+
+    @PostMapping("/notificationAllDelete")
+    public ResponseEntity<Integer> notificationAllDelete(@RequestParam("user_id") String user_id) {
+        try{
+            notificationService.deleteAllNotification(user_id);
+        }catch (NullPointerException e){
+            return ResponseEntity.ok(100); //이미 삭제되었을때
+        }
+
+        return ResponseEntity.ok(200); //삭제 완료
+    }
+
+
+
+
     @MessageMapping("/notify")
     @SendTo("/topic/notifications")
     public String sendNotification(String message) {
