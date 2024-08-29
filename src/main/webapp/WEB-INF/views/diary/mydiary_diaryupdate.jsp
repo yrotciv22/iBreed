@@ -26,7 +26,7 @@
 		<div class="diary_content">
 
 
-		 <form id="diary-updateform" action="<%= request.getContextPath() %>/mydiary/<%= userId %>/save" method="post" enctype="multipart/form-data" class="diary_updateform">
+		 <form id="diary-form" action="<%= request.getContextPath() %>/mydiary/<%= userId %>/save" method="post" enctype="multipart/form-data" class="diary_form">
 
                 <!-- Hidden field for diaryPostId, used during editing -->
                 <input type="hidden" name="diaryPostId" value="${diary != null ? diary.diaryPostId : 0}" />
@@ -80,7 +80,8 @@
 				        <input type="submit" class="submit-button" value="수정하기">
 				    </div>
 				    <div class="diary_buttons-right">
-				        <button type="button" class="cancel-button" onclick="location.href='<%= request.getContextPath() %>/mydiary/${userId}/diary'">목록으로</button>
+						<button type="button" class="cancel-button" onclick="location.href='<c:url value='/mydiary/${user_id}/diary' />'">목록으로</button>
+				    
 				    </div>
 				</div>
 

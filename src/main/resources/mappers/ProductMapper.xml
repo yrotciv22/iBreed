@@ -14,8 +14,8 @@
 			<result property="product_coment" column="product_coment"/>
 			<result property="product_stock" column="product_stock"/>
 			<result property="product_main_category" column="product_main_category"/>
+			<result property="product_sales" column="product_sales"/>
 			<result property="product_sub_category" column="product_sub_category"/>
-			<result property="" column=""/>
 			
 		</resultMap>
 		
@@ -44,5 +44,8 @@
 			SELECT * FROM product
 		</select>
 		
-		
+		<!-- 상품번호 전달받아서 해당 상품 찾아서 반환(VO) -->
+		<select id="detailViewPrd" parameterType="int" resultType="com.ibreed_project.model.ProductVO">
+			SELECT * FROM product WHERE product_id = #{product_id};
+		</select>
 	</mapper>

@@ -40,21 +40,23 @@
 		<div id="content">
 			<div id="topBox">
 				<div id="imgBox">
-					<img id="thumbmail" src="https://cafe24.poxo.com/ec01/makerad/0jJurf5+JqL2mXn6P+LWO4fLCe4ab/jzY/Qv7UQEyBuzSVAgX/See/cHJ02/coz6OIKUPwwR8Oll3R2K0PC+pA==/_/web/product/big/202010/2d123fe9e5d7ee1dfe27bcad2b81f269.png">
+					<img id="thumbmail" src=${prd.product_img}>
 				</div>
 				
 				<div id="expBox">
 					<div id="expMiniBox">
-						<h1>(임신캘린더+육아캘린더 2종 세트) 임산부 선물 임밍아웃 임신출산 축하 뱃지</h1>
-						<div id="total_review"><a href="#">리뷰 20건</a> | ⭐5.0</div>
+						<h1>${prd.product_name}</h1>
+						<div id="total_review"><a id="reviewMove2">리뷰 20건</a> | ⭐5.0</div>
 						<div id="priceBox">
-							<span id="precent">50%</span>
-							<span id="price">20,000원</span>
-							<p><strong id="discount">10,000원</strong></p>
+							<span id="precent">${prd.product_discount}</span><span>%</span>
+							<div id="price"><span>${prd.product_price}</span><span>원</span></div>
+							<p id="discount"><strong><fmt:formatNumber value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}"
+																			type="number" pattern="##,#00"/></strong><strong>원</strong></p>
+							<input id="prc" type="hidden" type="number" value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}">												
 						</div>
 						<div id="shipBox">
 							<div id="shipping">배송</div>
-							<div id="ship_inf">무료배송<br><span>09/01(수)</span> 이내 도착 예정<br>제주 추가 3,000원</div>
+							<div id="ship_inf">무료배송<br><span id="ship_date">09/01(수)</span> 이내 도착 예정<br>제주 추가 3,000원</div>
 						</div>
 						<div id="sellerBox">
 							<div class="seller">판매자</div>
@@ -64,7 +66,7 @@
 							<div class="prdSelect">상품선택</div>
 							<div id="qtyBox">
 								<div id="subTitle">
-									<p>(임신캘린더+육아캘린더 2종 세트) 임산부 선물 임밍아웃 임신출산 축하 뱃지</p>
+									<p>${prd.product_name}</p>
 								</div>
 								<div id="qtyCtr">
 									<input type="button" id="minusBtn" class="btn" value="-">
@@ -73,19 +75,21 @@
 									<input type="button" id="plusBtn" class="btn" value="+">
 								</div>
 								<div id="priceBox2">
-									<span id="discount2">10,000원</span>
-									<span id="price2">20,000원</span>
+									<div id="discount2"><span>${prd.product_price}</span><span>원</span></div>
+									<div id="price2"><span><fmt:formatNumber value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}"
+																			type="number" pattern="##,#00"/></span><span>원</span></div>
 								</div>
 							</div>
 						</div>
 						<div id="finalPrice">
 							<span>총 상품금액: </span>
-							<span id="price3">10,000</span>
+							<span id="price3"><fmt:formatNumber value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}"
+																			type="number" pattern="##,#00"/></span>
 							<span>원</span>
 						</div>
 						<div id="btnBox">
 							<input type="image" src="/image/no_like.png" id="likes">
-							<input type="button" value="장바구니" id="put_cart">
+							<input type="button" value="장바구니" id="put_cart" >
 							<input type="button" value="구매하기" id="buying">
 						</div>
 					</div>
@@ -94,9 +98,9 @@
 			
 			<nav>
 				<ul>
-					<li><a><span>상세정보</span></a></li>
-					<li><a><span>리뷰</span></a></li>
-					<li><a><span>배송정보</span></a></li>
+					<li><a id="detailMove"><span>상세정보</span></a></li>
+					<li><a id="reviewMove"><span>리뷰</span></a></li>
+					<li><a id="returnMove"><span>반품/교환정보</span></a></li>
 				</ul>
 			</nav>
 			<div id="midBox">
@@ -105,11 +109,10 @@
 						<img src="/image/detailImg.JPG">
 					</div>
 					<div>
-						<input type="button" id="openBtn">
-						<input type="button" id="foldBtn">
+						<input type="button" id="openBtn" value="상세정보 더보기">
+						<input type="button" id="foldBtn" value="상세정보 접기">
 					</div>
 				</div>
-				
 			</div>
 			
 			<div id="reviewBox">
@@ -131,62 +134,108 @@
 				</div>
 				
 				<div id="reviewComentBox">
-					<div class="reviewComent">
-						<div class="reviewer">
-							<span>김**</span>
+					<c:forEach items="${reviewList}" var="r" varStatus="status">
+						<div class="reviewComent">
+							<div class="reviewer">
+								<span>${r.user_name}</span>
+							</div>
+							<article class="art">
+								<div class="rcName">
+									<h3>${r.product_name}</h3>
+									<p class="reviewRating" data-value="${r.review_rating}">${r.review_rating}</p>
+								</div>
+								<p class="rcComment">${r.review_coment}
+								</p>
+								<div class="rcimage">
+									<img src="${r.img}">
+								</div>
+								<div class="rcFooter">
+									<div class="rcDate"><span><fmt:formatDate value="${r.review_time}" pattern="yyy-MM-dd"/></span></div>
+									<button class="rcBtn">
+										<span>🖒도움돼요</span>
+									</button>
+								</div>
+							</article>
 						</div>
-						<article>
-							<div class="rcName">
-								<h3>구매한 상품 이름</h3>
-							</div>
-							<p class="rcComment">***** 촉촉한! 아기 물티슈!!
-								첫째 둘째 모두 신생아부터 하기스 물티슈만 사용했는데, 처음 보는 거라, 호기심에 샀어요;; 이제 아이들이 조금 컸는데도 여전히 물티슈를 많이 쓰게 되더라고요,
-								식탁 옆에 두고, 간식 먹기 전에 손도 닦고, 학교 준비물로도 가져가고요,  손부터 여기저기 많이 닦다보니, 청정수로 만든 부분이 제일 믿음이 가요,,, 혹시나 입으로 들어갈 지도 모르는데 먹는 물 만큼 관리한다니,,,ㅋ
-								
-								보라색 패키지도 촌스럽지 않고 예쁜것 같아요, 제품 뒷면에 오픈한 날짜도 쓸 수 있게 해준 센스,,,
-								
-								참, 하기스 물티슈는 특히,,,(아이가 좀 크다보니 사용 속도는 느린 편이라서) 하나 뜯으면 꽤나 오래 쓰는 편인데 마지막 장까지 촉촉하 물기가 계속 있는게 제일 좋은 것 같아요, 오픈마켓에서 파는 다른 제품 좀 써봤는데, 정말 반은 남았는데 아주 메마른 적이 많았거든요.ㅠ
-								
-								다 쓰고 다시 구매하려고요, 컬리다운 배송도 깔끔해서 좋앗어요
-							</p>
-							<div class="rcimage">
-								<img src="https://thumbnail6.coupangcdn.com/thumbnails/local/320/image2/PRODUCTREVIEW/202408/19/4094481484664863063/3aecc922-7f5b-402c-a923-cf20a17e8f92.jpeg">
-							</div>
-							<div class="rcFooter">
-								<div class="rcDate"><span>작성날짜</span></div>
-								<button class="rcBtn">
-									<span>🖒도움돼요</span>
-								</button>
-							</div>
-						</article>
-					</div>
-					<div class="reviewComent">
-						<div class="reviewer">
-							<span>이**</span>
-						</div>
-						<article>
-							<div class="rcName">
-								<h3>구매한 상품 이름</h3>
-							</div>
-							<p>
-							우리집 강아지전용으로 사용하고 있어요 톡톡하고 특별한 향이 나지도않고 닦았을때 거품같은것도 안나고 깨끗하고 좋아요
-							</p>
-							<div class="rcimage">
-								<img src="https://thumbnail7.coupangcdn.com/thumbnails/local/320/image2/PRODUCTREVIEW/202408/19/4602509952990876816/6296d648-fb0d-4a55-94a7-78508e5a6ab2.jpeg">
-							</div>
-							<div class="rcFooter">
-								<div class="rcDate"><span>작성날짜</span></div>
-								<button>
-									<span>🖒도움돼요</span>
-								</button>
-							</div>
-						</article>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 			
 			<div id="bottomBox">
-				배송정보
+				<h2>반품/교환정보</h2>
+				<div id="returnBox">
+					<table>
+						<tr>
+							<th colspan="4">
+								<strong>아이브리드 반품/교환 안내</strong>
+								<p>반품 시 먼저 판매자와 연락하셔서 반품사유, 택배사, 배송비, 반품지 주소 등을 협의하신 후 반품상품을 발송해 주시기 바랍니다.</p>
+							</th>
+						</tr>
+						<tr>
+							<th>판매자 지정택배사</th>
+							<td colspan="3">롯데택배</td>
+						</tr>
+						<tr>
+							<th>반품배송비</th>
+							<td>편도 3,000원 (최초 배송비 무료인 경우 5,000원 부과)</td>
+							<th>교환배송비</th>
+							<td>6,000원</td>
+						</tr>
+						<tr>
+							<th>보내실 곳</th>
+							<td colspan="3">경기도 안양시 동안구 엘에스로 142 (호계 금정역 SK V1 center) 401호 (우 : 14118) </td>
+						</tr>
+						<tr>
+							<th rowspan="2">반품/교환 사유에 따른 요청 가능 기간</th>
+							<td colspan="3">구매자 단순 변심은 상품 수령 후 7일 이내<span class="gray_font">(구매자 반품배송비 부담)</span></td>
+						</tr>
+						<tr>
+							<td colspan="3">표시/광고와 상이, 계약 내용과 다르게 이행된 경우 상품 수령 후 3개월 이내 혹은 표시/광고와 다른 사실을 안 날로부터 30일 이내</td>
+						</tr>
+						<tr>
+							<th>반품/교환 불가능 사유</th>
+							<td colspan="3">
+								<ul>
+									<li>
+										반품요청기간이 지난 경우
+									</li>
+									<li>
+										구매자의 책임 있는 사유로 상품 등이 멸실 또는 훼손된 경우<span class="gray_font">(단, 상품의 내용을 확인하기 위하여 포장 등을 훼손한 경우는 제외)</span>
+									</li>
+									<li>
+										구매자의 책임있는 사유로 포장이 훼손되어 상품 가치가 현저히 상실된 경우<span class="gray_font">(예: 식품, 화장품, 향수류, 음반 등)</span>
+									</li>
+									<li>
+										구매자의 사용 또는 일부 소비에 의하여 상품의 가치가 현저히 감소한 경우<span class="gray_font">(라벨이 떨어진 의류 또는 태그가 떨어진 명품관 상품인 경우)</span>
+									</li>
+									<li>
+										시간의 경과에 의하여 재판매가 곤란할 정도로 상품 등의 가치가 현저히 감소한 경우
+									</li>
+									<li>
+										고객의 요청사항에 맞춰 제작에 들어가는 맞춤제작상품의 경우<span class="gray_font">(판매자에게 회복불가능한 손해가 예상되고, 그러한 예정으로 청약철회권 행사가 불가하다는 사실을 서면 동의 받은 경우)</span>
+									</li>
+									<li>
+										복제가 가능한 상품 등의 포장을 훼손한 경우<span class="gray_font">(CD/DVD/GAME/도서의 경우 포장 개봉 시)</span>
+									</li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+				<div id="sellerInfo">
+					<strong>판매자정보</strong>
+					<div>
+						<table>
+							<tr>
+								<th>상호명</th>
+								<td>아이브리드(사업자)</td>
+								<th>대표자</th>
+								<td>김승우</td>
+							</tr>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div> <!-- main 박스 종료 -->

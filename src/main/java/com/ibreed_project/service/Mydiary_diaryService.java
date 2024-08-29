@@ -81,4 +81,34 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 		mydiary_diaryDAO.updateDiary(vo);
 		
 	}
+	//조회수 
+	@Override
+	public void incrementViewCount(int diaryPostId) {
+		// TODO Auto-generated method stub
+	    mydiary_diaryDAO.incrementViewCount(diaryPostId);
+	}
+	
+	//likes
+	@Override
+	public void likePost(String userId, int diaryPostId) {
+		mydiary_diaryDAO.likePost(userId, diaryPostId);
+		mydiary_diaryDAO.incrementLikeCount(diaryPostId);		
+	}
+	@Override
+	public void unlikePost(String userId, int diaryPostId) {
+		mydiary_diaryDAO.unlikePost(userId, diaryPostId);
+		mydiary_diaryDAO.decrementLikeCount(diaryPostId);		
+	}
+	@Override
+	public boolean isAlreadyLiked(String userId, int diaryPostId) {
+		   return mydiary_diaryDAO.isAlreadyLiked(userId, diaryPostId);
+	}
+	@Override
+	public int getLikeCount(int diaryPostId) {
+		return mydiary_diaryDAO.getLikeCount(diaryPostId);
+	}
+	
+
+	
+
 }

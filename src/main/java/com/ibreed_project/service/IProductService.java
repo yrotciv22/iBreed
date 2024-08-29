@@ -3,6 +3,7 @@ package com.ibreed_project.service;
 import java.util.ArrayList;
 
 import com.ibreed_project.model.ProductVO;
+import com.ibreed_project.model.ReviewVO;
 
 public interface IProductService {
 	
@@ -21,5 +22,6 @@ public interface IProductService {
 	// 전체상품 뽑아내기
 	public ArrayList<ProductVO> viewAllPrd();
 	
-	
+	// 상품상세 정보 조회
+	public ProductVO detailViewPrd(int product_id);
 }

@@ -91,10 +91,11 @@
 					</div>
 
 					<div class="write-diary">
-						<button
-							onclick="location.href='/mydiary/${sessionScope.user_id}/diarywrite'">다이어리
-							작성하기</button>
+					    <c:if test="${sessionScope.user_id == user_id}">
+					        <button onclick="location.href='/mydiary/${sessionScope.user_id}/diarywrite'">다이어리 작성하기</button>
+					    </c:if>
 					</div>
+
 				</div>
 				<!-- 각 페이지 작업 구간 끝  -->
 
