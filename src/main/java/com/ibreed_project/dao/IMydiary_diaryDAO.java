@@ -32,7 +32,19 @@ public interface IMydiary_diaryDAO {
     List<Mydiary_diaryVO> getDiaryListByUserIdAndVisibility(Map<String, Object> params);
   //  List<Mydiary_diaryVO> getDiaryListByUserIdAndVisibility(@Param("userId") String userId, @Param("isOwner") boolean isOwner, @Param("isFriend") boolean isFriend, @Param("offset") int offset, @Param("size") int size);
 
-//삭제
+    //삭제
     void deleteDiary(int diaryPostId);
+    //조회수 증가 
+    void incrementViewCount(@Param("diaryPostId") int diaryPostId);
+    //좋아요 
+    void likePost(@Param("userId") String userId, @Param("diaryPostId") int diaryPostId);
 
+    void unlikePost(@Param("userId") String userId, @Param("diaryPostId") int diaryPostId);
+
+    int getLikeCount(@Param("diaryPostId") int diaryPostId);
+
+    boolean isAlreadyLiked(@Param("userId") String userId, @Param("diaryPostId") int diaryPostId);
+
+    void incrementLikeCount(@Param("diaryPostId") int diaryPostId);
+    void decrementLikeCount(@Param("diaryPostId") int diaryPostId);
 }

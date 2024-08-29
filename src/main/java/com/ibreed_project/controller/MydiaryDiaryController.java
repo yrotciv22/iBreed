@@ -9,11 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ibreed_project.model.Mydiary_diaryVO;
-import com.ibreed_project.service.AlbumService;
 import com.ibreed_project.service.FriendService;
 import com.ibreed_project.service.Mydiary_diaryService;
 
@@ -171,10 +172,24 @@ public class MydiaryDiaryController {
     @GetMapping("/diarydetail/{diaryPostId}")
     public String viewDiaryDetail(@PathVariable("user_id") String userId,
 					                                  @PathVariable("diaryPostId") int diaryPostId,
-					                                  Model model) {
-        Mydiary_diaryVO diary = mydiary_diaryService.getDiary(diaryPostId);
+					                                  Model model,
+					                                  HttpSession session) {
+    	//다이어리 상세ㅐ정보 가져오기
+    	Mydiary_diaryVO diary = mydiary_diaryService.getDiary(diaryPostId);
+    	
 
-        // 모델에 다이어리 정보를 추가
+     
+    	// 조회수 증가 로직
+        String sessionKey = "viewedPost_" + diaryPostId;
+        Boolean isViewed = (Boolean) session.getAttribute(sessionKey);
+
+        if (isViewed == null || !isViewed) {
+            mydiary_diaryService.incrementViewCount(diaryPostId);
+            session.setAttribute(sessionKey, true);
+        }
+    
+
+        // 다이어리 정보를 가져와 모델에 추가
         model.addAttribute("diary", diary);
         model.addAttribute("user_id", userId);
 
@@ -207,4 +222,40 @@ public class MydiaryDiaryController {
         // 삭제 후 일기 리스트 페이지로 리다이렉트
         return "redirect:/mydiary/" + userId + "/diary";
     }
+    
+   //좋아요 
+    @PostMapping("/like")
+    @ResponseBody
+    public HashMap<String, Object> likePost(@RequestBody HashMap<String, Object> payload) {
+        int diaryPostId = (int) payload.get("diaryPostId");
+        String userId = (String) payload.get("userId");
+
+        HashMap<String, Object> response = new HashMap<>();
+
+        try {
+            // 이미 좋아요를 눌렀는지 확인
+            boolean alreadyLiked = mydiary_diaryService.isAlreadyLiked(userId, diaryPostId);
+
+            if (alreadyLiked) {
+                // 이미 좋아요를 누른 상태라면 좋아요를 취소
+            	mydiary_diaryService.unlikePost(userId, diaryPostId);
+            } else {
+                // 좋아요 추가
+            	mydiary_diaryService.likePost(userId, diaryPostId);
+            }
+
+            // 최신 좋아요 수 가져오기
+            int newLikeCount = mydiary_diaryService.getLikeCount(diaryPostId);
+
+            response.put("success", true);
+            response.put("newLikeCount", newLikeCount);
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "좋아요 처리 중 오류가 발생했습니다.");
+        }
+
+        return response;
+    }
+    
+    
 }
