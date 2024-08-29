@@ -11,21 +11,21 @@
 		<result property="diary_title" column="diary_title" />
 		<result property="diary_count" column="diary_count" />
 		<result property="diary_public" column="diary_public" />
-		<result property="diary_profile_image"
-			column="diary_profile_image" />
-		<result property="diary_profile_image_path"
-			column="diary_profile_image_path" />
+        <result property="diary_profile_image_path" column="diary_profile_image_path" /> <!-- 경로 컬럼 추가 -->
 		<result property="diary_profile_text"
 			column="diary_profile_text" />
 		<result property="user_id" column="user_id" />
 	</resultMap>
+
 
 	<!-- 마이 다이어리 조회 -->
 	<select id="viewMydiary"
 		resultType="com.ibreed_project.model.MydiaryVO">
 		SELECT * FROM diary WHERE user_id = #{user_id};
 	</select>
-<!-- 마이 다이어리 수정 -->
+
+
+	<!-- 마이 다이어리 수정 -->
 	<update id="updateMydiary">
 		UPDATE diary SET ${category}=
 		<if test="category == 'diary_title'">
@@ -38,7 +38,7 @@
 			#{vo.diary_profile_text}
 		</if>
 		<if test="category == 'diary_profile_image'">
-			#{vo.diary_profile_image_path}
+		 #{vo.diary_profile_image_path} 
 		</if>
 		WHERE user_id=#{vo.user_id};
 	</update>
