@@ -9,4 +9,8 @@
     </select>
 
 
+    <delete id="deleteAllNotification">
+        DELETE FROM notification WHERE user_id = #{userId}
+    </delete>
+
 </mapper>

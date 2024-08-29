@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface INotificationService {
     List<NotificationVO> getNotifications(String userId);
+    void deleteAllNotification(String userId);
 }

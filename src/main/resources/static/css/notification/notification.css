@@ -82,3 +82,23 @@
 .delete-btn:hover {
     background-color: #ff1a1a; /* 호버 시 색상 변경 */
 }
+
+.notification-footer {
+    text-align: right; /* 버튼을 우측 정렬 */
+    padding: 10px; /* 여백 추가 */
+    border-top: 1px solid #eee; /* 위쪽에 구분선 추가 */
+}
+
+.delete-all-btn {
+    background-color: #f44336; /* 빨간색 */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-all-btn:hover {
+    background-color: #d32f2f; /* 마우스 오버 시 더 진한 빨간색 */
+}

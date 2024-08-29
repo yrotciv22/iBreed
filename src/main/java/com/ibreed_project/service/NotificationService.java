@@ -17,6 +17,11 @@ public class NotificationService implements INotificationService {
     public List<NotificationVO> getNotifications(String userId) {
         return notificationDAO.getNotifications(userId);
     }
+
+    @Override
+    public void deleteAllNotification(String userId) {
+        notificationDAO.deleteAllNotification(userId);
+    }
 }
 
 
