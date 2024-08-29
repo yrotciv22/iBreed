@@ -41,13 +41,12 @@
             <!-- 다이어리 본문 -->
             <div class="diary_body">
                 <p>${diary.diaryContent}</p>
-                <img src="${diary.diaryFile}" alt="Diary Image">
-
+               
             </div>
 
-            <!-- 좋아요 및 댓글 기능 -->
-            <div class="diary_interaction">
-                <button class="like_button">좋아요 ${diary.diaryLike}</button>
+           <!-- 좋아요 및 댓글 기능 -->
+					<div class="diary_interaction">
+                <button class="like_button"data-diary-post-id="${diaryPostId}">좋아요 ${diary.diaryLike}</button>
                 <button class="comment_button">댓글 ${diary.commentCount}</button>
             </div>
 

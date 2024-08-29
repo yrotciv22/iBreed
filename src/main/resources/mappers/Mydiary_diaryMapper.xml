@@ -24,6 +24,7 @@
         <result property="commentCount" column="comment_count"/>
         <result property="isDeleted" column="is_deleted"/>
          <result property="userId" column="user_id"/>
+         <result property="isLiked" column="isLiked"/>
     </resultMap>
 	
     <!-- INSERT 쿼리 -->
@@ -71,7 +72,7 @@
 	</select>
 	<!--공개여부  -->
 
-<select id="getDiaryListByUserIdAndVisibility" parameterType="hashmap"  resultMap="DiaryResultMap">
+	<select id="getDiaryListByUserIdAndVisibility" parameterType="hashmap"  resultMap="DiaryResultMap">
 	    SELECT *
 	    FROM diaryboard  	 
 	    WHERE 
@@ -91,7 +92,7 @@
 	    LIMIT #{offset}, #{size}
 </select>
 
-    <!-- UPDATE 쿼리 -->
+    <!-- 일기UPDATE 쿼리 -->
      <update id="updateDiary" parameterType="com.ibreed_project.model.Mydiary_diaryVO">
         UPDATE diaryboard
         SET  diary_title = #{diaryTitle},
@@ -101,10 +102,42 @@
 	            diary_category = #{diaryCategory}
         WHERE diary_post_id = #{diaryPostId}
     </update>
-    
+    <!--  일기삭제]-->
     <delete id="deleteDiary" parameterType="int">
         DELETE FROM diaryboard WHERE diary_post_id = #{diaryPostId}
     </delete>
     
+	<!--조회수 증가  -->
+	<update id="incrementViewCount">
+    UPDATE diaryboard 
+    SET diary_views = diary_views + 1 
+    WHERE diary_post_id = #{diaryPostId}
+</update>
+
+<!-- 좋아요 추가 -->
+<insert id="addLike">
+    INSERT INTO diary_like (diary_post_id, user_id) VALUES (#{diaryPostId}, #{userId})
+</insert>
+
+<!-- 좋아요 삭제 -->
+<delete id="removeLike">
+    DELETE FROM diary_like WHERE diary_post_id = #{diaryPostId} AND user_id = #{userId}
+</delete>
+
+<!-- 사용자가 해당 다이어리에 좋아요를 눌렀는지 확인 -->
+<select id="isLikedByUser" resultType="boolean">
+    SELECT COUNT(*) > 0 
+    FROM diary_like 
+    WHERE diary_post_id = #{diaryPostId} 
+      AND user_id = #{userId}
+</select>
+
+<!-- 다이어리의 현재 좋아요 수를 가져옴 -->
+<select id="getLikeCount" resultType="int">
+    SELECT COUNT(*) 
+    FROM diary_like 
+    WHERE diary_post_id = #{diaryPostId}
+</select>
+
 
 </mapper>

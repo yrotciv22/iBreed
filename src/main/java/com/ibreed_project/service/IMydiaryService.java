@@ -25,4 +25,5 @@ public interface IMydiaryService {
 	
 	// 다이어리 검색 ? 
 	public ArrayList<MydiaryVO> searchMydiary(HashMap<String, Object> map);
+	
 }

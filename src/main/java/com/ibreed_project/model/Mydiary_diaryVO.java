@@ -21,8 +21,18 @@ public class Mydiary_diaryVO {
 	private int commentCount; // comment_count
 	private boolean isDeleted; // is_deleted
 	private String userId;
+	private boolean isLiked;//좋아요 눌렀나 안눌렀나 확인 -db엔 추가 x:서비스나 컨트롤러 차원에서 사용
+
 	
-	    public String getUserId() {
+	
+	
+		public boolean isLiked() {
+		return isLiked;
+	}
+	public void setLiked(boolean isLiked) {
+		this.isLiked = isLiked;
+	}
+		public String getUserId() {
 		return userId;
 	}
 	public void setUserId(String userId) {
