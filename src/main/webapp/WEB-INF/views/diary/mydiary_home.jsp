@@ -29,6 +29,18 @@
 <script>
 	const userId = "${sessionScope.user_id}";
 </script>
+
+<script>
+	function previewImage(event) {
+		var reader = new FileReader();
+		reader.onload = function() {
+			var output = document.getElementById('preview');
+			output.src = reader.result;
+			output.style.display = 'block'; // 이미지 미리보기를 보이게 설정
+		};
+		reader.readAsDataURL(event.target.files[0]); // 선택된 파일의 데이터를 읽어오기
+	}
+</script>
 </head>
 <body>
 	<div class="all">
@@ -101,10 +113,11 @@
 					<!--  today_feeling_wrap 끝 -->
 
 					<div class="profile_photo">
-						<img
+						<%-- <img
 							src="${mydiary.diary_profile_image != 'default' ? mydiary.diary_profile_image : 'https://images.unsplash.com/photo-1480985041486-c65b20c01d1f?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dg'}" />
+ --%>
 
-
+<img src="${pageContext.request.contextPath}${mydiaryVO.diary_profile_image_path}" alt="Diary Image" />
 						<c:if test="${sessionScope.user_id == user_id}">
 							<!-- label을 사용하여 클릭 시 파일 입력 창이 열리도록 설정 -->
 							<label for="fileInput">
@@ -128,8 +141,13 @@
 							<!-- 파일 입력 요소 style="display: none;"  -->
 
 							<input type="file" id="fileInput" name="diary_profile_image"
-								accept="image/*" style="display: none;" />
+								accept="image/*" onchange="previewImage(event)" />
+							<!-- 이미지 미리보기 -->
+							<img id="preview" src="#" alt="Image Preview"
+								style="display: none; width: 200px; height: 200px;" />
 
+							<!-- 업로드 버튼 -->
+							<button type="submit">이미지 업로드</button>
 							<!-- 확인 버튼 
 							<button type="button" id="confirmUploadBtn"
 								style="display: none;">확인</button> -->
@@ -201,27 +219,27 @@
 					<div class="recent_posts_wrap">
 						<div>최근 작성한 다이어리</div>
 
-					
-								<ul>
-									<c:forEach var="diary" items="${diaryList}">
 
-										<%-- <li><fmt:formatDate value="${diary.diaryCreate}"
+						<ul>
+							<c:forEach var="diary" items="${diaryList}">
+
+								<%-- <li><fmt:formatDate value="${diary.diaryCreate}"
 										pattern="yyyy-MM-dd" /></li> --%>
-										<li><a
-											href="<%= request.getContextPath() %>/mydiary/${user_id}/diarydetail/${diary.diaryPostId}">
+								<li><a
+									href="<%= request.getContextPath() %>/mydiary/${user_id}/diarydetail/${diary.diaryPostId}">
 
-												<div class="recent_post">
-													<div>[${diary.diaryCategory}] ${diary.diaryTitle}</div>
-													<div>
-														<fmt:formatDate value="${diary.diaryCreate}"
-															pattern="yyyy-MM-dd" />
-													</div>
-												</div>
-										</a></li>
+										<div class="recent_post">
+											<div>[${diary.diaryCategory}] ${diary.diaryTitle}</div>
+											<div>
+												<fmt:formatDate value="${diary.diaryCreate}"
+													pattern="yyyy-MM-dd" />
+											</div>
+										</div>
+								</a></li>
 
-									</c:forEach>
-								</ul>
-						
+							</c:forEach>
+						</ul>
+
 
 					</div>
 					<!-- recent_posts_wrap 끝 -->
