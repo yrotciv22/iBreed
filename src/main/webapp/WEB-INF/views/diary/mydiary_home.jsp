@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <!DOCTYPE html>
 <html>
 
@@ -26,20 +25,26 @@
 
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 <script src="<c:url value='/js/mydiary_home.js'/>"></script>
-<script>
+<script type="text/javascript">
 	const userId = "${sessionScope.user_id}";
 </script>
 
+
 <script>
-	function previewImage(event) {
+	/* function previewImage(event) {
+	    console.log("previewImage");
+	    
 		var reader = new FileReader();
 		reader.onload = function() {
 			var output = document.getElementById('preview');
 			output.src = reader.result;
 			output.style.display = 'block'; // 이미지 미리보기를 보이게 설정
+			
+			 document.getElementById('save_profile_image_btn').style.display = 'inline-block'; // 버튼 보이기
+	            document.getElementById('edit_profile_img_btn').style.display = 'none'; // 이미지 숨기기
 		};
 		reader.readAsDataURL(event.target.files[0]); // 선택된 파일의 데이터를 읽어오기
-	}
+	} */
 </script>
 </head>
 <body>
@@ -106,52 +111,45 @@
 									<img src="<c:url value='/image/save_file.png'/>" />
 
 								</button>
+
 							</form>
 						</div>
 
 					</div>
 					<!--  today_feeling_wrap 끝 -->
 
+
+					<!--  profile_photo 시작 -->
 					<div class="profile_photo">
-						<img
-							src="${mydiary.diary_profile_image != null ? mydiary.diary_profile_image : 'https://static.vecteezy.com/system/resources/thumbnails/022/059/000/small/no-image-available-icon-vector.jpg'}" />
+						<img id="preview"
+							src="${mydiary.diary_profile_image_path != null ? mydiary.diary_profile_image_path : 'https://static.vecteezy.com/system/resources/thumbnails/022/059/000/small/no-image-available-icon-vector.jpg'}" />
 
-
-						<%-- <img src="${pageContext.request.contextPath}${mydiaryVO.diary_profile_image_path}" alt="Diary Image" /> --%>
 						<c:if test="${sessionScope.user_id == user_id}">
-
 							<!-- label을 사용하여 클릭 시 파일 입력 창이 열리도록 설정 -->
 							<label for="fileInput">
 								<div class="overlay">
-
 									<img src="<c:url value='/image/pencil_color.png'/>"
 										id="edit_profile_img_btn" />
 
+									<button id="save_profile_image_btn" type="button"
+										style="display: none;" onclick="submitForm()">
+										<img src="<c:url value='/image/save_file.png'/>" />
+									</button>
 								</div>
 							</label>
+							<span id="edit_proifle_img_cancel_Btn" style="display: none;">X</<span>
 						</c:if>
 
 						<!-- 이미지 업로드 폼 -->
 						<form id="uploadProfileImgForm"
-							action="<c:url value='/mydiary/${sessionScope.user_id}/updateDiary/diary_profile_image'/>"
+							action="<c:url value='/mydiary/${sessionScope.user_id}/updateDiary/diary_profile_image_path'/>"
 							method="post" enctype="multipart/form-data"
 							style="display: none;">
 
 							<input type="hidden" name="user_id"
-								value="${sessionScope.user_id}" />
-							<!-- 파일 입력 요소 style="display: none;"  -->
-
-							<input type="file" id="fileInput" name="diary_profile_image"
-								accept="image/*" onchange="previewImage(event)" />
-							<!-- 이미지 미리보기 -->
-							<img id="preview" src="#" alt="Image Preview"
-								style="display: none; width: 200px; height: 200px;" />
-
-							<!-- 업로드 버튼 -->
-							<button type="submit">이미지 업로드</button>
-							<!-- 확인 버튼 
-							<button type="button" id="confirmUploadBtn"
-								style="display: none;">확인</button> -->
+								value="${sessionScope.user_id}" /> <input type="file"
+								id="fileInput" name="diary_profile_image" accept="image/*"
+								onchange="previewImage(event)" />
 						</form>
 					</div>
 					<!--  profile_photo 끝 -->

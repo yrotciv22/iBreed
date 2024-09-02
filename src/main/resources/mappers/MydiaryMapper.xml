@@ -21,7 +21,7 @@
 	<!-- 마이 다이어리 조회 -->
 	<select id="viewMydiary"
 		resultType="com.ibreed_project.model.MydiaryVO">
-		SELECT * FROM diary WHERE user_id = #{user_id};
+		SELECT * FROM diary WHERE user_id=#{user_id};
 	</select>
 
 
@@ -37,7 +37,7 @@
 		<if test="category == 'diary_profile_text'">
 			#{vo.diary_profile_text}
 		</if>
-		<if test="category == 'diary_profile_image'">
+		<if test="category == 'diary_profile_image_path'">
 		 #{vo.diary_profile_image_path} 
 		</if>
 		WHERE user_id=#{vo.user_id};

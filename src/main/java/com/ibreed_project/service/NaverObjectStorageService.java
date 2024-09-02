@@ -2,8 +2,10 @@ package com.ibreed_project.service;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.amazonaws.SdkClientException;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
@@ -18,17 +20,14 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 
 @Service
 public class NaverObjectStorageService {
-	
-	
-	// upload local file
-	public String uploadFile(String filePath) {
-		
-		System.out.println("NaverObjectStorageService uploadFile");
-		System.out.println("filePath");
 
-		// filePath = "C:/Users/BOK/Desktop/images.png";
-		
-// 버킷 생성 
+	// upload local file
+	public String uploadFile(MultipartFile file) {
+
+		System.out.println("[Naver] NaverObjectStorageService");
+		System.out.println("[Naver] filePath= " + file);
+
+		// 버킷 생성 
 		final String endPoint = "https://kr.object.ncloudstorage.com";
 		final String regionName = "kr-standard";
 		final String accessKey = "ncp_iam_BPASKR4XKVgJ9B7exiwM";
@@ -41,7 +40,8 @@ public class NaverObjectStorageService {
 				.build();
 		String bucketName = "ibreed-profile-image";
 
-//create folder
+		  File tempFile = null;
+		//create folder
 		// String folderName = "mydiary-home/";
 
 		/*
@@ -56,33 +56,39 @@ public class NaverObjectStorageService {
 		 * (AmazonS3Exception e) { e.printStackTrace(); } catch (SdkClientException e) {
 		 * e.printStackTrace(); }
 		 * 
-		 * 
 		 * //upload local file String objectName = "mydiary-home";
 		 */
-		
-	    // Extract file name from the file path
-        File file = new File(filePath);
-        String objectName = "mydiary-home/" + file.getName(); // Use the file name in object path
 
-		try {
-			// s3.putObject(bucketName, objectName, new File(filePath));
-			// 아래 수정
-		      s3.putObject(new PutObjectRequest(bucketName, objectName, file)
-	                    .withCannedAcl(CannedAccessControlList.PublicRead)); // Make the file publicly accessible
-			System.out.format("Object %s has been created.\n", objectName);
-			
-			 // Return the file's URL after upload
-          String fileUrl = String.format("https://%s.%s/%s", bucketName, endPoint.replace("https://", ""), objectName);
-          
-          System.out.format("Naver fileUrl", fileUrl);
-          return fileUrl;
-		} catch (AmazonS3Exception e) {
-			e.printStackTrace();
-		} catch (SdkClientException e) {
-			e.printStackTrace();
-		}
+		// Extract file name from the file path
+		//File file = new File(file);
+	//	System.out.println("[Naver] file= " + file);
+		//String objectName = "mydiary-home/" + file.getName(); // Use the file name in object path
 
-		return "File upload success";
+	
+		  String fileUrl ="";
+		  try {
+	            // MultipartFile을 임시 파일로 변환
+	            tempFile = File.createTempFile("profile_image", ".png");
+	            file.transferTo(tempFile);
+
+	            String objectName = "mydiary-home/" + tempFile.getName();
+	            
+	            s3.putObject(new PutObjectRequest(bucketName, objectName, tempFile)
+	                    .withCannedAcl(CannedAccessControlList.PublicRead));
+
+	            fileUrl = String.format("https://%s.%s/%s", bucketName, endPoint.replace("https://", ""),
+	                    objectName);
+	            System.out.println("[Naver] fileUrl: " + fileUrl);
+	            return fileUrl;
+
+	        } catch (IOException | SdkClientException e) {
+	            e.printStackTrace();
+	        } finally {
+	            if (tempFile != null && tempFile.exists()) {
+	                tempFile.delete();
+	            }
+	        }
+		return fileUrl;
 	}
 
 }
