@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ibreed_project.model.LikeItemVO;
 import com.ibreed_project.model.ProductVO;
@@ -66,7 +67,9 @@ public class ShopController {
 
 	// 상품 상세 페이지 (승우)
 	@RequestMapping("shop_detail/{product_id}")
-	public String detailView(@PathVariable("product_id") int product_id, Model model) {
+	public String detailView(@PathVariable("product_id") int product_id, 
+										   @RequestParam(value = "page", defaultValue = "1") int page,
+										   Model model) {
 
 		ProductVO prd = prdService.detailViewPrd(product_id);
 		ArrayList<ReviewVO> reviewList = reviewService.selectReview(product_id);
@@ -94,6 +97,21 @@ public class ShopController {
 		}
 		;
 
+		//페이지네이션
+		int itemsPerPage = 5;
+		int totalItems = reviewService.countReview(product_id);
+		int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage);
+		
+		int startIndex = (page - 1) * itemsPerPage;
+	    int endIndex = Math.min(startIndex + itemsPerPage - 1, totalItems - 1);
+	    
+	    model.addAttribute("reviewList", reviewList);
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("totalPages", totalPages);
+	    model.addAttribute("startIndex", startIndex);
+	    model.addAttribute("endIndex", endIndex);
+		model.addAttribute("productId", product_id);
+	    
 		model.addAttribute("prd", prd);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("rCount", rCount);

@@ -80,7 +80,9 @@
 									<input type="button" id="plusBtn" class="btn" value="+">
 								</div>
 								<div id="priceBox2">
-									<div id="discount2"><span>${prd.product_price}</span><span>원</span></div>
+									<c:if test="${prd.product_discount > 1}">
+										<div id="discount2"><span>${prd.product_price}</span><span>원</span></div>
+									</c:if>
 									<div id="price2"><span><fmt:formatNumber value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}"
 																			type="number" pattern="##,#00"/></span><span>원</span></div>
 								</div>
@@ -122,6 +124,9 @@
 			
 			<div id="reviewBox">
 				<h2>상품 리뷰</h2>
+				<div>
+					
+				</div>
 				<div id="reviewImgBox">
 					<!-- 이미지는 8개까지 들어감 -->
 					<c:forEach items="${reviewList}" var="r" varStatus="status" begin="0" end="9">
@@ -130,7 +135,15 @@
 				</div>
 				
 				<div id="reviewComentBox">
-					<c:forEach items="${reviewList}" var="r" varStatus="status" begin="0" end="4">
+					<c:choose>
+					    <c:when test="${endIndex lt 0}">
+					        <c:set var="endIndex" value="0"/>
+					    </c:when>
+					    <c:otherwise>
+					        <c:set var="endIndex" value="${endIndex}"/>
+					    </c:otherwise>
+					</c:choose>
+					<c:forEach items="${reviewList}" var="r" varStatus="status" begin="${startIndex}" end="${endIndex}">
 						<div class="reviewComent">
 							<div class="reviewer">
 								<span>${r.user_name}</span>
@@ -143,7 +156,9 @@
 								<p class="rcComment">${r.review_coment}
 								</p>
 								<div class="rcimage">
+								<c:if test="${not empty r.img}">
 									<img src="${r.img}">
+								</c:if>
 								</div>
 								<div class="rcFooter">
 									<div class="rcDate"><span><fmt:formatDate value="${r.review_time}" pattern="yyy-MM-dd"/></span></div>
@@ -154,6 +169,11 @@
 							</article>
 						</div>
 					</c:forEach>
+				</div>
+				<div id="pagination" data-current-page="${currentPage}" data-total-pages="${totalPages}" data-product-id="${productId}">
+				    <button id="prevPage" ${currentPage == 1 ? 'disabled' : ''}>⬅️</button>
+				    <span>Page ${currentPage} of ${totalPages}</span>
+				    <button id="nextPage" ${currentPage == totalPages ? 'disabled' : ''}>➡️</button>
 				</div>
 			</div>
 			
