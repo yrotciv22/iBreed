@@ -1,7 +1,6 @@
 package com.ibreed_project.controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ibreed_project.model.LikeItemVO;
 import com.ibreed_project.model.ProductVO;
 import com.ibreed_project.model.ReviewVO;
+import com.ibreed_project.service.LikeItemService;
 import com.ibreed_project.service.ProductService;
 import com.ibreed_project.service.ReviewService;
 
@@ -19,9 +20,12 @@ public class ShopController {
 
 	@Autowired
 	ProductService prdService;
-	
+
 	@Autowired
-	ReviewService reviewService; 
+	ReviewService reviewService;
+
+	@Autowired
+	LikeItemService likeService;
 
 	@RequestMapping("shop")
 	public String viewIndex(Model model) {
@@ -59,35 +63,42 @@ public class ShopController {
 
 		return "shop/order_confirm";
 	}
-	
+
 	// 상품 상세 페이지 (승우)
 	@RequestMapping("shop_detail/{product_id}")
 	public String detailView(@PathVariable("product_id") int product_id, Model model) {
-		
+
 		ProductVO prd = prdService.detailViewPrd(product_id);
 		ArrayList<ReviewVO> reviewList = reviewService.selectReview(product_id);
+		int rCount = reviewService.countReview(product_id);
+		double rAvg = reviewService.ratingAvg(product_id);
+		
+
 		
 		// 이름 마스킹 처리
 		for (ReviewVO vo : reviewList) {
 			String name = vo.getUser_name();
 			String fullName = "";
-			
-			String first = name.substring(0,1);
-			String last = name.substring(name.length()-1,name.length());
-			if(name.length() == 2) {
+
+			String first = name.substring(0, 1);
+			String last = name.substring(name.length() - 1, name.length());
+			if (name.length() == 2) {
 				fullName = first + "*";
-			} else if(name.length() == 4) {
+			} else if (name.length() == 4) {
 				fullName = first + "**" + last;
 			} else {
 				fullName = first + "*" + last;
 			}
-			
+
 			vo.setUser_name(fullName);
-		};
-		
+		}
+		;
+
 		model.addAttribute("prd", prd);
 		model.addAttribute("reviewList", reviewList);
-		
+		model.addAttribute("rCount", rCount);
+		model.addAttribute("rAvg", rAvg);
+
 		return "shop/shop_detail";
 	}
 

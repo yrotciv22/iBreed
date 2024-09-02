@@ -412,7 +412,7 @@ a {
 #reviewBox {
 	width: 1020px;
 	/* background-color: gray; */
-	margin: 120px 0 30px 0;
+	padding-top: 90px;
 }
 
 #reviewBox h2, #bottomBox h2 {
@@ -421,6 +421,8 @@ a {
 }
 
 #reviewImgBox {
+	width: 1016px;
+	height: 154px;
 	display: inline-block;
 	padding-bottom: 30px;
 	border-bottom: 1px solid rgb(244, 244, 244);
@@ -464,6 +466,9 @@ a {
 
 .reviewRating {
 	margin-top: 4px;
+	color: gold;
+	font-size: 13px;
+	font-weight: bolder;
 }
 
 .rcComment {
@@ -521,6 +526,8 @@ a {
 #bottomBox {
 	width: 1020px;
 	height: 750px;
+	padding: 90px 0 90px 0;
+	margin-bottom: 100px;
 	/* background-color: purple; */
 }
 
