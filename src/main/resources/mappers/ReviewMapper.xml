@@ -29,4 +29,11 @@
 		ORDER BY R.review_time DESC
   	</select>
   	
+  	<select id="countReview" parameterType="int">
+  		SELECT COUNT(*) FROM review WHERE product_id = #{product_id};
+  	</select>
+  	
+  	<select id="ratingAvg" parameterType="int">
+  		SELECT AVG(review_rating) FROM review WHERE product_id = #{product_id};
+  	</select>
   </mapper>

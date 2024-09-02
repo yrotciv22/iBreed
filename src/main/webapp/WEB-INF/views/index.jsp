@@ -33,9 +33,6 @@
 </script>
 
 
-
-
-
 <script src="<c:url value='/js/index.js'/>" defer></script>
 
 <%--    챗봇 시스템 추가--%>

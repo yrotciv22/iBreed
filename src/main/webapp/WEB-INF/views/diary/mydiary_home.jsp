@@ -113,12 +113,13 @@
 					<!--  today_feeling_wrap 끝 -->
 
 					<div class="profile_photo">
-						<%-- <img
-							src="${mydiary.diary_profile_image != 'default' ? mydiary.diary_profile_image : 'https://images.unsplash.com/photo-1480985041486-c65b20c01d1f?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dg'}" />
- --%>
+						<img
+							src="${mydiary.diary_profile_image != null ? mydiary.diary_profile_image : 'https://static.vecteezy.com/system/resources/thumbnails/022/059/000/small/no-image-available-icon-vector.jpg'}" />
 
-<img src="${pageContext.request.contextPath}${mydiaryVO.diary_profile_image_path}" alt="Diary Image" />
+
+						<%-- <img src="${pageContext.request.contextPath}${mydiaryVO.diary_profile_image_path}" alt="Diary Image" /> --%>
 						<c:if test="${sessionScope.user_id == user_id}">
+
 							<!-- label을 사용하여 클릭 시 파일 입력 창이 열리도록 설정 -->
 							<label for="fileInput">
 								<div class="overlay">

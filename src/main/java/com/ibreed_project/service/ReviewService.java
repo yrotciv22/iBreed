@@ -20,5 +20,14 @@ public class ReviewService implements IReviewService {
 	public ArrayList<ReviewVO> selectReview(int product_id) {
 		return dao.selectReview(product_id);
 	}
-
+	
+	@Override
+	public int countReview(int product_id) {
+		return dao.countReview(product_id);
+	}
+	
+	@Override
+	public double ratingAvg(int product_id) {
+		return dao.ratingAvg(product_id);
+	}
 }
