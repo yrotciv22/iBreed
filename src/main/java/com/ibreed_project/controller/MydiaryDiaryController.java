@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ibreed_project.model.DiaryCommentVO;
 import com.ibreed_project.model.Mydiary_diaryVO;
 import com.ibreed_project.service.FriendService;
+import com.ibreed_project.service.MydiaryCommentService;
 import com.ibreed_project.service.Mydiary_diaryService;
 
 import jakarta.servlet.http.HttpSession;
@@ -28,7 +30,8 @@ public class MydiaryDiaryController {
     private Mydiary_diaryService mydiary_diaryService;
     @Autowired
     private FriendService friendService;
-    
+    @Autowired
+    private  MydiaryCommentService mydiaryCommentService;
 
     // 다이어리 작성 페이지로 이동 (GET 요청)
     @GetMapping("/diarywrite")
@@ -177,7 +180,8 @@ public class MydiaryDiaryController {
     	//다이어리 상세ㅐ정보 가져오기
     	Mydiary_diaryVO diary = mydiary_diaryService.getDiary(diaryPostId);
     	
-
+    	  // 댓글 리스트 가져오기
+        List<DiaryCommentVO> comments = mydiaryCommentService.getCommentsByDiaryPostId(diaryPostId);
      
     	// 조회수 증가 로직
         String sessionKey = "viewedPost_" + diaryPostId;
@@ -192,6 +196,7 @@ public class MydiaryDiaryController {
         // 다이어리 정보를 가져와 모델에 추가
         model.addAttribute("diary", diary);
         model.addAttribute("user_id", userId);
+        model.addAttribute("comments", comments);  // 댓글 리스트 추가
 
         return "diary/mydiary_diarydetail";
     }
