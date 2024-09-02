@@ -58,6 +58,28 @@ function deleteNotification(noti_id, event) {
         event.stopPropagation(); // 클릭 이벤트가 부모 요소로 전파되지 않도록 방지
     }
     // 삭제 기능 구현 (AJAX 호출 등)
+    $.ajax({
+        type: "post",
+        url: "/notificationDelete",
+        data: { user_id: userId,
+                noti_id: noti_id},
+        dataType: "json", // 서버에서 JSON 형식으로 응답받기 위해 설정
+        success: function(result) {
+            if(result == 100){
+                loadNotifications(userId);
+                console.log("이미 삭제되어서 문제가발생 할 수 있음.");
+            }
+            else{
+                loadNotifications(userId);
+                console.log("정상 삭제 완료");
+
+            }
+
+        },
+        error: function() {
+            alert("실패");
+        }
+    });
     console.log("삭제할 알림 ID:", noti_id);
 }
 

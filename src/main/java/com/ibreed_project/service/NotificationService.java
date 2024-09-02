@@ -22,6 +22,12 @@ public class NotificationService implements INotificationService {
     public void deleteAllNotification(String userId) {
         notificationDAO.deleteAllNotification(userId);
     }
+
+    @Override
+    public void deleteNotification(String userId, String notiId) {
+        notificationDAO.deleteNotification(userId, notiId);
+
+    }
 }
 
 

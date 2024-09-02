@@ -51,7 +51,7 @@
 
 
                 <div style="position: relative;">
-                    <a href="javascript:void(0);" onclick="toggleNotification('${sessionScope.user_id}')">
+                    <a href="javascript:void(0);" onclick="toggleNotification()">
                         <img class="bell" src="<c:url value='/image/bell.png'/>"/>
                         <div class="bell_circle" id="bell_value">0</div>
                     </a>
@@ -73,6 +73,10 @@
                             </div>
                             <!-- 추가 알림 항목 -->
                         </div>
+						<div class="notification-footer">
+							<!-- 전체 삭제 버튼 추가 -->
+							<button class="delete-all-btn" onclick="deleteAllNotifications('${sessionScope.user_id}')">전체 삭제</button>
+						</div>
                     </div>
                 </div>
 
