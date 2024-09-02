@@ -118,7 +118,7 @@ public class MyDiaryEmotionController {
 
         // JSON 요청 본문 설정
         String requestBody = String.format(
-                "{\"model\": \"gpt-4o\", \"messages\": [{\"role\": \"system\", \"content\": \"당신은 한국어로 대답하는 도움이 되는 비서입니다.\"}, {\"role\": \"user\", \"content\": \"%s\"}], \"max_tokens\": 2000}",
+                "{\"model\": \"gpt-4\", \"messages\": [{\"role\": \"system\", \"content\": \"당신은 한국어로 대답하는 도움이 되는 비서입니다.\"}, {\"role\": \"user\", \"content\": \"%s\"}], \"max_tokens\": 2000}",
                 prompt);
 
         // OKHttp 클라이언트 생성
