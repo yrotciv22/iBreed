@@ -9,6 +9,7 @@
 <title>iBreed 쇼핑몰 상품상세보기</title>
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 <script src="<c:url value='/js/shop_detail.js'/>"></script>
+<script>const userId = "${sessionScope.user_id}"</script>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/shop/shop_detail.css' />" />
 <c:import url="/WEB-INF/views/layout/head.jsp" />
 </head>
@@ -46,10 +47,14 @@
 				<div id="expBox">
 					<div id="expMiniBox">
 						<h1>${prd.product_name}</h1>
-						<div id="total_review"><a id="reviewMove2">리뷰 20건</a> | ⭐5.0</div>
+						<div id="total_review"><a id="reviewMove2">리뷰 ${rCount}건</a> | ⭐${rAvg}</div>
 						<div id="priceBox">
-							<span id="precent">${prd.product_discount}</span><span>%</span>
-							<div id="price"><span>${prd.product_price}</span><span>원</span></div>
+						
+							<c:if test="${prd.product_discount > 1}">
+								<span id="precent">${prd.product_discount}</span><span>%</span>
+								<div id="price"><span>${prd.product_price}</span><span>원</span></div>
+							</c:if>
+							
 							<p id="discount"><strong><fmt:formatNumber value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}"
 																			type="number" pattern="##,#00"/></strong><strong>원</strong></p>
 							<input id="prc" type="hidden" type="number" value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}">												
@@ -99,7 +104,7 @@
 			<nav>
 				<ul>
 					<li><a id="detailMove"><span>상세정보</span></a></li>
-					<li><a id="reviewMove"><span>리뷰</span></a></li>
+					<li><a id="reviewMove"><span>리뷰(${rCount})</span></a></li>
 					<li><a id="returnMove"><span>반품/교환정보</span></a></li>
 				</ul>
 			</nav>
@@ -119,22 +124,13 @@
 				<h2>상품 리뷰</h2>
 				<div id="reviewImgBox">
 					<!-- 이미지는 8개까지 들어감 -->
-					<a href="#"><img class="reviewImg" src="https://thumbnail6.coupangcdn.com/thumbnails/local/320/image2/PRODUCTREVIEW/202408/19/4094481484664863063/081f1e26-bb46-445e-8574-c33ea97ab166.jpeg"></a>
-					<a href="#"><img class="reviewImg" src="https://thumbnail6.coupangcdn.com/thumbnails/local/320/image2/PRODUCTREVIEW/202408/19/4094481484664863063/081f1e26-bb46-445e-8574-c33ea97ab166.jpeg"></a>
-					<a href="#"><img class="reviewImg" src="https://thumbnail6.coupangcdn.com/thumbnails/local/320/image2/PRODUCTREVIEW/202408/19/4094481484664863063/081f1e26-bb46-445e-8574-c33ea97ab166.jpeg"></a>
-					<a href="#"><img class="reviewImg" src="https://thumbnail6.coupangcdn.com/thumbnails/local/320/image2/PRODUCTREVIEW/202408/19/4094481484664863063/081f1e26-bb46-445e-8574-c33ea97ab166.jpeg"></a>
-					<a href="#"><img class="reviewImg" src="https://thumbnail6.coupangcdn.com/thumbnails/local/320/image2/PRODUCTREVIEW/202408/19/4094481484664863063/081f1e26-bb46-445e-8574-c33ea97ab166.jpeg"></a>
-					<a href="#"><img class="reviewImg" src="https://thumbnail6.coupangcdn.com/thumbnails/local/320/image2/PRODUCTREVIEW/202408/19/4094481484664863063/081f1e26-bb46-445e-8574-c33ea97ab166.jpeg"></a>
-					<a href="#"><img class="reviewImg" src="https://thumbnail6.coupangcdn.com/thumbnails/local/320/image2/PRODUCTREVIEW/202408/19/4094481484664863063/081f1e26-bb46-445e-8574-c33ea97ab166.jpeg"></a>
-					<a href="#"><img class="reviewImg" src="https://thumbnail6.coupangcdn.com/thumbnails/local/320/image2/PRODUCTREVIEW/202408/19/4094481484664863063/081f1e26-bb46-445e-8574-c33ea97ab166.jpeg"></a>
-				</div>
-				
-				<div>
-				
+					<c:forEach items="${reviewList}" var="r" varStatus="status" begin="0" end="9">
+					<a href="#"><img class="reviewImg" src="${r.img}"></a>
+					</c:forEach>
 				</div>
 				
 				<div id="reviewComentBox">
-					<c:forEach items="${reviewList}" var="r" varStatus="status">
+					<c:forEach items="${reviewList}" var="r" varStatus="status" begin="0" end="4">
 						<div class="reviewComent">
 							<div class="reviewer">
 								<span>${r.user_name}</span>
