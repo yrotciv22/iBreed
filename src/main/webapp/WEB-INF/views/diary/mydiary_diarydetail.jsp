@@ -11,7 +11,9 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/mydiary_diarydetail.css' />" />
     <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 	<script src="<c:url value='/js/mydiary_diarydetail.js' />"></script>
+	<script src="<c:url value='/js/mydiary_diarycomment.js' />"></script>
 	<meta name="user-id" content="${sessionScope.user_id}">
+	<meta name="diary-post-id" content="${diary.diaryPostId}">
  
 </head>
 <body>
@@ -55,23 +57,41 @@
             <div class="diary_comments">
                 <!-- 댓글 목록 및 입력 폼 -->
                 <div class="comment_list">
-                    <!-- 여기서 반복문으로 댓글을 출력 -->
                     <c:forEach var="comment" items="${comments}">
-                        <div class="comment">
+                        <div class="comment" data-comment-id="${comment.id}" style="margin-left: ${comment.parentCommentId != 0 ? '20px' : '0px'};">
                             <div class="comment_header">
                                 <span class="comment_user">${comment.userId}</span>
                                 <span class="comment_date">${comment.createDate}</span>
+                                <c:if test="${sessionScope.user_id == comment.userId}">
+                                    <button class="editCommentBtn" data-comment-id="${comment.id}">수정</button>
+                                    <button class="deleteCommentBtn" data-comment-id="${comment.id}">삭제</button>
+                                </c:if>
                             </div>
                             <div class="comment_body">
                                 <p>${comment.commentContent}</p>
                             </div>
+                            
+                            <!-- 답글쓰기 버튼 -->
+                            <div class="comment_actions">
+                                <button class="replyCommentBtn" data-parent-id="${comment.id}">답글쓰기</button>
+                            </div>
+
+                            <!-- 답글 입력 폼 (초기에는 숨김 처리) -->
+                            <div class="reply_form" style="display: none; margin-left: 20px;">
+                                <textarea placeholder="답글을 입력하세요" class="reply_content"></textarea>
+                                <button class="submit_reply">답글 달기</button>
+                            </div>
                         </div>
                     </c:forEach>
                 </div>
+                
                 <!-- 댓글 입력 폼 -->
                 <div class="comment_form">
-                    <textarea placeholder="댓글을 입력하세요"></textarea>
-                    <button>댓글 달기</button>
+                    <textarea placeholder="댓글을 입력하세요" id="commentContent"></textarea>
+                    <div>
+                        <input type="checkbox" id="isSecret" /> 비밀댓글
+                    </div>
+                    <button id="submitComment">댓글 달기</button>
                 </div>
             </div>
 
