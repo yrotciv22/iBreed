@@ -55,6 +55,18 @@ public class NotificationController {
     }
 
 
+    @PostMapping("/notificationDelete")
+    public ResponseEntity<Integer> notificationDelete(@RequestParam("noti_id") String noti_id, @RequestParam("user_id") String user_id) {
+        try{
+            notificationService.deleteNotification(user_id, noti_id);
+        }catch (NullPointerException e){
+            e.printStackTrace();
+            return ResponseEntity.ok(100); //이미 삭제되었을때
+        }
+
+        return ResponseEntity.ok(200); //삭제 완료
+    }
+
 
 
 

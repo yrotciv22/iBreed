@@ -13,4 +13,9 @@
         DELETE FROM notification WHERE user_id = #{userId}
     </delete>
 
+
+    <delete id="deleteNotification">
+        DELETE FROM notification WHERE user_id = #{userId} AND noti_id=#{notiId}
+    </delete>
+
 </mapper>

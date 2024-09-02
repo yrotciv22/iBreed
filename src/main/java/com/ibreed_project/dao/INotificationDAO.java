@@ -8,4 +8,7 @@ public interface INotificationDAO {
     List<NotificationVO> getNotifications(String userId);
 
     void deleteAllNotification(String userId);
+
+    void deleteNotification(String userId, String notiId);
+
 }
