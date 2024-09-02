@@ -14,13 +14,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ibreed_project.model.MydiaryVO;
 import com.ibreed_project.service.MydiaryService;
+import com.ibreed_project.service.NaverObjectStorageService;
 
 @Controller
 public class MydiaryHomeController {
 
 	@Autowired
 	MydiaryService mydiaryService;
-	
+
+	@Autowired
+	NaverObjectStorageService naverObjectStorageService;
 	/*
 	 * @Autowired NaverObjectStorageService naverObjectStorageService;
 	 */
@@ -28,48 +31,39 @@ public class MydiaryHomeController {
 	/* 마이다이어리 홈 (제목, 기분, 프로필) 수정 */
 
 	@RequestMapping(value = "/mydiary/{user_id}/updateDiary/{category}", method = RequestMethod.POST)
-	public String updateMydiary(
-			@PathVariable("user_id") String user_id, 
-			@PathVariable("category") String category,
-			MydiaryVO vo, 
-			Model model) {
+	public String updateMydiary(@PathVariable("user_id") String user_id, @PathVariable("category") String category,
+			MydiaryVO vo, Model model) {
 
 		// System.out.println("MydiaryHomeController user_id? " + user_id);
-		// System.out.println("MydiaryHomeController category? " + category);
+		System.out.println("MydiaryHomeController category? " + category);
 
-		
+		// String localFilePath = "C:/Users/BOK/Desktop/images.png";
+
+		// naverObjectStorageService.uploadFile(localFilePath);
+
 		// 파일 업로드 처리
-		 MultipartFile file = vo.getDiary_profile_image(); 
-	        if (file != null && !file.isEmpty()) {
-	            try {
-	            	/// (1)
-	                String fileName = file.getOriginalFilename();
+		MultipartFile file = vo.getDiary_profile_image();
 
-	                // 이미지 저장 경로 설정
-	                String savePath = new File("src/main/resources/static/image").getAbsolutePath();
-	                System.out.println("MydiaryHomeController savePath? " + savePath);
-	                
-	                // 디렉토리가 존재하지 않으면 생성
-	                File directory = new File(savePath);
-	                if (!directory.exists()) {
-	                    directory.mkdirs();
-	                }
+		if (file != null && !file.isEmpty()) {
 
-	                String filePath = savePath + File.separator + fileName;
-	                file.transferTo(new File(filePath)); // 파일을 저장
+			/// (1)
+			String fileName = file.getOriginalFilename();
+			System.out.println("MydiaryHomeController file? " + file);
+			System.out.println("MydiaryHomeController fileName? " + fileName);
+			
+			String localFilePath = "C:/Users/BOK/Desktop/test/baby.png";
+			// naverObjectStorageService.uploadFile(localFilePath);
 
-	                // 저장된 파일 경로를 VO에 설정
-	                vo.setDiary_profile_image_path("/image/" + fileName);
+			String uloadedFileUrl = naverObjectStorageService.uploadFile(localFilePath);
+			System.out.println("MydiaryHomeController uloadedFileUrl? " + uloadedFileUrl);
 
-	                /// (2)
-	                // 파일을 Naver Object Storage에 업로드
-	               //  String imageUrl = naverObjectStorageService.uploadFile(file);
-	               //  vo.setDiary_profile_image_path(imageUrl);  // 업로드된 이미지 URL을 설정
-	                
-	            } catch (IOException e) {
-	                e.printStackTrace();
-	            }
-	        }
+			if (uloadedFileUrl != null) {
+				return "File uploaded successfully! Access it at: " + uloadedFileUrl;
+			} else {
+				return "File upload failed.";
+			}
+
+		}
 		/*
 		 * MultipartFile file = vo.getDiary_profile_image(); // VO에서 MultipartFile 가져오기
 		 * if (file != null && !file.isEmpty()) { try { // 사용자 홈 디렉토리와 바탕화면 경로 가져오기
