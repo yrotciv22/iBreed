@@ -16,13 +16,16 @@
 		$('#main_banner').animate({'left':moveLeft}, 'slow');
 		
 		$('.circleBtn').attr('src', "../image/hollow_circle.png");
-		changeCircleBtn(selectedIndex);
+		changeCircleBtn(index);
 	}
+	
 	
 	function changeCircleBtn(selectedIndex) { 
 		let circleBtn = $('.circleBtn');
 		
-		circleBtn[selectedIndex].src = '../image/circle.png';
+		 circleBtn.removeClass('active');
+		 
+		 $(circleBtn[selectedIndex]).addClass('active');
 	}
 
 	$('.circleBtn').each(function (selectedIndex) {
@@ -30,13 +33,11 @@
 			moveSlide(selectedIndex);
 		});
 	});
+    changeCircleBtn(firstIndex);
 
 
-	
-	
-	
- 
  // 슬라이드 끝
+ 
  
   $(".main_diary_btn").on("click", function openMyDiary() {
    console.log("openMyDiary");
