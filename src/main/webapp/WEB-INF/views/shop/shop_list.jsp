@@ -56,29 +56,31 @@
 							<a>판매량순</a>
 						</div>
 					</div>
-					<ul>
-						<c:forEach items="${viewAllPrd}" var="prd">
-							<li><div class="menuBox"  OnClick="location.href ='#'">
-								<div class="thumbnail">
-									<img class="newThumbnail" src="${prd.product_img}">
-									<div class="likeCartBox1">
-										<a href="www.naver.com"><img src="<c:url value='/image/cart_btn.png'/>"></a>
-										<a href="#"><img src="<c:url value='/image/like_btn.png'/>"></a>
+					<div>
+						<ul>
+							<c:forEach items="${viewAllPrd}" var="prd">
+								<li><div class="menuBox"  OnClick="location.href ='/shop_detail/${prd.product_id}'">
+									<div class="thumbnail">
+										<img class="newThumbnail" src="${prd.product_img}">
+										<div class="likeCartBox1">
+											<a href="www.naver.com"><img src="<c:url value='/image/cart_btn.png'/>"></a>
+											<a href="#"><img src="<c:url value='/image/like_btn.png'/>"></a>
+										</div>
 									</div>
-								</div>
-								<div class="titleBox">
-									<strong class="menuTitle">${prd.product_name}</strong><br>
-								</div>
-								<div class="prdExplain">
-									<strong class="price"><fmt:formatNumber value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}"
-																			type="number" pattern="##,#00"/>원</strong>
-									<span class="existingPrice">${prd.product_price}원</span>
-									<strong class="discount">${prd.product_discount}%</strong>
-									<p>${prd.product_coment}</p>
-								</div>
-							</div></li>
-						</c:forEach>
-					</ul>
+									<div class="titleBox">
+										<strong class="menuTitle">${prd.product_name}</strong><br>
+									</div>
+									<div class="prdExplain">
+										<strong class="price"><fmt:formatNumber value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}"
+																				type="number" pattern="##,#00"/>원</strong>
+										<span class="existingPrice">${prd.product_price}원</span>
+										<strong class="discount">${prd.product_discount}%</strong>
+										<p>${prd.product_coment}</p>
+									</div>
+								</div></li>
+							</c:forEach>
+						</ul>
+					</div>
 				</div>
 				
 			</div> <!-- 오른쪽 콘텐트 박스 끝 -->

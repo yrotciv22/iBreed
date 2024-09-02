@@ -63,7 +63,7 @@
 					<div class=""><strong class="bigMenu">실시간 인기 TOP 10⭐</strong></div>
 					<div id="popularSlide">
 						<c:forEach items="${topTenList}" var="prd" varStatus="status">
-							<div class="popularMenuBox" OnClick="location.href ='#'">
+							<div class="popularMenuBox" OnClick="location.href ='/shop_detail/${prd.product_id}'">
 								<div class="bestIcon">
 									<img class="tagIcon" src="../image/tag.png">
 									<strong class="bestRating">${status.count}</strong>
@@ -131,7 +131,7 @@
 					<div><strong class="bigMenu">아이브리드 베스트⭐</strong></div>
 					<ul>
 						<c:forEach items="${bestItemList}" var="prd" begin="0" end="5">
-							<li><div class="menuBox" OnClick="location.href ='#'">
+							<li><div class="menuBox" OnClick="location.href ='/shop_detail/${prd.product_id}'">
 								<div class="thumbnail">
 									<img class="newThumbnail" src="${prd.product_img}">
 									<div class="likeCartBox1">
@@ -158,7 +158,7 @@
 					<div><strong class="bigMenu">⏰재고 50개 이하 품절임박!</strong></div>
 					<ul>
 						<c:forEach items="${soldOutItemList}" var="prd">
-							<li><div class="menuBox" OnClick="location.href ='#'">
+							<li><div class="menuBox" OnClick="location.href ='/shop_detail/${prd.product_id}'">
 								<div class="thumbnail">
 									<img class="newThumbnail" src="${prd.product_img}">
 									<div class="likeCartBox1">
