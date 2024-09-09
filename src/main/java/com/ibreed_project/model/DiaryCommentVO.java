@@ -1,20 +1,21 @@
 package com.ibreed_project.model;
 
-import java.time.LocalDateTime;
+
+import java.util.Date;
 
 public class DiaryCommentVO {
 
-	   private int id; // id
-	    private String diaryCommentUserIdWrite; // diary_comment_user_id_write
-	    private String diaryCommentContent; // diary_comment_content
-	    private int diaryPostId; // diary_post_id
-	    private int parentCommentId; // parent_comment_id
-	    private int likeCount; // like_count
-	    private String status; // status (ENUM('active', 'inactive', 'reported'))
-	    private boolean isSecret; // is_secret
-	    private String mentionedUserIds; // mentioned_user_ids
-	    private LocalDateTime createdAt; // created_at
-	    private LocalDateTime updatedAt; // updated_at
+	    private int id; 
+	    private String diaryCommentUserIdWrite; 
+	    private String diaryCommentContent;
+	    private int diaryPostId; 
+	    private int parentCommentId; //대댓글위해서
+	    private int likeCount; 
+	    private String status; 
+	    private boolean isSecret; 
+	    private String mentionedUserIds; 
+	    private Date createdAt; 
+	    private Date updatedAt; 
 
 	    
 	    public int getId() {
@@ -89,19 +90,19 @@ public class DiaryCommentVO {
 	        this.mentionedUserIds = mentionedUserIds;
 	    }
 
-	    public LocalDateTime getCreatedAt() {
+	    public Date getCreatedAt() {
 	        return createdAt;
 	    }
 
-	    public void setCreatedAt(LocalDateTime createdAt) {
+	    public void setCreatedAt(Date createdAt) {
 	        this.createdAt = createdAt;
 	    }
 
-	    public LocalDateTime getUpdatedAt() {
+	    public Date getUpdatedAt() {
 	        return updatedAt;
 	    }
 
-	    public void setUpdatedAt(LocalDateTime updatedAt) {
+	    public void setUpdatedAt(Date updatedAt) {
 	        this.updatedAt = updatedAt;
 	    }
 	

@@ -172,4 +172,25 @@
 	});
 	
 	
+	// 페이지네이션
+	
+	$('#prevPage').on('click', function() {
+	    let currentPage = parseInt($('#pagination').data('current-page'));
+	    let productId = $('#pagination').data('product-id'); // productId 가져오기
+	    if (currentPage > 1) {
+			//window.location.href = `/shop_detail/${productId}?page=` + (currentPage - 1) + '&scrollTo=' + encodeURIComponent('#reviewBox');	    
+	        window.location.href = `/shop_detail/${productId}?page=` + (currentPage - 1);
+	    }
+	});
+	
+	$('#nextPage').on('click', function() {
+	    let currentPage = parseInt($('#pagination').data('current-page'));
+	    let totalPages = parseInt($('#pagination').data('total-pages'));
+	    let productId = $('#pagination').data('product-id'); // productId 가져오기
+	    if (currentPage < totalPages) {
+	        //window.location.href = `/shop_detail/${productId}?page=` + (currentPage + 1) + '&scrollTo=' + encodeURIComponent('#reviewBox');
+	        window.location.href = `/shop_detail/${productId}?page=` + (currentPage + 1);
+	    }
+	});
+	
  }); // 마지막

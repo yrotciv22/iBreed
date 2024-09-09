@@ -121,9 +121,28 @@
 	border-radius: 10px;
 }
 
+
 .overlay img {
 	width: 30px;
 	height: 30px;
+}
+
+#edit_proifle_img_cancel_Btn{
+	position:fixed;
+	left: 230px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width:30px;
+	height:30px;
+	color: #222;
+	font-weight:700;
+	border: 2px solid #222;
+}
+#edit_proifle_img_cancel_Btn:hover {
+	background: #eee;
+	color: #222;
+	cursor:pointer;
 }
 
 .profile_photo:hover .overlay {
@@ -279,6 +298,16 @@
 	font-weight: 900;
 	line-height: 34px;
 }
+
+#save_profile_image_btn {
+
+	border: none;
+	background: none;
+}
+#save_profile_image_btn img{
+}
+
+
 
 .right_wrap {
 	display: flex;
