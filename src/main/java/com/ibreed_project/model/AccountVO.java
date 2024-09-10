@@ -222,4 +222,36 @@ public class AccountVO {
     }
 
 
+
+    @Override
+    public String toString() {
+        return "AccountVO{" +
+                "\n  user_id='" + user_id + '\'' +
+                "\n  user_password='" + user_password + '\'' +
+                "\n  user_nickname='" + user_nickname + '\'' +
+                "\n  user_name='" + user_name + '\'' +
+                "\n  user_gender=" + user_gender +
+                "\n  user_phone_number='" + user_phone_number + '\'' +
+                "\n  user_email='" + user_email + '\'' +
+                "\n  user_birth=" + user_birth +
+                "\n  user_kids_select='" + user_kids_select + '\'' +
+                "\n  user_fetus_old=" + user_fetus_old +
+                "\n  user_kids_old=" + user_kids_old +
+                "\n  user_location_agree=" + user_location_agree +
+                "\n  user_address='" + user_address + '\'' +
+                "\n  user_address_detail='" + user_address_detail + '\'' +
+                "\n  user_auth_address='" + user_auth_address + '\'' +
+                "\n  user_hint='" + user_hint + '\'' +
+                "\n  user_hint_sub='" + user_hint_sub + '\'' +
+                "\n  user_rate='" + user_rate + '\'' +
+                "\n  user_profile_image='" + user_profile_image + '\'' +
+                "\n  user_timestamp=" + user_timestamp +
+                "\n  emailDomain='" + emailDomain + '\'' +
+                "\n  reset_Token='" + reset_Token + '\'' +
+                "\n  token_Expiration=" + token_Expiration +
+                "\n}";
+    }
+
 }
+
+

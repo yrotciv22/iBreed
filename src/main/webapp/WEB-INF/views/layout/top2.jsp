@@ -18,7 +18,7 @@
 					</a>
 				</div>
 				<div>
-					<a href="<c:url value='/'/>"> 
+					<a href="<c:url value='/'/>">
 					<img class="bell"
 						src="<c:url value='/image/bell.png'/>"/>
 						<div class="bell_circle">11</div>

@@ -196,3 +196,23 @@ input:required:valid {
 input:invalid + .error-message {
     display: none;
 }
+
+#imagePreview {
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.uploadbtn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.uploadbtn:hover {
+    background-color: #45a049;
+}
+
