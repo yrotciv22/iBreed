@@ -18,4 +18,58 @@
 			user_id = #{user_id}
 	</select>
 
+	<select id="checkReview" parameterType="map" resultType="int">
+		SELECT COUNT(*)
+		FROM review
+		WHERE user_id = #{user_id} AND product_id = #{product_id}
+	</select>
+
+	<insert id="setReview" parameterType="com.ibreed_project.model.ReviewVO">
+		INSERT INTO review (
+		review_title,
+		review_coment,
+		review_rating,
+		review_time,
+		user_id,
+		img,
+		product_id
+		) VALUES (
+		#{review_title},
+		#{review_coment},
+		#{review_rating},
+		#{review_time},
+		#{user_id},
+		#{img},
+		#{product_id}
+		)
+	</insert>
+
+
+	<!-- 주문 내역과 제품 정보를 JOIN하여 조회 -->
+	<select id="getHistory" resultType="com.ibreed_project.model.OrderHistoryVO">
+		SELECT
+		oh.order_id,
+		oh.pay_number,
+		oh.product_id,
+		oh.quantity,
+		oh.user_id,
+		p.product_name,
+		p.product_discount,
+		p.product_price,
+		p.product_img,
+		p.product_stock,
+		p.product_sales,
+		p.product_coment
+		FROM
+		order_history oh
+		JOIN
+		product p ON oh.product_id = p.product_id
+		WHERE
+		oh.user_id = #{userId}
+	</select>
+
+	<delete id="deleteReview">
+		DELETE FROM review WHERE review_id = #{review_id}
+	</delete>
+
 </mapper>

@@ -1,14 +1,40 @@
 package com.ibreed_project.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class ReviewVO {
+
+	@Override
+	public String toString() {
+		return "ReviewVO{" +
+				"review_id=" + review_id +
+				", review_title='" + review_title + '\'' +
+				", review_coment='" + review_coment + '\'' +
+				", review_rating=" + review_rating +
+				", review_time=" + review_time +
+				", user_id='" + user_id + '\'' +
+				", img='" + img + '\'' +
+				", product_id=" + product_id +
+				", user_name='" + user_name + '\'' +
+				", product_name='" + product_name + '\'' +
+				'}';
+	}
 
 	private int review_id;
 	private String review_title;
 	private String review_coment;
 	private int review_rating;
-	private Date review_time;
+
+	public LocalDateTime getReview_time() {
+		return review_time;
+	}
+
+	public void setReview_time(LocalDateTime review_time) {
+		this.review_time = review_time;
+	}
+
+	private LocalDateTime review_time;
 	private String user_id;
 	private String img;
 	private int product_id;
@@ -46,14 +72,6 @@ public class ReviewVO {
 
 	public void setReview_rating(int review_rating) {
 		this.review_rating = review_rating;
-	}
-
-	public Date getReview_time() {
-		return review_time;
-	}
-
-	public void setReview_time(Date review_time) {
-		this.review_time = review_time;
 	}
 
 	public String getUser_id() {

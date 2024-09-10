@@ -87,7 +87,22 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 		// TODO Auto-generated method stub
 	    mydiary_diaryDAO.incrementViewCount(diaryPostId);
 	}
-	
+
+	@Override
+	public void likePost(String userId, int diaryPostId) {
+
+	}
+
+	@Override
+	public void unlikePost(String userId, int diaryPostId) {
+
+	}
+
+	@Override
+	public boolean isAlreadyLiked(String userId, int diaryPostId) {
+		return false;
+	}
+
 	//좋아요 관련
 	@Override
 	public boolean checkIfLiked(String userId, int diaryPostId) {
