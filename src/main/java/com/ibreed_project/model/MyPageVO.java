@@ -17,8 +17,17 @@ public class MyPageVO {
 	private int product_id;
 	private int quantity;
 	private int product_price;
+	private int product_discount;
 	private String product_name;
 	private String product_img;
+
+	public int getProduct_discount() {
+		return product_discount;
+	}
+
+	public void setProduct_discount(int product_discount) {
+		this.product_discount = product_discount;
+	}
 
 	public String getProduct_img() {
 		return product_img;

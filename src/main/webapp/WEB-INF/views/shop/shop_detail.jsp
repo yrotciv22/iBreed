@@ -9,6 +9,7 @@
 <title>iBreed 쇼핑몰 상품상세보기</title>
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 <script src="<c:url value='/js/shop_detail.js'/>"></script>
+<script src="<c:url value='/js/addCookie.js'/>"></script>
 <script>const userId = "${sessionScope.user_id}"</script>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/shop/shop_detail.css' />" />
 <c:import url="/WEB-INF/views/layout/head.jsp" />
@@ -58,6 +59,7 @@
 							<p id="discount"><strong><fmt:formatNumber value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}"
 																			type="number" pattern="##,#00"/></strong><strong>원</strong></p>
 							<input id="prc" type="hidden" type="number" value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}">												
+							<input id="recent_prdIds" type="hidden" value="${prd.product_id}">
 						</div>
 						<div id="shipBox">
 							<div id="shipping">배송</div>
@@ -106,6 +108,7 @@
 							</c:if>
 							<input type="button" value="장바구니" id="put_cart" >
 							<input type="button" value="구매하기" id="buying">
+							
 						</div>
 					</div>
 				</div>

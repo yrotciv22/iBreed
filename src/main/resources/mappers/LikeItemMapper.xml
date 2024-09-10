@@ -13,7 +13,12 @@
   	</resultMap>
 	
   	<select id="likeCheck" resultType="string" parameterType="com.ibreed_project.model.LikeItemVO">
-		SELECT user_id FROM likeitem WHERE wish_item=#{product_id} AND user_id = #{user_id};
+		SELECT 
+			user_id 
+		FROM 
+			likeitem
+		WHERE 
+			wish_item=#{product_id} AND user_id = #{user_id};
   	</select>
   	
   	<insert id="insertLike" parameterType="map">
@@ -23,4 +28,5 @@
   	<delete id="deleteLike" parameterType="map">
   		DELETE FROM likeitem WHERE user_id=#{user_id} AND wish_item=#{product_id};
   	</delete>
+  	
   </mapper>

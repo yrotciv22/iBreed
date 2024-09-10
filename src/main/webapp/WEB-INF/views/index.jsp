@@ -124,7 +124,7 @@
 						<!--  -->
 						<div class="main_row_wrap">
 							<div class="main_best border">
-								<div class="board_title">이달의 베스트 다이어리</div>
+								<div class="board_title">최신 게시글</div>
 
 								<ul class="main_board_ul">
 									<c:set var="index" value="0" />

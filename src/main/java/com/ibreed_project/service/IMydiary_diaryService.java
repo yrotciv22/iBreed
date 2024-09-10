@@ -41,11 +41,11 @@ public interface IMydiary_diaryService {
 		 //좋아요수 감소
 
 		 void decrementLike(int diaryPostId, String userId);
+
 		 //좋아요 수 받아옥;
   		 int getLikeCount(int diaryPostId);
 
  	    // 다이어리 작성 수 조회
  	    public int getDiaryCount(String userId);
-
 		
 }

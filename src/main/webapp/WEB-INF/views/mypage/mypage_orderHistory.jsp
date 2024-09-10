@@ -45,16 +45,18 @@
 						<div class="row_wrap">
 							<table>
 								<tr>
-									<td>
+									<th>
 										<label class="custom-checkbox"> <input type="checkbox" />
 											<span class="checkmark"></span>
 										</label>
 										주문번호/시간
-									</td>
-									<td>주문상품/상품금액/수량</td>
-									<td>배송비</td>
-									<td>배송정보</td>
-									<td>결제내역</td>
+									</th>
+									<th id="second">주문상품</th>
+									<th id="third">상품금액</th>
+									<th id="fourth">수량</th>
+									<th>배송비</th>
+									<th>배송정보</th>
+									<th>결제내역</th>
 								</tr>
 								<c:forEach var="p" items="${payList}">
 								<tr>
@@ -65,14 +67,14 @@
 										${p.pay_number}<br>
 										<fmt:formatDate value="${p.pay_time}" pattern="yyyy-MM-dd hh:mm"/>
 									</td>
-									<td>
-										<table>
+									<td colspan="3">
+										<table class="miniTable">
 											<c:forEach var="o" items="${orderMap[p.pay_number]}">
 												<tr>
-													<td><input type="image" src="${o.product_img}" class="order_img"></td>
-													<td>${o.product_name}원</td>
-													<td>${o.product_price}원</td>
-													<td>${o.quantity}</td>
+													
+													<td id="o_first"><input type="image" src="${o.product_img}" class="order_img"><br>${o.product_name}원</td>
+													<td id="o_second">${o.product_price}원</td>
+													<td id="o_third">${o.quantity}개</td>
 												</tr>
 											</c:forEach>
 										</table>
@@ -81,11 +83,12 @@
 										${p.delivery_charge}원
 									</td>
 									<td>
+										${p.recipient_name}<br>
 										${p.recipient_address}
 									</td>
-									<td>
-										총 결제 금액 <span>${p.total_order_amount}</span>원<br>
-										결제방법<span>${p.payment_method}</span>
+									<td class="breakDown">
+										<span class="sub">총 결제금액</span> <span class="result">${p.total_order_amount}원</span><br>
+										<span class="sub">결제방법</span> <span class="result">${p.payment_method}</span>
 									</td>
 								</tr>
 							</c:forEach>

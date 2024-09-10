@@ -7,7 +7,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>iBreed Mypage 취소상품리스트</title>
+<title>iBreed Mypage Wishlist</title>
 
 <!-- 공통 layout: head.jsp -->
 <c:import url="/WEB-INF/views/layout/head.jsp" />
@@ -16,7 +16,8 @@
 	href="<c:url value='/css/mypage/mypage_layout.css'/>" />
 
 <!-- 여기에 css, js 파일 링크를 작성하세요. -->
-
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/css/mypage/wishlist.css'/>" />
 </head>
 
 
@@ -30,9 +31,24 @@
 		<c:import url="/WEB-INF/views/mypage/mypage_layout.jsp" />
 
 		<div class="contents_wrap">
-			<div id="content">
-			
-			</div>
+
+
+			<!-- 아래부터 본문 작성 -->
+				<div class="sub_title">
+					취소/교환/반품 내역&nbsp;
+				</div>
+				<div class="select_all_wrap">
+				</div>
+
+
+
+				<div class="wishlist">
+
+
+				</div>
+
+
+			<!-- 본문작성 끝 -->
 		</div>
 	</div>
 

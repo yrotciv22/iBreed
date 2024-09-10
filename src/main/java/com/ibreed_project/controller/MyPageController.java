@@ -1,7 +1,9 @@
 package com.ibreed_project.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +11,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ibreed_project.model.MyPageVO;
 import com.ibreed_project.service.LoginService;
 import com.ibreed_project.service.MyPageService;
 import com.ibreed_project.service.Mydiary_diaryService;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -37,12 +44,30 @@ public class MyPageController {
 		return "mypage/mypage_basic";
 	}
 	
-	/* 찜리스트 페이지 예은 */	
+	/* 찜리스트 페이지 승우 */	
 	@RequestMapping("/mypage/wishlist")
-	public String viewWishListPage() {
+	public String viewWishListPage(HttpSession session, 
+								   Model model) {
+		
+		String user_id = (String) session.getAttribute("user_id");
+		
+		ArrayList<MyPageVO> likeList= myPageService.selectLikeItemList(user_id);
+		
+		int diaryCount = mydiary_diaryService.getDiaryCount(user_id);
+		String nickName = loginService.getNickName(user_id);
+		String rating = loginService.getRating(user_id);
+		int payCount = myPageService.countPayment(user_id);
+		
+		model.addAttribute("diaryCount", diaryCount);
+		model.addAttribute("nickName", nickName);
+		model.addAttribute("rating", rating);
+		model.addAttribute("payCount", payCount);
+		
+		model.addAttribute("likeList", likeList);
+		
 		return "mypage/wishlist";
 	}
-
+	
 	/* 주문내역 페이지 승우 */	
 	@RequestMapping("/mypage/orderList")
 	public String viewOrderListPage(HttpSession session, 
@@ -78,14 +103,71 @@ public class MyPageController {
 	
 	/* 취소내역 페이지 승우 */	
 	@RequestMapping("/mypage/cancelList")
-	public String viewCancelListPage() {
+	public String viewCancelListPage(HttpSession session, 
+									 Model model) {
+		
+		String user_id = (String) session.getAttribute("user_id");
+		
+		int diaryCount = mydiary_diaryService.getDiaryCount(user_id);
+		String nickName = loginService.getNickName(user_id);
+		String rating = loginService.getRating(user_id);
+		int payCount = myPageService.countPayment(user_id);
+		
+		model.addAttribute("diaryCount", diaryCount);
+		model.addAttribute("nickName", nickName);
+		model.addAttribute("rating", rating);
+		model.addAttribute("payCount", payCount);
+		
 		return "mypage/mypage_cancelList";
 	}
 	
 	/* 최근본상품 페이지 승우 */	
 	@RequestMapping("/mypage/recentPrdList")
-	public String viewRecentPrdListPage() {
+	public String viewRecentPrdListPage(HttpSession session, 
+										Model model,
+										HttpServletRequest request) throws JsonMappingException, JsonProcessingException {
+		
+		String user_id = (String) session.getAttribute("user_id");
+		
+		int diaryCount = mydiary_diaryService.getDiaryCount(user_id);
+		String nickName = loginService.getNickName(user_id);
+		String rating = loginService.getRating(user_id);
+		int payCount = myPageService.countPayment(user_id);
+		
+		model.addAttribute("diaryCount", diaryCount);
+		model.addAttribute("nickName", nickName);
+		model.addAttribute("rating", rating);
+		model.addAttribute("payCount", payCount);
+		
+		Cookie[] cookies = request.getCookies();
+	    String viewedProducts = null;
+
+	    System.out.println("쿠키값" + cookies);
+	    
+	    if (cookies != null) {
+	        for (Cookie cookie : cookies) {
+	        	System.out.println(cookies.length);
+	            if (cookie.getName().equals("viewedProducts")) {
+	            	System.out.println("쿠키밸류"+cookie.getValue());
+	                viewedProducts = cookie.getValue();
+	                break;
+	            }
+	        }
+	    }
+	    
+	    System.out.println("null 아니면 성공임 >>" + viewedProducts);
+	    if (viewedProducts != null) {
+	        // 쿠키에서 가져온 값(JSON)을 리스트로 변환
+	        List<Integer> productIds = Arrays.asList(new ObjectMapper().readValue(viewedProducts, Integer[].class));
+
+	        // DB에서 상품 정보를 가져옴
+	        List<MyPageVO> recentProducts = myPageService.getProductsByIds(productIds);
+	        model.addAttribute("recentProducts", recentProducts);
+	        System.out.println("안녕하이헬로" + recentProducts);
+	    }
+	    
 		return "mypage/mypage_recentPrdList";
 	}
+	
 	
 }

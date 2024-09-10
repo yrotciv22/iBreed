@@ -125,5 +125,4 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 	}
 
 
-
 }
