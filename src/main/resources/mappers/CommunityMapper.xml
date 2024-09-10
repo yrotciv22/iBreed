@@ -69,8 +69,8 @@
     </select>
     <!-- 글 등록 -->
     <insert id="insertPost" parameterType="com.ibreed_project.model.PostVO">
-    INSERT INTO posts (post_id, post_title, post_content, post_create, post_count, post_heading, user_id, post_status, board_id2, post_image, post_video, post_url, post_likes)
-    VALUES (#{postId}, #{postTitle}, #{postContent}, NOW(), #{postCount}, #{postHeading}, #{userId}, #{postStatus}, #{boardId2}, #{postImage}, #{postVideo}, #{postUrl}, #{postLikes});
+    INSERT INTO post (post_id, post_title, post_content, post_create, post_count, post_heading, user_id, post_status, board_id2, post_image, post_video, post_url, likes)
+    VALUES (#{postId}, #{postTitle}, #{postContent}, NOW(), #{postCount}, #{postHeading}, #{userId}, #{postStatus}, #{boardId2}, #{postImage}, #{postVideo}, #{postUrl}, 0);
 </insert>
     
 </mapper>
