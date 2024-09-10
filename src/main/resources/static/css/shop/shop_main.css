@@ -213,6 +213,7 @@ a {
 
 .tagIcon {
 	position: absolute;
+    left: -150px;
     width: 55px;
 }
 
@@ -220,6 +221,7 @@ a {
 	position: absolute;
     left: 141px;
     top: 9px;
+    z-index: 1;
 }
 
 .bestRating:last-child {

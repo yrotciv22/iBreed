@@ -110,6 +110,10 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
         return mydiary_diaryDAO.getLikeCount(diaryPostId);
 	}
 
+	@Override
+	public int getDiaryCount(String userId) {
+		return mydiary_diaryDAO.getDiaryCount(userId);
+	}
 	
 	
 

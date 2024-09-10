@@ -41,7 +41,11 @@ public interface IMydiary_diaryDAO {
     int isLiked(@Param("userId") String userId, @Param("diaryPostId") int diaryPostId);
     void incrementLikeCount(@Param("diaryPostId") int diaryPostId);
     void decrementLikeCount(@Param("diaryPostId") int diaryPostId);
+
+    public int getDiaryCount(String userId);
+
     int getLikeCount(@Param("diaryPostId") int diaryPostId);
     void addUserLike(@Param("userId") String userId, @Param("diaryPostId") int diaryPostId);
     void removeUserLike(@Param("userId") String userId, @Param("diaryPostId") int diaryPostId);
+
 }

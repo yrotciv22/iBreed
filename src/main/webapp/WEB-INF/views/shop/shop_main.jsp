@@ -65,8 +65,8 @@
 						<c:forEach items="${topTenList}" var="prd" varStatus="status">
 							<div class="popularMenuBox" OnClick="location.href ='/shop_detail/${prd.product_id}'">
 								<div class="bestIcon">
-									<img class="tagIcon" src="../image/tag.png">
 									<strong class="bestRating">${status.count}</strong>
+									<img class="tagIcon" src="../image/tag.png">
 								</div>
 								<div class="P_thumbnail">
 									<img class="P_thumbnailImg" src="${prd.product_img}">
