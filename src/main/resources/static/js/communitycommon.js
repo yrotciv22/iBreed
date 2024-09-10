@@ -35,6 +35,18 @@ $(document).ready(function(){
         // 클릭된 링크에 active 클래스 추가
         $(this).addClass('active');
     });
+    
+    
+    // 공지 숨기기 기능
+    $('#hideNoticeCheckbox').on('change', function() {
+        if ($(this).is(':checked')) {
+            // 체크박스가 선택된 경우 공지 숨기기
+            $('.notice').hide();
+        } else {
+            // 체크박스 선택 해제된 경우 공지 다시 보이기
+            $('.notice').show();
+        }
+    });
 
     // 로그인 상태를 확인하는 함수
     function checkLoginStatus() {
@@ -75,7 +87,6 @@ $(document).ready(function(){
             }
         });
     }
-
     // 페이지 로드 시 로그인 상태 확인
     checkLoginStatus();
 });

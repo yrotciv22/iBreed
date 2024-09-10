@@ -21,5 +21,10 @@ public interface IDiaryCommentDAO {
 	    // 댓글 삭제
 	    void deleteComment(@Param("id") int id);
 
+	    //댓글 정렬
+	    List<DiaryCommentVO> getCommentsByPostId(@Param("diaryPostId") int diaryPostId);
+	    //댓글 수
+	    int getCommentCountByDiaryPostId(int diaryPostId);
+
 
 }

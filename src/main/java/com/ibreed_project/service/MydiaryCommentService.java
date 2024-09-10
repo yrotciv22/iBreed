@@ -35,6 +35,19 @@ public class MydiaryCommentService implements IMydiaryCommentService {
 	    public void deleteComment(int id) {
 	        diaryCommentDAO.deleteComment(id);
 	    }
+
+		@Override
+		public List<DiaryCommentVO> getCommentsByPostId(int diaryPostId) {
+			   // 댓글을 오래된 순서로 가져오기 위해 정렬된 결과 반환
+	        return diaryCommentDAO.getCommentsByPostId(diaryPostId);
+		}
+
+		@Override
+		public int getCommentCount(int diaryPostId) {
+			// TODO Auto-generated method stub
+			return diaryCommentDAO.getCommentCountByDiaryPostId(diaryPostId);
+		}
+	    
 	
 
 }

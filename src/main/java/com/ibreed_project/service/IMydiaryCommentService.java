@@ -17,5 +17,9 @@ public interface IMydiaryCommentService {
 
     // 댓글 삭제
     void deleteComment(int id);
-
+    //댓글정렬
+    List<DiaryCommentVO> getCommentsByPostId(int diaryPostId);
+    //댓글 수
+    int getCommentCount(int diaryPostId);
+    
 }
