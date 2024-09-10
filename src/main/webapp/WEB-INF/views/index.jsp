@@ -73,25 +73,55 @@
 				<div class="left_contents">
 					<div id="slideShow">
 						<div id="main_banner" class="border">
-						<a href="#"> <img
+							<a href="#"> <img
 								src="https://media.istockphoto.com/id/1213866189/ko/%EC%82%AC%EC%A7%84/%EB%AA%A8%ED%98%95-3d-%EB%A0%8C%EB%8D%94%EB%A7%81%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%9E%90%EC%8B%9D-%EC%B9%A8%EC%8B%A4-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4.jpg?s=2048x2048&w=is&k=20&c=-G9AR5gJ-UakkR1K4Ajr6rqKdOltvznwnMBvQ3XOtzs=" /></a>
 
-						<a href="#"> <img
+							<a href="#"> <img
 								src="https://images.unsplash.com/photo-1522836924445-4478bdeb860c?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" /></a>
 
 							<a href="#"> <img
 								src="https://images.unsplash.com/photo-1528938102132-4a9276b8e320?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" /></a>
-				
+
 						</div>
 
-				 	<div id="circle_btn_wrap">
+						<div id="circle_btn_wrap">
 							<a><img class="circleBtn" src="../image/hollow_circle.png"></a>
 							<a><img class="circleBtn" src="../image/hollow_circle.png"></a>
 							<a><img class="circleBtn" src="../image/hollow_circle.png"></a>
-						</div> >
+						</div>
+						>
 					</div>
 
 					<div class="main_short_cut_wrap">
+
+						<!-- 1 -->
+						<%-- <div class="main_row_wrap">
+							<div class="main_recent_diary_wrap border">
+								<div class="board_title">최신 다이어리</div>
+								<div class="carousel-container">
+									<ul class="main_recent_diary_wrap_ul">
+
+										<li class="diary_item"><a class="diary_item" href="#"><img
+												src="<c:url value='/image/main_diary.png' />" /></a></li>
+										<li class="diary_item"><a class="diary_item" href="#"><img
+												src="<c:url value='/image/main_diary.png' />" /></a></li>
+										<li class="diary_item"><a class="diary_item" href="#"><img
+												src="<c:url value='/image/main_diary.png' />" /></a></li>
+										<li class="diary_item"><a class="diary_item" href="#"><img
+												src="<c:url value='/image/main_diary.png' />" /></a></li>
+										<li class="diary_item"><a class="diary_item" href="#"><img
+												src="<c:url value='/image/main_diary.png' />" /></a></li>
+
+
+									</ul>
+								</div>
+							</div>
+						</div> --%>
+						<!-- 1  -->
+
+
+
+						<!--  -->
 						<div class="main_row_wrap">
 							<div class="main_best border">
 								<div class="board_title">이달의 베스트 다이어리</div>
@@ -295,17 +325,30 @@
 
 
 					</div>
-
-					<a href="<c:url value='/shop'/>"><div
+<!--  -->
+					<%-- <a href="<c:url value='/#'/>">
+						<div class="advertisement border">
+							<!-- 	<span> 광고</span> -->
+							<img class="advertisement_img"
+								src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+						</div>
+					</a> --%>
+					<!--  -->
+					
+					
+					
+					 <a href="<c:url value='/shop'/>"><div
 							class="main_market border">
 							<span>아이브리드 마켓</span> <img
 								src="https://images.unsplash.com/photo-1559659133-8781d8f3b673?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
 							<!-- 					<img src="https://images.unsplash.com/photo-1546074176-abecd33d2b53?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
 -->
-						</div></a> <a href="<c:url value='/#'/>"><div class="main_event border">
+						</div></a> <a href="<c:url value='/#'/>">
+						<div class="main_event border">
 							<span> Event 1</span> <img class="event1_img"
 								src="https://plus.unsplash.com/premium_photo-1664453890782-2807855161fa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-						</div></a> <a href="<c:url value='/#'/>"><div class="main_event border">
+						</div>
+					</a> <a href="<c:url value='/#'/>"><div class="main_event border">
 							<span>Event 2</span>
 							<!-- 						<img class="event2_img" src="https://images.unsplash.com/photo-1559659133-8781d8f3b673?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
 -->
