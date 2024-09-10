@@ -47,6 +47,5 @@ public interface IMydiary_diaryService {
 
  	    // 다이어리 작성 수 조회
  	    public int getDiaryCount(String userId);
-
 		
 }
