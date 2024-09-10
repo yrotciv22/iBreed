@@ -30,19 +30,19 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 	        mydiary_diaryDAO.insertDiary(diary);
 	    }
 	}
-	//일기포스트번호로 
-	@Override
-	public Mydiary_diaryVO getDiary(int diaryPostId) {
-		 return mydiary_diaryDAO.getDiaryById(diaryPostId);
-	}
+	
+		//일기포스트번호로 
+		@Override
+		public Mydiary_diaryVO getDiary(int diaryPostId) {
+			 return mydiary_diaryDAO.getDiaryById(diaryPostId);
+		}
+	
 		//일기유저아이디조회로 
 	   @Override
 	   public int getDiaryIdByUserId(String userId) {
 		    return mydiary_diaryDAO.findDiaryIdByUserId(userId);
 		}
 
-	
-	
 	   @Override
 	   public List<Mydiary_diaryVO> getDiaryListByUserIdAndVisibility(HashMap<String, Object> params ) {
 	       System.out.println("getDiaryListByUserIdAndVisibility 메서드 진입");
@@ -55,6 +55,7 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 	       //return mydiary_diaryDAO.getDiaryListByUserIdAndVisibility(params);
 	       return mydiary_diaryDAO.getDiaryListByUserIdAndVisibility(params);
 	   }
+	
 	   //일기리스트
 	 @Override
 	    public List<Mydiary_diaryVO> getDiaryListByUserId(Map<String, Object> params) {
@@ -62,32 +63,35 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 	        return mydiary_diaryDAO.getDiaryListByUserId(params);
 	    }
 	    //일기총갯수(페이지네이션)
-	@Override
-	public int getTotalDiaryCountByUserId(String userId) {
-		// TODO Auto-generated method stub
-		return mydiary_diaryDAO.getTotalDiaryCountByUserId(userId);
-	}
-	//삭제
-	@Override
-	public void deleteDiary(int diaryPostId) {
-		// TODO Auto-generated method stub
-		 mydiary_diaryDAO.deleteDiary(diaryPostId);
-		
-	}
-	//수정
-	@Override
-	public void updateDiary(Mydiary_diaryVO vo) {
-		// TODO Auto-generated method stub
-		mydiary_diaryDAO.updateDiary(vo);
-		
-	}
-	//조회수 
-	@Override
-	public void incrementViewCount(int diaryPostId) {
-		// TODO Auto-generated method stub
-	    mydiary_diaryDAO.incrementViewCount(diaryPostId);
-	}
+		@Override
+		public int getTotalDiaryCountByUserId(String userId) {
+			// TODO Auto-generated method stub
+			return mydiary_diaryDAO.getTotalDiaryCountByUserId(userId);
+		}
 	
+		//삭제
+		@Override
+		public void deleteDiary(int diaryPostId) {
+			// TODO Auto-generated method stub
+			 mydiary_diaryDAO.deleteDiary(diaryPostId);
+			
+		}
+	
+		//수정
+		@Override
+		public void updateDiary(Mydiary_diaryVO vo) {
+			// TODO Auto-generated method stub
+			mydiary_diaryDAO.updateDiary(vo);
+			
+		}
+	
+		//조회수 
+		@Override
+		public void incrementViewCount(int diaryPostId) {
+			// TODO Auto-generated method stub
+		    mydiary_diaryDAO.incrementViewCount(diaryPostId);
+		}
+		
 	//좋아요 관련
 	@Override
 	public boolean checkIfLiked(String userId, int diaryPostId) {
@@ -114,7 +118,7 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 	public int getDiaryCount(String userId) {
 		return mydiary_diaryDAO.getDiaryCount(userId);
 	}
-	
-	
+
+
 
 }

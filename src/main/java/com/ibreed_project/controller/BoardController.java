@@ -33,7 +33,7 @@ public class BoardController {
 	    public String viewBoard(@PathVariable("boardId") int boardId, 
 	    											Model model,
 	    											@RequestParam(value = "page", defaultValue = "1") int page,
-	 				                               @RequestParam(value = "size", defaultValue = "15") int size) {
+	 				                               @RequestParam(value = "size", defaultValue = "10") int size) {
 	        // 특정 게시판 정보 가져오기
 	        BoardVO board = boardService.getBoardById(boardId);
 	        model.addAttribute("board", board);
@@ -81,17 +81,23 @@ public class BoardController {
 	    													Model model) {
 	        // 필요한 데이터를 모델에 추가
 	        model.addAttribute("boardId", boardId);
-	        System.out.println("boardId: " + boardId);
+	        System.out.println("Controller에서 전달된 boardId: " + boardId); 
 	        return "community/communityWrite"; 
 	    }
-	  //글 저장
+	  //글 저장(게시판에서 글쓰기시)
 	  @PostMapping("/board/{boardId}/save")
-	  public String savePost(@PathVariable("boardId") int boardId,
-	                         PostVO postVO,
-	                         HttpSession session) {
+	  public String savePost(@PathVariable("boardId") int  boardId,
+					                         PostVO postVO,
+					                         HttpSession session,
+					                     	Model model) {
+		  
+		  
 	      // 세션에서 사용자 정보 가져오기
 	      String userId = (String) session.getAttribute("user_id");
-
+	 
+	      model.addAttribute("boardId", boardId);
+	      System.out.println("글저장boardId: " + boardId);
+	 //     System.out.println("Post title: " + postVO.getPostTitle()); 
 	      // 글 작성자 ID 세팅
 	      postVO.setUserId(userId);
 	      postVO.setBoardId2(boardId); 
@@ -102,7 +108,31 @@ public class BoardController {
 	      // 메시지 없이 글 목록으로 리다이렉트
 	      return "redirect:/community/board/" + boardId;
 	  }
+	  
+	  
+	  //글저장(사이드바에서 글쓰기 선택시)
+	  @PostMapping("/board/save")
+	  public String saveSidebarPost(@RequestParam("boardId") Integer boardId, 
+	                                PostVO postVO, HttpSession session, Model model) {
+		  
+		
+		 
+	      // 세션에서 사용자 정보 가져오기
+	      String userId = (String) session.getAttribute("user_id");
+	      	
+	      // 게시판 ID 확인
+	      System.out.println("사이드바에서 글쓰기 - boardId: " + boardId);
 
+	      // 글 작성자 ID 세팅
+	      postVO.setUserId(userId);
+	      postVO.setBoardId2(boardId);
+
+	      // 서비스로 저장 호출
+	      communityMainService.savePost(postVO);
+
+	      // 게시판으로 리다이렉트
+	      return "redirect:/community/board/" + boardId;
+	  }
 
 
 

@@ -1,10 +1,3 @@
-/**
- * 
- */
- 
-
-
-
 $(document).ready(function(){
  
     // 맨위로 버튼 
@@ -35,7 +28,6 @@ $(document).ready(function(){
         // 클릭된 링크에 active 클래스 추가
         $(this).addClass('active');
     });
-    
     
     // 공지 숨기기 기능
     $('#hideNoticeCheckbox').on('change', function() {
@@ -89,4 +81,24 @@ $(document).ready(function(){
     }
     // 페이지 로드 시 로그인 상태 확인
     checkLoginStatus();
+
+    // 리스트 보기와 그리드 보기 버튼 클릭 이벤트 처리
+    $('#viewListBtn').on('click', function() {
+        console.log("List View button clicked");  // 클릭 여부 확인
+        $('#postsContainer').removeClass('grid-view').addClass('list-view');
+        $('.list-view-content').show();
+        $('.grid-view-content').hide();
+    });
+
+    $('#viewGridBtn').on('click', function() {
+        console.log("Grid View button clicked");  // 클릭 여부 확인
+        $('#postsContainer').removeClass('list-view').addClass('grid-view');
+        $('.list-view-content').hide();
+        $('.grid-view-content').show();
+    });
+
+    // 초기 로드 시 리스트 보기를 기본으로 설정
+    $('#postsContainer').addClass('list-view');
+    $('.list-view-content').show();
+    $('.grid-view-content').hide();
 });
