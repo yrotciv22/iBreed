@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 @Configuration
 @EnableWebSecurity
@@ -23,8 +25,21 @@ public class WebSecurityConfig {
         return http.build();
     }
 
+    // Password encoder 설정
     @Bean
     public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    // HttpFirewall 설정
+    @Bean
+    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
+        StrictHttpFirewall firewall = new StrictHttpFirewall();
+        // 슬래시와 관련된 문제 허용
+        firewall.setAllowUrlEncodedSlash(true);
+        firewall.setAllowSemicolon(true); // 세미콜론 허용 (필요할 경우)
+        firewall.setAllowUrlEncodedDoubleSlash(true); // 이중 슬래시 허용
+        return firewall;
+    }
+
 }
