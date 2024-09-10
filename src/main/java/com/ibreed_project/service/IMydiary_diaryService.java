@@ -31,14 +31,17 @@ public interface IMydiary_diaryService {
 	 
 	    //다이어리 조회수증가
   		public void incrementViewCount(int diaryPostId);
-		
-  		//좋아요했는지안했는지
-  		boolean checkIfLiked(String userId, int diaryPostId);
-  		//좋아요 수 증가 
-  		void incrementLike(int diaryPostId, String userId);
-  		//좋아요수 감소
-  		void decrementLike(int diaryPostId, String userId);
-  		//좋아요 수 받아옥;
+	
+	 		//좋아요했는지안했는지
+		boolean checkIfLiked(String userId, int diaryPostId);
+  
+		//좋아요 수 증가
+		 void incrementLike(int diaryPostId, String userId);
+  
+		 //좋아요수 감소
+
+		 void decrementLike(int diaryPostId, String userId);
+		 //좋아요 수 받아옥;
   		 int getLikeCount(int diaryPostId);
 
  	    // 다이어리 작성 수 조회

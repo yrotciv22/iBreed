@@ -62,7 +62,9 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 	    	
 	        return mydiary_diaryDAO.getDiaryListByUserId(params);
 	    }
+  
 	    //일기총갯수(페이지네이션)
+
 		@Override
 		public int getTotalDiaryCountByUserId(String userId) {
 			// TODO Auto-generated method stub
@@ -91,23 +93,26 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 			// TODO Auto-generated method stub
 		    mydiary_diaryDAO.incrementViewCount(diaryPostId);
 		}
-		
+	
 	//좋아요 관련
 	@Override
 	public boolean checkIfLiked(String userId, int diaryPostId) {
 		// TODO Auto-generated method stub
 		 return mydiary_diaryDAO.isLiked(userId, diaryPostId) > 0;
 	}
+  
 	@Override
 	public void incrementLike(int diaryPostId, String userId) {
 		mydiary_diaryDAO.incrementLikeCount(diaryPostId);
 		mydiary_diaryDAO.addUserLike(userId, diaryPostId);
 	}
+  
 	@Override
 	public void decrementLike(int diaryPostId, String userId) {
 		mydiary_diaryDAO.decrementLikeCount(diaryPostId);
 		mydiary_diaryDAO.removeUserLike(userId, diaryPostId);		
 	}
+  
 	@Override
 	public int getLikeCount(int diaryPostId) {
 		// TODO Auto-generated method stub
