@@ -6,5 +6,11 @@
 		SELECT * FROM user WHERE user_id = #{id}
 	</select>
 
-
+	<select id="getNickName" resultType="string">
+		SELECT user_nickname FROM user WHERE user_id=#{user_id}
+	</select>
+	
+	<select id="getRating" resultType="string">
+		SELECT user_rate FROM user WHERE user_id=#{user_id}
+	</select>
 </mapper>

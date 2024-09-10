@@ -1,5 +1,7 @@
 package com.ibreed_project.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,23 @@ public class LikeItemService implements ILikeItemService {
 
 	@Override
 	public String likeCheck(LikeItemVO vo) {
-		return dao.likeCheck(vo);
+		
+		String result = "available";
+		
+		if(dao.likeCheck(vo) == null) {
+			result = "not_available";
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public void insertLike(Map map) {
+		dao.insertLike(map);
+	}
+	
+	@Override
+	public void deleteLike(Map map) {
+		dao.deleteLike(map);
 	}
 }

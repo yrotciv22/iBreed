@@ -20,9 +20,9 @@
 	
 	<div id="main">
 		<div id="category"> <!-- 왼쪽 카테고리 박스 -->
-			<div id="home">
+			<!-- <div id="home">
 				<img src="#">
-			</div>
+			</div> -->
 			<div id="categoryList">
 				<ul>
 					<li><a href='#'>베스트</a></li>
@@ -95,7 +95,15 @@
 							<span>원</span>
 						</div>
 						<div id="btnBox">
-							<input type="image" src="/image/no_like.png" id="likes">
+							<c:if test="${empty likeResult}"> <!-- 로그인 하지 않았을 경우 -->
+								<input type="image" src="/image/no_like.png" id="likes">
+							</c:if>
+							<c:if test="${likeResult eq 'not_available'}"> 
+								<a href="<c:url value='/insertLike/${prd.product_id}'/>"><input type="image" src="/image/no_like.png" id="likes"></a>
+							</c:if>
+							<c:if test="${likeResult eq 'available'}">
+								<a href="<c:url value='/deleteLike/${prd.product_id}'/>"><input type="image" src="/image/yes_like.png" id="likes"></a>
+							</c:if>
 							<input type="button" value="장바구니" id="put_cart" >
 							<input type="button" value="구매하기" id="buying">
 						</div>

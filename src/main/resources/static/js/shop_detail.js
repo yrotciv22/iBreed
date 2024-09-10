@@ -129,7 +129,7 @@
 			break;
 		case '5': $(this).html('⭐⭐⭐⭐⭐5');
 			break;
-	}		
+		}
 
 	});
 	
@@ -145,8 +145,6 @@
 			} else {
 		 		$('#likes').attr("src", "/image/yes_like.png");
 			} 		
-			
-			alert(userId);
 			
 		} else {
 			alert("로그인 후에 본 서비스를 이용하실 수 있습니다.");

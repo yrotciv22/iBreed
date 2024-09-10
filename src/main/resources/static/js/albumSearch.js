@@ -3,12 +3,9 @@
  */
  
  $(document).ready(function() {
- 	//검색 폼이 전송(submit) 되었을 때
  	$('#albumSearchForm').on('submit', function() {
  		event.preventDefault();
  		
- 		// 폼에 입력한 여러 개의 값을 쿼리스트링 방식의 데이터로 변환 : serialize() 사용
- 		// type=prdName&keyword=노트북
  		let formData = $(this).serialize();
  		
  		let keyword = $('#albumTitle').val();

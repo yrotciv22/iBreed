@@ -2,6 +2,8 @@ package com.ibreed_project.controller;
 
 import java.util.ArrayList;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,6 +71,7 @@ public class ShopController {
 	@RequestMapping("shop_detail/{product_id}")
 	public String detailView(@PathVariable("product_id") int product_id, 
 										   @RequestParam(value = "page", defaultValue = "1") int page,
+										   HttpSession session,
 										   Model model) {
 
 		ProductVO prd = prdService.detailViewPrd(product_id);
@@ -95,8 +98,18 @@ public class ShopController {
 
 			vo.setUser_name(fullName);
 		}
-		;
-
+		
+		
+		// 찜버튼 확인
+		LikeItemVO likeVo = new LikeItemVO();
+		
+		likeVo.setUser_id((String) session.getAttribute("user_id"));
+		likeVo.setProduct_id(product_id);
+		
+		String likeResult = likeService.likeCheck(likeVo);
+		
+		model.addAttribute("likeResult", likeResult);
+		
 		//페이지네이션
 		int itemsPerPage = 5;
 		int totalItems = reviewService.countReview(product_id);

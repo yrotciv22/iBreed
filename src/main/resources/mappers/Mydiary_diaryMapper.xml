@@ -139,5 +139,11 @@
     WHERE diary_post_id = #{diaryPostId}
 </select>
 
+	<select id="getDiaryCount" resultType="int">
+		SELECT count(*) FROM diaryboard WHERE diary_id=(SELECT diary_id FROM diary WHERE user_id=#{user_id})
+		<!-- SELECT COALESCE(
+	    (SELECT COUNT(*) FROM diaryboard WHERE diary_id IN (SELECT diary_id FROM diary WHERE user_id = #{user_id})), 0)
+	    AS count_result; -->
+	</select>
 
 </mapper>

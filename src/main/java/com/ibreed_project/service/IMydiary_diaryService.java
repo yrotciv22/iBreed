@@ -43,5 +43,6 @@ public interface IMydiary_diaryService {
 	    // 특정 게시글의 좋아요 수 조회
 	    int getLikeCount(int diaryPostId);
 	
-		
+	    // 다이어리 작성 수 조회
+	    public int getDiaryCount(String userId);
 }

@@ -34,7 +34,6 @@
   	</select>
   	
   	<select id="ratingAvg" parameterType="int">
-  		<!-- SELECT COALESCE(AVG(review_rating),0) FROM review WHERE product_id = #{product_id}; -->
   		SELECT ROUND(COALESCE(AVG(review_rating), 0.0), 1) AS review
 		FROM review
 		WHERE product_id = #{product_id};
