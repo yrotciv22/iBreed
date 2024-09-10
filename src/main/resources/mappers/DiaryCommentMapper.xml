@@ -50,9 +50,22 @@
 	</update>
 	
 	<!-- 댓글 삭제 -->
-	<delete id="deleteComment" parameterType="int">
-    DELETE FROM diary_comment 
-    WHERE id = #{id}
-	</delete>
 	
+    <delete id="deleteComment" parameterType="int">
+    DELETE FROM diary_comment WHERE id = #{id} OR parent_comment_id = #{id}
+</delete>
+	<!--댓글순서 정렬  -->
+	<select id="getCommentsByPostId" resultType="com.ibreed_project.model.DiaryCommentVO">
+    SELECT *
+    FROM diary_comment
+    WHERE diary_post_id = #{diaryPostId}
+    ORDER BYCOALESCE(parent_comment_id, id), createdAt;
+</select>
+	
+	<!--댓글 수   -->
+	<select id="getCommentCountByDiaryPostId" resultType="int">
+    SELECT COUNT(*) 
+    FROM diary_comment 
+    WHERE diary_post_id = #{diaryPostId}
+</select>
 </mapper>

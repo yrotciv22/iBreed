@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibreed_project.dao.IMemberDAO">
+
+	<select id="getMemberData" parameterType="string" resultType="com.ibreed_project.model.AccountVO">
+		SELECT * FROM user WHERE user_id = #{id}
+	</select>
+
+
+	<update id="joinCommit" parameterType="com.ibreed_project.model.AccountVO">
+		UPDATE user
+		SET
+		user_password = #{user_password},
+		user_nickname = #{user_nickname},
+		user_name = #{user_name},
+		user_gender = #{user_gender},
+		user_phone_number = #{user_phone_number},
+		user_email = #{user_email},
+		user_birth = #{user_birth},
+		user_kids_select = #{user_kids_select},
+		user_fetus_old = #{user_fetus_old},
+		user_kids_old = #{user_kids_old},
+		user_location_agree = #{user_location_agree},
+		user_address = #{user_address},
+		user_address_detail = #{user_address_detail},
+		user_auth_address = #{user_auth_address},
+		user_hint = #{user_hint},
+		user_hint_sub = #{user_hint_sub},
+		user_profile_image = #{user_profile_image},
+		user_timestamp = #{user_timestamp}
+		WHERE user_id = #{user_id}
+	</update>
+
+
+
+</mapper>
