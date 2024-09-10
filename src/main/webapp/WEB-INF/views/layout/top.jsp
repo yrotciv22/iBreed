@@ -38,7 +38,7 @@
 				</div>
 
 				<div>
-					<a href="<c:url value='/shop/cart'/>">
+					<a href="<c:url value='/shop/${sessionScope.user_id}/cart'/>">
 					<img class="cart"
 						src="<c:url value='/image/cart.png'/>">
 					</a>
