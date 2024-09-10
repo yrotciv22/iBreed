@@ -17,7 +17,6 @@
 	<c:import url="/WEB-INF/views/layout/head.jsp" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/common.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/community/communitycommon.css' />" />
-
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/community/communityBoard.css' />" />
 	
 	<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
@@ -141,7 +140,7 @@
 						            <!-- 일반 게시글 목록 (리스트 보기) -->
 						            <c:forEach var="post" items="${posts}">
 						                <tr>
-						                	  <td >${post.postId}</td> <!-- 0부터 시작하므로 +1 -->
+						                	  <td >${post.postId}</td> 
 						                    <td><a href="/community/post/${post.postId}">${post.postTitle}</a></td>
 						                    <td>${post.userId}</td>
 						                    <td><fmt:formatDate value="${post.postCreate}" pattern="yyyy.MM.dd" /></td>
@@ -151,7 +150,7 @@
 						            </c:forEach>
 						        </tbody>
 						    </table>
-						<!-- 그리드 보기 (div 구조) -->
+						<!-- 그리드 보기  -->
 							<div class="grid-view-content">
 							    <c:forEach var="post" items="${posts}">
 							        <div class="post-item">

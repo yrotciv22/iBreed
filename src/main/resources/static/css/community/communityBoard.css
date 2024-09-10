@@ -1,140 +1,145 @@
 @charset "UTF-8";
 .board-table {
    border: none;
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 20px;
 }
-
 
 .board-table th, .board-table td {
-    padding: 10px;
-    text-align: left; /* 좌측 정렬로 통일 */
-    vertical-align: middle;
-    border-bottom: 1px solid #ddd;
-    padding-left: 5px;  /* 공통 padding */
+   padding: 10px;
+   text-align: left; /* 좌측 정렬로 통일 */
+   vertical-align: middle;
+   border-bottom: 1px solid #ddd;
+   padding-left: 5px;  /* 공통 padding */
 }
 .board-table th:nth-child(2) {
-    padding-left: 80px;  /* 제목 칸의 헤더만 우측으로 밀어냄 */
+   padding-left: 80px;  /* 제목 칸의 헤더만 우측으로 밀어냄 */
 }
 .notice {
-    background-color: #f8d7da; 
-    font-weight: bold;  
+   background-color: #f8d7da; 
+   font-weight: bold;  
 }
 
 .view-toggle-container {
-    display: flex;
-    justify-content: flex-end; /* 오른쪽 정렬 */
-    align-items: center;
-    gap: 10px; /* 요소들 간 간격 */
-    margin-bottom: 20px; /* 아래쪽 마진 */
+   display: flex;
+   justify-content: flex-end; /* 오른쪽 정렬 */
+   align-items: center;
+   gap: 10px; /* 요소들 간 간격 */
+   margin-bottom: 20px; /* 아래쪽 마진 */
 }
 
 .view-toggle-container label {
-    margin-right: 10px; /* 공지 숨기기와 버튼 간 간격 */
+   margin-right: 10px; /* 공지 숨기기와 버튼 간 간격 */
 }
 
 .view-toggle button {
-    padding: 5px 10px;
-    border: 1px solid #ddd;
-    background-color: white;
-    cursor: pointer;
+   padding: 5px 10px;
+   border: 1px solid #ddd;
+   background-color: white;
+   cursor: pointer;
 }
 
 .view-toggle button.active {
-    background-color: #53afb2; /* 활성화된 버튼의 색상 */
-    color: white;
+   background-color: #53afb2; /* 활성화된 버튼의 색상 */
+   color: white;
 }
 
 /* 그리드 보기 기본적으로 숨기기 */
 .grid-view-content {
-    display: none;
+   display: none;
 }
 
 /* 리스트 보기 (테이블 유지) */
 .list-view .list-view-content {
-    display: table;
-    width: 100%;
+   display: table;
+   width: 100%;
 }
 
 .list-view .grid-view-content {
-    display: none;
+   display: none;
 }
 
 /* 그리드  */
 /* 그리드 보기 */
+.grid-view .grid-view-content {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr); /* 가로 3개씩 */
+   gap: 20px; /* 각 아이템 간 간격 */
+}
+
 .grid-view .post-item {
-    width: 30%;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    background-color: #fff;
+   box-sizing: border-box;
+   border: 1px solid #ddd;
+   border-radius: 5px;
+   padding: 15px;
+   background-color: #fff;
 }
 
 .grid-view .post-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
+   width: 100%;
+   height: auto;
+   border-radius: 5px;
 }
 
 .grid-view .post-content {
-    padding-top: 10px;
+   padding-top: 10px;
 }
 
 .grid-view .post-content h3 {
-    font-size: 1.1em;
-    margin: 5px 0;
+   font-size: 1.1em;
+   margin: 5px 0;
 }
 
 .grid-view .post-details {
-    font-size: 0.9em;
-    color: #777;
-}
-.pagination {
-    text-align: center; 
-    margin-top: 20px;
+   font-size: 0.9em;
+   color: #777;
 }
 
-..pagination a, .pagination span {
-    display: inline-block;
-    margin: 0 5px;
-    padding: 5px 10px;
-    border: none; 
-    background-color: transparent; 
-    text-decoration: none;
-    color: #333;
-    cursor: pointer;
+.pagination {
+   text-align: center; 
+   margin-top: 20px;
+}
+
+.pagination a, .pagination span {
+   display: inline-block;
+   margin: 0 5px;
+   padding: 5px 10px;
+   border: none; 
+   background-color: transparent; 
+   text-decoration: none;
+   color: #333;
+   cursor: pointer;
 }
 
 .pagination a.active {
-    background-color: #53afb2;
-    color: white !important; /* 강제로 흰색 적용 */
-    border-radius: 5px;
+   background-color: #53afb2;
+   color: white !important; /* 강제로 흰색 적용 */
+   border-radius: 5px;
 }
 
 .pagination span.active {
-    color: white !important;
+   color: white !important;
 }
 
 .pagination a:hover, .pagination span:hover {
-    background-color: #f0f0f0; 
-    border-radius: 5px;
+   background-color: #f0f0f0; 
+   border-radius: 5px;
 }
 
 .pagination a:focus, .pagination span:focus {
-    outline: none; 
+   outline: none; 
 }
 
 .write-btn {
-    text-align: right;
-    margin-top: 20px;
+   text-align: right;
+   margin-top: 20px;
 }
 
 .write-btn .btn {
-    background-color: #53afb2;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
+   background-color: #53afb2;
+   color: #fff;
+   padding: 10px 20px;
+   text-decoration: none;
+   border-radius: 5px;
 }
