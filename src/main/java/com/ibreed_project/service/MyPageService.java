@@ -1,6 +1,7 @@
 package com.ibreed_project.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,15 @@ public class MyPageService implements IMyPageService {
 	@Override
 	public ArrayList<MyPageVO> selectOrder(int pay_number) {
 		return dao.selectOrder(pay_number);
+	}
+	
+	@Override
+	public ArrayList<MyPageVO> selectLikeItemList(String user_id) {
+		return dao.selectLikeItemList(user_id);
+	}
+	
+	@Override
+	public List<MyPageVO> getProductsByIds(List<Integer> product_id) {
+		return dao.getProductsByIds(product_id);
 	}
 }

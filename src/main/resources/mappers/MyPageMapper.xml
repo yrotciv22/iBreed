@@ -20,6 +20,7 @@
   		<result property="quantity" column="quantity"/>
   		<result property="product_price" column="product_price"/>
   		<result property="product_name" column="product_name"/>
+  		<result property="product_discount" column="product_discount"/>
   		<result property="product_img" column="product_img"/>
   	</resultMap>
   	
@@ -47,4 +48,24 @@
 		    oh.pay_number = #{pay_number};
   	</select>
   	
+  	<select id="selectLikeItemList" parameterType="string" >
+  		SELECT
+  			 p.product_id, p.product_name, p.product_price, p.product_discount, p.product_img 
+  		FROM
+  			likeitem l
+  		JOIN
+  			product p
+  		ON
+  			l.wish_item = p.product_id
+  		WHERE
+  			user_id=#{user_id};
+  	</select>
+  	
+  	<select id="getProductsByIds" parameterType="list" resultMap="myPageResult">
+        SELECT * FROM product
+        WHERE product_id IN
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
   </mapper>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -11,11 +12,11 @@
 
 <!-- 공통 layout: head.jsp -->
 <c:import url="/WEB-INF/views/layout/head.jsp" />
-
+<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
+<script src="<c:url value='/js/myPage_wishList.js'/>"></script>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/mypage/mypage_layout.css'/>" />
 
-<!-- 여기에 css, js 파일 링크를 작성하세요. -->
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/mypage/wishlist.css'/>" />
 </head>
@@ -37,10 +38,11 @@
 				<div class="sub_title">
 					위시리스트&nbsp; <span>(총 <span>10<span>개)</span>
 				</div>
-				<div class="select_all_wrap">
-					<label class="custom-checkbox"> <input type="checkbox" />
+				<div class="select_all_wrap" data-product-id="${l.product_id}">
+					<label class="custom-checkbox"> <input class="allCheck" type="checkbox" />
 						<span class="checkmark"></span>
-					</label> &nbsp; <span>전체 선택</span>
+						&nbsp; <span>전체 선택</span>
+					</label> 
 					<div id="remove_selected_btn">선택 상품 삭제</div>
 				</div>
 
@@ -48,98 +50,33 @@
 
 				<div class="wishlist">
 
-					<!-- 아이템 한개 -->
-
-					<div class="one_item_wrap">
-						<!-- 좌 -->
-						<div class="row_wrap">
-							<label class="custom-checkbox"> <input type="checkbox" />
-								<span class="checkmark"></span>
-							</label>
-							<div class="prd_image">
-								<img
-									src="<c:url value='https://shop-phinf.pstatic.net/20230407_256/1680857947735kpx1f_JPEG/81993836376833409_913438958.jpg?type=f296_296'/>" />
-							</div>
-
-							<div class="column_wrap" style="width: 560px">
-								<div class="prd_name">상품명</div>
-								<div class="one_prd_price">
-									<span>10,000</span><span>원</span>
-									<div class="prd_option">옵션 : [색상]그레이</div>
+					<c:forEach var="l" items="${likeList}">
+						<div class="one_item_wrap">
+							<div class="row_wrap">
+								<label class="custom-checkbox"> <input class="chk" type="checkbox" />
+									<span class="checkmark"></span>
+								</label>
+								<div class="prd_image" OnClick="location.href ='/shop_detail/${l.product_id}'">
+									<img src="<c:url value='${l.product_img}'/>" />
 								</div>
-
-							</div>
-						</div>
-						<!-- 우 -->
-						<div class="button_wrap">
-							<div class="prd_delete_btn">X</div>
-							<div id="add_to_cart_btn" class="button">장바구니</div>
-							<div id="buy_now_btn" class="button">바로구매</div>
-						</div>
-					</div>
-					<!-- 아이템 한개 끝 -->
-
-					<!-- 아이템 한개 -->
-					<div class="one_item_wrap">
-						<!-- 좌 -->
-						<div class="row_wrap">
-							<label class="custom-checkbox"> <input type="checkbox" />
-								<span class="checkmark"></span>
-							</label>
-							<div class="prd_image">
-								<img
-									src="<c:url value='https://shop-phinf.pstatic.net/20230407_256/1680857947735kpx1f_JPEG/81993836376833409_913438958.jpg?type=f296_296'/>" />
-							</div>
-
-							<div class="column_wrap" style="width: 560px">
-								<div class="prd_name">상품명</div>
-								<div class="one_prd_price">
-									<span>10,000</span><span>원</span>
-									<div class="prd_option">옵션 : [색상]그레이</div>
+	
+								<div class="column_wrap" style="width: 560px">
+									<div class="prd_name">${l.product_name}</div>
+									<div class="one_prd_price">
+										<span>
+											<fmt:formatNumber value="${Math.floor((l.product_price-((l.product_discount/100)*l.product_price))/100)*100}"
+																			type="number" pattern="##,#00"/>
+										</span><span>원</span>
+									</div>
 								</div>
-
+							</div>
+							<div class="button_wrap">
+								<div class="prd_delete_btn">X</div>
+								<div id="add_to_cart_btn" class="button">장바구니</div>
+								<div id="buy_now_btn" class="button">바로구매</div>
 							</div>
 						</div>
-						<!-- 우 -->
-						<div class="button_wrap">
-							<div class="prd_delete_btn">X</div>
-							<div id="add_to_cart_btn" class="button">장바구니</div>
-							<div id="buy_now_btn" class="button">바로구매</div>
-						</div>
-					</div>
-					<!-- 아이템 한개 끝 -->
-
-					<!-- 아이템 한개 -->
-
-					<div class="one_item_wrap">
-						<!-- 좌 -->
-						<div class="row_wrap">
-							<label class="custom-checkbox"> <input type="checkbox" />
-								<span class="checkmark"></span>
-							</label>
-							<div class="prd_image">
-								<img
-									src="<c:url value='https://shop-phinf.pstatic.net/20230407_256/1680857947735kpx1f_JPEG/81993836376833409_913438958.jpg?type=f296_296'/>" />
-							</div>
-
-							<div class="column_wrap" style="width: 560px">
-								<div class="prd_name">상품명</div>
-								<div class="one_prd_price">
-									<span>10,000</span><span>원</span>
-									<div class="prd_option">옵션 : [색상]그레이</div>
-								</div>
-
-							</div>
-						</div>
-						<!-- 우 -->
-						<div class="button_wrap">
-							<div class="prd_delete_btn">X</div>
-							<div id="add_to_cart_btn" class="button">장바구니</div>
-							<div id="buy_now_btn" class="button">바로구매</div>
-						</div>
-					</div>
-					<!-- 아이템 한개 끝 -->
-
+					</c:forEach>
 
 				</div>
 

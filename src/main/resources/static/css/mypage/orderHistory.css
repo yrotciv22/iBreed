@@ -381,15 +381,69 @@ a {
 .row_wrap table {
 	width: 100%;
 	text-align: center;
+	border-collapse: collapse;
 }
 
 .row_wrap td {
 	border: 1px solid;
 	line-height: 2;
+	font-size: 13px;
+	vertical-align: baseline;
+}
+
+.row_wrap th {
+	    line-height: 2;
 }
 
 .order_img {
 	width: 30px;
 	cursor: auto;
 }
+
+.miniTable {
+	border-collapse: collapse;
+}
+
+.miniTable td {
+	border: none;
+	height: 69px;
+}
+
+#second {
+	width: 210px;
+}
+
+#third {
+	width: 120px;
+}
+
+#fourth {
+	width: 60px;
+}
+
+#o_first {
+	width: 208.5px;
+	font-size: 10px;
+	border-right: 1px solid;
+}
+
+#o_second {
+	width: 120px;
+	border-right: 1px solid;
+}
+
+#o_third {
+	
+}
+
+.breakDown {
+	font-size: 13px;
+}
+
+.sub {
+	float: left;
+}
+
+.result {
+	float: right;
 }

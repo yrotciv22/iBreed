@@ -68,7 +68,7 @@ public class ShopController {
 	}
 
 	// 상품 상세 페이지 (승우)
-	@RequestMapping("shop_detail/{product_id}")
+	@RequestMapping("/shop_detail/{product_id}")
 	public String detailView(@PathVariable("product_id") int product_id, 
 										   @RequestParam(value = "page", defaultValue = "1") int page,
 										   HttpSession session,

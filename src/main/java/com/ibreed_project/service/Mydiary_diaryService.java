@@ -115,6 +115,28 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 		return mydiary_diaryDAO.getDiaryCount(userId);
 	}
 	
+	@Override
+	public boolean isAlreadyLiked(String userId, int diaryPostId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public void likePost(String userId, int diaryPostId) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void unlikePost(String userId, int diaryPostId) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public Mydiary_diaryService() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 
 }

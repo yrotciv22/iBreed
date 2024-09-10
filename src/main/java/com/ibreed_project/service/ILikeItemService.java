@@ -1,5 +1,6 @@
 package com.ibreed_project.service;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import com.ibreed_project.model.LikeItemVO;
@@ -14,6 +15,5 @@ public interface ILikeItemService {
 	
 	// 찜리스트 삭제하기
 	public void deleteLike(Map map);
-	
 	
 }
