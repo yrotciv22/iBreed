@@ -1,5 +1,6 @@
 package com.ibreed_project.controller;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -180,9 +181,9 @@ public class MydiaryDiaryController {
     	//다이어리 상세ㅐ정보 가져오기
     	Mydiary_diaryVO diary = mydiary_diaryService.getDiary(diaryPostId);
     	
-    	  // 댓글 리스트 가져오기
+    	  // 오래된순댓글 리스트 가져오기
         List<DiaryCommentVO> comments = mydiaryCommentService.getCommentsByDiaryPostId(diaryPostId);
-     
+        Collections.reverse(comments);
     	// 조회수 증가 로직
         String sessionKey = "viewedPost_" + diaryPostId;
         Boolean isViewed = (Boolean) session.getAttribute(sessionKey);
@@ -191,12 +192,13 @@ public class MydiaryDiaryController {
             mydiary_diaryService.incrementViewCount(diaryPostId);
             session.setAttribute(sessionKey, true);
         }
-    
-
+        //댓글수
+        int commentCount = mydiaryCommentService.getCommentCount(diaryPostId);
         // 다이어리 정보를 가져와 모델에 추가
         model.addAttribute("diary", diary);
         model.addAttribute("user_id", userId);
         model.addAttribute("comments", comments);  // 댓글 리스트 추가
+        model.addAttribute("commentCount", commentCount);
 
         return "diary/mydiary_diarydetail";
     }
@@ -227,40 +229,39 @@ public class MydiaryDiaryController {
         // 삭제 후 일기 리스트 페이지로 리다이렉트
         return "redirect:/mydiary/" + userId + "/diary";
     }
-    
-   //좋아요 
-    @PostMapping("/like")
+    // 좋아요 상태 확인
     @ResponseBody
-    public HashMap<String, Object> likePost(@RequestBody HashMap<String, Object> payload) {
-        int diaryPostId = (int) payload.get("diaryPostId");
-        String userId = (String) payload.get("userId");
+    @RequestMapping("/like/status")
+    public HashMap<String, Object> getLikeStatus(@RequestParam("diaryPostId") int diaryPostId,
+    																				@PathVariable("user_id") String userId) {
+        boolean isLiked = mydiary_diaryService.checkIfLiked(userId, diaryPostId);
+        int likeCount = mydiary_diaryService.getLikeCount(diaryPostId);
 
         HashMap<String, Object> response = new HashMap<>();
-
-        try {
-            // 이미 좋아요를 눌렀는지 확인
-            boolean alreadyLiked = mydiary_diaryService.isAlreadyLiked(userId, diaryPostId);
-
-            if (alreadyLiked) {
-                // 이미 좋아요를 누른 상태라면 좋아요를 취소
-            	mydiary_diaryService.unlikePost(userId, diaryPostId);
-            } else {
-                // 좋아요 추가
-            	mydiary_diaryService.likePost(userId, diaryPostId);
-            }
-
-            // 최신 좋아요 수 가져오기
-            int newLikeCount = mydiary_diaryService.getLikeCount(diaryPostId);
-
-            response.put("success", true);
-            response.put("newLikeCount", newLikeCount);
-        } catch (Exception e) {
-            response.put("success", false);
-            response.put("message", "좋아요 처리 중 오류가 발생했습니다.");
-        }
+        response.put("isLiked", isLiked);
+        response.put("likeCount", likeCount);
 
         return response;
     }
     
-    
+   //좋아요 ,좋아요 취소
+    @ResponseBody
+    @RequestMapping("/like")
+    public HashMap<String, Object> toggleLike(@RequestParam("diaryPostId") int diaryPostId,
+																            @RequestParam("isLiked") boolean isLiked,
+																            @PathVariable("user_id") String userId) {
+        if (isLiked) {
+        	mydiary_diaryService.decrementLike(diaryPostId, userId);  // 좋아요 취소
+        } else {
+        	mydiary_diaryService.incrementLike(diaryPostId, userId);  // 좋아요 추가
+        }
+
+        int likeCount = mydiary_diaryService.getLikeCount(diaryPostId);
+
+        HashMap<String, Object> response = new HashMap<>();
+        response.put("status", "success");
+        response.put("likeCount", likeCount);
+
+        return response;
+    }
 }

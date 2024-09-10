@@ -36,15 +36,12 @@ public interface IMydiary_diaryDAO {
     void deleteDiary(int diaryPostId);
     //조회수 증가 
     void incrementViewCount(@Param("diaryPostId") int diaryPostId);
-    //좋아요 
-    void likePost(@Param("userId") String userId, @Param("diaryPostId") int diaryPostId);
 
-    void unlikePost(@Param("userId") String userId, @Param("diaryPostId") int diaryPostId);
-
-    int getLikeCount(@Param("diaryPostId") int diaryPostId);
-
-    boolean isAlreadyLiked(@Param("userId") String userId, @Param("diaryPostId") int diaryPostId);
-
+    //좋앙요
+    int isLiked(@Param("userId") String userId, @Param("diaryPostId") int diaryPostId);
     void incrementLikeCount(@Param("diaryPostId") int diaryPostId);
     void decrementLikeCount(@Param("diaryPostId") int diaryPostId);
+    int getLikeCount(@Param("diaryPostId") int diaryPostId);
+    void addUserLike(@Param("userId") String userId, @Param("diaryPostId") int diaryPostId);
+    void removeUserLike(@Param("userId") String userId, @Param("diaryPostId") int diaryPostId);
 }
