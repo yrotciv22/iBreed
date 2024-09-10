@@ -88,27 +88,33 @@ public class Mydiary_diaryService implements IMydiary_diaryService {
 	    mydiary_diaryDAO.incrementViewCount(diaryPostId);
 	}
 	
-	//likes
+	//좋아요 관련
 	@Override
-	public void likePost(String userId, int diaryPostId) {
-		mydiary_diaryDAO.likePost(userId, diaryPostId);
-		mydiary_diaryDAO.incrementLikeCount(diaryPostId);		
+	public boolean checkIfLiked(String userId, int diaryPostId) {
+		// TODO Auto-generated method stub
+		 return mydiary_diaryDAO.isLiked(userId, diaryPostId) > 0;
 	}
 	@Override
-	public void unlikePost(String userId, int diaryPostId) {
-		mydiary_diaryDAO.unlikePost(userId, diaryPostId);
-		mydiary_diaryDAO.decrementLikeCount(diaryPostId);		
+	public void incrementLike(int diaryPostId, String userId) {
+		mydiary_diaryDAO.incrementLikeCount(diaryPostId);
+		mydiary_diaryDAO.addUserLike(userId, diaryPostId);
 	}
 	@Override
-	public boolean isAlreadyLiked(String userId, int diaryPostId) {
-		   return mydiary_diaryDAO.isAlreadyLiked(userId, diaryPostId);
+	public void decrementLike(int diaryPostId, String userId) {
+		mydiary_diaryDAO.decrementLikeCount(diaryPostId);
+		mydiary_diaryDAO.removeUserLike(userId, diaryPostId);		
 	}
 	@Override
 	public int getLikeCount(int diaryPostId) {
-		return mydiary_diaryDAO.getLikeCount(diaryPostId);
+		// TODO Auto-generated method stub
+        return mydiary_diaryDAO.getLikeCount(diaryPostId);
+	}
+
+	@Override
+	public int getDiaryCount(String userId) {
+		return mydiary_diaryDAO.getDiaryCount(userId);
 	}
 	
-
 	
 
 }

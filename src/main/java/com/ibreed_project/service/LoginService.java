@@ -29,4 +29,13 @@ public class LoginService implements  ILoginService{
             return null;
         }
     }
+    
+    @Override
+    public String getNickName(String user_id) {
+    	return loginDAO.getNickName(user_id);
+    }
+    @Override
+    public String getRating(String user_id) {
+    	return loginDAO.getRating(user_id);
+    }
 }

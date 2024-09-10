@@ -75,7 +75,7 @@
 				        <input type="submit" class="submit-button" value="등록하기">
 				    </div>
 				    <div class="diary_buttons-right">
-				        <button type="button" class="cancel-button" onclick="location.href='<%= request.getContextPath() %>/mydiary/${userId}/diary'">목록으로</button>
+				        <button type="button" class="cancel-button" onclick="location.href='<c:url value='/mydiary/${user_id}/diary' />'">목록으로</button>
 				    </div>
 				</div>
 

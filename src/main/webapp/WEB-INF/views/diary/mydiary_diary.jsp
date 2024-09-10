@@ -7,10 +7,8 @@
 <head>
 <meta charset="UTF-8" />
 <title>My Diary diary</title>
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/css/diary/mydiary_layout.css' />" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/css/diary/mydiary_diary.css' />" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/mydiary_layout.css' />" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/mydiary_diary.css' />" />
 <%-- <script>
         <%String userId = (String) session.getAttribute("user_id");%>
         console.log("제대로 유저 id 가져오는거 맞습니까? <%=userId%>");

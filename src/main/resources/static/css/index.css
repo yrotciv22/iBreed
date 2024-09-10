@@ -127,13 +127,13 @@ input:focus, input:active, input:hover {
 	width: 14px;
 	cursor: pointer;
 	margin: 0 3px;
-	
 	border-radius: 50%;
 }
 
-.circleBtn.active{
-	background : #53AFB2;
+.circleBtn.active {
+	background: #53AFB2;
 }
+
 .main_short_cut_wrap {
 	flex-direction: column;
 }
@@ -141,6 +141,46 @@ input:focus, input:active, input:hover {
 .main_row_wrap {
 	display: flex;
 	justify-content: space-between;
+}
+
+.main_recent_diary_wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 200px;
+	margin-bottom: 30px;
+	overflow: hidden;
+	
+}
+
+.carousel-container {
+    width: 866px; /* 133px (width of one item) * 6 + margins */
+    overflow: hidden;
+}
+.main_recent_diary_wrap_ul {
+	    display: flex;
+    padding: 0;
+    margin: 0;
+    transition: transform 1s ease;
+    list-style: none;
+}
+
+.main_recent_diary_wrap_ul li {
+     flex: 0 0 auto; 
+}
+.main_recent_diary_wrap_ul a {
+    display: flex;
+    width: 133px;
+    height: 130px;
+    margin: 0 5px;
+}
+
+.main_recent_diary_wrap_ul li img {
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	object-fit: contain;
 }
 
 .main_best {
@@ -344,6 +384,24 @@ input:focus, input:active, input:hover {
 	font-size: 22px;
 }
 
+.advertisement {
+		display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 200px;
+	margin-bottom: 30px;
+	overflow: hidden;
+	position: relative;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	
+}
+.advertisement_img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
 .main_event {
 	display: flex;
 	flex-direction: column;

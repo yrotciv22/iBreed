@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,38 +49,50 @@
 
            <!-- 좋아요 및 댓글 기능 -->
 					<div class="diary_interaction">
-                <button class="like_button"data-diary-post-id="${diaryPostId}">좋아요 ${diary.diaryLike}</button>
-                <button class="comment_button">댓글 ${diary.commentCount}</button>
-            </div>
+						<button class="like_button" data-diary-post-id="${diaryPostId}" >
+						       
+						        좋아요 <span class="like_count">${diary.diaryLike}</span>
+						    </button>                
+						 <button class="comment_button">댓글 ${commentCount}</button>
+            		</div>
 
 
             <!-- 댓글 영역 -->
+            <hr>
             <div class="diary_comments">
-                <!-- 댓글 목록 및 입력 폼 -->
+                <!-- 댓글 목록 -->
                 <div class="comment_list">
                     <c:forEach var="comment" items="${comments}">
                         <div class="comment" data-comment-id="${comment.id}" style="margin-left: ${comment.parentCommentId != 0 ? '20px' : '0px'};">
                             <div class="comment_header">
-                                <span class="comment_user">${comment.userId}</span>
-                                <span class="comment_date">${comment.createDate}</span>
-                                <c:if test="${sessionScope.user_id == comment.userId}">
-                                    <button class="editCommentBtn" data-comment-id="${comment.id}">수정</button>
-                                    <button class="deleteCommentBtn" data-comment-id="${comment.id}">삭제</button>
-                                </c:if>
+                               <span class="comment_user">${comment.diaryCommentUserIdWrite}</span>
+                              <div class="comment_actions">
+						        <c:if test="${sessionScope.user_id == diary.userId}">
+						            <button class="editCommentBtn" data-comment-id="${comment.id}">수정</button>
+						            <button class="deleteCommentBtn" data-comment-id="${comment.id}">삭제</button>
+						        </c:if>
+						    </div>
                             </div>
                             <div class="comment_body">
-                                <p>${comment.commentContent}</p>
+                                <p>${comment.diaryCommentContent}</p>
                             </div>
                             
                             <!-- 답글쓰기 버튼 -->
-                            <div class="comment_actions">
+                             <div class="comment_footer">
+                                <span class="comment_date">
+							    <fmt:formatDate value="${comment.createdAt}" pattern="yyyy.MM.dd HH:mm" />
+								</span>
                                 <button class="replyCommentBtn" data-parent-id="${comment.id}">답글쓰기</button>
+                                
                             </div>
 
                             <!-- 답글 입력 폼 (초기에는 숨김 처리) -->
-                            <div class="reply_form" style="display: none; margin-left: 20px;">
+                             <div class="reply_form" style="display: none;">
                                 <textarea placeholder="답글을 입력하세요" class="reply_content"></textarea>
-                                <button class="submit_reply">답글 달기</button>
+                                <div class="reply_buttons">
+                                    <button class="cancel_reply">취소</button>
+                                    <button class="submit_reply">등록</button>
+                                </div>
                             </div>
                         </div>
                     </c:forEach>

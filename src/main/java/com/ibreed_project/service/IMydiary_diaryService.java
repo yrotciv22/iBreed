@@ -28,8 +28,9 @@ public interface IMydiary_diaryService {
 
 	    // 일기 수정 
 	    void updateDiary(Mydiary_diaryVO vo);
-	  //다이어리 조회수증가
-		public void incrementViewCount(int diaryPostId);
+	 
+	    //다이어리 조회수증가
+  		public void incrementViewCount(int diaryPostId);
 		
 		 // 좋아요 추가
 	    void likePost(String userId, int diaryPostId);
@@ -43,5 +44,17 @@ public interface IMydiary_diaryService {
 	    // 특정 게시글의 좋아요 수 조회
 	    int getLikeCount(int diaryPostId);
 	
+	    // 다이어리 작성 수 조회
+	    public int getDiaryCount(String userId);
+
+		//좋아요했는지안했는지
+		boolean checkIfLiked(String userId, int diaryPostId);
+		//좋아요 수 증가 
+		 void incrementLike(int diaryPostId, String userId);
+		 //좋아요수 감소
+		 
+		 void decrementLike(int diaryPostId, String userId);
+		 //좋아요 수 받아옥;
+		 int getLikeCount(int diaryPostId);
 		
 }

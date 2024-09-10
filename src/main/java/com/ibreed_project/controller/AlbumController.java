@@ -102,14 +102,12 @@ public class AlbumController {
 							   HttpSession session) {
 		
 		String user_id = (String) session.getAttribute("user_id");
-		System.out.println("유저아이디는 1 " + user_id);
 		map.put("user_id", user_id);
 		ArrayList<AlbumVO> albumList = albumService.arrangeAlbum(map);
 		
 		model.addAttribute("albumList", albumList);
 		model.addAttribute("userId", user_id);
 		
-		System.out.println("유저아이디는 2 " + user_id);
 		
 		return "diary/photos/albumSearchResult";
 	}

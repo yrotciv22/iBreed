@@ -8,22 +8,21 @@
 
 <div class="top_wrap">
 	<div class="mypage_user_id">
-		<span>맘편한세상</span> 님
+		<span>${nickName}</span> 님
 	</div>
 	<div class="top_box_wrap">
-		<div class="top_box">회원 등급</div>
+		<div class="top_box">회원 등급 ${rating}</div>
 		<div class="top_box">
-			총 작성한 <br />다이어리
+			총 작성한 <br />다이어리 ${diaryCount}
 		</div>
 	
-		<div class="top_box">총 주문 횟수</div>
+		<div class="top_box">총 주문 횟수 ${payCount}</div>
 		<div class="top_box">
 			사용가능 <br /> 쿠폰 >
 		</div>
 		<div class="top_box">마일리지 ></div>
 	</div>
 </div>
-
 
 	<div class="row_wrap">
 			<div class="left_sidebar">
