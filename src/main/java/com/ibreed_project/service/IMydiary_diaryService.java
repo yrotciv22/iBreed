@@ -41,6 +41,7 @@ public interface IMydiary_diaryService {
 		 //좋아요수 감소
 
 		 void decrementLike(int diaryPostId, String userId);
+
 		 //좋아요 수 받아옥;
   		 int getLikeCount(int diaryPostId);
 
