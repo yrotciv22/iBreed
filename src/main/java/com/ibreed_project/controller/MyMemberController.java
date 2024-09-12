@@ -50,7 +50,7 @@ public class MyMemberController {
     //이미지 저장
 
     // 상대 경로 설정 (기본 이미지 저장 경로)
-    private static final String BASE_IMAGE_PATH = "/var/lib/jenkins/workspace/ibreed/src/main/resources/static/image";
+    private static final String BASE_IMAGE_PATH = "/var/lib/jenkins/workspace/ibreed/src/main/resources/static/image/profile/";
     @ResponseBody
     @PostMapping("/upload/profile")
     public String uploadProfileImage(@RequestParam("file") MultipartFile file, HttpSession session) {
@@ -65,7 +65,7 @@ public class MyMemberController {
         }
 
         // 사용자 폴더 경로: /image/{user_id}/
-        String userFolderPath = BASE_IMAGE_PATH + "/";
+        String userFolderPath = BASE_IMAGE_PATH + userId + "/";
         File userFolder = new File(userFolderPath);
 
         // 사용자 폴더가 없으면 생성
@@ -74,7 +74,7 @@ public class MyMemberController {
         }
 
         // 저장할 파일 경로 설정: profile.png
-        String filePath = userFolderPath + "userId.png";
+        String filePath = userFolderPath + "profile.png";
         filePath = filePath.replace("\\", "/"); // 백슬래시를 슬래시로 변경
         System.out.println("파일 저장 경로: " + filePath);
         File dest = new File(filePath);
@@ -84,7 +84,7 @@ public class MyMemberController {
             file.transferTo(dest);
 
             // 웹에서 접근 가능한 URL 경로 반환
-            String fileUrl = "/images/"+userId+".png";
+            String fileUrl = "/images/profile/" + userId + "/profile.png";
             System.out.println("리턴 될 경로 : " +fileUrl );
             return fileUrl;
 
