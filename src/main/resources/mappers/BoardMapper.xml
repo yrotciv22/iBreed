@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ibreed_project.dao.IBoardDAO">
+
+    <!-- 모든 게시판 목록 가져오기 -->
+    <select id="getAllBoards" resultType="com.ibreed_project.model.BoardVO">
+        SELECT board_id AS boardId, board_name AS boardName, board_description AS boardDescription,
+               board_create AS boardCreate, board_update AS boardUpdate
+        FROM board
+    </select>
+
+    <!-- 특정 게시판 ID로 게시판 정보 가져오기 -->
+    <select id="getBoardById" parameterType="int" resultType="com.ibreed_project.model.BoardVO">
+        SELECT board_id AS boardId, board_name AS boardName, board_description AS boardDescription,
+               board_create AS boardCreate, board_update AS boardUpdate
+        FROM board
+        WHERE board_id = #{boardId}
+    </select>
+
+    <!-- 새 게시판 추가 -->
+    <insert id="insertBoard" parameterType="com.ibreed_project.model.BoardVO">
+        INSERT INTO board (board_name, board_description, board_create, board_update)
+        VALUES (#{boardName}, #{boardDescription}, NOW(), NOW())
+    </insert>
+
+    <!-- 게시판 정보 업데이트 -->
+    <update id="updateBoard" parameterType="com.ibreed_project.model.BoardVO">
+        UPDATE board
+        SET board_name = #{boardName},
+            board_description = #{boardDescription},
+            board_update = NOW()
+        WHERE board_id = #{boardId}
+    </update>
+
+    <!-- 게시판 삭제 -->
+    <delete id="deleteBoard" parameterType="int">
+        DELETE FROM board WHERE board_id = #{boardId}
+    </delete>
+
+</mapper>

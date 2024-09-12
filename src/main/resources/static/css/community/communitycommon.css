@@ -1,0 +1,259 @@
+@charset "UTF-8";
+
+body {
+    font-family: Gmarket Sans;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Wrap {
+    width: 1280px;
+    margin: 0 auto;
+    padding-top: 20px;
+    display: flex;
+}
+
+.content-wrapper {
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.sidebar {
+    width: 250px; !important;
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.sidebar ul {
+    list-style: none; /* 동그라미 제거 */
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 0;
+}
+
+.login-container {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 8px;
+    text-align: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.sidebar .login-link {
+    display: block;
+    padding: 10px;
+    background-color: #53afb2;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.add-links {
+    margin-top: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-link {
+    color: gray;
+    text-decoration: none;
+    margin: 0 5px;
+    display: inline-block;
+    font-size: 10px;
+}
+
+.add-link:hover {
+    text-decoration: underline;
+    color: lightblue;
+}
+
+.sidebar .nav-link {
+    color: gray;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.nav-link.active {
+    color: #53afb2;
+    font-weight: bold;
+    font-size: 23px;
+}
+
+.main-section {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    overflow: hidden; /* 폭 안 넓어지게 */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 500px;
+    height: 50px;
+    border: 1px solid #aaa;
+    border-radius: 30px;
+    padding: 0 10px;
+    margin: 50px 0;
+    overflow: hidden;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    width: 400px;
+    height: 44px;
+}
+
+.search-bar button {
+    border: none;
+    background: #fff;
+    font-weight: 600;
+}
+
+.search-bar button:hover {
+    color: #53AFB2;
+    font-weight: 800;
+}
+
+
+
+#to_top_Btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 3%;
+    right: 7%;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 99;
+    background-color: #fff;
+    display: none;
+    font-size: 12px;
+}
+
+#to_top_Btn:hover {
+    color: #53AFB2;
+    font-weight: 600;
+}
+
+/* after login */
+
+.profile-container {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    text-align: left;
+}
+
+.profile-info {
+    text-align: center;
+    font-size: 0.85em;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.profile-img {
+    width: 50%;
+    height: auto;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.profile-header div {
+    text-align: left;
+}
+
+.profile-header p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.profile-body {
+    margin-bottom: 10px;
+}
+
+.profile-body p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.profile-links {
+    margin: 10px 0;
+}
+
+.profile-links p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.profile-links a {
+    color: #333;
+    text-decoration: none;
+}
+
+.profile-links a:hover {
+    text-decoration: underline;
+}
+
+.community-write-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #53afb2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+.community-write-btn:hover {
+    background-color: #429296;
+}
+
+.logout-btn {
+    display: inline-block;
+    width: 100%;
+    margin-top: 0px;
+    padding: 10px 20px;
+    background-color: #d3d3d3;
+    color: black;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+}
+

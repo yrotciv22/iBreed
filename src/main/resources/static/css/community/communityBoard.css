@@ -1,0 +1,182 @@
+@charset "UTF-8";
+
+/* 테이블 스타일 */
+.board-table {
+   border: none;
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 20px;
+}
+
+.board-table th, .board-table td {
+   padding: 10px;
+   text-align: left; /* 좌측 정렬 */
+   vertical-align: middle;
+   border-bottom: 1px solid #ddd;
+   padding-left: 5px;
+}
+
+/* 제목 칸을 우측으로 여유롭게 */
+.board-table th:nth-child(2) {
+   padding-left: 80px;
+}
+
+/* 공지사항 스타일 */
+.notice {
+   background-color: #f8d7da; 
+   font-weight: bold;
+}
+
+/* 뷰 토글 컨테이너 */
+.view-toggle-container {
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+   gap: 10px;
+   margin-bottom: 20px;
+}
+
+.view-toggle-container label {
+   margin-right: 10px;
+}
+
+.view-toggle button {
+   padding: 5px 10px;
+   border: 1px solid #ddd;
+   background-color: white;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+}
+
+.view-toggle button:hover {
+   background-color: #f0f0f0;
+}
+
+.view-toggle button.active {
+   background-color: #53afb2;
+   color: white;
+}
+
+/* 기본적으로 그리드 보기 숨기기 */
+.grid-view-content {
+   display: none;
+}
+
+/* 리스트 보기 */
+.list-view .list-view-content {
+   display: table;
+   width: 100%;
+}
+
+.list-view .grid-view-content {
+   display: none;
+}
+
+/* 그리드 보기 */
+.grid-view .grid-view-content {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 가로 3개 이상, 화면 크기에 따라 조정 */
+   gap: 20px;
+}
+
+/* 그리드 항목 */
+.grid-view .post-item {
+   box-sizing: border-box;
+   border: 1px solid #ddd;
+   border-radius: 5px;
+   padding: 15px;
+   background-color: #fff;
+   transition: box-shadow 0.3s ease;
+}
+
+.grid-view .post-item:hover {
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.grid-view .post-image img {
+   width: 100%;
+   height: 180px; /* 이미지 고정 크기 설정 */
+   object-fit: cover; /* 이미지가 가득 채워지도록 */
+   border-radius: 5px;
+}
+
+/* 게시글 내용 */
+.grid-view .post-content {
+   padding-top: 10px;
+}
+
+.grid-view .post-content h3 {
+   font-size: 1.1em;
+   margin: 5px 0;
+   color: #333;
+   font-weight: bold;
+}
+
+.grid-view .post-content h3 .comment-count {
+   color: red;
+   font-size: 0.9em;
+}
+
+.grid-view .post-details {
+   font-size: 0.9em;
+   color: #777;
+}
+
+.grid-view .post-details span {
+   margin-right: 10px;
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+   text-align: center;
+   margin-top: 20px;
+}
+
+.pagination a, .pagination span {
+   display: inline-block;
+   margin: 0 5px;
+   padding: 5px 10px;
+   border: none;
+   background-color: transparent;
+   text-decoration: none;
+   color: #333;
+   cursor: pointer;
+}
+
+.pagination a.active {
+   background-color: #53afb2;
+   color: white !important;
+   border-radius: 5px;
+}
+
+.pagination span.active {
+   color: white !important;
+}
+
+.pagination a:hover, .pagination span:hover {
+   background-color: #f0f0f0;
+   border-radius: 5px;
+}
+
+.pagination a:focus, .pagination span:focus {
+   outline: none;
+}
+
+/* 글쓰기 버튼 */
+.write-btn {
+   text-align: right;
+   margin-top: 20px;
+}
+
+.write-btn .btn {
+   background-color: #53afb2;
+   color: #fff;
+   padding: 10px 20px;
+   text-decoration: none;
+   border-radius: 5px;
+   transition: background-color 0.3s ease;
+}
+
+.write-btn .btn:hover {
+   background-color: #459fa3;
+}

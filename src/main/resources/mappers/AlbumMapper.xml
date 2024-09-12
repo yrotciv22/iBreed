@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.ibreed_project.dao.IAlbumDAO">
+	
+		<resultMap type="com.ibreed_project.model.AlbumVO" id="albumResult">
+			<result property="album_id" column="album_id"/>
+			<result property="album_name" column="album_name"/>
+			<result property="album_date" column="album_date"/>
+			<result property="album_update" column="album_update"/>
+			<result property="album_public" column="album_public"/>
+			<result property="diary_id" column="diary_id"/>
+			<result property="photo_id" column="photo_id"/>
+			<result property="photo_name" column="photo_name"/>
+			<result property="photo_date" column="photo_date"/>
+			<result property="user_id" column="user_id"/>
+		</resultMap>
+
+		<select id="selectLatest" resultMap="albumResult">
+			SELECT * FROM album WHERE diary_id =
+			(SELECT diary_id FROM diary WHERE user_id = #{user_id})
+			ORDER BY album_date DESC;
+		</select>
+
+		<select id="selectPhoto" resultMap="albumResult">
+			SELECT * FROM photo P, album A WHERE P.album_id=#{album_id} AND P.album_id = A.album_id
+		</select>
+
+		<select id="getAlbumName" parameterType="string" resultType="string">
+			SELECT album_name FROM album WHERE album_id=#{album_id}
+		</select>
+		
+		<select id="getDiaryId" parameterType="string" resultType="int">
+			SELECT diary_id FROM diary WHERE user_id=#{user_id}
+		</select>
+
+		<insert id="addAlbum" parameterType="com.ibreed_project.model.AlbumVO">
+			INSERT INTO album (album_name, album_date, diary_id, photo_count)
+			VALUES(#{album_name}, now(), #{diary_id}, 0);
+		</insert>
+
+		<select id="albumCheck" parameterType="com.ibreed_project.model.AlbumVO" resultType="string">
+			SELECT DISTINCT album_name FROM album 
+			WHERE album_name = #{album_name} AND
+			album_name IN (SELECT album_name FROM album WHERE diary_id = #{diary_id});
+		</select>
+
+		<delete id="deleteAlbum" parameterType="int">
+			DELETE FROM album WHERE album_id=#{album_id}
+		</delete>
+
+		<update id="updateAlbumName" parameterType="com.ibreed_project.model.AlbumVO">
+			UPDATE album SET album_name=#{album_name},album_update=now() WHERE album_id=#{album_id}
+		</update>
+		
+		<select id="albumSearch" parameterType="hashmap" resultMap="albumResult">
+			SELECT * FROM album WHERE album_name LIKE CONCAT('%', #{album_name}, '%');
+		</select>
+		
+		<select id="arrangeAlbum" parameterType="hashmap" resultMap="albumResult">
+			SELECT * FROM album	
+			WHERE diary_id = (SELECT diary_id FROM diary WHERE user_id = #{user_id})
+			ORDER BY
+				<choose>
+					<when test="type.equals('latest')">
+						album_date DESC
+					</when>
+					<when test="type.equals('old')">
+						album_date
+					</when>
+					<when test="type.equals('spelling')">
+						album_name
+					</when>
+					<when test="type.equals('back_spelling')">
+						album_name DESC
+					</when>
+				</choose>	
+		</select>
+		
+		<update id="updateCover" parameterType="com.ibreed_project.model.AlbumVO">
+			UPDATE album SET album_cover_img = #{album_cover_img} WHERE album_id = #{album_id}
+		</update>
+		
+	</mapper>

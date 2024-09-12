@@ -1,0 +1,458 @@
+@charset "UTF-8";
+
+* {
+	
+}
+
+.all {
+	display: flex;
+	flex-direction: column;
+	font-family: "GmarketSansMedium";
+	color: #333;
+}
+
+.shopping_title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 180px;
+		font-family: "JalnanGothic";
+}
+
+.shopping_title span {
+	margin: 0 20px;
+	
+}
+
+.shopping_title div {
+	font-size: 28px;
+	font-weight: 800;
+	margin: 0 10px;
+}
+
+.order_form_wrap {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	width: 100%;
+}
+
+.content_wrap {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	margin-bottom: 30px;
+}
+
+.row_wrap {
+	display: flex;
+	flex-direction: row;
+}
+
+.left_box {
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+}
+
+.form_title {
+	width: 100%;
+	height: 50px;
+	font-weight: 500;
+	font-size: 22px;
+	border-bottom: 1px solid #222;
+	font-weight: 600;
+	margin: 20px 0;
+}
+
+.required {
+	color: red;
+}
+
+.order_info {
+	
+}
+
+.input_wrap {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 50px;
+}
+
+.address_wrap {
+	min-width: 80px;
+	display: flex;
+	margin-top: 10px;
+	margin-left: 80px;
+}
+
+.input_label {
+	min-width: 80px;
+}
+
+label span {
+	color: red;
+}
+
+/* 커스터마이징 */
+.custom-input {
+	height: 34px;
+	min-width: 100px;
+	border: 1px solid #aaa;
+	border-radius: 4px;
+	box-sizing: border-box;
+	transition: border-color 0.3s, box-shadow 0.3s;
+	padding: 0 6px;
+	font-size: 16px;
+}
+
+.long-input {
+	width: 600px;
+	
+}
+
+.custom-input:focus {
+	border-color: #aaa;
+	/*  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6); */
+	outline: none; /* 포커스 시 아웃라인 제거 */
+	background: #eee;
+}
+
+/* 비활성화 시 스타일 */
+.custom-input:disabled {
+	border-color: #ddd; /* 비활성화 테두리 색상 */
+	cursor: not-allowed; /* 비활성화 커서 모양 */
+}
+
+.search_zipcode {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 90px;
+	height: 30px;
+	background: #eee;
+	font-size: 12px;
+	border: 1px solid #ccc;
+	margin-left: 10px;
+}
+
+.search_zipcode:hover {
+	font-weigh: 600;
+	cursor: pointer;
+}
+
+.custom-select {
+  appearance: none; /* 기본 브라우저 스타일 제거 */
+  -webkit-appearance: none; /* Safari, Chrome */
+  -moz-appearance: none; /* Firefox */
+  background-color: #eee;
+  border: 1px solid #ccc; 
+  padding: 10px; 
+  font-size: 15px; 
+  border-radius: 4px;
+  width: 680px; 
+  cursor: pointer; 
+}
+
+/* 화살표 아이콘 스타일링 */
+.custom-select::after {
+  content: '▼'; /* 화살표 기호 */
+  position: absolute;
+  right: 10px;
+  pointer-events: none; /* 클릭 이벤트가 요소에 영향을 미치지 않도록 설정 */
+}
+
+
+
+.one_item_wrap {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 200px;
+	border-bottom: 1px solid #222;
+	width: 100%
+}
+
+/* 기본 체크박스 숨기기 */
+.custom-checkbox input[type="checkbox"] {
+	display: none;
+}
+
+/* 체크박스와 레이블 스타일링 */
+.custom-checkbox {
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+	font-size: 16px;
+	user-select: none; /* 텍스트 선택 방지 */
+}
+
+/* 사용자 정의 체크박스 스타일링 */
+.custom-checkbox .checkmark {
+	position: relative;
+	width: 24px;
+	height: 24px;
+	background-color: #f0f0f0; /
+	border-radius: 4px;
+	margin-right: 8px;
+	transition: background-color 0.3s, border-color 0.3s;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+/* 체크박스가 선택되었을 때 스타일링 */
+.custom-checkbox input[type="checkbox"]:checked+.checkmark {
+	background-color: #53afb2;
+	border: 1px solid #333;
+}
+
+/* 체크 표시  */
+.custom-checkbox .checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+	left: 8px;
+	top: 3px;
+	width: 5px;
+	height: 12px;
+	border: solid white;
+	border-width: 0 2px 2px 0;
+	transform: rotate(45deg);
+}
+
+/* 체크된 상태에서 체크 표시 보이기 */
+.custom-checkbox input[type="checkbox"]:checked+.checkmark:after {
+	display: block; /* 체크된 경우 표시 */
+}
+
+/* 호버 상태에서 체크박스 스타일 변경 */
+.custom-checkbox:hover .checkmark {
+	background-color: #e0e0e0;
+	border-color: #b3b3b3;
+}
+
+.column_wrap {
+	display: flex;
+	flex-direction: column;
+}
+
+.prd_image {
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+	border: 1px solid #333;
+	margin-left: 14px;
+	margin-right: 26px;
+	border-radius: 10px;
+}
+
+.prd_image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	cursor: pointer;
+}
+
+.prd_name {
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+.one_prd_price {
+	margin-bottom: 10px;
+}
+
+.coupon{
+	color: red;
+}
+.right_box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 40%;
+	padding-left: 50px;
+	/* position: fixed; */
+}
+
+.payment_option {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+}
+
+
+.payment_box {
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	width: 100%;
+	background: #fff;
+	border: 3px solid #555;
+	margin: 20px 0;
+	justify-content: center;
+}
+
+.payment_btn_wrap {
+	display: flex;
+	 flex-wrap: wrap;
+}
+.payment_btn_wrap div{
+	display: flex;
+	align-items:center;
+	justify-content:center;
+	width: 180px;
+	height: 50px;
+	border: 1px solid #ccc;
+	margin-right:10px;
+	margin-bottom:10px;
+	
+}
+.payment_btn_wrap div:hover{
+	cursor:pointer;
+	background:#eee;
+}
+
+.payment_notice {
+	display: flex;
+	align-items:center;
+	background:#eee;
+	padding:10px;
+	margin: 20px 0;
+}
+.payment_notice ul{
+	margin-left:20px;
+}
+.payment_box div {
+	line-height: 50px;
+}
+
+.payment_box_title {
+	font-size: 22px;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+
+.total_prd_amount {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.total_shipping_fee {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+.total_discount {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.point_discount {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.final_payment_amount {
+	width: 100%;
+	height:80px;
+	display: flex;
+	align-items:center;
+	justify-content: space-between;
+	border-top: 1px solid #ccc;
+}
+
+.final_payment_amount div {
+	font-size: 22px;
+	color: red;
+}
+
+.final_payment_amount div span {
+	font-weight: 800;
+}
+
+.final_pay_agreement {
+	border-top: 2px solid #222;
+	font-size:13px;
+	color:#666;
+	padding-top: 20px;
+}
+.pay_noti {
+	font-size:12px;
+}
+
+
+#order_all_btn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 80px;
+	background: #222;
+	color: #fff;
+	border: 1px solid #444;
+	margin: 30px 0;
+	font-size: 24px;
+}
+
+#order_all_btn:hover {
+	cursor: pointer;
+	font-weight: 600;
+	background: #53afb2;
+	color: #fff;
+}
+
+#order_selected_btn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 80px;
+	background: #fff;
+	border: 1px solid #444;
+	font-size: 24px;
+}
+
+#order_selected_btn:hover {
+	background: #53afb2;
+	color: #fff;
+	cursor: pointer;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+@font-face {
+	font-family: "yg-jalnan";
+	src:
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "GmarketSansMedium";
+	src:
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+@font-face {
+	font-family: "JalnanGothic";
+	src:
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ibreed_project.dao.INotificationDAO">
+
+    <select id="getNotifications" parameterType="String" resultType="com.ibreed_project.model.NotificationVO">
+        SELECT * FROM notification WHERE user_id = #{userId} ORDER BY noti_id DESC
+    </select>
+
+
+    <delete id="deleteAllNotification">
+        DELETE FROM notification WHERE user_id = #{userId}
+    </delete>
+
+
+    <delete id="deleteNotification">
+        DELETE FROM notification WHERE user_id = #{userId} AND noti_id=#{notiId}
+    </delete>
+
+</mapper>

@@ -1,0 +1,156 @@
+@charset "UTF-8";
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, img, ol, ul, li, form,
+	article, aside, footer, header, nav {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+body {
+	background: #53AFB2;
+	/*   
+	background-image: url('../../image/diary_background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: -100px -30px;
+    background-attachment: fixed; 
+    background-size: 1440px 740px;  
+    */
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.all {
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+	align-items: flex-start;
+	width: 100%;
+	height: 100%;
+	padding: 40px;
+	align-items: flex-start;
+	/* padding-left: 200px; */
+}
+
+.diary_wrap {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 900px;
+	min-width: 900px;
+	height: 600px;
+	background: #F6DEC8;
+	border-radius: 20px;
+	border: 3px solid #111;
+	/* 	box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);*/
+	/* background: inherit;
+	border: none; */
+}
+
+.diary_content {
+	display: flex;
+	width: 850px;
+	height: 550px;
+	background: #FFF4F1;
+	border-radius: 10px;
+	padding: 20px;
+	border: 3px solid #111;
+}
+
+nav a {
+	display: block;
+}
+
+.diary_taps {
+	display: flex;
+	flex-direction: column;
+	width: 100px;
+	position: relative;
+	padding-top: 30px;
+	font-family: "yg-jalnan";
+}
+
+.diary_taps div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100px;
+	min-width: 100px;
+	height: 60px;
+	/* box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2); */
+	margin-top: 10px;
+	border-top-right-radius: 12px;
+	border-bottom-right-radius: 12px;
+	border: 3px solid #111;
+	border-left: none;
+	background-color: #ddd;
+	color: #555;
+	/* margin-left: 42px; */
+}
+
+.diary_taps div.active-tab {
+	background-color: #fff;
+	height: 70px;
+	color: #222;
+}
+
+#go_to_mydiary {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #fff;
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	border-radius: 50px;
+	font-family: "yg-jalnan";
+	bottom: 50px;
+	right: 50px;
+	overflow: hidden;
+   
+  
+
+ }
+
+#go_to_mydiary img {
+	width: 100%;
+	padding: 10px;
+	text-align: center;
+}
+
+#go_to_mydiary:hover {
+	cursor: pointer;
+ box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+
+}
+
+@font-face {
+	font-family: "yg-jalnan";
+	src:
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "GmarketSansMedium";
+	src:
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.ibreed_project.dao.IMyPageDAO">
+  
+  	<resultMap type="com.ibreed_project.model.MyPageVO" id="myPageResult">
+  		<result property="pay_id" column="pay_id"/>
+  		<result property="pay_number" column="pay_number"/>
+  		<result property="recipient_name" column="recipient_name"/>
+  		<result property="Recipient_address" column="Recipient_address"/>
+  		<result property="delivery_charge" column="delivery_charge"/>
+  		<result property="pay_time" column="pay_time"/>
+  		<result property="total_order_amount" column="total_order_amount"/>
+  		<result property="payment_method" column="payment_method"/>
+  		<result property="user_id" column="user_id"/>
+  		<result property="order_id" column="order_id"/>
+  		<result property="product_id" column="product_id"/>
+  		<result property="quantity" column="quantity"/>
+  		<result property="product_price" column="product_price"/>
+  		<result property="product_name" column="product_name"/>
+  		<result property="product_discount" column="product_discount"/>
+  		<result property="product_img" column="product_img"/>
+  	</resultMap>
+  	
+  	<select id="countPayment" resultType="integer">
+  		SELECT COUNT(*) FROM payment_history WHERE user_id=#{user_id};
+  	</select>
+  	
+  	<select id="selectPayment" resultMap="myPageResult">
+  		SELECT * FROM payment_history WHERE user_id=#{user_id};
+  	</select>
+  	
+  	<select id="selectOrder" parameterType="integer">
+  		SELECT
+  			p.product_img,
+		    p.product_name, 
+		    p.product_price,
+		    quantity
+		FROM
+		    order_history oh
+		JOIN
+		    product p
+		ON
+		    oh.product_id = p.product_id
+		WHERE
+		    oh.pay_number = #{pay_number};
+  	</select>
+  	
+  	<select id="selectLikeItemList" parameterType="string" >
+  		SELECT
+  			 p.product_id, p.product_name, p.product_price, p.product_discount, p.product_img 
+  		FROM
+  			likeitem l
+  		JOIN
+  			product p
+  		ON
+  			l.wish_item = p.product_id
+  		WHERE
+  			user_id=#{user_id};
+  	</select>
+
+	<select id="getProductsByIds" parameterType="list" resultMap="myPageResult">
+        SELECT * FROM product
+        WHERE product_id IN
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+	<delete id="deleteItem" parameterType="int">
+	    DELETE FROM likeitem WHERE wish_item = #{productId}
+	</delete>
+  </mapper>

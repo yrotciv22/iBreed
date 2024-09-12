@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.ibreed_project.dao.ILikeItemDAO">
+  
+  	<resultMap type="com.ibreed_project.model.LikeItemVO" id="likeResult">
+  		<result property="wish_id" column="wish_id"/>		
+  		<result property="user_id" column="user_id"/>		
+  		<result property="wish_item" column="wish_item"/>		
+  		<result property="product_id" column="product_id"/>		
+  	</resultMap>
+	
+  	<select id="likeCheck" resultType="string" parameterType="com.ibreed_project.model.LikeItemVO">
+		SELECT 
+			user_id 
+		FROM 
+			likeitem
+		WHERE 
+			wish_item=#{product_id} AND user_id = #{user_id};
+  	</select>
+  	
+  	<insert id="insertLike" parameterType="map">
+  		INSERT INTO likeitem(user_id, wish_item) VALUES (#{user_id}, #{product_id});
+  	</insert>
+  	
+  	<delete id="deleteLike" parameterType="map">
+  		DELETE FROM likeitem WHERE user_id=#{user_id} AND wish_item=#{product_id};
+  	</delete>
+  	
+  </mapper>

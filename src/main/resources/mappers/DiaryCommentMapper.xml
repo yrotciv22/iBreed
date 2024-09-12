@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ibreed_project.dao.IDiaryCommentDAO">
+	<resultMap id="DiaryCommentResultMap" type="com.ibreed_project.model.DiaryCommentVO">
+        <id property="id" column="id"/>
+        <result property="diaryCommentUserIdWrite" column="diary_comment_user_id_write"/>
+        <result property="diaryCommentContent" column="diary_comment_content"/>
+        <result property="diaryPostId" column="diary_post_id"/>
+        <result property="parentCommentId" column="parent_comment_id"/>
+        <result property="likeCount" column="like_count"/>
+        <result property="status" column="status"/>
+        <result property="isSecret" column="is_secret"/>
+        <result property="mentionedUserIds" column="mentioned_user_ids"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+ 		
+    <!-- 댓글 추가 -->
+    <insert id="addComment" parameterType="hashmap">
+    INSERT INTO diary_comment 
+    (diary_comment_user_id_write, diary_comment_content, diary_post_id, parent_comment_id, like_count, status, is_secret, mentioned_user_ids, created_at, updated_at)
+    VALUES 
+    (#{diaryCommentUserIdWrite}, #{diaryCommentContent}, #{diaryPostId}, #{parentCommentId}, #{likeCount}, #{status}, #{isSecret}, #{mentionedUserIds}, NOW(), NOW())
+</insert>
+ 		
+  <!-- 특정 게시글의 댓글 조회 -->
+    <select id="getCommentsByDiaryPostId" parameterType="int" resultMap="DiaryCommentResultMap">
+        SELECT * FROM diary_comment 
+        WHERE diary_post_id = #{diaryPostId} AND status = 'active'
+        ORDER BY created_at DESC
+    </select>
+    
+    <!-- 특정 댓글 조회 -->
+    <select id="getCommentById" parameterType="int" resultMap="DiaryCommentResultMap">
+        SELECT * FROM diary_comment 
+        WHERE id = #{id}
+    </select>
+    
+    <!--댓글 수정  -->
+    <update id="updateComment" parameterType="com.ibreed_project.model.DiaryCommentVO">
+    UPDATE diary_comment 
+    SET diary_comment_content = #{diaryCommentContent},
+        is_secret = #{isSecret},
+        mentioned_user_ids = #{mentionedUserIds},
+        updated_at = NOW()
+    WHERE id = #{id} AND diary_comment_user_id_write = #{diaryCommentUserIdWrite}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	
+    <delete id="deleteComment" parameterType="int">
+    DELETE FROM diary_comment WHERE id = #{id} OR parent_comment_id = #{id}
+</delete>
+	<!--댓글순서 정렬  -->
+	<select id="getCommentsByPostId" resultType="com.ibreed_project.model.DiaryCommentVO">
+    SELECT *
+    FROM diary_comment
+    WHERE diary_post_id = #{diaryPostId}
+    ORDER BYCOALESCE(parent_comment_id, id), createdAt;
+</select>
+	
+	<!--댓글 수   -->
+	<select id="getCommentCountByDiaryPostId" resultType="int">
+    SELECT COUNT(*) 
+    FROM diary_comment 
+    WHERE diary_post_id = #{diaryPostId}
+</select>
+</mapper>

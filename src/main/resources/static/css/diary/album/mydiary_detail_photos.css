@@ -1,0 +1,376 @@
+@charset "UTF-8";
+
+li {
+	list-style-type: none;
+}
+
+#wrap {
+	width: 794px;
+	height: 100%;
+}
+
+.diary_content {
+	overflow-y: scroll;
+}
+
+#topBox {
+	height: 33px;
+}
+
+#title {
+	width: 300px;
+	position: relative;
+}
+
+#title h3 {
+	display: inline-block;
+}
+
+#search {
+	width: 231px;
+	position: relative;
+	top: -26px;
+	left: 557px;
+}
+
+#noSearch {
+	position: relative;
+    text-align: center;
+    margin-top: 160px;
+}
+
+input[type=text] {
+	width: 224px;
+	height: 30px;
+	font-size: 12px;
+	background: #EFF1F6;
+	border: 0;
+	border-radius: 5px;
+}
+
+input[type=file] {
+    width: 74px;
+    height: 25px;
+	background: rgba(0, 0, 0, 0.04);
+}
+
+input[type=text]:focus, select:focus {
+	outline-color: #53afb2;
+}
+
+select {
+	height: 30px;
+	border: 0;
+	background: none;
+}
+
+#middleBox {
+	height: 25px;
+}
+
+#upload {
+	width: 300px;
+	position: relative;
+	left: 50px;
+}
+
+.btn {
+	border: none;
+	height: 30px;
+	cursor: pointer;
+	background: #F6DEC8;
+	border-radius: 8px;
+	font-weight: bold;
+}
+
+.upBtn {
+	background: #53afb2;
+	color: white;
+}
+
+.allBtn {
+	position: absolute;
+	left: -36px;
+	display: inline-block;
+	width: 30px;
+}
+
+.allCheck {
+	position: relative;
+	cursor: pointer;
+	left: 4px;
+	top: 4px;
+}
+
+#uploadBtn {
+	
+}
+
+#newAlbumBtn {
+	
+}
+
+#albumDeleteBtn {
+	display: none;	
+}
+
+#ctrl {
+	width: 74px;
+	position: relative;
+	top: -51px;
+	left: 657px;
+}
+
+.albumBox {
+    width: 154px;
+    height: 154px;
+    margin: 8px 2px -3px 2px;
+    padding: 5px;
+	border-radius: 5px;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+}
+
+.albumBox::-webkit-scrollbar-thumb {
+	background: white;
+	border-radius: 10px;
+}
+
+.photoCheck {
+	position: relative;
+	width: 0;
+	height: 0;
+	visibility: hidden;
+}
+
+.album_thimbnail {
+    width: 144px;
+    height: 144px;
+}
+
+.photoCount {
+	position: relative;
+	top: -33px;
+	left: 135px;
+	width: 0;
+	height: 0;
+	font-size: 16px;
+}
+
+.countNum {
+	background: black;
+	color: white;
+	display: block;
+	width: 32px;
+	border-radius: 10px;
+	opacity: 50%;
+}
+
+.countCircle {
+	opacity: 50%;
+	width: 10px;
+	height: 10px;
+}
+
+.album_title {
+	
+}
+
+.update {
+	color: #aaa;
+	font-size: 12px;
+}
+
+/* 우클릭 메뉴 */
+.menu {
+	position: absolute;
+	display: none;
+	background-color: #eee;
+	padding: 1px;
+	min-width: 100px;
+	border-radius: 4px;
+	text-align: left;
+	box-shadow: 2px 2px 2px;
+	background: white;
+	z-index: 1;
+}
+
+.menu a {
+	display: block;
+	padding: 2px 10px;
+	cursor: pointer;
+	font-size: 14px;
+	margin: 6px 0;
+	border-radius: 5px;
+}
+
+.menu ul {
+	padding: 0 3px
+}
+
+.menu li {
+	
+}
+
+/* 모달창 */
+.modal {
+	position: absolute;
+	justify-content: center;
+	top: 0;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.1);
+	z-index: 1;
+}
+
+.delete_modal {
+	display: none;
+	left: -116px;
+	width: 113%;
+}
+
+.detail_modal {
+	display: none;
+	left: -116px;
+	width: 113%;
+}
+
+.detail_image {
+   	width: 60%;
+}
+
+.change_modal {
+	display: none;
+	left: -116px;
+	width: 113%;
+}
+
+.add_modal {
+	display: none;
+	left: -116px;
+	width: 113%;
+}
+
+.modal strong {
+	font-size: 16px;
+}
+
+.delete_body p {
+	font-size: 12px;
+	margin-top: 9px;
+}
+
+.add_body p {
+	font-size: 11px;
+    margin-top: 8px;
+}
+
+.modal_body {
+	position: absolute;
+	top: 50%;
+	width: 330px;
+	height: 218px;
+	padding: 62px 14px;
+	text-align: center;
+	background-color: rgb(255, 255, 255);
+	border-radius: 10px;
+	box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+	transform: translateY(-50%);
+}
+
+.add_body {
+	width: 330px;
+	height: 165px;
+	padding: 25px 14px;
+}
+
+.delete_body {
+	width: 330px;
+	height: 200px;
+	padding: 62px 14px;
+}
+
+.change_body {
+	width: 330px;
+	height: 165px;
+	padding: 25px 14px;
+}
+
+.xBtn {
+	position: absolute;
+	border: none;
+	left: 303px;
+	top: 4px;
+	width: 22px;
+	height: 23px;
+	cursor: pointer;
+	background: none;
+}
+
+.warningImg {
+	position: absolute;
+	width: 50px;
+	top: 6px;
+	left: 141px
+}
+
+.modal_okBtn {
+	position: absolute;
+	width: 65px;
+	height: 30px;
+	left: 86px;
+	border: 1px solid #e2e2e2;
+	border-radius: 5px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.modal_noBtn {
+	position: absolute;
+	width: 65px;
+	height: 30px;
+	right: 86px;
+	border: 1px solid #e2e2e2;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.okBtn {
+	top: 157px;
+}
+
+.noBtn {
+	top: 157px;
+}
+
+.okBtn2 {
+	top: 115px;
+}
+
+.noBtn2 {
+	top: 115px;
+}
+
+.okBtn3 {
+	top: 123px;
+}
+
+.noBtn3 {
+	top: 123px;
+}
+
+#update_text {
+	margin-top: 15px;
+	width: 263px;
+	border: 1px solid black;
+	background: white;
+	color: black;
+}
+
+.change_text {
+	margin-top: 20px;
+	width: 263px;
+	border: 1px solid black;
+	background: white;
+	color: black;
+}

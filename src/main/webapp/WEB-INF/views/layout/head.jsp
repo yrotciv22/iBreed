@@ -7,3 +7,4 @@
 
   <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
   <script src="<c:url value='/js/footer.js'/>"></script>
+
