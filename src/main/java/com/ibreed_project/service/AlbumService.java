@@ -61,8 +61,16 @@ public class AlbumService implements IAlbumService {
 	}
 	
 	@Override
-	public void updateAlbumName(AlbumVO vo) {
-		dao.updateAlbumName(vo);
+	public String updateAlbumName(AlbumVO vo) {
+		String result = "available";
+		
+		if(dao.albumCheck(vo) == null) {
+			dao.updateAlbumName(vo);
+		} else {
+			result = "not_available";
+		}
+		
+		return result;
 	}
 	
 	@Override
@@ -73,5 +81,10 @@ public class AlbumService implements IAlbumService {
 	@Override
 	public ArrayList<AlbumVO> arrangeAlbum(HashMap<String, Object> map) {
 		return dao.arrangeAlbum(map);
+	}
+	
+	@Override
+	public void updateCover(AlbumVO vo) {
+		dao.updateCover(vo);
 	}
 }

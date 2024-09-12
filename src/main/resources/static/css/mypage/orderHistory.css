@@ -392,12 +392,14 @@ a {
 }
 
 .row_wrap th {
-	    line-height: 2;
+	line-height: 2;
+	font-size: 14px;
 }
 
 .order_img {
 	width: 30px;
 	cursor: auto;
+    float: left;
 }
 
 .miniTable {

@@ -1,7 +1,7 @@
 /**
  * 
  */
-$(document).ready(function() {
+/*$(document).ready(function() {
 
 	const prd_id = $('#recent_prdIds').val();
 
@@ -61,4 +61,32 @@ $(document).ready(function() {
 	}
 	
 
+});*/
+
+$(document).ready(function() {
+
+	const prd_id = $('#recent_prdIds').val();
+
+	 function addRecentlyViewedProduct(productId) {
+	    //let viewedProducts = getCookie("viewedProducts");	 
+	    let viewedProducts  = localStorage.getItem("viewedProducts");
+	    let viewedList = viewedProducts ? JSON.parse(viewedProducts) : [];
+	
+	    // 중복된 상품이 있으면 제거
+	    viewedList = viewedList.filter(id => id !== productId);
+	
+	    // 새 상품 추가
+	    viewedList.push(productId);
+	
+	    // 최근 본 상품이 5개를 넘으면 오래된 상품 제거
+	    if (viewedList.length > 5) {
+	        viewedList.shift();
+	    }
+		
+		localStorage.setItem("viewedProducts", JSON.stringify(viewedList));
+	}
+
+	addRecentlyViewedProduct(prd_id);
+	
+	
 });

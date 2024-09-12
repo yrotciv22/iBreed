@@ -172,7 +172,11 @@
 								</c:if>
 								</div>
 								<div class="rcFooter">
-									<div class="rcDate"><span><fmt:formatDate value="${r.review_time}" pattern="yyy-MM-dd"/></span></div>
+									<div class="rcDate">
+										<span>
+											<%-- <fmt:formatDate value="${r.review_time}" pattern="yyy-MM-dd"/> --%>
+										</span>
+									</div>
 									<button class="rcBtn">
 										<span>🖒도움돼요</span>
 									</button>
