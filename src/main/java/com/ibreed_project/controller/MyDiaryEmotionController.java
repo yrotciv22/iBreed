@@ -79,7 +79,7 @@ public class MyDiaryEmotionController {
             ///////////////////////////////////////////////////////////////////////////////////////
             //데이터베이스에 값 저장하기
             HashMap<String, Object> hashMap = new HashMap<>();
-            hashMap.put("diary_id", diaryPostId);
+            hashMap.put("diary_post_id", diaryPostId);
             hashMap.put("sentiment_subject", Vo.getDiary_title());
             hashMap.put("sentiment_content", Vo.getDiary_content());
             hashMap.put("sentiment_fear", fear);

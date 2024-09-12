@@ -31,8 +31,8 @@
     </select>
 
     <insert id="emotionSave" parameterType="map">
-        INSERT INTO sent_analysis (diary_id, sentiment_subject, sentiment_content, sentiment_fear, sentiment_joy, sentiment_sorrow, sentiment_disgusting, sentiment_angry, sentiment_result)
-        VALUES (#{diary_id}, #{sentiment_subject}, #{sentiment_content}, #{sentiment_fear}, #{sentiment_joy}, #{sentiment_sorrow}, #{sentiment_disgusting}, #{sentiment_angry}, #{sentiment_result})
+        INSERT INTO sent_analysis (diary_post_id, sentiment_subject, sentiment_content, sentiment_fear, sentiment_joy, sentiment_sorrow, sentiment_disgusting, sentiment_angry, sentiment_result)
+        VALUES (#{diary_post_id}, #{sentiment_subject}, #{sentiment_content}, #{sentiment_fear}, #{sentiment_joy}, #{sentiment_sorrow}, #{sentiment_disgusting}, #{sentiment_angry}, #{sentiment_result})
     </insert>
 
 
@@ -50,13 +50,15 @@
                 INNER JOIN
             sent_analysis sa
             ON
-                db.diary_id = sa.diary_id
+                db.diary_post_id = sa.diary_post_id
         WHERE
             db.user_id = #{userId}
-          AND db.diary_title = sa.sentiment_subject AND db.diary_content = sa.sentiment_content
+          AND db.diary_title = sa.sentiment_subject
+          AND db.diary_content = sa.sentiment_content
         ORDER BY
             db.diary_create ASC;
     </select>
+
 
 
     <select id="getDiaryEntryByPostId" resultMap="EmotionResultMap">

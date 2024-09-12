@@ -111,7 +111,7 @@
             <!-- 하단 버튼들 -->
             <div class="diary_footer">
                 <button class="back_button" onclick="location.href='<c:url value='/mydiary/${sessionScope.user_id}/diary' />'">목록으로</button>
-                <button class="emotion_button" onclick="location.href='<c:url value='/diary/emotialresult'/>?user_id=${sessionScope.user_id}&diaryPostId=${diary.diaryId}'">감정분석 시작</button>
+                <button class="emotion_button" onclick="location.href='<c:url value='/diary/emotialresult'/>?user_id=${sessionScope.user_id}&diaryPostId=${diaryPostId}'">감정분석 시작</button>
             </div>
         </div>
     </div>

@@ -44,7 +44,7 @@
 							<td><fmt:formatDate value="${emotion.diary_create}" pattern="yyyy-MM-dd" /></td>
 							<td>
 								<a href="/diary/detail?post_id=${emotion.sentiment_note_id}">
-										${emotion.sentiment_note_id} 번째 분석 결과
+										${emotion.diary_title}
 								</a>
 							</td>
 							<td>${emotion.diary_post_id}</td> <!-- post_id를 그대로 출력하는 부분 -->
