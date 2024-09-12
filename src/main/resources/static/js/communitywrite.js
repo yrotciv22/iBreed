@@ -10,7 +10,7 @@ $(document).ready(function() {
     $('.submit-btn').on('click', function(event) {
         const boardId = $('#board').val();
         const heading = $('#heading').val();
-        console.log("폼 제출 시 선택된 boardId: " + boardId);
+        const content = $('#content-area').html().trim(); // contenteditable의 내용을 가져옴
 
         // 게시판이 선택되지 않았을 경우
         if (!boardId) {
@@ -26,80 +26,25 @@ $(document).ready(function() {
             return;
         }
 
-        // 유효성 검사 실행
-        if (!validateForm()) {
+        // 내용이 없는 경우
+        if (!content) {
+            alert('내용을 입력하세요.');
             event.preventDefault();
+            return;
         }
 
         // 선택된 게시판 id를 히든 필드에 저장
         $('#hiddenBoardId').val(boardId);
-    });
 
-    // 유효성 검사 함수
-    function validateForm() {
-        // 제목 유효성 검사
-        const title = $('#title').val();
-        if (!title || title.trim().length === 0) {
-            alert('제목을 입력하세요.');
-            $('#title').focus();
-            return false;
-        }
-
-        // 내용 유효성 검사
-        const content = $('#content').val();
-        if (!content || content.trim().length === 0) {
-            alert('내용을 입력하세요.');
-            $('#content').focus();
-            return false;
-        }
-
-        // 파일 형식 유효성 검사 (필수는 아니지만, 형식 검사를 추가할 수 있음)
-        const image = $('#image').val();
-        const video = $('#video').val();
-        if (image && !isValidFileType(image, ['jpg', 'jpeg', 'png', 'gif'])) {
-            alert('이미지 파일 형식이 잘못되었습니다. (허용 형식: jpg, jpeg, png, gif)');
-            return false;
-        }
-        if (video && !isValidFileType(video, ['mp4', 'avi', 'mov'])) {
-            alert('동영상 파일 형식이 잘못되었습니다. (허용 형식: mp4, avi, mov)');
-            return false;
-        }
-
-        return true;
-    }
-
-    // 파일 형식 유효성 검사 함수
-    function isValidFileType(fileName, allowedTypes) {
-        const extension = fileName.split('.').pop().toLowerCase();
-        return allowedTypes.includes(extension);
-    }
-
-    // 이미지/비디오 미리보기 기능
-    $('#image, #video').on('change', function(event) {
-        const fileInput = event.target;
-        const file = fileInput.files[0];
-
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                if (fileInput.id === 'image') {
-                    $('#image-preview').attr('src', e.target.result).show();
-                } else if (fileInput.id === 'video') {
-                    $('#video-preview').attr('src', e.target.result).show();
-                }
-            };
-            reader.readAsDataURL(file);
-        }
+        // contenteditable의 내용을 hidden textarea에 저장
+        $('#hidden-content').val(content); // 내용 저장
     });
 
     // 게시판 선택에 따라 말머리 동적으로 업데이트
     $('#board').on('change', function() {
         var selectedBoardId = $(this).val();
         updateHeadings(selectedBoardId);
-        console.log("선택된 boardId: " + selectedBoardId);
-
-        // 게시판 선택 시 히든 필드 업데이트
-        $('#hiddenBoardId').val(selectedBoardId);
+        $('#hiddenBoardId').val(selectedBoardId); // 선택된 게시판 ID를 히든 필드에 저장
     });
 
     // 말머리 업데이트 함수
@@ -118,6 +63,8 @@ $(document).ready(function() {
             headingSelect.append('<option value="육아팁">육아팁</option>');
             headingSelect.append('<option value="건강">건강</option>');
             headingSelect.append('<option value="놀이">놀이</option>');
+            headingSelect.append('<option value="추천">추천</option>');
+            
         } else if (boardId == "3") {
             headingSelect.append('<option value="제품후기">제품후기</option>');
             headingSelect.append('<option value="병원후기">병원후기</option>');
@@ -126,6 +73,7 @@ $(document).ready(function() {
             headingSelect.append('<option value="판매">판매</option>');
             headingSelect.append('<option value="구매">구매</option>');
             headingSelect.append('<option value="교환">교환</option>');
+            headingSelect.append('<option value="나눔">나눔</option>');
         } else if (boardId == "5") {
             headingSelect.append('<option value="구인">구인</option>');
             headingSelect.append('<option value="구직">구직</option>');
@@ -136,6 +84,85 @@ $(document).ready(function() {
         headingSelect.prepend('<option value="" disabled selected>말머리를 선택하세요</option>');
     }
 
-    
-    
+    // 이미지, 동영상, 링크 업로드 버튼 클릭 시 숨겨진 input 요소 트리거
+    $('#image-upload-btn').on('click', function() {
+        $('#image-upload').click();
+    });
+    $('#video-upload-btn').on('click', function() {
+        $('#video-upload').click();
+    });
+    $('#link-upload-btn').on('click', function() {
+        $('#link-popup').show();
+    });
+
+	 // 링크 추가 버튼 클릭 시 팝업 열기
+   $('#link-upload-btn').on('click', function() {
+        $('#link-popup').addClass('show');  // 팝업을 보여주는 클래스를 추가
+    });
+    // 팝업 닫기 (X 버튼 및 외부 클릭 시)
+    $('.close-btn').on('click', function() {
+        $('#link-popup').hide();
+    });
+    $(document).on('click', function(event) {
+        if (!$(event.target).closest('.popup-content').length && !$(event.target).is('#link-upload-btn')) {
+            $('#link-popup').hide(); // 팝업 바깥쪽을 클릭하면 팝업 닫기
+        }
+    });
+
+    // 링크 추가 버튼 클릭 시 contenteditable 영역에 링크 추가
+    $('#confirm-link').on('click', function() {
+        const linkValue = $('#link-input').val().trim();
+        if (linkValue) {
+            const linkElement = document.createElement('a');
+            linkElement.href = linkValue;
+            linkElement.textContent = linkValue;
+            linkElement.target = '_blank';
+            $('#content-area').append(linkElement);
+            $('#link-popup').hide();  // 팝업 닫기
+            $('#link-input').val(''); // 입력 필드 초기화
+        }
+    });
+
+    // 이미지 파일 선택 시 contenteditable에 삽입
+    $('#image-upload').on('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageElement = document.createElement('img');
+                imageElement.src = e.target.result;
+                imageElement.style.maxWidth = '100%';
+                imageElement.style.marginTop = '10px';
+                $('#content-area').append(imageElement);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // 동영상 파일 선택 시 contenteditable에 삽입
+    $('#video-upload').on('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const videoElement = document.createElement('video');
+                videoElement.src = e.target.result;
+                videoElement.controls = true;
+                videoElement.style.maxWidth = '100%';
+                videoElement.style.marginTop = '10px';
+                $('#content-area').append(videoElement);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    // 등록 버튼 클릭 시, contenteditable의 내용을 hidden textarea로 복사 후 폼 제출
+    $('.submit-btn').on('click', function(event) {
+        const content = $('#content-area').html().trim(); // contenteditable의 내용을 가져옴
+        if (!content) {
+            alert('내용을 입력하세요.');
+            event.preventDefault();
+            return;
+        }
+        $('#hidden-content').val(content); // hidden textarea에 내용을 복사
+    });
 });

@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ibreed_project.model.BoardVO;
+import com.ibreed_project.model.CommentVO;
 import com.ibreed_project.model.PostVO;
 import com.ibreed_project.service.BoardService;
+import com.ibreed_project.service.CommentService;
 import com.ibreed_project.service.CommunityMainService;
 
 import jakarta.servlet.http.HttpSession;
@@ -27,6 +27,9 @@ public class BoardController {
 	private BoardService boardService;
 	@Autowired
 	private CommunityMainService communityMainService;
+	@Autowired
+	private CommentService commentService;
+	
 	
 	//게시판 탭별 이동
 	  @GetMapping("/board/{boardId}")
@@ -134,8 +137,34 @@ public class BoardController {
 	      return "redirect:/community/board/" + boardId;
 	  }
 
+	  // 게시글 상세보기
+	    @GetMapping("/post/{postId}")
+	    public String viewPostDetail(@PathVariable("postId") int postId,
+	                                 HttpSession session,
+	                                 Model model) {
+	        // 게시글 정보 가져오기
+	    //    PostVO post = communityMainService.getPostById(postId);
+	  //      model.addAttribute("post", post);
 
+	        // 게시글에 달린 댓글 가져오기
+	        List<CommentVO> comments = commentService.getCommentsByPostId(postId);
+	        model.addAttribute("comments", comments);
 
+	        // 로그인된 사용자의 좋아요 상태 확인
+	//        String userId = (String) session.getAttribute("user_id");
+	 //       boolean isLiked = likeService.isPostLikedByUser(postId, userId);
+	  //     model.addAttribute("isLiked", isLiked);
+
+	        return "community/communitydetail";
+	    }
+	  
+	  //게시글수정
+	  
+	   //게시글 삭제
+	  
+	  //좋아요 상태 확인
+	  
+	  //좋아요,좋아요 취소
 }
 	
 

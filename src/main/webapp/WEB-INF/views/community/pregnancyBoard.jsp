@@ -141,7 +141,7 @@
 						            <c:forEach var="post" items="${posts}">
 						                <tr>
 						                	  <td >${post.postId}</td> 
-						                    <td><a href="/community/post/${post.postId}">${post.postTitle}</a></td>
+						                    <td><a href="/community/post/${post.postId}">[${post.postHeading}]${post.postTitle}</a></td>
 						                    <td>${post.userId}</td>
 						                    <td><fmt:formatDate value="${post.postCreate}" pattern="yyyy.MM.dd" /></td>
 						                    <td>${post.postCount}</td>
@@ -151,35 +151,36 @@
 						        </tbody>
 						    </table>
 						<!-- 그리드 보기  -->
-							<div class="grid-view-content">
-							    <c:forEach var="post" items="${posts}">
-							        <div class="post-item">
-							            <!-- 이미지가 없는 경우 기본 흰색 이미지 출력 -->
-							            <div class="post-image">
-							                <c:choose>
-							                    <c:when test="${not empty post.postImage}">
-							                        <img src="/path/to/image/${post.postImage}" alt="${post.postTitle}" />
-							                    </c:when>
-							                    <c:otherwise>
-							                        <img src="/path/to/blank_image.png" alt="No Image" />  <!-- 흰색 이미지 출력 -->
-							                    </c:otherwise>
-							                </c:choose>
-							            </div>
-							            <div class="post-content">
-							                <a href="/community/post/${post.postId}">
-							                    <h3>${post.postTitle}</h3>
-							                </a>
-							                <div class="post-details">
-							                    <span>${post.userId}</span> ·
-							                    <span><fmt:formatDate value="${post.postCreate}" pattern="yyyy.MM.dd" /></span> ·
-							                    <span>조회수: ${post.postCount}</span> ·
-							                    <span>댓글: </span>
-							                </div>
-							            </div>
-							        </div>
-							    </c:forEach>
-							</div>
-
+								<div class="grid-view-content">
+								    <c:forEach var="post" items="${posts}">
+								        <div class="post-item">
+								            <!-- 이미지가 없는 경우 기본 흰색 이미지 출력 -->
+								            <div class="post-image">
+								                <c:choose>
+								                    <c:when test="${not empty post.postImage}">
+								                        <img src="/path/to/image/${post.postImage}" alt="${post.postTitle}" />
+								                    </c:when>
+								                    <c:otherwise>
+								                        <img src="/path/to/blank_image.png" alt="No Image" />  <!-- 흰색 이미지 출력 -->
+								                    </c:otherwise>
+								                </c:choose>
+								            </div>
+								            <div class="post-content">
+								                <a href="/community/post/${post.postId}">
+								                    <h3>${post.postTitle} 
+								                    <%-- <span class="comment-count">[${post.commentCount}]</span>코멘트 처리하고 살리기 --%>
+								                    </h3>
+								                </a>
+								                <div class="post-details">
+								                    <span class="author">${post.userId}</span> ·
+								                    <span class="date"><fmt:formatDate value="${post.postCreate}" pattern="yyyy.MM.dd" /></span> ·
+								                    <span class="views">조회수: ${post.postCount}</span> ·
+								                    <%-- <span class="comments">댓글: ${post.commentCount}</span> --%>
+								                </div>
+								            </div>
+								        </div>
+								    </c:forEach>
+								</div>
 
 						</div>
 
@@ -212,10 +213,10 @@
                         <!-- 글쓰기 버튼 -->
                         <div class="write-btn">
 						    <c:if test="${not empty sessionScope.user_id}">
-						        <button onclick="location.href='/community/board/${board.boardId}/communityWrite'">글쓰기</button>
+						        <button onclick="location.href='/community/board/${board.boardId}/communityWrite'" class="btn">글쓰기</button>
 						    </c:if>
 						    <c:if test="${empty sessionScope.user_id}">
-						        <button onclick="alert('로그인이 필요합니다. 로그인 페이지로 이동합니다.'); location.href='/login';">로그인 후 글쓰기</button>
+						        <button onclick="alert('로그인이 필요합니다. 로그인 페이지로 이동합니다.'); location.href='/login';"class="btn">로그인 후 글쓰기</button>
 						    </c:if>
 						</div>
                     </div>

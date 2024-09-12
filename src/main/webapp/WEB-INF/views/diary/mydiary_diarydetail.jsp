@@ -38,7 +38,9 @@
 
             <h2>${diary.diaryTitle}</h2>
 
-                    <span class="diary_date">${diary.diaryCreate}</span>
+			<span class="diary_date">
+			    <fmt:formatDate value="${diary.diaryCreate}" pattern="yyyy.MM.dd HH:mm" />
+			</span>
             <hr>
 
             <!-- 다이어리 본문 -->
