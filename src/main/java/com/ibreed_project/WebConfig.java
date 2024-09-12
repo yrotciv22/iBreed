@@ -17,6 +17,11 @@ public class WebConfig implements WebMvcConfigurer {
 		// upload 폴더의 이미지 출력하기 위해 맵핑 설정 // 오디오 추가
 		registry.addResourceHandler("/images/**")
 		.addResourceLocations("file:///C:/iBreedWorkspace/images/");
+
+
+		// 이미지 경로 추가
+		registry.addResourceHandler("/image/**")
+		.addResourceLocations("/var/lib/jenkins/workspace/ibreed/src/main/resources/static/image/");
 			
 	}
 }
