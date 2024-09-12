@@ -50,7 +50,7 @@ public class MyMemberController {
     //이미지 저장
 
     // 상대 경로 설정 (기본 이미지 저장 경로)
-    private static final String BASE_IMAGE_PATH = "/var/lib/jenkins/workspace/ibreed/src/main/resources/static/image/profile/";
+    private static final String BASE_IMAGE_PATH = "src/main/webapp/image/profile/";
     @ResponseBody
     @PostMapping("/upload/profile")
     public String uploadProfileImage(@RequestParam("file") MultipartFile file, HttpSession session) {
