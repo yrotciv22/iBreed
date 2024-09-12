@@ -15,7 +15,8 @@ public class WebConfig implements WebMvcConfigurer {
 
 
 		registry.addResourceHandler("/images/**")
-		.addResourceLocations("/var/lib/jenkins/workspace/ibreed/src/main/resources/static/image/");
+        	.addResourceLocations("file:/var/lib/jenkins/workspace/ibreed/uploads/");
+
 	
 		
 	}
