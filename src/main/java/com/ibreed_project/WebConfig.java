@@ -18,10 +18,6 @@ public class WebConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/images/**")
 		.addResourceLocations("file:///C:/iBreedWorkspace/images/");
 
-
-		// 이미지 경로 추가
-		registry.addResourceHandler("/image/**")
-		.addResourceLocations("/var/lib/jenkins/workspace/ibreed/src/main/resources/static/image/");
 			
 	}
 }
