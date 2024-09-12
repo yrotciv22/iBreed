@@ -21,62 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		editable : true, // 일정 클릭 + 클릭해서 끌고오기 설정
 		
 		events: [
-			{
-				title: '산부인과 방문',
-				start: '2024-07-15',
-				end: '2024-07-15',
-				backgroundColor:"orange",
-	            textColor:"white"
-			},
-			{
-				title: '숙제날',
-				start: '2023-08-16',
-				end: '2023-08-16',
-				backgroundColor:"red",
-	            textColor:"white"
-			},
-			{
-				title: '태교 여행',
-				start: '2024-08-16',
-				end: '2024-08-19',
-				backgroundColor:"skyblue",
-	            textColor:"white"
-			},
-			{
-				title: '출장',
-				start: '2024-08-14',
-				end: '2024-08-17',
-				backgroundColor:"darkseagreen",
-	            textColor:"white"
-			},
-			{
-				title: '카시트 배송일',
-				start: '2024-08-22',
-				end: '2024-08-22',
-				backgroundColor:"orange",
-	            textColor:"white"
-			},
-			{
-				title: '장모님 오시는 날',
-				start: '2024-08-22',
-				end: '2024-08-22',
-				backgroundColor:"orange",
-	            textColor:"white"
-			},
-			{
-				title: '산부인과 방문일',
-				start: '2024-08-22',
-				end: '2024-08-22',
-				backgroundColor:"orange",
-	            textColor:"white"
-			},
-			{
-				title: '베이비샤워',
-				start: '2024-08-29',
-				end: '2024-08-29',
-				backgroundColor:"skyblue",
-	            textColor:"white"
-			},
 		],
 		eventClick : function(info) { },
 		

@@ -29,11 +29,14 @@ public interface IAlbumService {
 	public void deleteAlbum(int album_id);
 
 	// 앨범 이름 수정하기
-	public void updateAlbumName(AlbumVO vo);
+	public String updateAlbumName(AlbumVO vo);
 
 	// 앨범 이름으로 검색하기
 	public ArrayList<AlbumVO> albumSearch(HashMap<String, Object> map);
 
 	// 앨범 정렬하기
 	public ArrayList<AlbumVO> arrangeAlbum(HashMap<String, Object> map);
+	
+	// 앨범 커버 수정하기
+	public void updateCover(AlbumVO vo);
 }

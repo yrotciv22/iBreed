@@ -79,6 +79,8 @@
 				</choose>	
 		</select>
 		
-		
+		<update id="updateCover" parameterType="com.ibreed_project.model.AlbumVO">
+			UPDATE album SET album_cover_img = #{album_cover_img} WHERE album_id = #{album_id}
+		</update>
 		
 	</mapper>

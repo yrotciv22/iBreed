@@ -13,6 +13,7 @@
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 <script src="<c:url value='/js/slideShow.js'/>"></script>
 <script src="<c:url value='/js/shop_main.js'/>"></script>
+<script>const userId = "${sessionScope.user_id}"</script>
 </head>
 <body>
 

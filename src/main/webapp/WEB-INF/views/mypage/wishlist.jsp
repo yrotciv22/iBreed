@@ -51,7 +51,7 @@
 				<div class="wishlist">
 
 					<c:forEach var="l" items="${likeList}">
-						<div class="one_item_wrap">
+						<div class="one_item_wrap" data-product-id="${l.product_id}">
 							<div class="row_wrap">
 								<label class="custom-checkbox"> <input class="chk" type="checkbox" />
 									<span class="checkmark"></span>
