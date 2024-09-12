@@ -50,7 +50,7 @@ public class MyMemberController {
     //이미지 저장
 
     // 상대 경로 설정 (기본 이미지 저장 경로)
-    private static final String BASE_IMAGE_PATH = "/var/lib/jenkins/workspace/ibreed/src/main/resources/static/image/profile/";
+    private static final String BASE_IMAGE_PATH = "/var/lib/jenkins/workspace/ibreed/uploads/";
     @ResponseBody
     @PostMapping("/upload/profile")
     public String uploadProfileImage(@RequestParam("file") MultipartFile file, HttpSession session) {
@@ -84,7 +84,7 @@ public class MyMemberController {
             file.transferTo(dest);
 
             // 웹에서 접근 가능한 URL 경로 반환
-            String fileUrl = "/image/profile/" + userId + "/profile.png";
+            String fileUrl = "/images/profile/" + userId + "/profile.png";
             System.out.println("리턴 될 경로 : " +fileUrl );
             return fileUrl;
 
