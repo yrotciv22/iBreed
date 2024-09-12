@@ -14,7 +14,7 @@
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/shop/order.css'/>" />
-<script src="<c:url value='/js/order.js'/>" defer></script>
+<script src="<c:url value='/js/shopping/order.js'/>" defer></script>
 </head>
 
 
@@ -41,7 +41,7 @@
 					<div class="input_wrap">
 
 						<label> <input type="radio" name="address"
-							value="existing_address" required>기존 배송지
+							value="existing_address"  checked required onclick="setAddressType('existing')">기존 배송지
 						</label> <label> <input type="radio" name="address"
 							value="new_address"> 새로운 배송지
 						</label>
@@ -49,11 +49,11 @@
 					<div class="input_wrap">
 						<label class="input_label" for="name">주문자 <span>*</span>
 						</label> <input type="text" id="name" name="name" class="custom-input"
-							required />
+							required value="${user.user_name}" />
 					</div>
 					<div class="input_wrap">
-						<label class="input_label" for="email">이메일 <span>*</span></label>
-						<input type="text" id="email_username" name="email_username"
+						<label class="input_label" for="email" >이메일 <span>*</span></label>
+						<input type="text" id="email_username" name="email_username" 
 							class="custom-input" required /> &nbsp;@&nbsp;<input type="text"
 							id="email_domain" name="email_domain" class="custom-input"
 							required />
@@ -119,74 +119,30 @@
 					<div class="form_title">주문 상품</div>
 
 					<!-- 아이템 한개 -->
-					<div class="one_item_wrap">
+					<c:forEach items="${orderItems}" var="item">
+						<div class="one_item_wrap">
 
-						<div class="prd_image">
-							<img
-								src="<c:url value='https://shop-phinf.pstatic.net/20231127_19/1701065544326boLC2_JPEG/5464822140429117_1991374843.jpg?type=f296_296'/>" />
-						</div>
-						<div>
-							<div class="column_wrap" style="width: 560px">
-								<div class="prd_name">상품명</div>
-								<div>옵션: [색상] Grey</div>
+							<div class="prd_image">
+								<img src="<c:url value='${item.product_img}'/>" />
+							</div>
+							<div>
+								<div class="column_wrap" style="width: 560px">
+									<div class="prd_name">${item.product_name}</div>
+									<div>옵션: [색상] Grey</div>
 
-								<div class="one_prd_price">
-									<span>10,000</span><span>원</span> / <span>수량 : 1개</<span>
-							
-								</div>
-								<div class="coupon">
-									쿠폰적용가 : <span>9,000</span>원
+									<div class="one_prd_price">
+										<span>${item.product_price}</span><span>원</span> / <span>수량
+											: ${item.cart_quantity}개</<span>
+									</div>
+									<div class="coupon">
+										쿠폰적용가 : <span>9,000</span>원
+									</div>
 								</div>
 							</div>
+
+
 						</div>
-
-					</div>
-					<!-- 아이템 한개 끝 -->
-					<!-- 아이템 한개 -->
-					<div class="one_item_wrap">
-
-						<div class="prd_image">
-							<img
-								src="<c:url value='https://shop-phinf.pstatic.net/20231127_19/1701065544326boLC2_JPEG/5464822140429117_1991374843.jpg?type=f296_296'/>" />
-						</div>
-						<div>
-							<div class="column_wrap" style="width: 560px">
-								<div class="prd_name">상품명</div>
-								<div>옵션: [색상] Grey</div>
-
-								<div class="one_prd_price">
-									<span>10,000</span><span>원</span> / <span>수량 : 1개</<span>
-
-								</div>
-								<div class="coupon">
-									쿠폰적용가 : <span>9,000</span>원
-								</div>
-							</div>
-						</div>
-
-					</div>
-					<!-- 아이템 한개 끝 -->
-					<!-- 아이템 한개 -->
-					<div class="one_item_wrap">
-
-						<div class="prd_image">
-							<img
-								src="<c:url value='https://shop-phinf.pstatic.net/20231127_19/1701065544326boLC2_JPEG/5464822140429117_1991374843.jpg?type=f296_296'/>" />
-						</div>
-						<div>
-							<div class="column_wrap" style="width: 560px">
-								<div class="prd_name">상품명</div>
-								<div>옵션: [색상] Grey</div>
-
-								<div class="one_prd_price">
-									<span>10,000</span><span>원</span> / <span>수량 : 1개</<span>
-		
-								</div>
-								<div class="coupon">쿠폰적용가 : 9,000원</div>
-							</div>
-						</div>
-
-					</div>
+					</c:forEach>
 					<!-- 아이템 한개 끝 -->
 
 				</div>
@@ -257,14 +213,15 @@
 
 					<div class="final_pay_agreement">
 						<div>
-							<label class="custom-checkbox"> <input type="checkbox"
-								id="" name="" /> <span class="checkmark"></span>
+							<label class="custom-checkbox"> 
+							<input type="checkbox"
+								id="checkAll" name="checkAll" /> <span class="checkmark"></span>
 							</label> <label for="">주문 내용을 확인했으며, 아래 내용에 모두 동의합니다.</label>
 						</div>
 
 						<div>
 							<label class="custom-checkbox"> <input type="checkbox"
-								id="" name="" /> <span class="checkmark"></span>
+								id="check1" name="check1" /> <span class="checkmark"></span>
 							</label> <label for="">(필수) 개인정보 수집/이용 동의보기</label>
 
 						</div>
@@ -272,32 +229,25 @@
 
 						<div>
 							<label class="custom-checkbox"> <input type="checkbox"
-								id="" name="" /> <span class="checkmark"></span>
+								id="check2" name="check2" /> <span class="checkmark"></span>
 							</label> <label for="">(필수) 개인정보 제3자 제공 동의보기</label>
 						</div>
 
 						<div>
 							<label class="custom-checkbox"> <input type="checkbox"
-								id="" name="" /> <span class="checkmark"></span>
+								id="check3" name="check3" /> <span class="checkmark"></span>
 							</label> <label for="">(필수) 결제대행 서비스 이용약관(주)KG이니시스</label>
 						</div>
 					</div>
 
 					<div class="pay_noti">결제 및 계좌 안내 시 상호명은 (주)아이브리드로 표기되니 참고
 						부탁드립니다.</div>
-					<a href="<c:url value='/shop/order_confirm'/>">
+					<a href="<c:url value='#'/>" id="final_order_btn">
 						<div id="order_all_btn">결제하기</div>
 					</a>
 				</div>
 			</div>
 		</form>
-
-
-
-
-
-
-
 
 
 
@@ -312,5 +262,47 @@
 
 
 	</div>
+	
+	
+<script>
+    function setAddressType(type) {
+        const inputs = document.querySelectorAll('#name, #email_username, #email_domain, #phone1, #phone2, #phone3, #address_line1, #address_line2');
+        
+        if (type === 'existing') {
+            inputs.forEach(input => {
+                input.value = getUserValue(input.id); // getUserValue 함수로 기존 배송지 값을 설정
+                input.setAttribute('readonly', true); // 수정 불가
+            });
+        } else {
+            inputs.forEach(input => {
+                input.value = ''; // 새로운 배송지일 때 필드 초기화
+                input.removeAttribute('readonly'); // 수정 가능
+            });
+        }
+    }
+
+    // 사용자의 기존 값을 가져오는 함수 (서버에서 미리 제공된 값을 사용할 수 있음)
+    function getUserValue(field) {
+        const user_phone_number = "${user.user_phone_number}";
+        
+        const user = {
+            name: "${user.user_name}",
+            email_username: "${user.user_email.split('@')[0]}",
+            email_domain: "${user.user_email.split('@')[1]}",
+            phone1: user_phone_number.length === 11 ? user_phone_number.slice(0, 3) : user_phone_number,  // 앞의 3자리
+            phone2: user_phone_number.length === 11 ? user_phone_number.slice(3, 7) : '', 
+            phone3: user_phone_number.length === 11 ? user_phone_number.slice(7, 11) : '', 
+         /*    address_line1: "${user.user_address}" */
+            address_line2: "${user.user_address_detail}"
+        };
+        return user[field] || '';
+    }
+
+    // 기본 배송지가 선택된 상태에서 페이지 로드 시 기존 값 적용
+    window.onload = function() {
+        setAddressType('existing');
+    };
+</script>
+	
 </body>
 </html>

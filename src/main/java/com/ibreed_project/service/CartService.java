@@ -11,11 +11,10 @@ import com.ibreed_project.model.CartVO;
 
 @Service
 public class CartService implements ICartService {
-	
+
 	@Autowired
 	@Qualifier("ICartDAO")
 	ICartDAO dao;
-	
 
 	@Override
 	public ArrayList<CartVO> listAllCart(String user_id) {
@@ -56,8 +55,17 @@ public class CartService implements ICartService {
 		return dao.getTotalCartPrice(user_id);
 	}
 
-	
+	// 장바구니 품절 삭제
+	@Override
+	public void deleteSoldoutItem(String user_id) {
+		dao.deleteSoldoutItem(user_id);
 
-	
+	}
+
+	// 장바구니 전체 수량 조회
+	@Override
+	public int getTotalCartCount(String user_id) {
+		return dao.getTotalCartCount(user_id);
+	}
 
 }

@@ -26,10 +26,13 @@ public interface ICartDAO {
 	public void deleteAllCart();
 	
 	// 장바구니 품절 삭제
+	public void deleteSoldoutItem(String user_id);
 	
 	// 장바구니 전체 가격 조회
 	public Double getTotalCartPrice(String user_id);
 	
+	// 장바구니 전체 수량 조회
+	public int getTotalCartCount(String user_id);
 	
 
 }
