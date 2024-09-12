@@ -2,17 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <header>
-    <script src="<c:url value="/js/notification/notification.js"/>"></script>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/notification/notification.css'/>" />
+	<script src="<c:url value="/js/notification/notification.js"/>"></script>
+	<link rel="stylesheet" type="text/css"
+		href="<c:url value='/css/notification/notification.css'/>" />
 
-<%--    페이지 로드 후 알람 갯수 체크용 함수--%>
-    <script>
-        // 페이지 로드 후 실행
-        window.onload = function() {
-            loadNotifications('${sessionScope.user_id}');
-        };
-    </script>
-<%--    페이지 로드 후 알람 갯수 체크용 함수 끝--%>
+	<%--    페이지 로드 후 알람 갯수 체크용 함수--%>
+	<script>
+		// 페이지 로드 후 실행
+		window.onload = function() {
+			loadNotifications('${sessionScope.user_id}');
+		};
+	</script>
+	<%--    페이지 로드 후 알람 갯수 체크용 함수 끝--%>
 
 	<%--알림 시스템 추가--%>
 	<%--해당 코드는 알림을 띄우기 위한 코드입니다. 반드시 모든페이지마다 추가해야 알림이갑니다.--%>
@@ -20,7 +21,7 @@
 	<%--알림 시스템 추가 끝--%>
 
 
-    <div class="header">
+	<div class="header">
 
 		<div class="top1">
 			<h1 class="hd_logo">
@@ -29,68 +30,67 @@
 
 			<div class="hd_icon_wrap">
 
-				<div>
+				<!-- 로그인 성공한 경우 추가 -->
+				<c:if test="${not empty sessionScope.user_id}">
 
-					<a href="<c:url value='/mypage/wishlist'/>"> 
-					<img class="user"
-						src="<c:url value='/image/user.png'/>">
-					</a>
-				</div>
+					<div>
+						<a href="<c:url value='/mypage/wishlist'/>"> <img class="user"
+							src="<c:url value='/image/user.png'/>">
+						</a>
+					</div>
 
-				<div>
-					<a href="<c:url value='/shop/${sessionScope.user_id}/cart'/>">
-					<img class="cart"
-						src="<c:url value='/image/cart.png'/>">
-					</a>
-				</div>
-
-			<!-- 로그인 성공한 경우 추가 -->
-
-			<c:if test="${not empty sessionScope.user_id}">
-<%--                알람 작업 시작--%>
+					<div>
+						<a href="<c:url value='/shop/${sessionScope.user_id}/cart'/>">
+							<img class="cart" src="<c:url value='/image/cart.png'/>">
+							<div class="bell_circle" id="cart_value">${sessionScope.totalCount}</div>
+						</a>
+					</div>
 
 
-                <div style="position: relative;">
-                    <a href="javascript:void(0);" onclick="toggleNotification()">
-                        <img class="bell" src="<c:url value='/image/bell.png'/>"/>
-                        <div class="bell_circle" id="bell_value">0</div>
-                    </a>
+					<%--  알람 작업 시작--%>
+					<div style="position: relative;">
+						<a href="javascript:void(0);" onclick="toggleNotification()">
+							<img class="bell" src="<c:url value='/image/bell.png'/>" />
+							<div class="bell_circle" id="bell_value">0</div>
+						</a>
 
-                    <!-- 숨겨진 알림 영역 -->
-                    <div id="notificationDropdown" class="notification-dropdown">
-                        <!-- 여기에 알림 내용이 들어갑니다 -->
-                        <div class="notification-header">
-                            <h3>알림</h3>
-                        </div>
-                        <div class="notification-body">
-                            <div class="notification-item">
-                                <p class="notification-text">알림 내용 1</p>
-                                <span class="timestamp">2024-08-28 10:45</span>
-                            </div>
-                            <div class="notification-item">
-                                <p class="notification-text">알림 내용 2</p>
-                                <span class="timestamp">2024-08-28 09:30</span>
-                            </div>
-                            <!-- 추가 알림 항목 -->
-                        </div>
-						<div class="notification-footer">
-							<!-- 전체 삭제 버튼 추가 -->
-							<button class="delete-all-btn" onclick="deleteAllNotifications('${sessionScope.user_id}')">전체 삭제</button>
+						<!-- 숨겨진 알림 영역 -->
+						<div id="notificationDropdown" class="notification-dropdown">
+							<!-- 여기에 알림 내용이 들어갑니다 -->
+							<div class="notification-header">
+								<h3>알림</h3>
+							</div>
+							<div class="notification-body">
+								<div class="notification-item">
+									<p class="notification-text">알림 내용 1</p>
+									<span class="timestamp">2024-08-28 10:45</span>
+								</div>
+								<div class="notification-item">
+									<p class="notification-text">알림 내용 2</p>
+									<span class="timestamp">2024-08-28 09:30</span>
+								</div>
+								<!-- 추가 알림 항목 -->
+							</div>
+							<div class="notification-footer">
+								<!-- 전체 삭제 버튼 추가 -->
+								<button class="delete-all-btn"
+									onclick="deleteAllNotifications('${sessionScope.user_id}')">전체
+									삭제</button>
+							</div>
 						</div>
-                    </div>
-                </div>
+					</div>
+
+					<%-- 알람 작업 종료 --%>
 
 
-                <%--                알람 작업 종료--%>
+					<div>
+						<a href="<c:url value='logout'/>"> <img class="logout"
+							src="<c:url value='/image/logout.png'/>">
+						</a>
+					</div>
 
 
-			<div>
-					<a href="<c:url value='logout'/>">
-					<img class="logout"
-						src="<c:url value='/image/logout.png'/>">
-					</a>
-			</div>
-			</c:if>
+				</c:if>
 
 
 			</div>

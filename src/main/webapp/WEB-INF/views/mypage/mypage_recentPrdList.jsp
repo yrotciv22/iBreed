@@ -13,7 +13,6 @@
 <!-- 공통 layout: head.jsp -->
 <c:import url="/WEB-INF/views/layout/head.jsp" />
 <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
-<script src="<c:url value='/js/mypage_recentPrdList.js'/>"></script>
 <script>const userId = "${sessionScope.user_id}"</script>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/mypage/mypage_layout.css'/>" />
@@ -33,16 +32,13 @@
 		<div class="contents_wrap">
 
 			<div class="sub_title">
-				최근 본 상품&nbsp; <span>(총 <span>10<span>개)</span>
+				최근 본 상품&nbsp; <span>(총 <span>5<span>개)</span>
 			</div>
 
 			<div class="wishlist">
 				<c:forEach var="l" items="${recentProducts}">
 					<div class="one_item_wrap">
 						<div class="row_wrap">
-							<label class="custom-checkbox"> <input class="chk"
-								type="checkbox" /> <span class="checkmark"></span>
-							</label>
 							<div class="prd_image"
 								OnClick="location.href ='/shop_detail/${l.product_id}'">
 								<img src="<c:url value='${l.product_img}'/>" />
@@ -59,7 +55,6 @@
 							</div>
 						</div>
 						<div class="button_wrap">
-							<div class="prd_delete_btn">X</div>
 							<div id="add_to_cart_btn" class="button">장바구니</div>
 							<div id="buy_now_btn" class="button">바로구매</div>
 						</div>

@@ -30,4 +30,6 @@ public interface IAlbumDAO {
 	public ArrayList<AlbumVO> albumSearch(HashMap<String, Object> map);
 	
 	public ArrayList<AlbumVO> arrangeAlbum(HashMap<String, Object> map);
+	
+	public void updateCover(AlbumVO vo);
 }

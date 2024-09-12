@@ -6,10 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ibreed_project.model.PostVO;
+import com.ibreed_project.service.CartService;
 import com.ibreed_project.service.CommunityMainService;
+
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
@@ -17,6 +21,21 @@ public class MainController {
 	
 	@Autowired
 	CommunityMainService communityMainService;
+	
+	@Autowired
+	CartService cartService;
+
+	// 장바구니 개수
+	 @ModelAttribute("cartItemCount") 
+	 public void getCartItemCount(HttpSession session) { 
+		 String userId = (String) session.getAttribute("user_id");
+	 
+		 int totalCount = 0; 
+		 if (userId != null) { 
+			 totalCount = cartService.getTotalCartCount(userId); 
+		 }
+	     session.setAttribute("totalCount", totalCount);	 
+	 }
 	
 	@RequestMapping("/")
 	public String viewIndex(Model model) {

@@ -9,7 +9,7 @@ $(document).ready(function() {
     });
 
     // 선택된 상품 삭제 버튼 클릭 시
-    $("#remove_selected_btn").on("click", function() {
+    /*$("#remove_selected_btn").on("click", function() {
         let selectedItems = [];
 
         // 체크된 항목들의 product_id를 배열에 저장
@@ -42,7 +42,7 @@ $(document).ready(function() {
                 alert("서버 오류가 발생했습니다.");
             }
         });
-    });
+    });*/
 
     // 개별 삭제 버튼 클릭 시
     $(".prd_delete_btn").on("click", function() {

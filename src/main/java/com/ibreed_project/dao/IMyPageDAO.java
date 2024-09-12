@@ -22,6 +22,11 @@ public interface IMyPageDAO {
 	// 찜리스트 조회 - user_id에 따라 상품 가격, 이름 등 
 	public ArrayList<MyPageVO> selectLikeItemList(String user_id);
 	
+	// 찜리스트 개별 삭제 버튼 
+	public void deleteItem(int product_id);
+	
 	// 최근본상품 조회 - 쿠키에서 상품 번호 추출
 	public List<MyPageVO> getProductsByIds(List<Integer> product_id);
+
+
 }

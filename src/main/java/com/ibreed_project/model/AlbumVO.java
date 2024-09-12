@@ -14,11 +14,20 @@ public class AlbumVO {
 	private int album_public;
 	private int diary_id;
 	private int photo_count;
+	private String album_cover_img;
 
 	private int photo_id;
 	private String photo_name;
 	private String user_id;
-	
+
+	public String getAlbum_cover_img() {
+		return album_cover_img;
+	}
+
+	public void setAlbum_cover_img(String album_cover_img) {
+		this.album_cover_img = album_cover_img;
+	}
+
 	public String getUser_id() {
 		return user_id;
 	}

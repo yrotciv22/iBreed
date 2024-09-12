@@ -36,6 +36,11 @@ public class MyPageService implements IMyPageService {
 	}
 	
 	@Override
+	public void deleteItem(int product_id) {
+		dao.deleteItem(product_id);
+	}
+	
+	@Override
 	public List<MyPageVO> getProductsByIds(List<Integer> product_id) {
 		return dao.getProductsByIds(product_id);
 	}

@@ -64,6 +64,8 @@ public class AlbumController {
 		vo.setDiary_id(albumService.getDiaryId(user_id));
 		
 		System.out.println(vo.getDiary_id());
+		System.out.println("Album Name: " + vo.getAlbum_name());  // 앨범 이름 확인
+		System.out.println("Album ID: " + vo.getAlbum_id());  // 앨범 ID 확인
 		
 		String result = albumService.addAlbum(vo);
 		
@@ -79,13 +81,22 @@ public class AlbumController {
 		return "redirect:/mydiary/" + userId + "/photos";
 	}
 
+	@ResponseBody
 	@RequestMapping("/album/updateAlbum")
 	public String updateAlbum(AlbumVO vo, HttpSession session) {
-		albumService.updateAlbumName(vo);
 		
-		String userId = (String) session.getAttribute("user_id");
+		String user_id = (String) session.getAttribute("user_id");
 		
-		return "redirect:/mydiary/" + userId + "/photos";
+		vo.setUser_id(user_id);
+		vo.setDiary_id(albumService.getDiaryId(user_id));
+		
+		System.out.println("Album Name: " + vo.getAlbum_name());  // 앨범 이름 확인
+		System.out.println("Album id: " + vo.getAlbum_id());  // 앨범 이름 확인
+		System.out.println("Diary ID: " + vo.getDiary_id());  // 앨범 ID 확인
+		
+		String result = albumService.updateAlbumName(vo);
+		
+		return result;
 	}
 
 	@RequestMapping("/mydiary/albumSearch")
@@ -110,6 +121,17 @@ public class AlbumController {
 		
 		
 		return "diary/photos/albumSearchResult";
+	}
+	
+	@RequestMapping("/mydiary/updateCoverImg")
+	public String updateCover(AlbumVO vo) {
+		
+		vo.setPhoto_id(0);
+		vo.setPhoto_name(null);
+		
+		albumService.updateCover(vo);
+		
+		return "success";
 	}
 	
 	@ResponseBody

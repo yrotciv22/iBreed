@@ -16,4 +16,6 @@ public interface IMyPageService {
 	public ArrayList<MyPageVO> selectLikeItemList(String user_id);
 	
 	public List<MyPageVO> getProductsByIds(List<Integer> product_id);
+	
+	public void deleteItem(int product_id);
 }

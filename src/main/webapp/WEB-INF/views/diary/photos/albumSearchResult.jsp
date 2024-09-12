@@ -28,7 +28,7 @@
 			<c:otherwise>
 				<c:forEach items="${albumList}" var="album" varStatus="status">
 					<li>
-						<a href="/mydiary/detailAlbum/${album.album_id}"><div class="albumBox">
+						<a href="/mydiary/${user_id}/detailAlbum/${album.album_id}"><div class="albumBox">
 							<div class="photoCheck"><input type="checkbox" class="chk"></div>
 							<img class="album_thimbnail" src="/image/null_album.png">
 							<div class="photoCount">
@@ -59,13 +59,14 @@
 							</div>
 						</form>
 						
-						<form method="post" action="<c:url value='/album/updateAlbum'/>">
+						<form class="album_change_form" method="post">
 							<div class="modal change_modal">
 								<div class="modal_body change_body">
-									<button class="xBtn">✕</button>
+									
+									<span class="xBtn">✕</span>
 									<strong>이름 바꾸기</strong>
-									<input type="text" class="change_text" name="album_name" value="${album.album_name}">
-									<input type="hidden" name="album_id" value="${album.album_id}">
+									<input type="text" id="change_text" class="change_text" name="album_name" value="${album.album_name}">
+									<input type="hidden" id="album_id" value="${album.album_id}">
 									<button class="modal_okBtn okBtn2">확인</button>
 									<input id="album_changeBtn" class="modal_noBtn noBtn2" type="reset" value="취소" />
 								</div>

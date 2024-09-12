@@ -56,9 +56,15 @@
 						<c:forEach items="${latestList}" var="album" varStatus="status">
 							<li>
 								<!-- <div class="albumBox" onclick="location.href='/mydiary/album/앨범1'"> -->
-								<a href="/mydiary/${user_id}/detailAlbum/${album.album_id}"><div class="albumBox">
+								<a href="/mydiary/${user_id}/detailAlbum/${album.album_id}"><div class="albumBox" data-albumId="${album.album_id}">
 									<div class="photoCheck"><input type="checkbox" class="chk"></div>
-									<img class="album_thimbnail" src="/image/null_album.png">
+									<c:if test="${empty album.album_cover_img}">
+										<img class="album_thimbnail" src="/image/null_album.png">
+									</c:if>
+									<c:if test="${not empty album.album_cover_img}">
+										<img class="album_thimbnail" src="${album.album_cover_img}">
+									</c:if>
+									
 									<div class="photoCount">
 										<span class="countNum">${album.photo_count}</span>
 									</div>
@@ -96,14 +102,14 @@
 									</div>
 								</form>
 								
-								<form method="post" action="<c:url value='/album/updateAlbum'/>">
+								<form class="album_change_form" method="post">
 									<div class="modal change_modal">
 										<div class="modal_body change_body">
 											
 											<span class="xBtn">✕</span>
 											<strong>이름 바꾸기</strong>
-											<input type="text" class="change_text" name="album_name" value="${album.album_name}">
-											<input type="hidden" name="album_id" value="${diary_id}">
+											<input type="text" id="change_text" class="change_text" name="album_name" value="${album.album_name}">
+											<input type="hidden" id="album_id" value="${album.album_id}">
 											<button class="modal_okBtn okBtn2">확인</button>
 											<input id="album_changeBtn" class="modal_noBtn noBtn2" type="reset" value="취소" />
 										</div>
