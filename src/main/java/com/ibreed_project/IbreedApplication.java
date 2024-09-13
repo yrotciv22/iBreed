@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Bean;
 
 @PropertySources({
 
-@PropertySource(value="{file:C:\iBreed\ksw\configure.properties",
+@PropertySource(value="{file:C:\\iBreed\\ksw\\configure.properties",
 			"file:/usr/local/project/properties/configure.properties",},
 ignoreResourceNotFound=true) })
 
