@@ -84,7 +84,7 @@ public class MyMemberController {
             file.transferTo(dest);
 
             // 웹에서 접근 가능한 URL 경로 반환
-            String fileUrl = "/images/profile/" + userId + "/profile.png";
+            String fileUrl = "/images/" + userId + "/profile.png";
             System.out.println("리턴 될 경로 : " +fileUrl );
             return fileUrl;
 
