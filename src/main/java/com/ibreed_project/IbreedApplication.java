@@ -14,12 +14,12 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.ibreed_project"})
 @MapperScan(basePackages = {"com.ibreed_project"})
-/*
- * @PropertySources({
- * 
- * @PropertySource(value="file:C:\\ibreed_project\\configure.properties",
- * ignoreResourceNotFound=true) })
- */
+
+@PropertySources({
+
+@PropertySource(value="{file:C:\iBreed\ksw\configure.properties",
+			"file:/usr/local/project/properties/configure.properties",},
+ignoreResourceNotFound=true) })
 
 
 public class IbreedApplication {
