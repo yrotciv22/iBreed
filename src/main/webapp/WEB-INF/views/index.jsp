@@ -97,7 +97,7 @@
 						<!-- 1 -->
 						<%-- <div class="main_row_wrap">
 							<div class="main_recent_diary_wrap border">
-								<div class="board_title">최신 다이어리11</div>
+								<div class="board_title">최신 다이어리</div>
 								<div class="carousel-container">
 									<ul class="main_recent_diary_wrap_ul">
 
