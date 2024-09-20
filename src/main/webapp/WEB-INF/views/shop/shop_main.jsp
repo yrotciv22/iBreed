@@ -36,8 +36,6 @@
 					    <li><a href="/shop_list" data-type="clothing">의류/잡화/소품</a></li>
 					    <li><a href="/shop_list" data-type="gift">임신/출산 선물세트</a></li>
 					    <li><a href="/shop_list" data-type="baby">초보엄마아빠템</a></li>
-					    <li><a href="/shop_list" data-type="collaboration">콜라보레이션</a></li>
-					    <li><a href="/shop_list" data-type="event">이벤트</a></li>
 					</ul> 
 				</div>
 			</div> <!-- 왼쪽 카테고리 박스 끝 -->
