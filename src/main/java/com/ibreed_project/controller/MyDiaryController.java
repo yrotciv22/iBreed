@@ -33,6 +33,8 @@ public class MyDiaryController {
 	@RequestMapping("/mydiary/{user_id}/home")
 	public String view_mydiary_home(@PathVariable("user_id") String user_id, Model model) {
 
+		System.out.println("홈 컨트롤러 user_id"+user_id);
+		
 		MydiaryVO mydiary = mydiaryService.viewMydiary(user_id);
 		model.addAttribute("mydiary", mydiary);
 		/* model.addAttribute("user_id", user_id); */

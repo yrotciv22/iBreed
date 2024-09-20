@@ -35,10 +35,11 @@
 
 
 		<div class="row_wrap">
-			<form id="order_form"
-				action="<c:url value='/shop/${user_id}/order/cart_all'/>"
-				method="post">
-				
+
+			<form id="order_form" method="post"
+			<%-- 		action="<c:url value='/shop/${user_id}/order/cart_all'/>" --%>
+				>
+
 				<div class="left_box">
 
 					<!-- 장바구니 상품 리스트 -->
@@ -50,9 +51,10 @@
 							</label> &nbsp; <span>전체 선택</span>
 						</div>
 						<div class="remove_btn_wrap">
-							<a href="<c:url value=''/>">
-								<div id="remove_selected_btn">선택 상품 삭제</div>
-							</a> <a href="<c:url value='/shop/${user_id}/cart_soldout_delete'/>">
+
+							<div id="remove_selected_btn">선택 상품 삭제</div>
+
+							<a href="<c:url value='/shop/${user_id}/cart_soldout_delete'/>">
 								<div id="remove_soldout_btn">품절 상품 삭제</div>
 							</a>
 						</div>
@@ -70,8 +72,13 @@
 						<c:forEach items="${cartList}" var="cart">
 							<div class="one_item_wrap">
 								<label class="custom-checkbox"> <input type="checkbox"
-									class="cart_item_checkbox" name="product_id"
-									value="${cart.product_id}" checked /> <span class="checkmark"></span>
+									class="cart_item_checkbox" name="cart_id"
+									value="${cart.cart_id}" data-quantity="${cart.cart_quantity}"
+									data-name="${cart.product_name}" data-img="${cart.product_img}"
+									data-price="${cart.product_price}"
+									data-discount="${cart.product_discount}"
+									<c:if test="${cart.product_stock eq 0}">disabled</c:if> /> <span
+									class="checkmark"></span>
 								</label>
 								<div class="prd_image">
 									<img src="<c:url value='${cart.product_img}'/>" />
@@ -105,6 +112,7 @@
 
 
 										<!-- 상품 정보를 숨겨진 필드로 전송 -->
+										<input type="hidden" name="cart_id" value="${cart.cart_id}">
 										<input type="hidden" name="product_name"
 											value="${cart.product_name}" /> <input type="hidden"
 											name="product_price" value="${cart.product_price}" /> <input
@@ -112,7 +120,7 @@
 											value="${cart.product_discount}" /> <input type="hidden"
 											name="product_img" value="${cart.product_img}" /> <input
 											type="hidden" name="cart_quantity"
-											value="${cart.cart_quantity}" />
+											value="${cart.cart_quantity}" /> <input type="hidden" id="user_id" value="${cart.user_id}" />
 
 										<div class="prd_count_btn_box">
 											<div class="minus_btn">
@@ -128,7 +136,6 @@
 													href="<c:url value='/shop/${cart.user_id}/cart/${cart.product_id}/1'/>">
 													+</a>
 											</div>
-											<!-- 	<div>변경</div> -->
 										</div>
 									</div>
 								</div>
@@ -145,8 +152,14 @@
 												type="number" pattern="#,###" /></span><span> 원</span>
 									</div>
 									<div>
-										<div class="buy_now_btn">바로구매</div>
-
+										<!-- 품절 시 "바로구매" 버튼 비활성화 -->
+										<c:if test="${cart.product_stock eq 0}">
+											<div class="buy_now_btn"
+												style="opacity: 0.5; pointer-events: none;">품절</div>
+										</c:if>
+										<%-- <c:if test="${cart.product_stock ne 0}">
+											<div class="buy_now_btn">바로구매</div>
+										</c:if> --%>
 									</div>
 								</div>
 							</div>
@@ -154,6 +167,7 @@
 						<!-- 아이템 한개 끝 -->
 
 					</div>
+					<!-- cart_list 끝 -->
 
 				</div>
 
@@ -165,45 +179,57 @@
 							<div>총 상품금액</div>
 							<div>
 
-								<fmt:formatNumber value="${totalCartPrice}" type="number"
-									pattern="#,###" />
-								<span>원</span>
+								<%-- <fmt:formatNumber value="${totalCartPrice}" type="number"
+									pattern="#,###" /> --%>
+								<span id="total_cart_price"></span>원
 							</div>
+							<input type="hidden" name="totalCartPrice"
+								value="${totalCartPrice}" />
+
 						</div>
 						<div class="total_shipping_fee">
 							<div>총 배송비</div>
 							<div>
-								<span> <fmt:formatNumber value="${shippingFee}"
-										type="number" pattern="#,###" /></span><span>원</span>
+								<span id="shipping_fee" data-fee="${shippingFee}"> <fmt:formatNumber
+										value="${shippingFee}" type="number" pattern="#,###" />
+								</span>원
+
 							</div>
 							<input type="hidden" name="shippingFee" value="${shippingFee}" />
 						</div>
 						<div class="final_payment_amount">
 							<div>최종 결제 금액</div>
 							<div>
-								<span> <fmt:formatNumber value="${finalPaymentAmount}"
-										type="number" pattern="#,###" />
+								<span id="final_payment_amount"
+									data-amount="${finalPaymentAmount}"> <fmt:formatNumber
+										value="${finalPaymentAmount}" type="number" pattern="#,###" />
+								</span>원
 
-								</span><span>원</span>
 							</div>
 							<input type="hidden" name="finalPaymentAmount"
 								value="${finalPaymentAmount}" />
 						</div>
 
 					</div>
-					<%-- <a href="<c:url value='/shop/order'/>"> --%>
-					<!-- <div id="order_all_btn">전체 상품 주문하기</div> -->
-					<button type="submit" form="order_form" id="order_all_btn">
-						전체 상품 주문하기</button>
 
-					<!-- </a>  -->
 
-					<a href="<c:url value='/shop/order'/>"><div
-							id="order_selected_btn">선택 상품 주문하기</div></a>
+					<c:if test="${finalPaymentAmount eq 0}">
+						<button type="button" form="order_form" id="order_all_btn"
+							style="opacity: 0.5; pointer-events: none;" disabled>전체
+							상품 주문하기</button>
+					</c:if>
+					<c:if test="${finalPaymentAmount ne 0}">
+						<button type="button" form="order_form" id="order_all_btn">
+							전체 상품 주문하기</button>
+					</c:if>
+
+					<a href="<c:url value='/shop/order/selected_item'/>">
+						<div id="order_selected_btn">선택 상품 주문하기</div>
+					</a>
 				</div>
-		</div>
-		</form>
 
+			</form>
+		</div>
 
 		<div class="shopping_guide">
 			<div class="shopping_guide_title">이용 안내</div>

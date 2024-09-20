@@ -47,25 +47,22 @@ public class ShopController {
 	}
 
 	// 장바구니 페이지 (예은)
-	@RequestMapping("/shop/cart")
-	public String viewShoppingCart() {
-
-		return "shop/shopping_cart";
-	}
+	// @RequestMapping("/shop/cart")
+	// public String viewShoppingCart() {
+	//	return "shop/shopping_cart";
+	// }
 
 	// 주문 페이지 (예은)
-	@RequestMapping("/shop/order")
-	public String viewOrderPage() {
-
-		return "shop/order";
-	}
+	// @RequestMapping("/shop/order")
+	// public String viewOrderPage() {
+	//	return "shop/order";
+	// }
 
 	// 주문 확인 페이지 (예은)
-	@RequestMapping("/shop/order_confirm")
-	public String viewOrderConfirmPage() {
-
-		return "shop/order_confirm";
-	}
+	// @RequestMapping("/shop/order_confirm")
+	// public String viewOrderConfirmPage() {
+	//	return "shop/order_confirm";
+	// }
 
 	// 상품 상세 페이지 (승우)
 	@RequestMapping("/shop_detail/{product_id}")

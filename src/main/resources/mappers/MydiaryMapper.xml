@@ -11,7 +11,8 @@
 		<result property="diary_title" column="diary_title" />
 		<result property="diary_count" column="diary_count" />
 		<result property="diary_public" column="diary_public" />
-        <result property="diary_profile_image_path" column="diary_profile_image_path" /> <!-- 경로 컬럼 추가 -->
+		<result property="diary_profile_image_path"
+			column="diary_profile_image_path" /> <!-- 경로 컬럼 추가 -->
 		<result property="diary_profile_text"
 			column="diary_profile_text" />
 		<result property="user_id" column="user_id" />
@@ -27,32 +28,30 @@
 
 	<!-- 마이 다이어리 수정 -->
 	<update id="updateMydiary">
-		UPDATE diary SET ${category}=
-		<if test="category == 'diary_title'">
-			#{vo.diary_title}
-		</if>
-		<if test="category == 'diary_sentiment'">
-			#{vo.diary_sentiment}
-		</if>
-		<if test="category == 'diary_profile_text'">
-			#{vo.diary_profile_text}
-		</if>
-		<if test="category == 'diary_profile_image_path'">
-		 #{vo.diary_profile_image_path} 
-		</if>
-		WHERE user_id=#{vo.user_id};
-	</update>
+    UPDATE diary
+    <set>
+        <if test="category == 'diary_title'">
+            diary_title = #{vo.diary_title}
+        </if>
+        <if test="category == 'diary_sentiment'">
+            diary_sentiment = #{vo.diary_sentiment}
+        </if>
+        <if test="category == 'diary_profile_text'">
+            diary_profile_text = #{vo.diary_profile_text}
+        </if>
+        <if test="category == 'diary_profile_image_path'">
+            diary_profile_image_path = #{vo.diary_profile_image_path}
+        </if>
+    </set>
+    WHERE user_id = #{vo.user_id}
+</update>
 
 
-	<!-- 베스트 다이어리 -->
-	<!-- 우선은 다이어리 홈 조회수 기준, 추후 1개의 다이어리 게시글에 대한 좋아요수로 수정 -->
+	<!-- 베스트 다이어리 다이어리 홈 조회수 기준, 추후 1개의 다이어리 게시글에 대한 좋아요수로 수정 -->
 	<select id="selectBestDiary" resultMap="mydiaryResultMap">
 		SELECT * FROM diary ORDER
 		BY diary_count DESC LIMIT 0,10
 	</select>
 
-
-	<!-- 다이어리 검섹 <select id="searchMydiary" resultMap="mydiaryResultMap"> SELECT 
-		* FROM diary WHERE user_id LIKE %#(user_id)%; </select> -->
 
 </mapper>
