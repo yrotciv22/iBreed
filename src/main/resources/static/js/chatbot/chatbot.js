@@ -95,9 +95,27 @@ $(document).ready(function(){
         }
     });
 
-    const openAiKey = "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"; // OpenAI API 키를 여기에 추가
+    async function getOpenAiKey() {
+        try {
+            const response = await fetch('/api/getOpenAiKey');
+            if (!response.ok) {
+                throw new Error('Failed to fetch OpenAI API key');
+            }
+            const openAiKey = await response.text();
+            return openAiKey;
+        } catch (error) {
+            console.error('Error fetching OpenAI API key:', error);
+            return null;
+        }
+    }
 
     async function getGptResponse(messages, systemPrompt) {
+        const openAiKey = await getOpenAiKey();  // API 키를 가져옴
+        if (!openAiKey) {
+            console.error('OpenAI API key is not available.');
+            return;
+        }
+
         const response = await fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",
             headers: {
@@ -105,11 +123,12 @@ $(document).ready(function(){
                 "Authorization": `Bearer ${openAiKey}`
             },
             body: JSON.stringify({
-                model: "gpt-4o",
+                model: "gpt-4",
                 messages: [{ role: "system", content: systemPrompt }, ...messages],
                 max_tokens: 2000
             })
         });
+
         const data = await response.json();
         if (data.choices && data.choices.length > 0) {
             return data.choices[0].message.content;
