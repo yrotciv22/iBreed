@@ -58,14 +58,4 @@ $(function() {
 		}
 	}
 	
-	document.querySelectorAll('a').forEach(link => {
-	    link.addEventListener('click', function(event) {
-	        event.preventDefault();
-	        const type = this.getAttribute('data-type');
-	        const url = new URL(this.href);
-	        url.searchParams.set('type', type);
-	        console.log(type);
-	        window.location.href = url.toString();
-	    });
-	});
 });

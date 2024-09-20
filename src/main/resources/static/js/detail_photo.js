@@ -55,7 +55,6 @@
 	 		
     		let photo_id = $(this).data('photonum');
     		let album_id = $(this).data('albumid');
-    		let $btn = $(this);
     		
 			$.ajax({
 	 			type:"post",
@@ -67,7 +66,7 @@
 	 			success:function(response) {
 	 			
 	 				if (response === 'success') {
-		                $btn.closest('li').remove();
+			            location.reload();
 		                alert("사진이 성공적으로 삭제되었습니다.");
 		            } else {
 		                alert("사진 삭제에 실패했습니다.");
@@ -76,6 +75,7 @@
 	 			error:function() {
 	 				console.log("실패함");
 	 			}
+	 			
 	 		});
 	 		
  	}); // click 끝 

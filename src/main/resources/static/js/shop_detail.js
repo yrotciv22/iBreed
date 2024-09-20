@@ -145,22 +145,39 @@
 	
 	// 로그인 했을 경우, 안했을 경우
 	// 찜하기버튼
-	$("#likes").on("click", function() {
-	
-	    //event.preventDefault(); //  장바구니 폼 제출 막기
-	
-		if(userId) {
+	$("#likes").on("click", function(event) {
+	    event.preventDefault();  // 기본 동작 막기
+
+    const productId = $("#recent_prdIds").val();  // 제품 ID 가져오기
+
 		
-	 		// src 값을 가져와서 찜버튼이 눌렸는지 안눌렸는지 확인함 
-			if($('#likes').attr("src") == "/image/yes_like.png") {
-		 		$('#likes').attr("src", "/image/no_like.png");
-			} else {
-		 		$('#likes').attr("src", "/image/yes_like.png");
-			} 		
-			
-		} else {
-			alert("로그인 후에 본 서비스를 이용하실 수 있습니다.");
-		}
+    if (userId) {
+
+        let isLiked = $('#likes').data('liked') === true;
+
+        if (isLiked) {
+            $('#likes').attr("src", "/image/no_like.png");
+            $('#likes').data('liked', false);
+        } else {
+            $('#likes').attr("src", "/image/yes_like.png");
+            $('#likes').data('liked', true);
+        }
+
+        // 찜하기 상태 변경 요청을 서버에 AJAX로 보냄
+        $.ajax({
+            type: "POST",
+            url: isLiked ? "/deleteLike/" + productId : "/insertLike/" + productId,
+            success: function(response) {
+                console.log("찜하기 성공: ", response);
+            },
+            error: function() {
+                alert("찜하기 중 오류가 발생했습니다.");
+            }
+        });
+
+    } else {
+        alert("로그인 후에 본 서비스를 이용하실 수 있습니다.");
+    }
 	});
 	
 	// 예은 수정 -----------------------------

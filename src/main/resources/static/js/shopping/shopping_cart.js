@@ -38,8 +38,10 @@ $(document).ready(function(){
         const finalPaymentAmount = totalCartPrice + shippingFee;
         $("#final_payment_amount").text(finalPaymentAmount.toLocaleString());
     }
-
-    // 페이지 로드 시 기본 계산 (선택된 상품이 없으면 총 가격 0으로 설정)
+//
+   
+    //
+    
     calculateTotalPrice();
 
     // 체크박스 상태 변경 시마다 총 금액을 다시 계산
@@ -53,7 +55,7 @@ $(document).ready(function(){
         $(".cart_item_checkbox:not(:disabled)").prop("checked", isChecked);  // 품절 상품은 선택되지 않도록 처리
         calculateTotalPrice();
     });
-    // 수량 감소 버튼 클릭 시
+    // 수량 버튼 클릭 시
     $(".minus_btn a, .plus_btn a").on("click", function(event) {
         event.preventDefault();  // 기본 동작 막기
 
@@ -126,12 +128,6 @@ $(document).ready(function(){
 
         const nonSoldOutItems = $(".cart_item_checkbox:not(:disabled)");       
 
-       //  const selectedProductIds = [];
-       //  nonSoldOutItems.each(function() {
-       //      selectedProductIds.push($(this).val());
-       // });
-          
-        
  		const selectedProductIds = [];
         const cartQuantities = [];
         const productNames = [];
@@ -140,7 +136,7 @@ $(document).ready(function(){
         const productDiscounts = [];
 
         // 선택된 아이템들의 정보를 배열에 저장
-        nonSoldOutItems.each(function() {
+        	nonSoldOutItems.each(function() {
             selectedProductIds.push($(this).val());
             cartQuantities.push($(this).data("quantity"));  // data-quantity 속성에 수량 저장
             productNames.push($(this).data("name"));         // data-name 속성에 상품명 저장
@@ -148,48 +144,33 @@ $(document).ready(function(){
             productPrices.push($(this).data("price"));       // data-price 속성에 가격 저장
             productDiscounts.push($(this).data("discount")); // data-discount 속성에 할인율 저장
         });
+        
+         // 배송비 및 최종 결제 금액 가져오기
+			let shippingFee = $("#shipping_fee").data("fee");  // 숫자를 직접 가져옴
+			shippingFee = Math.floor(shippingFee);  // 소수점 아래 버리기
 
-           // 최종 결제 금액 및 배송비를 숫자형으로 변환
-       // const finalPaymentAmount = $("#final_payment_amount").data("amount");
-       // const shippingFee = $("#shipping_fee").data("fee");
+			let finalPaymentAmount = parseFloat($("#final_payment_amount").text().replace(/[^0-9.-]+/g,""));  // 텍스트에서 숫자만 추출
+			finalPaymentAmount = Math.floor(finalPaymentAmount);  // 소수점 아래 버리기
 
-        // 로그로 값 확인
-      //  console.log("Final Payment Amount (before parse): ", finalPaymentAmount);
-      //  console.log("Shipping Fee (before parse): ", shippingFee);
-
-        // 값이 제대로 나오는지 확인 후 변환 시도
-     //   const finalPaymentAmountParsed = parseFloat(finalPaymentAmount);
-      //  const shippingFeeParsed = parseFloat(shippingFee);
-//
-     //   console.log("Final Payment Amount (parsed): ", finalPaymentAmountParsed);
-     //   console.log("Shipping Fee (parsed): ", shippingFeeParsed);
 
         const user_id = $("#user_id").val();  // hidden input에서 user_id 가져오기
-  		console.log("js의 user_id ", user_id);
   		
         $.ajax({
             type: "POST",
-            url: "/shop/ "+ user_id + "/order/all_items",
-            // data: { chkArr: selectedProductIds },
-              data: {
-             product_id: selectedProductIds,
+            url: "/shop/"+user_id+"/order/all_items",
+            data: {
+            	product_id: selectedProductIds,
                 cart_quantity: cartQuantities,
                 product_name: productNames,
                 product_img: productImages,
                 product_price: productPrices,
-                product_discount: productDiscounts
-                //,
-                //finalPaymentAmount: finalPaymentAmount,
-                //shippingFee: shippingFee
+                product_discount: productDiscounts,
+                shippingFee: shippingFee,
+                finalPaymentAmount: finalPaymentAmount
                 },
             traditional: true,
             success: function(response) {
-            
-               // window.location.href = response;
-                 console.log("response",response);
-                    console.log('aaa', "/shop/"+ user_id + "/order");
-                window.location.href = "/shop/"+ user_id + "/order";
-              
+				window.location.href = "/shop/"+ user_id + "/order";
             },
             error: function() {
                 alert("주문 중 오류가 발생했습니다.");
@@ -229,6 +210,73 @@ $(document).ready(function(){
             }
         });
     });
+/////
 
+    // 선택 상품 주문 처리
+    const $order_selected_btn = $("#order_selected_btn");
+    $order_selected_btn.on("click", function(event) {
+    
+       event.preventDefault();
+
+        const selectedItems = $(".cart_item_checkbox:checked:not(:disabled)");
+    
+      
+        const selectedProductIds2 = [];
+        const cartQuantities2 = [];
+        const productNames2 = [];
+        const productImages2 = [];
+        const productPrices2 = [];
+        const productDiscounts2 = [];
+
+        // 선택된 아이템들의 정보를 배열에 저장
+        selectedItems.each(function() {
+            selectedProductIds2.push($(this).val());
+            cartQuantities2.push($(this).data("quantity"));
+            productNames2.push($(this).data("name"));
+            productImages2.push($(this).data("img"));
+            productPrices2.push($(this).data("price"));
+            productDiscounts2.push($(this).data("discount"));
+        });
+        
+           
+         // 배송비 및 최종 결제 금액 가져오기
+			let shippingFee = $("#shipping_fee").data("fee");  // 숫자를 직접 가져옴
+			shippingFee = Math.floor(shippingFee);  // 소수점 아래 버리기
+
+			let finalPaymentAmount = parseFloat($("#final_payment_amount").text().replace(/[^0-9.-]+/g,""));  // 텍스트에서 숫자만 추출
+			finalPaymentAmount = Math.floor(finalPaymentAmount);  // 소수점 아래 버리기
+        
+
+        const user_id = $("#user_id").val();  // hidden input에서 user_id 가져오기
+        console.log("selectedItems ", selectedItems);
+        
+        $.ajax({
+            type: "POST",
+            url: "/shop/" + user_id + "/order/all_items",
+            data: {
+                product_id: selectedProductIds2,
+                cart_quantity: cartQuantities2,
+                product_name: productNames2,
+                product_img: productImages2,
+                product_price: productPrices2,
+                product_discount: productDiscounts2,
+                shippingFee: shippingFee,
+                finalPaymentAmount: finalPaymentAmount
+            },
+            traditional: true,
+            success: function(response) {
+                console.log("response", response);
+             	 window.location.href = "/shop/" + user_id + "/order";
+            },
+            error: function() {
+                alert("주문 중 오류가 발생했습니다.");
+            }
+        });
+      
+    });
+    
+    
+   
+    //////
     
 });

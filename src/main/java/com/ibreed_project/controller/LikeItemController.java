@@ -32,7 +32,9 @@ public class LikeItemController {
 		map.put("product_id", product_id);
 		
 		likeService.insertLike(map);
-		
+	    System.out.println("찜하기 성공: product_id = " + product_id);
+
+
 		return "redirect:/shop_detail/" + product_id;
 	}
 	

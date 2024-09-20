@@ -135,7 +135,7 @@ public class ShopController {
 	public String listView(Model model) {
 
 		ArrayList<ProductVO> viewAllPrd = prdService.viewAllPrd();
-
+		
 		model.addAttribute("viewAllPrd", viewAllPrd);
 
 		return "shop/shop_list";
