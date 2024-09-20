@@ -42,14 +42,18 @@ input:focus, input:active, input:hover {
 }
 
 .search_bar_wrap input {
-	width: 500px;
+	width: 480px;
 	height: 44px;
+	padding-left: 18px;
 }
 
 .search_btn {
 	border: none;
 	background: #fff;
 	font-weight: 600;
+	font-size: 17px;
+	color:#555;
+	margin-right: 10px;
 }
 
 .search_btn:hover {
@@ -151,29 +155,30 @@ input:focus, input:active, input:hover {
 	height: 200px;
 	margin-bottom: 30px;
 	overflow: hidden;
-	
 }
 
 .carousel-container {
-    width: 866px; /* 133px (width of one item) * 6 + margins */
-    overflow: hidden;
+	width: 866px; /* 133px (width of one item) * 6 + margins */
+	overflow: hidden;
 }
+
 .main_recent_diary_wrap_ul {
-	    display: flex;
-    padding: 0;
-    margin: 0;
-    transition: transform 1s ease;
-    list-style: none;
+	display: flex;
+	padding: 0;
+	margin: 0;
+	transition: transform 1s ease;
+	list-style: none;
 }
 
 .main_recent_diary_wrap_ul li {
-     flex: 0 0 auto; 
+	flex: 0 0 auto;
 }
+
 .main_recent_diary_wrap_ul a {
-    display: flex;
-    width: 133px;
-    height: 130px;
-    margin: 0 5px;
+	display: flex;
+	width: 133px;
+	height: 130px;
+	margin: 0 5px;
 }
 
 .main_recent_diary_wrap_ul li img {
@@ -385,7 +390,7 @@ input:focus, input:active, input:hover {
 }
 
 .advertisement {
-		display: flex;
+	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
@@ -395,13 +400,14 @@ input:focus, input:active, input:hover {
 	overflow: hidden;
 	position: relative;
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-	
 }
-.advertisement_img{
+
+.advertisement_img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
+
 .main_event {
 	display: flex;
 	flex-direction: column;

@@ -23,6 +23,7 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/index.css'/>" />
 <script src="<c:url value='/js/index.js'/>" defer></script>
+ <script src="<c:url value='/js/postSearch.js'/>" defer></script>
 
 <script>
 	const userId = "${sessionScope.user_id}";
@@ -61,13 +62,14 @@
 		<!-- 메인 -->
 		<div class="main">
 
-
+			<form id="postSearchForm"  action="/post/search" method="post">
 			<div class="search_bar_wrap">
 				<div>
-					<input />
+					<input type="text" name="keyword" id="keyword" placeholder="검색어를 입력하세요."/>
 				</div>
-				<button class="search_btn">통합검색</button>
+				<button class="search_btn"  type="submit">검색</button>
 			</div>
+			</form>
 
 			<div class="contents_wrap">
 				<div class="left_contents">

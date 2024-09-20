@@ -76,8 +76,8 @@ a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 120px;
 	height: 40px;
+	padding: 0 10px;
 	border: 1px solid #444;
 }
 
@@ -91,8 +91,8 @@ a {
 	margin-right: 10px;
 }
 
-#remove_soldout_btn {
-	
+.remove_btn_wrap a{
+	width: 120px;
 }
 
 .cart_list {

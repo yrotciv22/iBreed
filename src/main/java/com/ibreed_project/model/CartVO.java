@@ -15,6 +15,7 @@ public class CartVO {
 	private String product_main_category;
 	private int product_sales;
 	private String product_sub_category;
+	
 	public int getCart_id() {
 		return cart_id;
 	}

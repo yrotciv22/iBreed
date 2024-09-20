@@ -13,7 +13,7 @@ public class MydiaryVO {
 	private boolean diary_public;
 	private String user_id;
 	private String diary_profile_text;
-	private MultipartFile  diary_profile_image; // 이미지 파일을 업로드할 때 사용
+	private MultipartFile diary_profile_image; // 이미지 파일을 업로드할 때 사용
 	private String diary_profile_image_path; // 이미지 파일 경로를 데이터베이스에 저장
 
 	public int getDiary_id() {
