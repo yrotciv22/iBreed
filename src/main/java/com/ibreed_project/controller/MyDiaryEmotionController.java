@@ -9,6 +9,7 @@ import com.ibreed_project.service.IMessengerService;
 import okhttp3.*;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,9 @@ import java.util.concurrent.TimeUnit;
 
 @Controller
 public class MyDiaryEmotionController {
+
+    @Value("${openai.api.key}")  // application.properties에서 API 키 읽기
+    private String openAiKey;
 
     @Autowired
     private IEmotionService emotionService;
@@ -110,7 +114,7 @@ public class MyDiaryEmotionController {
     private String getAdviceFromChatGPT(double joy, double sadness, double anger, double disgust, double fear) throws IOException {
         // ChatGPT API 엔드포인트
         String apiUrl = "https://api.openai.com/v1/chat/completions";
-        String apiKey = "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"; // OpenAI API 키를 여기에 추가
+        String apiKey = openAiKey; // OpenAI API 키를 여기에 추가
 
         // 요청 본문 생성
         String prompt = String.format("주어진 감정 수치에 따라 다음과 같은 조언을 제공해주세요: Joy: %.2f, Sadness: %.2f, Anger: %.2f, Disgust: %.2f, Fear: %.2f. 각 감정의 수치를 바탕으로 현재 상황을 이해하고, 더 나은 선택이나 행동을 할 수 있도록 구체적이고 실질적인 조언을 해주세요.",
