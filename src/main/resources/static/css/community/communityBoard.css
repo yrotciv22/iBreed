@@ -162,21 +162,33 @@
    outline: none;
 }
 
-/* 글쓰기 버튼 */
+/* 글쓰기 버튼 ,목으로버튼*/
 .write-btn {
-   text-align: right;
-   margin-top: 20px;
+    display: flex; /* 플렉스 박스를 사용하여 나란히 배치 */
+    gap: 10px; /* 버튼 간의 간격 설정 */
+    margin: 20px 0; /* 위아래 여백 추가 */
 }
 
-.write-btn .btn {
-   background-color: #53afb2;
-   color: #fff;
-   padding: 10px 20px;
-   text-decoration: none;
-   border-radius: 5px;
-   transition: background-color 0.3s ease;
+.btn, .back-to-list-btn {
+    padding: 5px 10px; /* 버튼 내부 여백 */
+    font-size: 16px; /* 글자 크기 */
+    cursor: pointer; /* 마우스 커서 변경 */
+    border: none; /* 기본 테두리 제거 */
+    border-radius: 5px; /* 모서리 둥글게 */
 }
 
-.write-btn .btn:hover {
-   background-color: #459fa3;
+.btn {
+    background-color: white; /* 글쓰기 버튼 배경색 */
+    color: gray; /* 글쓰기 버튼 글자색 */
+}
+
+.back-to-list-btn {
+    background-color: white; /* 목록으로 가기 버튼 배경색 */
+    color: gray; /* 목록으로 가기 버튼 글자색 */
+}
+.back-to-list-btn:hover{
+	background-color:lightgray;
+}
+.btn:hover{
+	background-color:lightgray;
 }

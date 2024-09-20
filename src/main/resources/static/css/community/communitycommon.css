@@ -1,7 +1,9 @@
 @charset "UTF-8";
 
 body {
-    font-family: Gmarket Sans;
+    font-family:"GmarketSansMedium";
+
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -35,6 +37,7 @@ body {
 .sidebar ul li {
     padding: 10px 0;
 }
+
 
 .login-container {
     border: 1px solid lightgray;
@@ -184,7 +187,7 @@ body {
     margin-bottom: 10px;
 }
 
-.profile-img {
+.profile-container img {
     width: 50%;
     height: auto;
     margin-right: 10px;

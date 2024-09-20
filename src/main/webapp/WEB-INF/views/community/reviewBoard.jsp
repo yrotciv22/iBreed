@@ -11,13 +11,12 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>iBreed 커뮤니티:후기정보</title>
+	<title>iBreed 커뮤니티:임신출산</title>
 	
 	<!-- 공통 layout: head.jsp -->
 	<c:import url="/WEB-INF/views/layout/head.jsp" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/common.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/community/communitycommon.css' />" />
-
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/community/communityBoard.css' />" />
 	
 	<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
@@ -43,7 +42,7 @@
                             <div class="profile-header">
                             <!-- 프사없으면 기본프사적용, 경로재설정필요 -->
                                 <!-- 프사 없으면 기본 프사 적용 -->
-								<img src="${user.profileImage != null ? user.profileImage : '/image/default-profile.png'}" alt="Profile Image" class="profile-img">
+								<img src="${sessionScope.user_profile_image}" />
 
                                 <div>
                                    <p>${sessionScope.user_nickname}님</p>
@@ -52,12 +51,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="profile-links">
-                                <p><a href="/user/posts">내가 쓴 게시글</a></p>
-                                <p><a href="/user/comments">내가 쓴 댓글</a></p>
-                                <p><a href="/user/likes">좋아요한 게시글</a></p>
-                            </div>
-                            <hr>
+                        
 								<a href="/community/communityWrite" class="community-write-btn">커뮤니티 글쓰기</a>                            
                             <a href="/logout" class="logout-btn">로그아웃</a>
                         </div>
@@ -98,16 +92,7 @@
 							</div>
 							
 	                    </div>
-							<!-- 공지 숨기기와 리스트/그리드 보기 컨트롤 -->
-							<div class="view-toggle-container">
-							    <label>
-							        <input type="checkbox" id="hideNoticeCheckbox" /> 공지 숨기기
-							    </label>
-							    <div class="view-toggle">
-							        <button id="viewListBtn">리스트 보기</button>
-							        <button id="viewGridBtn">그리드 보기</button>
-							    </div>
-							</div><hr>
+							
 
 		<!--  여기까진 커뮤니티에 공통으로 포함되어야함.나머지 페이지별 다른건 아래에 작성-->
 		 
@@ -141,8 +126,8 @@
 						            <!-- 일반 게시글 목록 (리스트 보기) -->
 						            <c:forEach var="post" items="${posts}">
 						                <tr>
-						                	  <td >${post.postId}</td> <!-- 0부터 시작하므로 +1 -->
-						                    <td><a href="/community/post/${post.postId}">${post.postTitle}</a></td>
+						                	  <td >${post.postId}</td> 
+						                    <td><a href="/community/board/${board.boardId}/postdetail/${post.postId}">[${post.postHeading}]${post.postTitle}</a></td>
 						                    <td>${post.userId}</td>
 						                    <td><fmt:formatDate value="${post.postCreate}" pattern="yyyy.MM.dd" /></td>
 						                    <td>${post.postCount}</td>
@@ -151,36 +136,37 @@
 						            </c:forEach>
 						        </tbody>
 						    </table>
-						<!-- 그리드 보기 (div 구조) -->
-							<div class="grid-view-content">
-							    <c:forEach var="post" items="${posts}">
-							        <div class="post-item">
-							            <!-- 이미지가 없는 경우 기본 흰색 이미지 출력 -->
-							            <div class="post-image">
-							                <c:choose>
-							                    <c:when test="${not empty post.postImage}">
-							                        <img src="/path/to/image/${post.postImage}" alt="${post.postTitle}" />
-							                    </c:when>
-							                    <c:otherwise>
-							                        <img src="/path/to/blank_image.png" alt="No Image" />  <!-- 흰색 이미지 출력 -->
-							                    </c:otherwise>
-							                </c:choose>
-							            </div>
-							            <div class="post-content">
-							                <a href="/community/post/${post.postId}">
-							                    <h3>${post.postTitle}</h3>
-							                </a>
-							                <div class="post-details">
-							                    <span>${post.userId}</span> ·
-							                    <span><fmt:formatDate value="${post.postCreate}" pattern="yyyy.MM.dd" /></span> ·
-							                    <span>조회수: ${post.postCount}</span> ·
-							                    <span>댓글: </span>
-							                </div>
-							            </div>
-							        </div>
-							    </c:forEach>
-							</div>
-
+						<!-- 그리드 보기  -->
+								<div class="grid-view-content">
+								    <c:forEach var="post" items="${posts}">
+								        <div class="post-item">
+								            <!-- 이미지가 없는 경우 기본 흰색 이미지 출력 -->
+								            <div class="post-image">
+								                <c:choose>
+								                    <c:when test="${not empty post.postImage}">
+								                        <img src="/path/to/image/${post.postImage}" alt="${post.postTitle}" />
+								                    </c:when>
+								                    <c:otherwise>
+								                        <img src="/path/to/blank_image.png" alt="No Image" />  <!-- 흰색 이미지 출력 -->
+								                    </c:otherwise>
+								                </c:choose>
+								            </div>
+								            <div class="post-content">
+								                <a href="/community/post/${post.postId}">
+								                    <h3>${post.postTitle} 
+								                    <%-- <span class="comment-count">[${post.commentCount}]</span>코멘트 처리하고 살리기 --%>
+								                    </h3>
+								                </a>
+								                <div class="post-details">
+								                    <span class="author">${post.userId}</span> ·
+								                    <span class="date"><fmt:formatDate value="${post.postCreate}" pattern="yyyy.MM.dd" /></span> ·
+								                    <span class="views">조회수: ${post.postCount}</span> ·
+								                    <%-- <span class="comments">댓글: ${post.commentCount}</span> --%>
+								                </div>
+								            </div>
+								        </div>
+								    </c:forEach>
+								</div>
 
 						</div>
 
@@ -213,10 +199,10 @@
                         <!-- 글쓰기 버튼 -->
                         <div class="write-btn">
 						    <c:if test="${not empty sessionScope.user_id}">
-						        <button onclick="location.href='/community/board/${board.boardId}/communityWrite'">글쓰기</button>
+						        <button onclick="location.href='/community/board/${board.boardId}/communityWrite'" class="btn">글쓰기</button>
 						    </c:if>
 						    <c:if test="${empty sessionScope.user_id}">
-						        <button onclick="alert('로그인이 필요합니다. 로그인 페이지로 이동합니다.'); location.href='/login';">로그인 후 글쓰기</button>
+						        <button onclick="alert('로그인이 필요합니다. 로그인 페이지로 이동합니다.'); location.href='/login';"class="btn">로그인 후 글쓰기</button>
 						    </c:if>
 						</div>
                     </div>

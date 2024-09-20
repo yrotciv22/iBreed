@@ -5,6 +5,8 @@
 
 <c:set var="userId" value="${sessionScope.user_id}" />  
 <c:set var="boardId" value="${board.boardId}" />
+<c:set var="userNickname" value="${sessionScope.user_nickname}" />
+
 
 <!DOCTYPE html>
 <html>
@@ -42,7 +44,7 @@
                             <div class="profile-header">
                             <!-- 프사없으면 기본프사적용, 경로재설정필요 -->
                                 <!-- 프사 없으면 기본 프사 적용 -->
-								<img src="${user.profileImage != null ? user.profileImage : '/image/default-profile.png'}" alt="Profile Image" class="profile-img">
+								<img src="${sessionScope.user_profile_image}" />
 
                                 <div>
                                    <p>${sessionScope.user_nickname}님</p>
@@ -51,12 +53,7 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="profile-links">
-                                <p><a href="/user/posts">내가 쓴 게시글</a></p>
-                                <p><a href="/user/comments">내가 쓴 댓글</a></p>
-                                <p><a href="/user/likes">좋아요한 게시글</a></p>
-                            </div>
-                            <hr>
+                         
 								<a href="/community/communityWrite" class="community-write-btn">커뮤니티 글쓰기</a>                            
                             <a href="/logout" class="logout-btn">로그아웃</a>
                         </div>
@@ -91,22 +88,14 @@
 	                      <h1>${board.boardName}</h1>
 	                        <div class="search-bar">
 							    <form action="/community/search" method="get">
+							        <input type="hidden" name="boardId" value="${board.boardId}">
 							        <input type="text" name="keyword" placeholder="검색어를 입력하세요">
 							        <button type="submit">통합검색</button>
 							    </form>
 							</div>
 							
 	                    </div>
-							<!-- 공지 숨기기와 리스트/그리드 보기 컨트롤 -->
-							<div class="view-toggle-container">
-							    <label>
-							        <input type="checkbox" id="hideNoticeCheckbox" /> 공지 숨기기
-							    </label>
-							    <div class="view-toggle">
-							        <button id="viewListBtn">리스트 보기</button>
-							        <button id="viewGridBtn">그리드 보기</button>
-							    </div>
-							</div><hr>
+							<hr>
 
 		<!--  여기까진 커뮤니티에 공통으로 포함되어야함.나머지 페이지별 다른건 아래에 작성-->
 		 
@@ -141,7 +130,8 @@
 						            <c:forEach var="post" items="${posts}">
 						                <tr>
 						                	  <td >${post.postId}</td> 
-						                    <td><a href="/community/post/${post.postId}">[${post.postHeading}]${post.postTitle}</a></td>
+						                    <td><a href="/community/board/${post.boardId2}/postdetail/${post.postId}">[${post.postHeading}]${post.postTitle}</a>
+						                  </td>
 						                    <td>${post.userId}</td>
 						                    <td><fmt:formatDate value="${post.postCreate}" pattern="yyyy.MM.dd" /></td>
 						                    <td>${post.postCount}</td>
@@ -150,37 +140,7 @@
 						            </c:forEach>
 						        </tbody>
 						    </table>
-						<!-- 그리드 보기  -->
-								<div class="grid-view-content">
-								    <c:forEach var="post" items="${posts}">
-								        <div class="post-item">
-								            <!-- 이미지가 없는 경우 기본 흰색 이미지 출력 -->
-								            <div class="post-image">
-								                <c:choose>
-								                    <c:when test="${not empty post.postImage}">
-								                        <img src="/path/to/image/${post.postImage}" alt="${post.postTitle}" />
-								                    </c:when>
-								                    <c:otherwise>
-								                        <img src="/path/to/blank_image.png" alt="No Image" />  <!-- 흰색 이미지 출력 -->
-								                    </c:otherwise>
-								                </c:choose>
-								            </div>
-								            <div class="post-content">
-								                <a href="/community/post/${post.postId}">
-								                    <h3>${post.postTitle} 
-								                    <%-- <span class="comment-count">[${post.commentCount}]</span>코멘트 처리하고 살리기 --%>
-								                    </h3>
-								                </a>
-								                <div class="post-details">
-								                    <span class="author">${post.userId}</span> ·
-								                    <span class="date"><fmt:formatDate value="${post.postCreate}" pattern="yyyy.MM.dd" /></span> ·
-								                    <span class="views">조회수: ${post.postCount}</span> ·
-								                    <%-- <span class="comments">댓글: ${post.commentCount}</span> --%>
-								                </div>
-								            </div>
-								        </div>
-								    </c:forEach>
-								</div>
+				
 
 						</div>
 

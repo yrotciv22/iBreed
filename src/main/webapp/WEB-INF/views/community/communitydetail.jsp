@@ -3,24 +3,36 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 
 <c:set var="userId" value="${sessionScope.user_id}" />  
+<c:set var="userNickname" value="${sessionScope.user_nickname}" />
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>IBREED 커뮤니티</title>
     
-    <!--head 임포트  -->
+    <!-- head import -->
     <c:import url="/WEB-INF/views/layout/head.jsp" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/css/community/communitydetail.css' />" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/community/communitycommon.css' />" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/community/community.css' />" />
+	
     <script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 	<script src="<c:url value='/js/index.js' />"></script>
     <script src="<c:url value='/js/communitycommon.js' />"></script>
-	    
+    <script src="<c:url value='/js/communitydetail.js' />"></script>
+    <script src="<c:url value='/js/communitycomment.js' />"></script>
+        
+    
+    
+    
+    <meta name="user-id" content="${sessionScope.user_id}">
+    <meta name="post-id" content="${post.postId}">
+    <meta name="board-id" content="${board.boardId}">
   </head>
   <body>
     <div class="All">
-        <!-- top 임포트 -->
+        <!-- top import -->
         <c:import url="/WEB-INF/views/layout/top.jsp" />
 
         <div class="Wrap">
@@ -32,7 +44,7 @@
                         <!-- 로그인된 상태 -->
                         <div id="after-login" class="profile-container" style="display: none;">
                             <div class="profile-header">
-                                <img src="${user.user_profile_image != null ? user.user_profile_image : '/image/default-profile.png'}" alt="Profile Image" class="profile-img">
+                                <img src="${sessionScope.user_profile_image}" />
                                 <div>
                                    <p>${sessionScope.user_nickname}님</p>
                                    <p>${sessionScope.user_id}</p>
@@ -77,64 +89,130 @@
                 </nav>
                 
                 <main class="main-section">
-	                <div class="header-content">
-	                        <h1>${post.postTitle}</h1>
-	                        <p>작성자: ${post.userId}</p>
-	                        <p>작성일: <fmt:formatDate value="${post.postCreate}" pattern="yyyy.MM.dd HH:mm" /></p>
-	                        <p>조회수: ${post.postCount}</p>
-	                        <p>${post.postContent}</p>
-	                        
-	                        <!-- 좋아요 기능 -->
-	                        <form action="/community/board/${post.boardId}/post/${post.postId}/like" method="post">
-	                            <button type="submit">❤️ 좋아요 ${post.likeCount}</button>
-	                        </form>
-	                </div>
-                    
-                    <!-- 댓글 섹션 -->
-                    <div class="comments-section">
-                        <h2>댓글</h2>
-                        <c:forEach var="comment" items="${comments}">
-                            <div class="comment">
-                                <p><strong>${comment.commentIdWrite}</strong> | <fmt:formatDate value="${comment.commentCreate}" pattern="yyyy.MM.dd HH:mm" /></p>
-                                <p>${comment.commentContent}</p>
-                                <!-- 대댓글 버튼 -->
-                                <button class="reply-btn" onclick="showReplyForm(${comment.commentId})">답글</button>
+				    <div class="post-header">
+					    <div class="post-category">
+					       <h3><a href="/community/board/${board.boardId}">📖${board.boardName}></a></h3>
+					    </div>
+					    <h1>${post.postTitle}</h1>
+					    <div class="post-info">
+					        <div class="user-info">
+					            <img src="${profileImage}" alt="Profile Image">
+					           	
+					           	<div class="user-details"> 
+					           	<div class="nickname-and-id">
+					            <h4 class="author-nickname">${authorNickname}</h4>
+					             <span class="userId">${post.userId}</span>
+					        	  </div>
+							 <div class="metadata-details">					             
+								<span class="post-date"><fmt:formatDate value="${post.postCreate}" pattern="yyyy.MM.dd HH:mm" /></span>
+								 <span class="post-views">조회 ${post.postCount}</span>
+					          </div>
+					        </div>
+					    </div>
+			                    <div class="post_actions">
+								    <c:if test="${sessionScope.user_id == post.userId}">
+								        <button class="editPostBtn" data-post-id="${post.postId}">수정</button>
+								        <span>|</span>
+								        <button class="deletePostBtn" data-post-id="${post.postId}">삭제</button>	
+								    </c:if>
+								</div>
+					</div>
+				</div>
+                    <div class="post-content">
+                        <p>${post.postContent}</p>
+                    </div>
+              <!-- 좋아요 및 댓글 기능 -->
+					<div class="post-actions">
+					    <button class="like-btn" data-post-id="${post.postId}">
+					        좋아요 <span class="like_count">${post.postLikes}</span>
+					    </button>
+					    <button class="comment-btn"> 댓글 ${commentCount}</button>
+					</div>
+					
+					<!-- 댓글 영역 -->
+					<hr>
+					<div class="comments-section" style="display: block;">
+					    <h2>댓글</h2>
+					    <!-- 댓글 목록 -->
+					    <div class="comment_list">
+					        <c:forEach var="comment" items="${comments}">
+					            <div class="comment" data-comment-id="${comment.comment_id}" style="margin-left: ${comment.parent_comment_id != 0 ? '20px' : '0px'};">
+					                <div class="comment_header">
+					                  <strong>${comment.comment_id_write}</strong>
+					              
+					                    <div class="comment_actions">
+					                        <c:if test="${sessionScope.user_id == comment.comment_id_write}">
+					                            <button class="editCommentBtn" data-comment-id="${comment.comment_id}">수정</button>
+					                            <button class="deleteCommentBtn" data-comment-id="${comment.comment_id}">삭제</button>
+					                        </c:if>
+					                    </div>
+					                </div>
+					                <div class="comment_body">
+					                    <p>${comment.comment_content}</p>
+					                </div>
+										 <!-- 수정 폼 (초기에는 숨김 처리) -->
+						            <div class="edit-form" style="display: none;">
+						                <textarea class="edit_content">${comment.comment_content}</textarea>
+						                <button class="saveBtn" data-comment-id="${comment.comment_id}">저장</button>
+						                <button class="cancelBtn">취소</button>
+						            </div>
+					                <!-- 답글쓰기 버튼 -->
+					                <div class="comment_footer">
+					                   <span class="comment_date">
+									    <fmt:formatDate value="${comment.comment_create}" pattern="yyyy.MM.dd HH:mm" />
+									</span>
+					                    <button class="reply-btn" data-parent-id="${comment.comment_id}">답글쓰기</button>
+					                </div>
+					
+					                <!-- 답글 입력 폼 (초기에는 숨김 처리) -->
+					                <div class="reply-form" style="display: none;">
+					                    <textarea placeholder="답글을 입력하세요" class="reply_content"></textarea>
+					                    <div class="reply_buttons">
+					                        <button class="cancel_reply">취소</button>
+					                        <button class="submit_reply">등록</button>
+					                    </div>
+					                </div>
+					            </div>
+					        </c:forEach>
+					    </div>
+					
+					    <!-- 로그인 여부에 따라 댓글 입력 폼 또는 로그인 요청 메시지 표시 -->
+					    <c:choose>
+					        <c:when test="${not empty sessionScope.user_id}">
+					            <!-- 댓글 입력 폼 -->
+					            <div class="comment_form">
+					                <textarea placeholder="댓글을 입력하세요" id="commentContent"></textarea>
+					                
+					                <button id="submitComment">댓글 달기</button>
+					            </div>
+					        </c:when>
+					        <c:otherwise>
+					            <!-- 로그인 필요할 때 메시지 -->
+					            <div class="login-prompt">
+					                <p>댓글을 작성하려면 <a href="/login">로그인</a> 해주세요.</p>
+					            </div>
+					        </c:otherwise>
+					    </c:choose>
+					</div>
+            <!-- 하단 버튼들 -->
+						<div class="bottom-buttons">
+					    <!-- 목록으로 가기 버튼 -->
+					    <button class="back-to-list-btn" onclick="window.location.href='/community/board/${board.boardId}'">목록으로</button>
+					
+					    <!-- 추가할 버튼 예시 -->
+					    <button class="write-post-btn" onclick="window.location.href='/community/communityWrite'">새 글 쓰기</button>
+					</div>
 
-                                <!-- 대댓글 폼 -->
-                                <div class="reply-form" id="reply-form-${comment.commentId}" style="display: none;">
-                                    <form action="/community/board/${post.boardId}/post/${post.postId}/comment/reply" method="post">
-                                        <input type="hidden" name="parentCommentId" value="${comment.commentId}">
-                                        <textarea name="replyContent" placeholder="답글을 입력하세요"></textarea>
-                                        <button type="submit">등록</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </c:forEach>
 
-                        <!-- 댓글 작성 폼 -->
-                        <div class="comment-form">
-                            <form action="/community/board/${post.boardId}/post/${post.postId}/comment" method="post">
-                                <textarea name="commentContent" placeholder="댓글을 입력하세요"></textarea>
-                                <label><input type="checkbox" name="commentSecret" value="1" /> 비밀 댓글</label>
-                                <button type="submit">댓글 등록</button>
-                            </form>
-                        </div>
+						
                     </div>
                 </main>
-                
-                <div id="to_top_Btn">Top</div>
             </div>
         </div>
 
-        <!-- bottom 임포트 -->
+        <!-- bottom import -->
         <c:import url="/WEB-INF/views/layout/bottom.jsp" />
     </div>
 
-    <script>
-        function showReplyForm(commentId) {
-            var replyForm = document.getElementById('reply-form-' + commentId);
-            replyForm.style.display = replyForm.style.display === 'none' ? 'block' : 'none';
-        }
-    </script>
   </body>
 </html>
