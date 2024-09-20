@@ -24,13 +24,19 @@
 					</div>
 				</li>
 			</c:when>
-			
+
 			<c:otherwise>
 				<c:forEach items="${albumList}" var="album" varStatus="status">
 					<li>
 						<a href="/mydiary/${user_id}/detailAlbum/${album.album_id}"><div class="albumBox">
 							<div class="photoCheck"><input type="checkbox" class="chk"></div>
-							<img class="album_thimbnail" src="/image/null_album.png">
+									<c:if test="${empty album.album_cover_img}">
+										<img class="album_thimbnail" src="/image/null_album.png">
+									</c:if>
+									<c:if test="${not empty album.album_cover_img}">
+										<img class="album_thimbnail" src="${album.album_cover_img}">
+									</c:if>							
+							
 							<div class="photoCount">
 								<span class="countNum">${album.photo_count}</span> <!-- 앨범에 들어가있는 사진이 몇장인지 표시 -->
 							</div>

@@ -37,6 +37,18 @@ public interface IAlbumService {
 	// 앨범 정렬하기
 	public ArrayList<AlbumVO> arrangeAlbum(HashMap<String, Object> map);
 	
-	// 앨범 커버 수정하기
-	public void updateCover(AlbumVO vo);
+	// 상세 앨범에서 커버 수정하기
+	public String updateCover(AlbumVO vo);
+	
+	// 상세 앨범에서 사진 추가하기
+	public void insertPhoto(AlbumVO vo);
+	
+	// 앨범에 사진 추가 시 photo_count 1 추가
+	public void albumPhotoCount(int album_id);
+	
+	// 상세 앨범에서 사진 삭제
+	public String deletePhoto(AlbumVO vo);
+	
+	// 앨범에 사진 삭제 시 photo_count 1 제거
+	public void minusPhotoCount(int album_id);
 }

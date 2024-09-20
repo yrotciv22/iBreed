@@ -48,7 +48,7 @@
 								<option value="spelling" />이름 - ㄱ-ㅎ(a-z)
 								<option value="back_spelling" />이름 - ㅎ-ㄱ(z-a)
 							</select>
-						</form>					
+						</form>
 					</div>
 				</div>
 				<div id="albumResultBox">

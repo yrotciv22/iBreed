@@ -1,21 +1,22 @@
 package com.ibreed_project.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ibreed_project.model.AlbumVO;
 import com.ibreed_project.service.AlbumService;
+import com.ibreed_project.service.NaverObjectStorageService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -25,6 +26,9 @@ public class AlbumController {
 	@Autowired
 	AlbumService albumService;
 
+	@Autowired
+	NaverObjectStorageService naverObjectStorageService;
+	
 	@RequestMapping("/mydiary/{user_id}/photos")
 	public String view_mydiary_album(@PathVariable("user_id") String user_id, Model model) {
 		
@@ -123,33 +127,67 @@ public class AlbumController {
 		return "diary/photos/albumSearchResult";
 	}
 	
+	@ResponseBody
 	@RequestMapping("/mydiary/updateCoverImg")
 	public String updateCover(AlbumVO vo) {
 		
-		vo.setPhoto_id(0);
-		vo.setPhoto_name(null);
+		String photoPath = vo.getPhoto_path();
+		int photoId = vo.getPhoto_id();
+		int albumId = vo.getAlbum_id();
 		
-		albumService.updateCover(vo);
+		vo.setPhoto_id(photoId);
+		vo.setPhoto_path(photoPath);
+		vo.setAlbum_id(albumId);
 		
-		return "success";
+		String response = albumService.updateCover(vo);
+		
+		return response;
+	}
+	
+	@RequestMapping(value = "/mydiary/{user_id}/insertPhoto/{album_id}", method = RequestMethod.POST)
+	public String insertPhotos(@PathVariable("user_id") String user_id, 
+			@PathVariable("album_id") int album_id,
+			@RequestParam("diary_profile_image") MultipartFile file,
+			@ModelAttribute AlbumVO vo, 
+			Model model) {
+		
+	    if (file != null && !file.isEmpty()) {
+	    	  try {
+	              String fileName = file.getOriginalFilename();
+	              System.out.println("[HomeController] Received file: " + fileName);
+
+	              // 파일을 S3에 업로드합니다.
+	              String uploadedFileUrl = naverObjectStorageService.uploadPhoto(file);
+	              System.out.println("[HomeController] Uploaded file URL: " + uploadedFileUrl);
+
+	              vo.setAlbum_id(album_id);
+	              vo.setPhoto_name(fileName);
+	              vo.setPhoto_path(uploadedFileUrl); // URL을 새 필드에 설정
+	              
+	              albumService.insertPhoto(vo);
+	              albumService.albumPhotoCount(album_id);
+
+	          } catch (Exception e) {
+	              e.printStackTrace();
+	              model.addAttribute("message", "파일 업로드 중 오류가 발생했습니다.");
+	          }
+	    }
+	    
+		return "redirect:/mydiary/" + user_id + "/detailAlbum/" + album_id; 
 	}
 	
 	@ResponseBody
-	@RequestMapping("/imageUpload")
-	public String imageFileUpload(@RequestParam("uploadFile") MultipartFile file) throws IOException {
+	@RequestMapping("/mydiary/deletePhoto")
+	public String deletePhoto(AlbumVO vo) {
 		
-		String uploadPath = "C:/iBreedWorkspace/images/";
+		int photo_id = vo.getPhoto_id();
+		int album_id = vo.getAlbum_id();
 		
-		// 이 부분에서 이름을 고쳐줘야함
-		String originalFileName = file.getOriginalFilename();
+		vo.setPhoto_id(photo_id);
 		
-		File sendFile = new File(uploadPath + originalFileName);
+		String response = albumService.deletePhoto(vo);
+		albumService.minusPhotoCount(album_id);		
 		
-		file.transferTo(sendFile);
-		
-		String result = "success";
-		
-		return result;
+		return response;
 	}
-	
 }

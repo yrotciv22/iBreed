@@ -35,8 +35,8 @@ li {
 
 #noSearch {
 	position: relative;
-    text-align: center;
-    margin-top: 160px;
+	text-align: center;
+	margin-top: 160px;
 }
 
 input[type=text] {
@@ -49,8 +49,8 @@ input[type=text] {
 }
 
 input[type=file] {
-    width: 74px;
-    height: 25px;
+	width: 74px;
+	height: 25px;
 	background: rgba(0, 0, 0, 0.04);
 }
 
@@ -69,9 +69,10 @@ select {
 }
 
 #upload {
-	width: 300px;
+	width: 315px;
 	position: relative;
-	left: 50px;
+	left: 7px;
+	top: -21px;
 }
 
 .btn {
@@ -111,7 +112,7 @@ select {
 }
 
 #albumDeleteBtn {
-	display: none;	
+	display: none;
 }
 
 #ctrl {
@@ -122,10 +123,10 @@ select {
 }
 
 .albumBox {
-    width: 154px;
-    height: 154px;
-    margin: 8px 2px -3px 2px;
-    padding: 5px;
+	width: 154px;
+	height: 154px;
+	margin: 8px 2px -3px 2px;
+	padding: 5px;
 	border-radius: 5px;
 	float: left;
 	text-align: center;
@@ -145,8 +146,8 @@ select {
 }
 
 .album_thimbnail {
-    width: 144px;
-    height: 144px;
+	width: 144px;
+	height: 144px;
 }
 
 .photoCount {
@@ -236,7 +237,7 @@ select {
 }
 
 .detail_image {
-   	width: 60%;
+	width: 60%;
 }
 
 .change_modal {
@@ -262,7 +263,7 @@ select {
 
 .add_body p {
 	font-size: 11px;
-    margin-top: 8px;
+	margin-top: 8px;
 }
 
 .modal_body {
@@ -374,3 +375,62 @@ select {
 	background: white;
 	color: black;
 }
+
+#modal {
+	position: absolute;
+	display: none;
+	width: 120%;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.1);
+	z-index: 1;
+}
+
+#modal_body {
+	position: absolute;
+	top: 44%;
+	left: 230px;
+	width: 525px;
+	height: 380px;
+	padding: 19px 13px;
+	text-align: center;
+	background-color: rgb(255, 255, 255);
+	border-radius: 10px;
+	box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+	transform: translateY(-50%);
+}
+
+#modal_body input[type=image] {
+	    width: 499px;
+    height: 315px;
+}
+
+#modal_body input[type=submit] {
+	position: absolute;
+	right: 268px;
+	bottom: 8px;
+	border: none;
+	border-radius: 7px;
+	font-weight: bolder;
+	width: 70px;
+	height: 30px;
+	cursor: pointer;
+	font-size: 13px;
+}
+
+#modal_body input[type=reset] {
+	position: absolute;
+	left: 272px;
+	bottom: 8px;
+	border: none;
+	border-radius: 7px;
+	width: 70px;
+	height: 30px;
+	bottom: 8px;
+	cursor: pointer;
+	font-size: 13px;
+}
+
+/* ************************************ */

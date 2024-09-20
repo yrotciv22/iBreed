@@ -139,6 +139,7 @@
     </insert>
 
     <!-- 유저 좋아요 삭제 -->
+    
     <delete id="removeUserLike">
         DELETE FROM diary_like WHERE user_id = #{userId} AND diary_post_id = #{diaryPostId}
     </delete>
