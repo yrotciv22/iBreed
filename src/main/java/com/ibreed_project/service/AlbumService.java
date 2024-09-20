@@ -84,7 +84,35 @@ public class AlbumService implements IAlbumService {
 	}
 	
 	@Override
-	public void updateCover(AlbumVO vo) {
+	public String updateCover(AlbumVO vo) {
+		String response = "success";
+		
 		dao.updateCover(vo);
+		
+		return response;
+	}
+	
+	@Override
+	public void insertPhoto(AlbumVO vo) {
+		dao.insertPhoto(vo);
+	}
+	
+	@Override
+	public void albumPhotoCount(int album_id) {
+		dao.albumPhotoCount(album_id);
+	}
+	
+	@Override
+	public String deletePhoto(AlbumVO vo) {
+		String response = "success";
+		
+		dao.deletePhoto(vo);
+		
+		return response;
+	}
+	
+	@Override
+	public void minusPhotoCount(int album_id) {
+		dao.minusPhotoCount(album_id);
 	}
 }

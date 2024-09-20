@@ -42,6 +42,37 @@
 		<!-- 전체상품 뽑아오기 -->
 		<select id="viewAllPrd" resultMap="prdResult">
 			SELECT * FROM product
+			    <where>
+			        <choose>
+			            <when test="type != null and type.equals('best')">
+			                AND product_sales > 49
+			            </when>
+			            <when test="type != null and type.equals('all')">
+			                <!-- 'all'의 경우 별도의 조건이 없다면 생략 -->
+			            </when>
+			            <when test="type != null and type.equals('diary')">
+			                AND product_sub_category = 'i다이어리'
+			            </when>
+			            <when test="type != null and type.equals('calendar')">
+			                AND product_sub_category = 'i달력'
+			            </when>
+			            <when test="type != null and type.equals('clothing')">
+			                AND product_sub_category = '의류/잡화/소품'
+			            </when>
+			            <when test="type != null and type.equals('gift')">
+			                AND product_sub_category = '임신/출산 선물세트'
+			            </when>
+			            <when test="type != null and type.equals('baby')">
+			                AND product_sub_category = '초보엄마아빠템'
+			            </when>
+			            <when test="type != null and type.equals('collaboration')">
+			                AND product_sub_category = '콜라보레이션'
+			            </when>
+			            <when test="type != null and type.equals('event')">
+			                AND product_sub_category = '이벤트'
+			            </when>
+			        </choose>
+    			</where>
 		</select>
 		
 		<!-- 상품번호 전달받아서 해당 상품 찾아서 반환(VO) -->

@@ -3,6 +3,7 @@ package com.ibreed_project.model;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 public class AlbumVO {
 	private int album_id;
@@ -18,7 +19,17 @@ public class AlbumVO {
 
 	private int photo_id;
 	private String photo_name;
+	/* private MultipartFile photo_name; */
 	private String user_id;
+	private String photo_path;
+
+	public String getPhoto_path() {
+		return photo_path;
+	}
+
+	public void setPhoto_path(String photo_path) {
+		this.photo_path = photo_path;
+	}
 
 	public String getAlbum_cover_img() {
 		return album_cover_img;
