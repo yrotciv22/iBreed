@@ -43,23 +43,20 @@ public class OrderController {
 	        @RequestParam("product_name") List<String> productNames,
 	        @RequestParam("product_img") List<String> productImages,
 	        @RequestParam("product_price") List<Double> productPrices,
-	        @RequestParam("product_discount") List<Double> productDiscounts
-	/*
-	 * ,
-	 * 
+	        @RequestParam("product_discount") List<Double> productDiscounts,
+	        @RequestParam("shippingFee") double shippingFee,
+	        @RequestParam("finalPaymentAmount") double finalPaymentAmount 
+	        /*
+	 * @RequestParam("shippingFee") int shippingFee
 	 * @RequestParam("totalCartPrice") int totalCartPrice,
-	 * 
 	 * @RequestParam("shippingFee") int shippingFee
 	 */
 	) {
-		System.out.println("오더 컨드롤러 user_id=" +user_id);
-
+	
 		    System.out.println("Product IDs: " + productIds);
-		    System.out.println("Cart Quantities: " + cartQuantities);
-		    System.out.println("Product Names: " + productNames);
-		    System.out.println("Product Images: " + productImages);
-		    System.out.println("Product Prices: " + productPrices);
-		    System.out.println("Product Discounts: " + productDiscounts);
+		    System.out.println("Shipping Fee: " + shippingFee);
+		    System.out.println("finalPaymentAmount: " + finalPaymentAmount);
+		    
 		    
 	    // 주문 페이지에 넘길 주문 데이터 구성
 	    List<CartVO> orderItems = new ArrayList<>();
@@ -71,30 +68,21 @@ public class OrderController {
 	        item.setProduct_price((int) Math.floor(productPrices.get(i)));
 	        item.setProduct_discount((int) Math.floor(productDiscounts.get(i)));
 	        item.setProduct_img(productImages.get(i));
-
 	        orderItems.add(item);
 	    }
 	    
-	 	    
-//	 // 사용자 정보 추가
-//		AccountVO user = memberservice.getMemberData(user_id); // 회원 정보 가져오기
-//	    
-	//model.addAttribute("totalCartPrice", totalCartPrice); 
-	//model.addAttribute("shippingFee", shippingFee); 
-//		model.addAttribute("orderItems", orderItems);
-//		model.addAttribute("user", user);
-//
-//		return "/shop/order";
-	    // 세션에 orderItems 저장
-	    session.setAttribute("orderItems", orderItems);
 
-	    // 세션에 사용자 정보도 저장
+	    int shipping_fee = (int) (Math.floor(shippingFee / 10) * 10);  // 마지막 자리 버리고 내림 처리
+	    int final_payment_amount = (int) (Math.floor(finalPaymentAmount / 10) * 10);  // 마지막 자리 버리고 내림 처리
+
+	    session.setAttribute("orderItems", orderItems);
+	    session.setAttribute("shippingFee", shipping_fee);
+	    session.setAttribute("finalPaymentAmount", final_payment_amount);
+	    // 사용자 정보 저장
 	    AccountVO user = memberservice.getMemberData(user_id);
 	    session.setAttribute("user", user);
 
-	    
-	    System.out.println("다시한번 user_id=" +user_id);
-	    // 응답으로 페이지 이동 경로를 반환
+	   
 	    return ResponseEntity.ok("/shop/{user_id}/order");  // 클라이언트에 이동할 URL을 응답
 	}
 	
@@ -105,21 +93,17 @@ public class OrderController {
 	public String viewOrderPage(@PathVariable("user_id") String user_id, Model model, HttpSession session) {
 	
 		
-		//	String user_id = (String)session.getAttribute("user_id");
-
 		// 세션에서 최신 장바구니  데이터를 다시 조회하여 반영
 		  List<CartVO> cartList = cartService.listAllCart(user_id);
 		    model.addAttribute("cartList", cartList);
-		// List<CartVO> cartList = (List<CartVO>) model.getAttribute("cartList");
 	    
-		    // 주문서에 출력할 회원 정보를 조회
-		    AccountVO user = cartService.getUserInfo(user_id);
-		
-		    if (user != null) {
+		 // 주문서에 출력할 회원 정보를 조회
+		  // AccountVO user = cartService.getUserInfo(user_id);
+		  AccountVO user = memberservice.getMemberData(user_id);
+
+		  if (user != null) {
 		        // 사용자 정보를 모델에 추가하여 JSP 페이지로 전달
 		    	System.out.println("user.toString()"+user.toString());
-
-		    	
 		        model.addAttribute("user", user);
 
 		    } else {
@@ -156,7 +140,6 @@ public class OrderController {
 				        
 				) {
 			
-
 //			// 주문 페이지에 넘길 주문 데이터 구성
 //			List<CartVO> orderItems = new ArrayList<>();
 //			for (int i = 0; i < product_id.size(); i++) {
@@ -228,49 +211,5 @@ public class OrderController {
 		}
 
 	
-		// 주문완료 
-
-		// 선택 상품 주문하기
-//		@RequestMapping("/shop/order/selected_item")
-//		public String orderSelectedItem(
-//				@RequestParam int[] cart_id,
-//				  @RequestParam int[] cart_quantity,
-//				  Model model,
-//				  HttpSession session,
-//				@RequestParam("product_id") List<Integer> product_id,
-//				@RequestParam("product_name") List<String> product_name,
-//				@RequestParam("product_img") List<String> product_img,
-//				@RequestParam("product_price") List<Double> product_price,
-//				@RequestParam("product_discount") List<Double> product_discount,
-//				@RequestParam("finalPaymentAmount") int finalPaymentAmount,
-//				@RequestParam("shippingFee") int shippingFee
-//		) {
-//			System.out.println("선택 상품 주문하기 "+ shippingFee);
-	//
-//			String user_id = (String)session.getAttribute("user_id");
-	//
-//			// (1) [주문하기] 버튼 누르면 변경된 주문수량을 장바구니 테이블에 적용 (update 수행)
-//					// mapper에게 vo로 전달하기 위해 받아온 값으로 vo 설정
-//					for(int i=0; i<cart_id.length; i++) {
-//						CartVO vo = new CartVO();
-//						vo.setCart_id(cart_id[i]);
-//						vo.setCart_quantity(cart_quantity[i]);
-//						cartService.updateCart(vo);
-//										}
-//					
-//					// (2) 주문서에 출력할 회원 정보 가져오기
-//					AccountVO accountVo = cartService.getUserInfo(user_id);
-//					
-//					// 주문서에 주문자/수령인 정보 기본으로 출력하기 위해 model 설정
-//					model.addAttribute("accountVo", accountVo);
-//					
-//					// (3) 주문서에 장바구니 목록 출력 
-//					ArrayList<CartVO> cartList = cartService.listAllCart(user_id);
-//					model.addAttribute("cartList", cartList);
-//					
-	//
-//			return "/shop/{user_id}/order";
-//		}
 		
-
 }

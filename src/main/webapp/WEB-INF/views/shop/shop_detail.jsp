@@ -105,16 +105,18 @@
 						
 						
 						<div id="btnBox">
-							<c:if test="${empty likeResult}"> <!-- 로그인 하지 않았을 경우 -->
+							<c:if test="${empty likeResult}"> 
+							<!-- 로그인 하지 않았을 경우 -->
 								<input type="image" src="/image/no_like.png" id="likes">
 							</c:if>
+							
 							<c:if test="${likeResult eq 'not_available'}"> 
 								<a href="<c:url value='/insertLike/${prd.product_id}'/>">
-								<input type="image" src="/image/no_like.png" id="likes"></a>
+								<input type="image" src="/image/no_like.png" id="likes" data-liked="false"></a>
 							</c:if>
 							<c:if test="${likeResult eq 'available'}">
 								<a href="<c:url value='/deleteLike/${prd.product_id}'/>">
-								<input type="image" src="/image/yes_like.png" id="likes"></a>
+								<input type="image" src="/image/yes_like.png" id="likes" data-liked="true"></a>
 							</c:if>
 							
 						
