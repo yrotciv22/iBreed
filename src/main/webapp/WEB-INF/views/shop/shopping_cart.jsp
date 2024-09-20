@@ -223,9 +223,11 @@
 							전체 상품 주문하기</button>
 					</c:if>
 
-					<a href="<c:url value='/shop/order/selected_item'/>">
+					<%-- <a href="<c:url value='/shop/order/selected_item'/>">
 						<div id="order_selected_btn">선택 상품 주문하기</div>
-					</a>
+					</a> --%>
+						<button type="button" form="order_form" id="order_selected_btn">선택
+							상품 주문하기</button>
 				</div>
 
 			</form>

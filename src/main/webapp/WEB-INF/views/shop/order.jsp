@@ -203,7 +203,8 @@
 					<div class="total_shipping_fee">
 						<div>배송비</div>
 						<div>
-							<span>+</span><span>${shippingFee}</span> 원 <input type="hidden"
+							<span>+</span><span>${shippingFee}</span> 원 
+							<input type="hidden"
 								name="shippingFee" value="${shippingFee}">
 						</div>
 					</div>
@@ -224,7 +225,7 @@
 					<div class="final_payment_amount">
 						<div>최종 결제 금액</div>
 						<div>
-							<span>${shippingFee + totalCartPrice}</span><span>원</span>
+							<span>${finalPaymentAmount}</span><span>원</span>
 						</div>
 					</div>
 
@@ -268,8 +269,6 @@
 
 
 
-
-
 		<!-- 본문 끝 -->
 
 
@@ -304,11 +303,13 @@
     	 
         const user_phone_number = "${user.user_phone_number}";
         
+        // user_email을 @ 기준으로 나누기
+        const [email_username, email_domain] = "${user.user_email}".split('@');
         
         const user = {
             name: "${user.user_name}",
-            email_username: "${user.user_email}",
-            email_domain: "${user.emailDomain}",
+            email_username: email_username,
+            email_domain: email_domain,
             phone1: user_phone_number.length === 11 ? user_phone_number.slice(0, 3) : user_phone_number,  // 앞의 3자리
             phone2: user_phone_number.length === 11 ? user_phone_number.slice(3, 7) : '', 
             phone3: user_phone_number.length === 11 ? user_phone_number.slice(7, 11) : '', 
