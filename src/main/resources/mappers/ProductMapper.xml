@@ -42,7 +42,6 @@
 		<!-- 전체상품 뽑아오기 -->
 		<select id="viewAllPrd" resultMap="prdResult">
 			SELECT * FROM product
-			    <where>
 			        <choose>
 			            <when test="type != null and type.equals('best')">
 			                AND product_sales > 49
@@ -72,7 +71,6 @@
 			                AND product_sub_category = '이벤트'
 			            </when>
 			        </choose>
-    			</where>
 		</select>
 		
 		<!-- 상품번호 전달받아서 해당 상품 찾아서 반환(VO) -->

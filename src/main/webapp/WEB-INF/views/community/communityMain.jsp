@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                             <hr>
-                           
+                           		
 								<a href="/community/communityWrite" class="community-write-btn">커뮤니티 글쓰기</a>                            
 								<a href="/logout" class="logout-btn">로그아웃</a>
                         </div>
