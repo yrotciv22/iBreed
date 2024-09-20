@@ -15,16 +15,16 @@
 
     
    <!-- 댓글 추가 -->
-    <insert id="insertComment" parameterType="com.ibreed_project.model.CommentVO">
+    <insert id="addComment" parameterType="hashmap">
         INSERT INTO comment (comment_id_write, comment_content, comment_create, comment_secret, post_id, parent_comment_id)
         VALUES (#{comment_id_write}, #{comment_content}, NOW(), #{comment_secret}, #{post_id}, #{parent_comment_id})
     </insert>
 
     <!-- 특정 게시글의 댓글 목록 가져오기 -->
-    <select id="selectCommentsByPostId" resultMap="commentResultMap">
+    <select id="selectCommentsByPostId" parameterType="int" resultMap="commentResultMap">
         SELECT * FROM comment
         WHERE post_id = #{post_id}
-        ORDER BY parent_comment_id, comment_create ASC
+        ORDER BY comment_create DESC
     </select>
 
     <!-- 댓글 수정 -->
@@ -36,8 +36,11 @@
 
     <!-- 댓글 삭제 -->
     <delete id="deleteComment" parameterType="int">
-        DELETE FROM comment WHERE comment_id = #{comment_id}
+        DELETE FROM comment WHERE comment_id = #{commentId}
     </delete>
 
-
+	<!--댓글 수 가져오기  -->
+	<select id="getCommentCountByPostId" resultType="int">
+    SELECT COUNT(*) FROM comment WHERE post_id = #{postId}
+	</select>
 </mapper>

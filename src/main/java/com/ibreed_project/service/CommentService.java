@@ -1,5 +1,6 @@
 package com.ibreed_project.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,9 @@ public class CommentService implements ICommentService {
 	    private ICommentDAO commentDAO;
 	 
 	@Override
-	public void addComment(CommentVO commentVO) {
-		  commentDAO.insertComment(commentVO);
-	}
+	public  void addComment(HashMap<String, Object> map) {
 
-	@Override
-	public List<CommentVO> getCommentsByPostId(int postId) {
-		return commentDAO.selectCommentsByPostId(postId);
+		  commentDAO.addComment(map);
 	}
 
 	@Override
@@ -32,6 +29,17 @@ public class CommentService implements ICommentService {
 	@Override
 	public void deleteComment(int commentId) {
 		commentDAO.deleteComment(commentId);
+	}
+
+	@Override
+	public List<CommentVO> selectCommentsByPostId(int postId) {
+		// TODO Auto-generated method stub
+		return commentDAO.selectCommentsByPostId(postId);
+	}
+
+	public int getCommentCountByPostId(int postId) {
+		// TODO Auto-generated method stub
+		   return commentDAO.getCommentCountByPostId(postId);
 	}
 
 }

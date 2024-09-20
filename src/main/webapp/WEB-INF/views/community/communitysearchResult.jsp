@@ -42,7 +42,7 @@
                             <div class="profile-header">
                             <!-- 프사없으면 기본프사적용, 경로재설정필요 -->
                                 <!-- 프사 없으면 기본 프사 적용 -->
-								<img src="${sessionScope.user_profile_image}" />
+							<img src="${sessionScope.user_profile_image}" />
 
                                 <div>
                                    <p>${sessionScope.user_nickname}님</p>
@@ -86,6 +86,8 @@
 	                      <h1>${board.boardName}</h1>
 	                        <div class="search-bar">
 							    <form action="/community/search" method="get">
+							        <input type="hidden" name="boardId" value="${board.boardId}"> <!-- 보드 ID 추가 -->
+							    
 							        <input type="text" name="keyword" placeholder="검색어를 입력하세요">
 							        <button type="submit">통합검색</button>
 							    </form>
@@ -112,61 +114,28 @@
 						            </tr>
 						        </thead>
 						        <tbody>
-						            <!-- 공지사항 목록 -->
-						            <c:forEach var="notice" items="${notices}">
-						                <tr class="notice">
-						                    <td><a href="/community/post/${notice.postId}">📢 ${notice.postTitle}</a></td>
-						                    <td>${notice.userId}</td>
-						                    <td><fmt:formatDate value="${notice.postCreate}" pattern="yyyy.MM.dd" /></td>
-						                    <td>${notice.postCount}</td>
-						                    <td>${notice.postLikes}</td>
-						                </tr>
-						            </c:forEach>
+						   
 						
-						            <!-- 일반 게시글 목록 (리스트 보기) -->
-						            <c:forEach var="post" items="${posts}">
-						                <tr>
-						                	  <td >${post.postId}</td> 
-						                    <td><a href="/community/board/${board.boardId}/postdetail/${post.postId}">[${post.postHeading}]${post.postTitle}</a></td>
-						                    <td>${post.userId}</td>
-						                    <td><fmt:formatDate value="${post.postCreate}" pattern="yyyy.MM.dd" /></td>
-						                    <td>${post.postCount}</td>
-						                    <td>${post.postLikes}</td>
-						                </tr>
-						            </c:forEach>
+						       <c:if test="${not empty posts}">
+						    <c:forEach var="post" items="${posts}">
+						        <tr>
+						            <td>${post.postId}</td>
+						            <td><a href="/community/board/${post.boardId2}/postdetail/${post.postId}">[${post.postHeading}]${post.postTitle}</a></td>
+						            <td>${post.userId}</td>
+						            <td><fmt:formatDate value="${post.postCreate}" pattern="yyyy.MM.dd" /></td>
+						            <td>${post.postCount}</td>
+						            <td>${post.postLikes}</td>
+						        </tr>
+						    </c:forEach>
+						</c:if>
+						<c:if test="${empty posts}">
+						    <tr>
+						        <td colspan="6">검색 결과가 없습니다.</td>
+						    </tr>
+						</c:if>
 						        </tbody>
 						    </table>
-						<!-- 그리드 보기  -->
-								<div class="grid-view-content">
-								    <c:forEach var="post" items="${posts}">
-								        <div class="post-item">
-								            <!-- 이미지가 없는 경우 기본 흰색 이미지 출력 -->
-								            <div class="post-image">
-								                <c:choose>
-								                    <c:when test="${not empty post.postImage}">
-								                        <img src="/path/to/image/${post.postImage}" alt="${post.postTitle}" />
-								                    </c:when>
-								                    <c:otherwise>
-								                        <img src="/path/to/blank_image.png" alt="No Image" />  <!-- 흰색 이미지 출력 -->
-								                    </c:otherwise>
-								                </c:choose>
-								            </div>
-								            <div class="post-content">
-								                <a href="/community/post/${post.postId}">
-								                    <h3>${post.postTitle} 
-								                    <%-- <span class="comment-count">[${post.commentCount}]</span>코멘트 처리하고 살리기 --%>
-								                    </h3>
-								                </a>
-								                <div class="post-details">
-								                    <span class="author">${post.userId}</span> ·
-								                    <span class="date"><fmt:formatDate value="${post.postCreate}" pattern="yyyy.MM.dd" /></span> ·
-								                    <span class="views">조회수: ${post.postCount}</span> ·
-								                    <%-- <span class="comments">댓글: ${post.commentCount}</span> --%>
-								                </div>
-								            </div>
-								        </div>
-								    </c:forEach>
-								</div>
+						
 
 						</div>
 
@@ -196,16 +165,8 @@
 						</c:if>
 					</div>
 
-                        <!-- 글쓰기 버튼 -->
-                        <div class="write-btn">
-						    <c:if test="${not empty sessionScope.user_id}">
-						        <button onclick="location.href='/community/board/${board.boardId}/communityWrite'" class="btn">글쓰기</button>
-						    </c:if>
-						    <c:if test="${empty sessionScope.user_id}">
-						        <button onclick="alert('로그인이 필요합니다. 로그인 페이지로 이동합니다.'); location.href='/login';"class="btn">로그인 후 글쓰기</button>
-						    </c:if>
-						</div>
-                    </div>
+                
+                    
                 </main>
 	
 		<!-- 본문 끝 -->

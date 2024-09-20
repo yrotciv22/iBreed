@@ -70,10 +70,76 @@ public class CommunityMainService implements ICommunityMainService {
 		    // 페이지 수 계산 (총 게시글 수 / 페이지당 게시글 수)
 		    return (int) Math.ceil((double) totalPosts / size);
 		}
-
+		//게시글저장
 		@Override
 		public void savePost(PostVO postVO) {
 			// TODO Auto-generated method stub
 			communityDAO.insertPost(postVO);
 		}
+		//게시글상세보기
+		@Override
+		public PostVO getPostById(int postId) {
+			// TODO Auto-generated method stub
+			 return communityDAO.selectPostById(postId);
+		}
+		//닉네임 조회
+		@Override
+		public String getAuthorNicknameByUserId(String userId) {
+			// TODO Auto-generated method stub
+			return communityDAO.findNicknameByUserId(userId);
+		}
+		@Override
+		public String getAuthorProfileImage(int postId) {
+		    return communityDAO.getAuthorProfileImage(postId);
+		}
+
+		@Override
+		public void updatePost(PostVO postVO) {
+		    communityDAO.updatePost(postVO);
+			
+		}
+
+		@Override
+		public void deletePost(int postId) {
+			  communityDAO.deletePost(postId);
+			
+		}
+		//좋아요 수 
+		@Override
+		public boolean isPostLikedByUser(int postId, String userId) {
+			 return communityDAO.isPostLikedByUser(userId, postId)>0;
+		}
+
+		@Override
+		public void likePost(int postId, String userId) {
+			 // DAO를 통해 좋아요 추가
+		    communityDAO.likePost(userId, postId);
+		    // 좋아요 수 증가 처리
+		    communityDAO.incrementPostLikeCount(postId);
+		}
+
+		@Override
+		public void unlikePost(int postId, String userId) {
+			  // DAO를 통해 좋아요 취소
+		    communityDAO.unlikePost(userId, postId);
+		    // 좋아요 수 감소 처리
+		    communityDAO.decrementPostLikeCount(postId);
+			
+		}
+		//조회수
+		public void increasePostViewCount(int postId) {
+			// TODO Auto-generated method stub
+			communityDAO.increasePostViewCount(postId);
+		}
+
+		public int getLikeCount(int postId) {
+			// TODO Auto-generated method stub
+			  return communityDAO.getLikeCount(postId);
+		}
+
+		public List<PostVO> searchPostsByKeyword(String keyword) {
+			// TODO Auto-generated method stub
+		    return communityDAO.searchPostsByKeyword(keyword);
+		}
+
 	}

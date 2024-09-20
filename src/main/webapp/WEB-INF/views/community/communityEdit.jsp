@@ -84,16 +84,16 @@
 
                 <main class="main-section">
                     <div class="header-content">
-                        <h2>커뮤니티 글쓰기</h2>
+                        <h2>게시글 수정</h2>
                     </div>
                     <hr>
 
                     <!-- 글쓰기 폼 -->
-                    <form id="community-post-form" action="/community/board/save" method="post" enctype="multipart/form-data">
+                    <form id="community-post-form" action="/community/post/update/${post.postId}" method="post" enctype="multipart/form-data">
                         <div class="write-form">
                             <!-- 제목 -->
                             <label for="title">제목</label>
-                            <input type="text" id="title" name="postTitle" required />
+							<input type="text" id="title" name="postTitle" value="${post.postTitle}" required /> <!-- 기존 제목 표시 -->
                     
                             <!-- 게시판 선택 -->
                             <c:choose>
@@ -177,11 +177,11 @@
 			                </div>
                     
                             <!-- 내용 -->
-                            <label for="content">내용</label>
-							<div id="content-area" class="content-area" contenteditable="true"></div>
-							<textarea id="hidden-content" name="postContent" style="display:none;"></textarea>
-							                    
-                        
+							<label for="content">내용</label>
+							<div id="content-area" class="content-area" contenteditable="true">${post.postContent}</div> <!-- 기존 내용 표시 -->
+							<textarea id="hidden-content" name="postContent" style="display:none;">${post.postContent}</textarea>
+							
+							                        
 
                        
                            <!--  <!-- 옵션 (공지사항, 스크랩 허용 등) -->
@@ -194,7 +194,7 @@
                     
                             <!-- 등록 및 취소 버튼 -->
                             <div class="form-actions">
-                                <button type="submit" class="submit-btn">등록</button>
+                                <button type="submit" class="submit-btn">수정</button>
                                 <button type="button" class="cancel-btn" onclick="history.back();">취소</button>
                             </div>
                         </div>

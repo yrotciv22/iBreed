@@ -17,7 +17,14 @@ public class PostVO {
 	    private String postVideo;
 	    private String postUrl;
 	    private String postLikes;
+	    private String profileImage;
 	    
+		public String getProfileImage() {
+			return profileImage;
+		}
+		public void setProfileImage(String profileImage) {
+			this.profileImage = profileImage;
+		}
 		public int getPostId() {
 			return postId;
 		}
