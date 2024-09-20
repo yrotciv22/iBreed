@@ -150,53 +150,6 @@ public class MyPageController {
 	}
 	
 	/* 최근본상품 페이지 승우 */	
-	/*@RequestMapping("/mypage/recentPrdList")
-	public String viewRecentPrdListPage(HttpSession session, 
-										Model model,
-										HttpServletRequest request) throws JsonMappingException, JsonProcessingException {
-		
-		String user_id = (String) session.getAttribute("user_id");
-		
-		int diaryCount = mydiary_diaryService.getDiaryCount(user_id);
-		String nickName = loginService.getNickName(user_id);
-		String rating = loginService.getRating(user_id);
-		int payCount = myPageService.countPayment(user_id);
-		
-		model.addAttribute("diaryCount", diaryCount);
-		model.addAttribute("nickName", nickName);
-		model.addAttribute("rating", rating);
-		model.addAttribute("payCount", payCount);
-		
-		Cookie[] cookies = request.getCookies();
-	    String viewedProducts = null;
-
-	    System.out.println("쿠키값" + cookies);
-	    
-	    if (cookies != null) {
-	        for (Cookie cookie : cookies) {
-	        	System.out.println(cookies.length);
-	            if (cookie.getName().equals("viewedProducts")) {
-	            	System.out.println("쿠키밸류"+cookie.getValue());
-	                viewedProducts = cookie.getValue();
-	                break;
-	            }
-	        }
-	    }
-	    
-	    System.out.println("null 아니면 성공임 >>" + viewedProducts);
-	    if (viewedProducts != null) {
-	        // 쿠키에서 가져온 값(JSON)을 리스트로 변환
-	        List<Integer> productIds = Arrays.asList(new ObjectMapper().readValue(viewedProducts, Integer[].class));
-
-	        // DB에서 상품 정보를 가져옴
-	        List<MyPageVO> recentProducts = myPageService.getProductsByIds(productIds);
-	        model.addAttribute("recentProducts", recentProducts);
-	        System.out.println("안녕하이헬로" + recentProducts);
-	    }
-	    
-		return "mypage/mypage_recentPrdList";
-	}*/
-	
 	@RequestMapping("/mypage/recentPrdList")
 	public String viewRecentPrdListPage(Model model,
 										HttpSession session,
@@ -215,17 +168,14 @@ public class MyPageController {
 		model.addAttribute("rating", rating);
 		model.addAttribute("payCount", payCount);		
 		 
-		 
-		
 		if (viewedProducts != null) { 
-			 List<Integer> productIds =
-					  Arrays.asList(new ObjectMapper().readValue(viewedProducts, Integer[].class));
+			List<Integer> productIds =
+					Arrays.asList(new ObjectMapper().readValue(viewedProducts, Integer[].class));
 			
 					  
-					  // DB에서 상품 정보를 가져옴 
-			 List<MyPageVO> recentProducts =
-					  myPageService.getProductsByIds(productIds);
-					 model.addAttribute("recentProducts", recentProducts);
+			// DB에서 상품 정보를 가져옴 
+			List<MyPageVO> recentProducts = myPageService.getProductsByIds(productIds);
+			model.addAttribute("recentProducts", recentProducts);
 		 };	
 		 
 		return "mypage/mypage_recentPrdList";

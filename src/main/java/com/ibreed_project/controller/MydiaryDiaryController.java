@@ -233,7 +233,7 @@ public class MydiaryDiaryController {
     @ResponseBody
     @RequestMapping("/like/status")
     public HashMap<String, Object> getLikeStatus(@RequestParam("diaryPostId") int diaryPostId,
-    																				@PathVariable("user_id") String userId) {
+    															@PathVariable("user_id") String userId) {
         boolean isLiked = mydiary_diaryService.checkIfLiked(userId, diaryPostId);
         int likeCount = mydiary_diaryService.getLikeCount(diaryPostId);
 

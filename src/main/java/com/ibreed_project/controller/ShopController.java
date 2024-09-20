@@ -129,7 +129,7 @@ public class ShopController {
 
 		return "shop/shop_detail";
 	}
-
+	
 	// 상품 전체 페이지 (승우)
 	@RequestMapping("shop_list")
 	public String listView(Model model) {

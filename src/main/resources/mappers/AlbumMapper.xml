@@ -15,6 +15,7 @@
 			<result property="photo_id" column="photo_id"/>
 			<result property="photo_name" column="photo_name"/>
 			<result property="photo_date" column="photo_date"/>
+			<result property="photo_path" column="photo_path"/>
 			<result property="user_id" column="user_id"/>
 		</resultMap>
 
@@ -80,7 +81,23 @@
 		</select>
 		
 		<update id="updateCover" parameterType="com.ibreed_project.model.AlbumVO">
-			UPDATE album SET album_cover_img = #{album_cover_img} WHERE album_id = #{album_id}
+			UPDATE album SET album_cover_img = #{photo_path} WHERE album_id = #{album_id}
 		</update>
 		
+		<insert id="insertPhoto" parameterType="com.ibreed_project.model.AlbumVO">
+			INSERT INTO photo(photo_name, photo_date, album_id, photo_path)
+			VALUES (#{photo_name}, now(), #{album_id}, #{photo_path});
+		</insert>
+		
+		<update id="albumPhotoCount" parameterType="int">
+			UPDATE album SET photo_count=photo_count+1 WHERE album_id = #{album_id}
+		</update>
+		
+		<delete id="deletePhoto" parameterType="int">
+			DELETE FROM photo WHERE photo_id = #{photo_id};
+		</delete>
+		
+		<update id="minusPhotoCount" parameterType="int">
+			UPDATE album SET photo_count=photo_count-1 WHERE album_id = #{album_id}
+		</update>
 	</mapper>

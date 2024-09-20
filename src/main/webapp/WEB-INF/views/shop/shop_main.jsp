@@ -28,15 +28,16 @@
 				</div>
 				<div id="categoryList">
 					<ul>
-						<li><a href='#'>베스트</a></li>
-						<li><a href="/shop_list">전체상품</a></li>
-						<li><a href="#">i다이어리</a></li>
-						<li><a href="#">i달력</a></li>
-						<li><a href="#">의류/잡화/소품</a></li>
-						<li><a href="#">임신/출산 선물세트</a></li>
-						<li><a href="#">초보엄마아빠템</a></li>
-						<li><a href="#">콜라보레이션</a></li>
-						<li><a href="#">이벤트</a></li>
+						<!-- <li><a href='/shop_list' type="best">베스트</a></li> -->
+						<li><a href='/shop_list' data-type="best">베스트</a></li>
+						<li><a href="/shop_list" data-type="all">전체상품</a></li>
+					    <li><a href="/shop_list" data-type="diary">i다이어리</a></li>
+					    <li><a href="/shop_list" data-type="calendar">i달력</a></li>
+					    <li><a href="/shop_list" data-type="clothing">의류/잡화/소품</a></li>
+					    <li><a href="/shop_list" data-type="gift">임신/출산 선물세트</a></li>
+					    <li><a href="/shop_list" data-type="baby">초보엄마아빠템</a></li>
+					    <li><a href="/shop_list" data-type="collaboration">콜라보레이션</a></li>
+					    <li><a href="/shop_list" data-type="event">이벤트</a></li>
 					</ul> 
 				</div>
 			</div> <!-- 왼쪽 카테고리 박스 끝 -->
@@ -72,8 +73,8 @@
 								<div class="P_thumbnail">
 									<img class="P_thumbnailImg" src="${prd.product_img}">
 									<div class="P_likeCartBox">
-										<a href="#"><img src="<c:url value='/image/cart_btn.png'/>"></a>
-										<a href="#"><img src="<c:url value='/image/like_btn.png'/>"></a>
+										<a href=""><img src="<c:url value='/image/cart_btn.png'/>"></a>
+										<a href=""><img src="<c:url value='/image/like_btn.png'/>"></a>
 									</div>
 								</div>
 								<div class="P_titleBox">
@@ -109,8 +110,8 @@
 								<div class="thumbnail">
 									<img class="newThumbnail" src="${prd.product_img}">
 									<div class="likeCartBox1">
-										<a href="www.naver.com"><img src="<c:url value='/image/cart_btn.png'/>"></a>
-										<a href="#"><img src="<c:url value='/image/like_btn.png'/>"></a>
+										<a href=""><img src="<c:url value='/image/cart_btn.png'/>"></a>
+										<a href=""><img src="<c:url value='/image/like_btn.png'/>"></a>
 									</div>
 								</div>
 								<div class="titleBox">
@@ -136,8 +137,8 @@
 								<div class="thumbnail">
 									<img class="newThumbnail" src="${prd.product_img}">
 									<div class="likeCartBox1">
-										<a href="www.naver.com"><img src="<c:url value='/image/cart_btn.png'/>"></a>
-										<a href="#"><img src="<c:url value='/image/like_btn.png'/>"></a>
+										<a href=""><img src="<c:url value='/image/cart_btn.png'/>"></a>
+										<a href=""><img src="<c:url value='/image/like_btn.png'/>"></a>
 									</div>
 								</div>
 								<div class="titleBox">
@@ -163,8 +164,8 @@
 								<div class="thumbnail">
 									<img class="newThumbnail" src="${prd.product_img}">
 									<div class="likeCartBox1">
-										<a href="www.naver.com"><img src="<c:url value='/image/cart_btn.png'/>"></a>
-										<a href="#"><img src="<c:url value='/image/like_btn.png'/>"></a>
+										<a href=""><img src="<c:url value='/image/cart_btn.png'/>"></a>
+										<a href=""><img src="<c:url value='/image/like_btn.png'/>"></a>
 									</div>
 								</div>
 								<div class="titleBox">

@@ -19,6 +19,7 @@
 	        <result property="postVideo" column="post_video" />
 	        <result property="postUrl" column="post_url" />
 	        <result property="postLikes" column="likes" />
+	        <result property="profileImage" column="user_profile_image" />
 	    </resultMap>
 
     <!-- 인기글 불러오기-->
@@ -71,6 +72,90 @@
     <insert id="insertPost" parameterType="com.ibreed_project.model.PostVO">
     INSERT INTO post (post_id, post_title, post_content, post_create, post_count, post_heading, user_id, post_status, board_id2, post_image, post_video, post_url, likes)
     VALUES (#{postId}, #{postTitle}, #{postContent}, NOW(), #{postCount}, #{postHeading}, #{userId}, #{postStatus}, #{boardId2}, #{postImage}, #{postVideo}, #{postUrl}, 0);
-</insert>
-    
+	</insert>
+	
+	<!--상세게시물  -->
+    <select id="selectPostById" parameterType="int" resultMap="postResultMap">
+    SELECT * 
+    FROM post 
+    WHERE post_id = #{postId}
+	</select>
+	<!--닉네임 조회  -->
+    <select id="findNicknameByUserId" resultType="String">
+    SELECT user_nickname
+    FROM user
+    WHERE user_id = #{userId}
+	</select>
+	<!-- 유저테이블에서 프로필이미지 가져오기 -->
+	<select id="getAuthorProfileImage" parameterType="int" resultType="String">
+    SELECT u.user_profile_image
+    FROM post p
+    JOIN user u ON p.user_id = u.user_id
+    WHERE p.post_id = #{postId}
+	</select>
+
+	 <!--  게시글 삭제]-->
+    <delete id="deletePost" parameterType="int">
+        DELETE FROM post WHERE post_id = #{postId}
+    </delete>
+	
+	
+	  <!-- 게시글 수정 -->
+    <update id="updatePost" parameterType="com.ibreed_project.model.PostVO">
+        UPDATE post
+        SET post_title = #{postTitle},
+            post_content = #{postContent},
+            post_heading = #{postHeading},
+            post_update = NOW() -- 수정 날짜 업데이트
+        WHERE post_id = #{postId}
+    </update>
+	<!-- 조회수 증가 -->
+	<update id="increasePostViewCount" parameterType="int">
+	    UPDATE post
+	    SET post_count = post_count + 1
+	    WHERE post_id = #{postId}
+	</update>
+	<!--좋아요 상태 확인  -->
+	<select id="isPostLikedByUser" resultType="int">
+	    SELECT COUNT(*) > 0 
+	    FROM likes
+	    WHERE like_post_id = #{postId} 
+	    AND like_click_id = #{userId}
+	</select>
+	<!--좋아요 추가  -->
+	<insert id="likePost">
+	    INSERT INTO likes (like_post_id, like_click_id, like_create, post_id2)
+	    VALUES (#{postId}, #{userId}, NOW(), #{postId})
+	</insert>
+	<!--좋아요 취소  -->
+	<delete id="unlikePost">
+    DELETE FROM likes
+    WHERE like_post_id = #{postId}
+    AND like_click_id = #{userId}
+	</delete>
+	<!--총 좋아요수   -->
+	<select id="getLikeCount" resultType="int">
+    SELECT COUNT(*) 
+    FROM likes
+    WHERE like_post_id = #{postId}
+	</select>
+	<!--게시글 좋아요 수 증가  -->
+	<update id="incrementPostLikeCount">
+    UPDATE post 
+    SET likes = likes + 1 
+    WHERE post_id = #{postId}
+	</update>
+	<!--게시글 좋아요 수 감소  -->
+	<update id="decrementPostLikeCount">
+	    UPDATE post 
+	     SET likes = CASE WHEN likes > 0 THEN likes - 1 ELSE 0 END
+	    WHERE post_id = #{postId}
+	</update>
+<!--검색창  -->
+<select id="searchPostsByKeyword" resultMap="postResultMap">
+    SELECT * FROM post
+    WHERE post_title LIKE CONCAT('%', #{keyword}, '%')
+    OR post_content LIKE CONCAT('%', #{keyword}, '%')
+</select>
+	
 </mapper>

@@ -17,6 +17,7 @@ $(function() {
 	let popularBox = $('.P_likeCartBox');
 	
 	$('.popularMenuBox').each(function(i) {
+	
 		$(this).hover(
 			function() {
 				popularBox[i].style.visibility = 'visible';
@@ -30,7 +31,8 @@ $(function() {
 	// 신상품, 베스트, 재고템 썸네일 호버
 	let listCartBox = $('.likeCartBox1');
 	
-	$('.menuBox').each(function(i) {
+	$('.menuBox').each(function(i, event) {
+	
 		$(this).hover(
 			function() {
 				listCartBox[i].style.visibility = 'visible';
@@ -55,4 +57,15 @@ $(function() {
 	        $('section').append(addContent);
 		}
 	}
+	
+	document.querySelectorAll('a').forEach(link => {
+	    link.addEventListener('click', function(event) {
+	        event.preventDefault();
+	        const type = this.getAttribute('data-type');
+	        const url = new URL(this.href);
+	        url.searchParams.set('type', type);
+	        console.log(type);
+	        window.location.href = url.toString();
+	    });
+	});
 });

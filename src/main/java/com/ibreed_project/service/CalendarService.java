@@ -28,18 +28,7 @@ public class CalendarService implements ICalendarService {
 	}
 
 	@Override
-	public void addEvent(CalendarVO event) {
-		dao.addEvent(event);
+	public String addEvent(CalendarVO event) {
+		return dao.addEvent(event);
 	}
-
-	@Override
-	public void updateEvent(CalendarVO event) {
-		dao.updateEvent(event);
-	}
-
-	@Override
-	public void deleteEvent(int CALENDAR_NO) {
-		dao.deleteEvent(CALENDAR_NO);
-	}
-
 }

@@ -8,9 +8,5 @@ public interface ICalendarService {
 	
 	public List<CalendarVO> getAllEvents(String user_id);
 	
-	public void addEvent(CalendarVO event);
-	
-	public void updateEvent(CalendarVO event);
-	
-	public void deleteEvent(int CALENDAR_NO);
+	public String addEvent(CalendarVO event);
 }
