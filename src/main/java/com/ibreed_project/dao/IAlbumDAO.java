@@ -32,4 +32,12 @@ public interface IAlbumDAO {
 	public ArrayList<AlbumVO> arrangeAlbum(HashMap<String, Object> map);
 	
 	public void updateCover(AlbumVO vo);
+	
+	public void insertPhoto(AlbumVO vo);
+	
+	public void albumPhotoCount(int album_id);
+	
+	public void deletePhoto(AlbumVO vo);
+	
+	public void minusPhotoCount(int album_id);
 }

@@ -152,7 +152,7 @@
 	});
 	
 	// 장바구니 버튼
-	$("#put_cart").on("click", function() {
+	/*$("#put_cart").on("click", function() {
 		if(userId) {
 			alert("로그인 했나? "+ userId);
 		} else {
@@ -167,7 +167,7 @@
 		} else {
 			alert("로그인 후에 본 서비스를 이용하실 수 있습니다.");
 		}
-	});
+	});*/
 	
 	
 	// 페이지네이션
