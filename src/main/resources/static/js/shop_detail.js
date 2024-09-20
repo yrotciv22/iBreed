@@ -149,6 +149,7 @@
 	    event.preventDefault();  // 기본 동작 막기
 
     const productId = $("#recent_prdIds").val();  // 제품 ID 가져오기
+
 		
     if (userId) {
 
