@@ -147,7 +147,7 @@
 	// 찜하기버튼
 	$("#likes").on("click", function() {
 	
-	    event.preventDefault(); //  장바구니 폼 제출 막기
+	    //event.preventDefault(); //  장바구니 폼 제출 막기
 	
 		if(userId) {
 		
