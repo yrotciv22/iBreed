@@ -1,0 +1,195 @@
+@charset "UTF-8";
+
+/* 메인색 : #53AFB2 */
+
+.all{
+	font-family: "GmarketSansMedium";
+	color:#555;
+}
+.result_title{
+	margin: 40px 0;
+	font-size: 20px;
+}
+
+.search_result_wrap{
+	display:flex;
+	flex-direction: column;
+	width: 100%;
+	min-height: 600px;
+}
+.no_result{
+	display:flex;
+	justify-content: center;
+	width: 100%;
+	margin-top: 200px;
+	font-size: 24px;
+	font-weight: 600;
+}
+
+.go_home{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	margin-top: 50px;
+}
+.go_home a{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	width: 200px;
+	height:44px;
+	border:1px solid #ccc;
+	font-size: 18px;
+	font-family: "GmarketSansMedium";
+}
+.go_home a:hover{
+	cursor:pointer;
+}
+
+
+.main-section {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    overflow: hidden; /* 폭 안 넓어지게 */
+}
+
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+/* 테이블 스타일 */
+.board-table {
+   border: none;
+   width: 100%;
+   border-collapse: collapse;
+   margin-top: 20px;
+}
+
+.board-table th, .board-table td {
+   padding: 10px;
+   text-align: left; /* 좌측 정렬 */
+   vertical-align: middle;
+   border-bottom: 1px solid #ddd;
+   padding-left: 5px;
+}
+
+/* 제목 칸을 우측으로 여유롭게 */
+.board-table th:nth-child(2) {
+   padding-left: 80px;
+}
+
+
+/* 뷰 토글 컨테이너 */
+.view-toggle-container {
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+   gap: 10px;
+   margin-bottom: 20px;
+}
+
+.view-toggle-container label {
+   margin-right: 10px;
+}
+
+.view-toggle button {
+   padding: 5px 10px;
+   border: 1px solid #ddd;
+   background-color: white;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+}
+
+.view-toggle button:hover {
+   background-color: #f0f0f0;
+}
+
+.view-toggle button.active {
+   background-color: #53afb2;
+   color: white;
+}
+
+
+/* 리스트 보기 */
+.list-view .list-view-content {
+   display: table;
+   width: 100%;
+}
+
+.list-view .grid-view-content {
+   display: none;
+}
+
+
+
+/* 페이지네이션 스타일 */
+.pagination {
+   text-align: center;
+   margin-top: 20px;
+}
+
+.pagination a, .pagination span {
+   display: inline-block;
+   margin: 0 5px;
+   padding: 5px 10px;
+   border: none;
+   background-color: transparent;
+   text-decoration: none;
+   color: #333;
+   cursor: pointer;
+}
+
+.pagination a.active {
+   background-color: #53afb2;
+   color: white !important;
+   border-radius: 5px;
+}
+
+.pagination span.active {
+   color: white !important;
+}
+
+.pagination a:hover, .pagination span:hover {
+   background-color: #f0f0f0;
+   border-radius: 5px;
+}
+
+.pagination a:focus, .pagination span:focus {
+   outline: none;
+}
+
+
+
+@font-face {
+	font-family: "GmarketSansMedium";
+	src:
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "JalnanGothic";
+	src:
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "yg-jalnan";
+	src:
+		url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff")
+		format("woff");
+	font-weight: normal;
+	font-style: normal;
+}

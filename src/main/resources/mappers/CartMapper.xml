@@ -25,49 +25,160 @@
 	</resultMap>
 
 	<!-- 전체 카트 상품 조회 -->
-	<select id="listAllCart" resultMap="cartResultMap">
+	<select id="listAllCart" parameterType="string"
+		resultMap="cartResultMap">
 		SELECT c.*, p.*
 		FROM cart c
-		JOIN product p ON c.product_id = p.product_id
-		WHERE user_id=#{user_id};
+		JOIN product p ON c.product_id =
+		p.product_id
+		WHERE user_id=#{user_id}
+		ORDER BY c.cart_id;
 	</select>
+
+	<!-- 장바구니 상품 담기 -->
+	<insert id="addCartItem">
+		INSERT INTO cart (cart_id, cart_quantity, user_id,
+		product_id)
+		VALUES (default, 1, #{user_id}, #{product_id});
+	</insert>
 
 	<!-- 장바구니 상품 수량 변경 -->
 	<update id="updateCartQuantity">
 		UPDATE cart c
-		JOIN product p ON c.product_id = p.product_id
-		SET c.cart_quantity = GREATEST(c.cart_quantity + #{quantity}, 1)
+		JOIN product p ON c.product_id =
+		p.product_id
+		SET c.cart_quantity = GREATEST(c.cart_quantity +
+		#{quantity}, 1)
 		WHERE c.product_id = #{product_id}
-		AND c.user_id = #{user_id};
+		AND c.user_id =
+		#{user_id};
 	</update>
+
+	<!-- 특정 상품에 대한 현재 장바구니 수량 가져오기 -->
+	<select id="getCurrentQuantity" resultType="int">
+		SELECT cart_quantity
+		FROM cart
+		WHERE user_id = #{user_id}
+		AND product_id = #{product_id}
+	</select>
 
 	<!-- 장바구니 최종 가격 조회 -->
 	<select id="getTotalCartPrice">
-	SELECT SUM(p.product_price * (1 - p.product_discount / 100) * c.cart_quantity) AS total_price
-	FROM cart c
-	JOIN product p ON c.product_id = p.product_id
-	WHERE c.user_id = #{user_id};
+		SELECT COALESCE(SUM(p.product_price * (1 -
+		p.product_discount / 100) *
+		c.cart_quantity), 0) AS total_price
+		FROM
+		cart c
+		JOIN product p ON c.product_id = p.product_id
+		WHERE c.user_id =
+		#{user_id}
+		AND p.product_stock > 0;
 	</select>
-	
+
 	<!-- 장바구니 삭제 -->
 	<delete id="deleteCartItem">
-	DELETE FROM cart
-	WHERE user_id = #{user_id} AND product_id = #{product_id}
+		DELETE FROM cart
+		WHERE user_id = #{user_id} AND
+		product_id = #{product_id}
 	</delete>
-	
+
+
+	<!-- 전달 받은 cartNo에 해당되는 행 삭제 -->
+	<delete id="deleteCart" parameterType="list">
+		DELETE FROM cart
+		WHERE cart_id IN
+		<foreach item="cart_id" collection="chkArr" index="i"
+			open="(" separator="," close=")">
+			#{cart_id}
+		</foreach>
+	</delete>
+
 	<!-- 품절 상품 삭제 -->
 	<delete id="deleteSoldoutItem">
-	DELETE c 
-	FROM cart c
-	JOIN product p ON c.product_id = p.product_id
-	WHERE c.user_id = #{user_id} AND p.product_stock = 0;
+		DELETE c
+		FROM cart c
+		JOIN product p ON c.product_id =
+		p.product_id
+		WHERE c.user_id = #{user_id} AND p.product_stock = 0;
 	</delete>
 
 	<!-- 장바구니 수량 조회 -->
 	<select id="getTotalCartCount">
-	SELECT COUNT(DISTINCT product_id) AS total_cart_count
-	FROM cart
-	WHERE user_id = #{userId};
+		SELECT COUNT(DISTINCT product_id) AS total_cart_count
+		FROM cart
+		WHERE user_id = #{userId};
 	</select>
+
+	<!-- 장바구니에 동일 상품이 존재하는지 확인 -->
+	<select id="checkItemInCart" resultType="int"
+		parameterType="map">
+		SELECT COUNT(*)
+		FROM cart
+		WHERE product_id = #{product_id}
+		AND user_id=#{user_id}
+	</select>
+
+	<!-- 동일 상품이 존재하지 않으면 장바구니에 추가 -->
+	<insert id="insertCart">
+		INSERT INTO cart(cart_quantity, user_id, product_id)
+		VALUES(#{cart_quantity}, #{user_id}, #{product_id})
+	</insert>
+
+	<!-- 동일 상품이 존재하면 주문수량 변경 -->
+	<update id="updateQtyInCart"
+		parameterType="com.ibreed_project.model.CartVO">
+		UPDATE cart
+		SET cart_quantity = cart_quantity +
+		#{cart_quantity}
+		WHERE user_id=#{user_id} AND product_id=#{product_id}
+	</update>
+
+	<!-- 장바구니 수정 : 변경된 주문수량으로 변경 -->
+	<update id="updateCart"
+		parameterType="com.ibreed_project.model.CartVO">
+		UPDATE cart
+		SET cart_quantity = #{cart_quantity}
+		WHERE
+		cart_id = #{cart_id}
+	</update>
+
+	<!-- 주문서 작성에 필요한 회원정보 반환 -->
+	<select id="getUserInfo" parameterType="string"
+		resultType="com.ibreed_project.model.AccountVO">
+		SELECT user_id, user_name, user_phone_number, user_address,
+		user_address_detail
+		FROM user
+		WHERE user_id = #{user_id}
+	</select>
+
+	<!-- 주문 정보 저장 -->
+	<insert id="insertOrderInfo"
+		parameterType="com.ibreed_project.model.PaymentHistoryVO">
+		INSERT INTO payment_history(pay_id, pay_number,
+		recipient_name,
+		Recipient_address,
+		delivery_charge, total_order_amount,
+		payment_method, user_id)
+		VALUES(#{pay_id}, #{pay_number},
+		#{recipient_name}, #{Recipient_address},
+		#{delivery_charge},
+		#{total_order_amount},
+		#{payment_method},#{user_id})
+	</insert>
+
+	<!-- 주문 상품 정보 저장 : cart 테이블에서 가져와서 저장 (memId와 ordNo 필요해서 전달 받음) -->
+	<insert id="insertOrderProduct">
+		INSERT INTO order_history(order_id, product_id,
+		quantity)
+		SELECT #{order_id}, product_id, quantity
+		FROM cart WHERE
+		user_id=#{user_id}
+	</insert>
+
+	<!-- 주문 완료 후 해당 회원의 장바구니 내용 삭제 : memId -->
+	<delete id="deleteCartAfterOrder" parameterType="string">
+		DELETE FROM cart
+		WHERE user_id = #{user_id}
+	</delete>
 
 </mapper>

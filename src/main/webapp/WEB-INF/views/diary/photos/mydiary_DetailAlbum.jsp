@@ -9,6 +9,7 @@
 <title>앨범</title>
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/mydiary_layout.css' />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/css/diary/album/mydiary_detail_photos.css' />" />
+	<script src="<c:url value='/js/mydiary_home.js'/>"></script>
 	<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
 	<script src="<c:url value='/js/album_main.js'/>"></script>
 	<script src="<c:url value='/js/albumSearch.js'/>"></script>
@@ -31,23 +32,26 @@
 						</div>
 					</div>
 					<div id="middleBox">
-						<div id="upload">
-							<div class="allBtn btn"><input type="checkbox" class="allCheck" name="check"></div>
-							<form id="imageFileFrm">
-								<!-- <button id="uploadBtn" class="upBtn btn">⏫올리기</button> -->
-								<input type="file" id="uploadFile" class="upBtn btn"  value="⏫올리기">
-								<input type="submit" value="업로드">
-							</form><br>
-							<button id="albumDeleteBtn" class="btn">삭제</button>
-						</div>
-						<div id="ctrl">
-							<form>
-								<select>
-									<option value="latest" selected/>생성일 - 최신순
-									<option value="old" />생성일 - 오래된 순
-								</select>
-							</form>					
-						</div>
+					
+						<form id="uploadProfileImgForm"
+							  action="/mydiary/${sessionScope.user_id}/insertPhoto/${album_id}" method="post"
+							  enctype="multipart/form-data">
+							 
+							
+							<input type="file" id="fileInput" name="diary_profile_image" accept="image/*"
+									onchange="previewImage(event)" />
+							<div id="modalBox">
+								<div id="modal">
+									<div id="modal_body">
+										<input id="preview" type="image" src="/image/14_1.jpg"/>
+										<input type="submit" value="첨부하기" />
+										<input id="modal_noBtn" type="reset" value="취소"/>
+									</div>
+								</div>
+							</div>
+						</form>
+								
+								
 					</div>
 					<div id="albumResultBox">
 						<ul>
@@ -55,26 +59,24 @@
 								<li>
 									<div class="albumBox">
 										<div class="photoCheck"><input type="checkbox" class="chk"></div>
-										<img class="album_thimbnail" src="/image/${photo.photo_name}">
+										<img class="album_thimbnail" src="${photo.photo_path}">
 									</div>
 									<div id="menu" class="menu">
 										<ul>
 											<li><a class="detailBtn">👁️‍🗨️미리보기</a></li>
 											<li><a>📥내려받기</a></li>
-											<li><a class="deleteBtn"  data-del="${status.index}">🗑️삭제</a></li>
+											<li><a class="deleteBtn" name="photoNum" data-photoNum="${photo.photo_id}" data-albumId="${album_id}">🗑️삭제</a></li>
 											<li><a>🗂️폴더이동</a></li>
 											<li><a>📚굿즈 만들기</a></li>
 											<li><a>📖상세정보</a></li>
-											<li><a class="setCoverBtn" data-photoId="${photo.photo_id}" data-coverImg="${photo.photo_name}" href="#">🖼️앨범커버 지정</a></li>
+											<li><a class="setCoverBtn" data-photoId="${photo.photo_id}" data-coverImg="${photo.photo_path}" data-albumId="${album_id}" href="#">🖼️앨범커버 지정</a></li>
 										</ul>
-										<input type="hidden" id="photo_id" value="${photo.photo_id}">
-										<input type="hidden" id="photo_name" value="${photo.photo_name}">
 									</div>
 								</li>
 								<form id="detail_photo" name="detail_photo">
 									<div class="modal detail_modal">
 										<span class="xBtn">✕</span>
-										<input type="image" class="detail_image" src="/image/${photo.photo_name}">
+										<input type="image" class="detail_image" src="${photo.photo_path}">
 									</div>
 								</form>
 							</c:forEach>

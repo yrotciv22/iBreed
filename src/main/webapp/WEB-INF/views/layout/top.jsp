@@ -42,7 +42,7 @@
 					<div>
 						<a href="<c:url value='/shop/${sessionScope.user_id}/cart'/>">
 							<img class="cart" src="<c:url value='/image/cart.png'/>">
-							<div class="bell_circle" id="cart_value">${sessionScope.totalCount}</div>
+							<%-- <div class="bell_circle" id="cart_value">${sessionScope.totalCount}</div> --%>
 						</a>
 					</div>
 

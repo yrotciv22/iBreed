@@ -99,5 +99,6 @@ public class CommunityController {
 	}
 
 /////////////////각 게시판
+
 		
 }

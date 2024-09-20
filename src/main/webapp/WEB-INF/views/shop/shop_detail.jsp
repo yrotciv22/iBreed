@@ -41,6 +41,8 @@
 	
 		<div id="content">
 			<div id="topBox">
+			
+			<form id="cartForm" >
 				<div id="imgBox">
 					<img id="thumbmail" src=${prd.product_img}>
 				</div>
@@ -59,7 +61,7 @@
 							<p id="discount"><strong><fmt:formatNumber value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}"
 																			type="number" pattern="##,#00"/></strong><strong>원</strong></p>
 							<input id="prc" type="hidden" type="number" value="${Math.floor((prd.product_price-((prd.product_discount/100)*prd.product_price))/100)*100}">												
-							<input id="recent_prdIds" type="hidden" value="${prd.product_id}">
+							<input id="recent_prdIds" type="hidden" value="${prd.product_id}" name="product_id">
 						</div>
 						<div id="shipBox">
 							<div id="shipping">배송</div>
@@ -77,9 +79,13 @@
 								</div>
 								<div id="qtyCtr">
 									<input type="button" id="minusBtn" class="btn" value="-">
-									<div id="qty">1</div>
-									<!-- <input type="text" id="qty" value="1"> -->
+									 <div id="qty" name="cart_quantity">1</div> 
+									 
+									 <!-- 수량을 전송하는 숨겨진 input 태그 -->
+									<input type="hidden" id="cart_quantity_input" name="cart_quantity" value="1">
+									
 									<input type="button" id="plusBtn" class="btn" value="+">
+								
 								</div>
 								<div id="priceBox2">
 									<c:if test="${prd.product_discount > 1}">
@@ -96,22 +102,42 @@
 																			type="number" pattern="##,#00"/></span>
 							<span>원</span>
 						</div>
+						
+						
 						<div id="btnBox">
 							<c:if test="${empty likeResult}"> <!-- 로그인 하지 않았을 경우 -->
 								<input type="image" src="/image/no_like.png" id="likes">
 							</c:if>
 							<c:if test="${likeResult eq 'not_available'}"> 
-								<a href="<c:url value='/insertLike/${prd.product_id}'/>"><input type="image" src="/image/no_like.png" id="likes"></a>
+								<a href="<c:url value='/insertLike/${prd.product_id}'/>">
+								<input type="image" src="/image/no_like.png" id="likes"></a>
 							</c:if>
 							<c:if test="${likeResult eq 'available'}">
-								<a href="<c:url value='/deleteLike/${prd.product_id}'/>"><input type="image" src="/image/yes_like.png" id="likes"></a>
+								<a href="<c:url value='/deleteLike/${prd.product_id}'/>">
+								<input type="image" src="/image/yes_like.png" id="likes"></a>
 							</c:if>
+							
+						
 							<input type="button" value="장바구니" id="put_cart" >
+						
 							<input type="button" value="구매하기" id="buying">
 							
+						</div> <!-- btnBox 끝 -->
+						
+						<!-- 장바구니 알림 팝업창 -->
+						<div id="confirm_add_cart">
+							<div id="cart_close_btn">X</div>
+							<div class="popup_text"></div>
+							<div id="go_to_cart"><a href="<c:url value='/shop/${sessionScope.user_id}/cart'/>">장바구니 바로가기 ></a></div>
 						</div>
+	
+				
+						
+						
 					</div>
 				</div>
+				</form>
+				
 			</div>
 			
 			<nav>

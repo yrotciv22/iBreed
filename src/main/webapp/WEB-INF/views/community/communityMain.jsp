@@ -4,6 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %> 
 
 <c:set var="userId" value="${sessionScope.user_id}" />  
+<c:set var="boardId" value="${board.boardId}" />
+<c:set var="profileImage" value="${sessionScope.user_profile_image}" />
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -30,30 +33,20 @@
                 <!-- 로그인 상태에 따라 다른 내용을 표시 -->
                 <c:choose>
                     <c:when test="${not empty userId}">
-                        <!-- 로그인된 상태 -->
-                        <div id="after-login" class="profile-container" style="display: none;">
+<!--                         로그인된 상태
+ -->                        <div id="after-login" class="profile-container" style="display: none;">
                             <div class="profile-header">
-                            <!-- 프사없으면 기본프사적용, 경로재설정필요 -->
-                                <!-- 프사 없으면 기본 프사 적용 -->
-								 <img src="${user.user_profile_image}" /alt="Profile Image" class="profile-img">
-<%-- 								<img src="<c:url value='/image/icon-woman.png'/>" /alt="Profile Image" class="profile-img"> 
- --%>								
+                            
+                                <!-- 프사 없으면 기본 프사 적용,유저테이블에서 받아오기 -->
+								    <img src="${profileImage}" alt="Profile Image" class="profile-img">
                                 <div>
-                                   <p>${sessionScope.user_nickname}님</p>
+                                   <strong>${sessionScope.user_nickname}님</strong>
                                    <p>${sessionScope.user_id}</p>
-                                 
                                    <p>레벨${sessionScope.user_rate}</p>
-                                    
-                                    
                                 </div>
                             </div>
                             <hr>
-                            <div class="profile-links">
-                                <p><a href="/user/posts">내가 쓴 게시글</a></p>
-                                <p><a href="/user/comments">내가 쓴 댓글</a></p>
-                                <p><a href="/user/likes">좋아요한 게시글</a></p>
-                            </div>
-                            <hr>
+                           
 								<a href="/community/communityWrite" class="community-write-btn">커뮤니티 글쓰기</a>                            
 								<a href="/logout" class="logout-btn">로그아웃</a>
                         </div>
@@ -101,7 +94,7 @@
                             <ul class="latest-news-list">
                              	 <c:forEach var="post" items="${popularPosts}">
 						            <li class="post-item">
-						                <a href="#">${post.postTitle}</a>
+						                  <a href="/community/board/${post.boardId2}/postdetail/${post.postId}">${post.postTitle}</a>
 						                <span class="post-meta">
 						                    <span class="post-author">${post.userId}</span>
 						                    <span class="post-separator"> · </span>
@@ -118,7 +111,7 @@
                             <ul class="latest-news-list">
                          		 <c:forEach var="post" items="${recentPosts}">
 					              <li class="post-item">
-						                <a href="#">${post.postTitle}</a>
+						                   <a href="/community/board/${post.boardId2}/postdetail/${post.postId}">${post.postTitle}</a>
 						                <span class="post-meta">
 						                    <span class="post-author">${post.userId}</span>
 						                    <span class="post-separator"> · </span>
@@ -136,7 +129,7 @@
 					        <ul class="latest-news-list">
 					            <c:forEach var="post" items="${pregnancyPosts}">
 					                <li class="post-item">
-						                <a href="#">${post.postTitle}</a>
+						                  <a href="/community/board/${post.boardId2}/postdetail/${post.postId}">${post.postTitle}</a>
 						                <span class="post-meta">
 						                    <span class="post-author">${post.userId}</span>
 						                    <span class="post-separator"> · </span>
@@ -154,7 +147,7 @@
 					        <ul class="latest-news-list">
 					            <c:forEach var="post" items="${parentingPosts}">
 					                 <li class="post-item">
-						                <a href="#">${post.postTitle}</a>
+						                  <a href="/community/board/${post.boardId2}/postdetail/${post.postId}">${post.postTitle}</a>
 						                <span class="post-meta">
 						                    <span class="post-author">${post.userId}</span>
 						                    <span class="post-separator"> · </span>
@@ -173,7 +166,7 @@
 					        <ul class="latest-news-list">
 					            <c:forEach var="post" items="${reviewPosts}">
 					                <li class="post-item">
-						                <a href="#">${post.postTitle}</a>
+						                  <a href="/community/board/${post.boardId2}/postdetail/${post.postId}">${post.postTitle}</a>
 						                <span class="post-meta">
 						                    <span class="post-author">${post.userId}</span>
 						                    <span class="post-separator"> · </span>
@@ -192,7 +185,7 @@
 					        <ul class="latest-news-list">
 					            <c:forEach var="post" items="${marketPosts}">
 					                 <li class="post-item">
-						                <a href="#">${post.postTitle}</a>
+						                  <a href="/community/board/${post.boardId2}/postdetail/${post.postId}">${post.postTitle}</a>
 						                <span class="post-meta">
 						                    <span class="post-author">${post.userId}</span>
 						                    <span class="post-separator"> · </span>
@@ -211,7 +204,7 @@
 					        <ul class="latest-news-list">
 					            <c:forEach var="post" items="${jobPosts}">
 					                 <li class="post-item">
-						                <a href="#">${post.postTitle}</a>
+						                  <a href="/community/board/${post.boardId2}/postdetail/${post.postId}">${post.postTitle}</a>
 						                <span class="post-meta">
 						                    <span class="post-author">${post.userId}</span>
 						                    <span class="post-separator"> · </span>

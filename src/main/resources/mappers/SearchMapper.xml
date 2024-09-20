@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ibreed_project.dao.IPostDAO">
+	<resultMap id="postSearchResultMap"
+		type="com.ibreed_project.model.PostVO">
+		<id property="postId" column="post_id" />
+		<result property="postTitle" column="post_title" />
+		<result property="postContent" column="post_content" />
+		<result property="postCreate" column="post_create" />
+		<result property="postUpdate" column="post_update" />
+		<result property="postCount" column="post_count" />
+		<result property="postHeading" column="post_heading" />
+		<result property="userId" column="user_id" />
+		<result property="postStatus" column="post_status" />
+		<result property="boardId2" column="board_id2" />
+		<result property="postImage" column="post_image" />
+		<result property="postVideo" column="post_video" />
+		<result property="postUrl" column="post_url" />
+		<result property="postLikes" column="likes" />
+	</resultMap>
+
+
+	<!-- 게시글 검색 -->
+	<select id="postSearch" parameterType="string" resultMap="postSearchResultMap">
+		SELECT *
+		FROM post
+		WHERE post_title LIKE CONCAT('%', #{keyword}, '%')
+		OR post_content LIKE CONCAT('%', #{keyword}, '%');
+	</select>
+	
+	<!-- 검색 개수 조회 -->
+	<select id="postSearchCount" parameterType="string" resultType="int">
+    	SELECT COUNT(*)
+    	FROM post
+    	WHERE post_title LIKE CONCAT('%', #{keyword}, '%')
+    	OR post_content LIKE CONCAT('%', #{keyword}, '%');
+</select>
+
+</mapper>

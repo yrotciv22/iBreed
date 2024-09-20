@@ -37,54 +37,35 @@
 			<div>
 				<div class="confirm_title">주문상품정보</div>
 				<div class="order_product content_wrap">
+				
 				<!-- 아이템 한개 -->
+				  <c:forEach items="${orderItems}" var="item">
 					<div class="one_item_wrap">
 
 						<div class="prd_image">
-							<img
-								src="<c:url value='https://shop-phinf.pstatic.net/20231127_19/1701065544326boLC2_JPEG/5464822140429117_1991374843.jpg?type=f296_296'/>" />
+<!-- 							<img
+ 								src="<c:url value='https://shop-phinf.pstatic.net/20231127_19/1701065544326boLC2_JPEG/5464822140429117_1991374843.jpg?type=f296_296'/>" />
+-->
+						<img src="<c:url value='${item.product_img}'/>" />
 						</div>
 						<div>
 							<div class="column_wrap" style="width: 560px">
-								<div class="prd_name">상품명</div>
-								<div>옵션: [색상] Grey</div>
+							<div class="prd_name">${item.product_name}</div> 
+								<!-- <div class="prd_name">{item.product_name}</div> -->
+
 
 								<div class="one_prd_price">
-									<span>10,000</span><span>원</span> /<span>수량 : 1개</<span>>
+									<span>${item.product_price}</span>원 / 수량 : <span>${item.cart_quantity}<span>개
 							
 								</div>
-								<div class="coupon">
-									쿠폰적용가 : <span>9,000</span>원
-								</div>
+								
 							</div>
 						</div>
 
 					</div>
+					</c:forEach>
 					<!-- 아이템 한개 끝 -->
-					<!-- 아이템 한개 -->
-					<div class="one_item_wrap">
-
-						<div class="prd_image">
-							<img
-								src="<c:url value='https://shop-phinf.pstatic.net/20231127_19/1701065544326boLC2_JPEG/5464822140429117_1991374843.jpg?type=f296_296'/>" />
-						</div>
-						<div>
-							<div class="column_wrap" style="width: 560px">
-								<div class="prd_name">상품명</div>
-								<div>옵션: [색상] Grey</div>
-
-								<div class="one_prd_price">
-									<span>10,000</span><span>원</span> /<span>수량 : 1개</<span>>
-							
-								</div>
-								<div class="coupon">
-									쿠폰적용가 : <span>9,000</span>원
-								</div>
-							</div>
-						</div>
-
-					</div>
-					<!-- 아이템 한개 끝 -->
+					
 					</div>
 			</div>
 		</div>

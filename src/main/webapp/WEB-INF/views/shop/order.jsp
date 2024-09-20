@@ -33,7 +33,8 @@
 		</div>
 
 
-		<form class="order_form_wrap">
+		<form id="payForm" action="<c:url value='/shop/order_confirm'/>"
+			method="post">
 
 			<div class="left_box">
 				<div class="order_info content_wrap">
@@ -41,7 +42,8 @@
 					<div class="input_wrap">
 
 						<label> <input type="radio" name="address"
-							value="existing_address"  checked required onclick="setAddressType('existing')">기존 배송지
+							value="existing_address" checked required
+							onclick="setAddressType('existing')">기존 배송지
 						</label> <label> <input type="radio" name="address"
 							value="new_address"> 새로운 배송지
 						</label>
@@ -52,14 +54,17 @@
 							required value="${user.user_name}" />
 					</div>
 					<div class="input_wrap">
-						<label class="input_label" for="email" >이메일 <span>*</span></label>
-						<input type="text" id="email_username" name="email_username" 
-							class="custom-input" required /> &nbsp;@&nbsp;<input type="text"
-							id="email_domain" name="email_domain" class="custom-input"
-							required />
+						<label class="input_label" for="email">이메일 <span>*</span></label>
+
+						<input type="text" id="email_username" name="email_username"
+							class="custom-input" required /> &nbsp;@&nbsp; <input
+							type="text" id="email_domain" name="email_domain"
+							class="custom-input" required />
 					</div>
 					<div class="input_wrap">
 						<label class="input_label" for="phone">연락처 1 <span>*</span></label>
+
+
 						<input type="tel" id="phone1" name="phone1" class="custom-input"
 							required maxlength="3" size="3" /> &nbsp;-&nbsp; <input
 							type="tel" id="phone2" name="phone2" class="custom-input"
@@ -78,8 +83,8 @@
 					<div class="input_wrap">
 						<label class="input_label" for="address">주소 <span>*</span></label><input
 							type="text" id="postal_code" name="postal_code"
-							class="custom-input" placeholder="우편번호" required />
-						<div class="search_zipcode">우편번호 검색</div>
+							class="custom-input" placeholder="우편번호" />
+						<!-- <div class="search_zipcode">우편번호 검색</div> -->
 					</div>
 					<div class="address_wrap">
 						<input type="text" id="address_line1" name="address_line1"
@@ -135,10 +140,19 @@
 											: ${item.cart_quantity}개</<span>
 									</div>
 									<div class="coupon">
-										쿠폰적용가 : <span>9,000</span>원
+										쿠폰적용가 : <span>0</span>원
 									</div>
 								</div>
 							</div>
+
+							<!-- 주문한 상품 정보들 -->
+							<input type="hidden" name="product_id" value="${item.product_id}">
+							<input type="hidden" name="product_name"
+								value="${item.product_name}"> <input type="hidden"
+								name="product_img" value="${item.product_img}"> <input
+								type="hidden" name="product_price" value="${item.product_price}">
+							<input type="hidden" name="cart_quantity"
+								value="${item.cart_quantity}">
 
 
 						</div>
@@ -181,19 +195,22 @@
 					<div class="total_prd_amount">
 						<div>총 상품금액</div>
 						<div>
-							<span>30,000</span><span>원</span>
+							<span>${totalCartPrice}</span> 원 <input type="hidden"
+								name="totalCartPrice" value="${totalCartPrice}">
+
 						</div>
 					</div>
 					<div class="total_shipping_fee">
 						<div>배송비</div>
 						<div>
-							<span>+</span></span><span>3.000</span><span>원</span>
+							<span>+</span><span>${shippingFee}</span> 원 <input type="hidden"
+								name="shippingFee" value="${shippingFee}">
 						</div>
 					</div>
 					<div class="total_discount coupon">
 						<div>쿠폰할인 금액</div>
 						<div>
-							<span>-</span></span><span>5.000</span><span>원</span>
+							<span>-</span></span><span>0</span> 원
 						</div>
 
 					</div>
@@ -201,20 +218,19 @@
 
 						<div>마일리지 사용</div>
 						<div>
-							<span>-</span></span><span>0</span><span>원</span>
+							<span>-</span><span>0</span> 원
 						</div>
 					</div>
 					<div class="final_payment_amount">
 						<div>최종 결제 금액</div>
 						<div>
-							<span>10,000</span><span>원</span>
+							<span>${shippingFee + totalCartPrice}</span><span>원</span>
 						</div>
 					</div>
 
 					<div class="final_pay_agreement">
 						<div>
-							<label class="custom-checkbox"> 
-							<input type="checkbox"
+							<label class="custom-checkbox"> <input type="checkbox"
 								id="checkAll" name="checkAll" /> <span class="checkmark"></span>
 							</label> <label for="">주문 내용을 확인했으며, 아래 내용에 모두 동의합니다.</label>
 						</div>
@@ -242,11 +258,11 @@
 
 					<div class="pay_noti">결제 및 계좌 안내 시 상호명은 (주)아이브리드로 표기되니 참고
 						부탁드립니다.</div>
-					<a href="<c:url value='#'/>" id="final_order_btn">
-						<div id="order_all_btn">결제하기</div>
-					</a>
+					<button type="submit" id="final_order_btn" form="payForm">결제하기</button>
+
 				</div>
 			</div>
+
 		</form>
 
 
@@ -262,10 +278,12 @@
 
 
 	</div>
-	
-	
-<script>
+
+
+	<script>
     function setAddressType(type) {
+       
+
         const inputs = document.querySelectorAll('#name, #email_username, #email_domain, #phone1, #phone2, #phone3, #address_line1, #address_line2');
         
         if (type === 'existing') {
@@ -283,16 +301,18 @@
 
     // 사용자의 기존 값을 가져오는 함수 (서버에서 미리 제공된 값을 사용할 수 있음)
     function getUserValue(field) {
+    	 
         const user_phone_number = "${user.user_phone_number}";
+        
         
         const user = {
             name: "${user.user_name}",
-            email_username: "${user.user_email.split('@')[0]}",
-            email_domain: "${user.user_email.split('@')[1]}",
+            email_username: "${user.user_email}",
+            email_domain: "${user.emailDomain}",
             phone1: user_phone_number.length === 11 ? user_phone_number.slice(0, 3) : user_phone_number,  // 앞의 3자리
             phone2: user_phone_number.length === 11 ? user_phone_number.slice(3, 7) : '', 
             phone3: user_phone_number.length === 11 ? user_phone_number.slice(7, 11) : '', 
-         /*    address_line1: "${user.user_address}" */
+         	address_line1: "${user.user_address}",
             address_line2: "${user.user_address_detail}"
         };
         return user[field] || '';
@@ -303,6 +323,6 @@
         setAddressType('existing');
     };
 </script>
-	
+
 </body>
 </html>

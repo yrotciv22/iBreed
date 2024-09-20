@@ -1,6 +1,7 @@
 package com.ibreed_project.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ibreed_project.model.PostVO;
 import com.ibreed_project.service.CartService;
 import com.ibreed_project.service.CommunityMainService;
+import com.ibreed_project.service.PostService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -25,6 +28,9 @@ public class MainController {
 	@Autowired
 	CartService cartService;
 
+	@Autowired
+	PostService postService;
+	
 	// 장바구니 개수
 	 @ModelAttribute("cartItemCount") 
 	 public void getCartItemCount(HttpSession session) { 
@@ -37,6 +43,7 @@ public class MainController {
 	     session.setAttribute("totalCount", totalCount);	 
 	 }
 	
+	 // 메인화면
 	@RequestMapping("/")
 	public String viewIndex(Model model) {
 		
@@ -64,8 +71,30 @@ public class MainController {
 	}
 
 	
-	
-	
-	// 검색
+	// 메인에서 게시글 통합 검색
+	@RequestMapping("/post/search")
+	public String searchPosts(@RequestParam String keyword,
+								Model model) {
+		
+		System.out.println("Controller keyword= "+keyword);
+		
+		ArrayList<PostVO> postList = postService.postSearch(keyword);
+		int resultCount = postService.postSearchCount(keyword);
+		
+	    if (postList != null && !postList.isEmpty()) {
+	        for (PostVO post : postList) {
+	            System.out.println("Post ID: " + post.getPostId());
+	            System.out.println("Post Title: " + post.getPostTitle());
+	        }
+	    } else {
+	        System.out.println("No posts found for keyword: " + keyword);
+	    }
+	    
+	    
+		model.addAttribute("postList", postList);
+		model.addAttribute("resultCount", resultCount);
+
+		return "community/search_page";
+	}
 	
 }

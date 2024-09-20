@@ -1,5 +1,7 @@
 package com.ibreed_project.controller;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ibreed_project.model.BoardVO;
 import com.ibreed_project.model.CommentVO;
@@ -32,11 +35,13 @@ public class BoardController {
 	
 	
 	//게시판 탭별 이동
+
 	  @GetMapping("/board/{boardId}")
 	    public String viewBoard(@PathVariable("boardId") int boardId, 
 	    											Model model,
+	    										
 	    											@RequestParam(value = "page", defaultValue = "1") int page,
-	 				                               @RequestParam(value = "size", defaultValue = "10") int size) {
+	 				                               @RequestParam(value = "size", defaultValue = "15") int size) {
 	        // 특정 게시판 정보 가져오기
 	        BoardVO board = boardService.getBoardById(boardId);
 	        model.addAttribute("board", board);
@@ -46,10 +51,12 @@ public class BoardController {
 	        // 페이지네이션 처리된 게시글 가져오기
 	        int offset = (page - 1) * size;
 	        List<PostVO> posts = communityMainService.getPostsByBoardIdWithPagination(boardId, offset, size);
-
+	        
 	        // 총 페이지 수 계산
 	        int totalPages = communityMainService.getTotalPages(boardId, size);
-
+	        	
+	        	
+	        
 	        model.addAttribute("posts", posts);
 	        model.addAttribute("currentPage", page);
 	        model.addAttribute("totalPages", totalPages);
@@ -73,12 +80,12 @@ public class BoardController {
 	        
 	    }
 	/////////////////////////검색기능 추가해야함 게시판구현다되고 추가하자
-	 //메인페이지에서의 글쓰기 폼
+	 //메인페이지에서의 글쓰기 폼열기
 	  @GetMapping("/communityWrite")
 	    public String showCommunityWriteForm() {
 	        return "community/communityWrite"; 
 	    }
-	//각 게시판글쓰기폼
+	  //각 게시판글쓰기폼
 	  @GetMapping("/board/{boardId}/communityWrite")
 	    public String communityWrite(@PathVariable("boardId") int boardId, 
 	    													Model model) {
@@ -137,34 +144,147 @@ public class BoardController {
 	      return "redirect:/community/board/" + boardId;
 	  }
 
-	  // 게시글 상세보기
-	    @GetMapping("/post/{postId}")
-	    public String viewPostDetail(@PathVariable("postId") int postId,
-	                                 HttpSession session,
-	                                 Model model) {
-	        // 게시글 정보 가져오기
-	    //    PostVO post = communityMainService.getPostById(postId);
-	  //      model.addAttribute("post", post);
+	// 게시글 상세보기
+	  @GetMapping("/board/{boardId}/postdetail/{postId}")
+	  public String viewPostDetail(@PathVariable("boardId") int boardId,
+	                               @PathVariable("postId") int postId,
+	                               HttpSession session,
+	                               Model model) {
+		  
+		  String currentUserId = (String) session.getAttribute("user_id");  
+		  
+	      // 게시글 정보 가져오기
+	      PostVO post = communityMainService.getPostById(postId);
+	      model.addAttribute("post", post);
 
-	        // 게시글에 달린 댓글 가져오기
-	        List<CommentVO> comments = commentService.getCommentsByPostId(postId);
-	        model.addAttribute("comments", comments);
+	      // 게시판 정보 가져오기
+	      BoardVO board = boardService.getBoardById(boardId);
+	      model.addAttribute("board", board);
 
-	        // 로그인된 사용자의 좋아요 상태 확인
-	//        String userId = (String) session.getAttribute("user_id");
-	 //       boolean isLiked = likeService.isPostLikedByUser(postId, userId);
-	  //     model.addAttribute("isLiked", isLiked);
+	      // 게시글에 달린 댓글 가져오기
+	      List<CommentVO> comments = commentService.selectCommentsByPostId(postId);
+	      System.out.println("Before reverse: " + comments.size());
+	      Collections.reverse(comments);
+	      System.out.println("After reverse: " + comments.size());
+	      model.addAttribute("comments", comments);
+	      int commentCount = commentService.getCommentCountByPostId(postId);  // 댓글 수 가져오기
+	      model.addAttribute("commentCount", commentCount);  // 댓글 수 모델에 추가	
+	      
+	      
+	        // userId를 통해 작성자의 닉네임 조회
+	    
+	        String authorUserId = post.getUserId();
+	        String authorNickname = communityMainService.getAuthorNicknameByUserId(authorUserId);
+	        model.addAttribute("authorNickname", authorNickname);
+	        // 작성자의 프로필 이미지 조회
+	        String profileImage = communityMainService.getAuthorProfileImage(postId);
+	        model.addAttribute("profileImage", profileImage);
+	        
+	        // 조회수 증가
+	        // 게시글 작성자와 현재 사용자가 다를 때만 조회수 증가
+	        if (!post.getUserId().equals(currentUserId)) {
+	            communityMainService.increasePostViewCount(postId);  // 조회수 증가 서비스 호출
+	        }
 
-	        return "community/communitydetail";
-	    }
+	   
+	        
+
+
+	      return "community/communitydetail";
+	  }
 	  
-	  //게시글수정
+	  //게시글수정 폼 열기
+	  @GetMapping("/post/edit/{postId}")
+		public String showEditPostForm(
+		                               @PathVariable("postId") int postId, 
+		                               Model model) {
+		    PostVO post = communityMainService.getPostById(postId);
+		    model.addAttribute("post", post);
+		    return "community/communityEdit";
+		}
 	  
-	   //게시글 삭제
+	  @PostMapping("/post/update/{postId}")
+	  public String updatePost(@PathVariable("postId") int postId, 
+	                            PostVO postVO,
+	                            @RequestParam("boardId")int boardId) {
+		  postVO.setPostId(postId); // 수정할 게시글의 ID 설정
+		  postVO.setBoardId2(boardId);
+
+	      communityMainService.updatePost(postVO); // 게시글 수정
+	      return "redirect:/community/board/"+boardId; // 수정 후 리다이렉트
+	  }
+
+	// 게시글 삭제 처리
+	  @ResponseBody
+	  @PostMapping("/post/delete/{postId}")
+	  public String deletePost(
+	                           @PathVariable("postId") int postId,
+	                           @RequestParam("boardId") int boardId) {
+	      // 게시글 삭제 서비스 호출
+	      communityMainService.deletePost(postId);
+	      
+	      // 삭제 후 게시판으로 리다이렉트
+	      return "redirect:/community/board/" + boardId;
+	  }
+
+
 	  
-	  //좋아요 상태 확인
-	  
-	  //좋아요,좋아요 취소
+	// 좋아요 상태 확인
+	  @ResponseBody
+	  @GetMapping("/like/status")
+	  public HashMap<String, Object> checkLikeStatus(
+	      @RequestParam("userId") String userId, 
+	      @RequestParam("postId") int postId) {
+	      
+	      boolean isLiked = communityMainService.isPostLikedByUser(postId, userId);
+	      int likeCount = communityMainService.getLikeCount(postId);
+	      
+	      HashMap<String, Object> response = new HashMap<>();
+	      response.put("isLiked", isLiked);
+	      response.put("likeCount", likeCount);
+
+	      return response;
+	  }
+
+	// 좋아요 토글
+	  @ResponseBody
+	  @PostMapping("/like/post/{postId}")
+	  public HashMap<String, Object> toggleLike(
+	      @RequestParam("userId") String userId, 
+	      @PathVariable("postId") int postId) {
+	      
+	      boolean isLiked = communityMainService.isPostLikedByUser(postId, userId);
+	      
+	      if (isLiked) {
+	          communityMainService.unlikePost(postId, userId);  // 좋아요 취소
+	      } else {
+	          communityMainService.likePost(postId, userId);   // 좋아요 추가
+	      }
+	      
+	      // 변경된 좋아요 수 반환
+	      int likeCount = communityMainService.getLikeCount(postId);
+	      
+	      HashMap<String, Object> response = new HashMap<>();
+	      response.put("status", isLiked ? "unliked" : "liked");
+	      response.put("likeCount", likeCount);
+	      
+	      return response;
+	  }
+		
+	  @GetMapping("/search")
+	  public String searchPosts(@RequestParam("keyword") String keyword, 
+			  								Model model) {
+		  
+		  
+		  List<PostVO> searchResults = communityMainService.searchPostsByKeyword(keyword);
+		    model.addAttribute("posts", searchResults);
+		    model.addAttribute("keyword", keyword);
+		    System.out.println("검색어: " + keyword);
+		    System.out.println("검색 결과: " + searchResults);
+		      
+	      return "community/communitysearchResult";  // 검색 결과를 보여줄 JSP 페이지
+	  }
+		
 }
 	
 

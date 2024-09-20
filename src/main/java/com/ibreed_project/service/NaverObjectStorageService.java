@@ -1,6 +1,5 @@
 package com.ibreed_project.service;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -13,9 +12,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
 @Service
@@ -88,6 +85,52 @@ public class NaverObjectStorageService {
 	                tempFile.delete();
 	            }
 	        }
+		return fileUrl;
+	}
+	
+	public String uploadPhoto(MultipartFile file) {
+		
+		System.out.println("[Naver] NaverObjectStorageService");
+		System.out.println("[Naver] filePath= " + file);
+		
+		// 버킷 생성 
+		final String endPoint = "https://kr.object.ncloudstorage.com";
+		final String regionName = "kr-standard";
+		final String accessKey = "ncp_iam_BPASKR4XKVgJ9B7exiwM";
+		final String secretKey = "ncp_iam_BPKSKRVByyDVtT7HSDwPk6y0FPJoDLgV7o";
+		
+		// S3 client
+		final AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endPoint, regionName))
+				.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretKey)))
+				.build();
+		String bucketName = "ibreed-profile-image";
+		
+		File tempFile = null;
+		
+		String fileUrl ="";
+		try {
+			// MultipartFile을 임시 파일로 변환
+			tempFile = File.createTempFile("profile_image", ".png");
+			file.transferTo(tempFile);
+			
+			String objectName = "mydiary-home/" + tempFile.getName();
+			
+			s3.putObject(new PutObjectRequest(bucketName, objectName, tempFile)
+					.withCannedAcl(CannedAccessControlList.PublicRead));
+			
+			fileUrl = String.format("https://%s.%s/%s", bucketName, endPoint.replace("https://", ""),
+					objectName);
+			System.out.println("[Naver] fileUrl: " + fileUrl);
+			return fileUrl;
+			
+		} catch (IOException | SdkClientException e) {
+			e.printStackTrace();
+		} finally {
+			if (tempFile != null && tempFile.exists()) {
+				tempFile.delete();
+			}
+		}
 		return fileUrl;
 	}
 

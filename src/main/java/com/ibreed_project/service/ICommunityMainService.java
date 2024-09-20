@@ -33,5 +33,35 @@ public interface ICommunityMainService {
     // 전체 페이지 수 계산 메서드
     int getTotalPages(int boardId, int size);
     void savePost(PostVO postVO);
+    
+   //게시글상세보기 
+    PostVO getPostById(int postId);
         
+    //닉네임 조회
+    String getAuthorNicknameByUserId(String userId);
+    //프로필이미지 가져오기
+	String getAuthorProfileImage(int postId);
+	
+	 // 게시글 수정
+    void updatePost(PostVO postVO);
+
+    // 게시글 삭제
+    void deletePost(int postId);
+    
+    // 게시글 좋아요 여부 확인
+    boolean isPostLikedByUser(int postId, String userId);
+    int getLikeCount(int postId);
+    // 게시글 좋아요
+    void likePost(int postId, String userId);
+
+    // 게시글 좋아요 취소
+    void unlikePost(int postId, String userId);
+	
+	//조회수
+    void increasePostViewCount(int postId);
+
+	
+	
+	
+
     }

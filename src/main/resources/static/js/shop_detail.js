@@ -37,19 +37,28 @@
 		let now = parseInt(a) + 1;
 		$('#qty').html(now);	
 		
+		// 추가
+		$("#cart_quantity_input").val(now);
+		
+		 // 마이너스 버튼 활성화
 		$('#minusBtn').css('opacity', '100%');
 		
+		  // 가격 업데이트
 		$('#price3').text(Number(price*now).toLocaleString());
 	});
+	
+	
 	$('#minusBtn').on('click', function() { // 플러스 버튼 클릭
 		let a = $('#qty').text();
 		
 		if(parseInt(a) > 1) {
 			let now = parseInt(a) - 1;
 			$('#qty').html(now);
+			// 추가
+			$("#cart_quantity_input").val(now);
 				
 			if(a == 2) {
-			$('#minusBtn').css('opacity', '20%');
+				$('#minusBtn').css('opacity', '20%');
 			}
 			
 			$('#price3').text(Number(price*now).toLocaleString());
@@ -137,6 +146,9 @@
 	// 로그인 했을 경우, 안했을 경우
 	// 찜하기버튼
 	$("#likes").on("click", function() {
+	
+	    event.preventDefault(); //  장바구니 폼 제출 막기
+	
 		if(userId) {
 		
 	 		// src 값을 가져와서 찜버튼이 눌렸는지 안눌렸는지 확인함 
@@ -151,23 +163,68 @@
 		}
 	});
 	
-	// 장바구니 버튼
-	$("#put_cart").on("click", function() {
-		if(userId) {
-			alert("로그인 했나? "+ userId);
-		} else {
-			alert("로그인 후에 본 서비스를 이용하실 수 있습니다.");
-		}
+	// 예은 수정 -----------------------------
+	
+        
+	// 기존 장바구니 폼 제출 이벤트
+
+	
+	$("#put_cart").on("click", function(event) {
+    event.preventDefault();
+    
+    const qty = $('#qty').html();
+    $('#cart_quantity_input').val(qty);
+    
+    // 장바구니에 담기
+    $.ajax({
+        type: "post",
+        url: "/shop/insertCart",
+        data: $("#cartForm").serialize(),
+        success: function(response) {
+            $("#confirm_add_cart").css("display", "flex");
+            $(".popup_text").html(response);
+        },
+        error: function() {
+            alert("장바구니 추가 중 오류가 발생했습니다.");
+        }
+    });
+});
+	
+	// 팝업창 닫기 
+	$("#cart_close_btn").on("click", function() {
+		$("#confirm_add_cart").css("display", "none");
+	
 	});
 	
+	
+
+
 	// 구매하기 버튼
-	$("#buying").on("click", function() {
+	 $("#buying").on("click", function() {
+	   event.preventDefault();
+	   
 		if(userId) {
-			alert("로그인 했나? "+ userId);
+			 const qty = $('#qty').html();
+    $('#cart_quantity_input').val(qty);
+    
+    // 바로 구매 처리
+    $.ajax({
+        type: "post",
+        url: "/shop/buyNow",
+        data: $("#cartForm").serialize(),
+        success: function(response) {
+            window.location.href = "/shop/order"; // 바로 구매 후 결제 페이지로 이동
+        },
+        error: function() {
+            alert("구매 중 오류가 발생했습니다.");
+        }
+    });
 		} else {
 			alert("로그인 후에 본 서비스를 이용하실 수 있습니다.");
 		}
-	});
+	 });
+	
+	// 예은 수정 끝 ------------------------------------
 	
 	
 	// 페이지네이션

@@ -6,6 +6,7 @@ package com.ibreed_project.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -27,11 +28,14 @@ public class MydiaryService implements IMydiaryService {
 	}
 
 	@Override
-	public void updateMydiary(MydiaryVO vo, String category) {
+	public void updateMydiary(@Param("vo") MydiaryVO vo, @Param("category") String category) {
 
-		System.out.println("MydiaryService category= " +category);
+		System.out.println("MydiaryService category= " + category);
+		
+		System.out.println("MydiaryService category vo user_id= " + vo.getUser_id());
+		System.out.println("MydiaryService category vo title= " + vo.getDiary_title());
 
-		dao.updateMydiary(vo,category);
+		dao.updateMydiary(vo, category);
 	}
 	
 	@Override

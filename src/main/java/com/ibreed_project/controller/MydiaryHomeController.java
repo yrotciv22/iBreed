@@ -26,58 +26,47 @@ public class MydiaryHomeController {
 	/* 마이다이어리 홈 (제목, 기분, 프로필) 수정 */
 
 	@RequestMapping(value = "/mydiary/{user_id}/updateDiary/{category}", method = RequestMethod.POST)
-	public String updateMydiary(@PathVariable("user_id") String user_id, 
-			@PathVariable("category") String category,
-			@ModelAttribute MydiaryVO vo, 
-			Model model) {
+	public String updateMydiary(@PathVariable("user_id") String user_id, @PathVariable("category") String category,
+			@ModelAttribute MydiaryVO vo, Model model) {
 
+		System.out.println("MydiaryHomeController user_id? " + user_id);
+		System.out.println("MydiaryHomeController category? " + category);
+
+		mydiaryService.updateMydiary(vo, category);
+
+		System.out.println("getDiary_sentiment=?? " + vo.getDiary_sentiment());
+		System.out.println("getUser_id" + vo.getUser_id());
 		
-	
-		// System.out.println("MydiaryHomeController user_id? " + user_id);
-		// System.out.println("MydiaryHomeController category? " + category);
-		
-		// String selectedImgPath = "C:/Users/BOK/Desktop/test/intel.png";
-		
-		/*
-		 * String selectedImgPath = vo.getDiary_profile_image();
-		 * System.out.println("MydiaryHomeController selectedImgPath? " +
-		 * selectedImgPath);
-		 * 
-		 * String uploadedFileUrl =
-		 * naverObjectStorageService.uploadFile(selectedImgPath);
-		 * System.out.println("MydiaryHomeController uploadedFileUrl? " +
-		 * uploadedFileUrl);
-		 * 
-		 * vo.setDiary_profile_image(uploadedFileUrl); mydiaryService.updateMydiary(vo,
-		 * category);
-		 * 
-		 * System.out.println("getDiary_profile_image" + vo.getDiary_profile_image());
-		 */
-		
+		// 파일 업로드
+
+		System.out.println("diary_profile_image_path=?? " + vo.getDiary_profile_image_path());
+		System.out.println("getDiary_profile_image=?? " + vo.getDiary_profile_image());
+
 		MultipartFile file = vo.getDiary_profile_image();
+		
+		
+		if (file != null && !file.isEmpty()) {
+			try {
+				// String fileName = file.getOriginalFilename();
+				// System.out.println("[HomeController] Received fileName: " + fileName);
 
-	    if (file != null && !file.isEmpty()) {
-	    	  try {
-	              String fileName = file.getOriginalFilename();
-	              System.out.println("[HomeController] Received file: " + fileName);
+				System.out.println("[HomeController] Received file: " + file);
+				
+				// 파일을 S3에 업로드합니다.
+				String uploadedFileUrl = naverObjectStorageService.uploadFile(file);
+				System.out.println("[HomeController] Uploaded file URL: " + uploadedFileUrl);
 
-	              // 파일을 S3에 업로드합니다.
-	              String uploadedFileUrl = naverObjectStorageService.uploadFile(file);
-	              System.out.println("[HomeController] Uploaded file URL: " + uploadedFileUrl);
+				vo.setDiary_profile_image_path(uploadedFileUrl); // URL을 새 필드에 설정
+				
+				mydiaryService.updateMydiary(vo, category);
 
+			} catch (Exception e) {
+				e.printStackTrace();
+				model.addAttribute("message", "파일 업로드 중 오류가 발생했습니다.");
+			}
+		}
 
-	              vo.setDiary_profile_image_path(uploadedFileUrl); // URL을 새 필드에 설정
-	              
-	              mydiaryService.updateMydiary(vo, category);
-
-	          } catch (Exception e) {
-	              e.printStackTrace();
-	              model.addAttribute("message", "파일 업로드 중 오류가 발생했습니다.");
-	          }
-	    }
-	    
-		return "redirect:/mydiary/" + user_id + "/home"; 
-
+		return "redirect:/mydiary/" + user_id + "/home";
 	}
 
 }

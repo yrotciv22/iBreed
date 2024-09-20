@@ -23,7 +23,8 @@ $(document).ready(function(){
 
         if (allChecked) {
             // 모두 체크되었으면 결제 페이지로 이동
-            window.location.href = '/shop/order_confirm';
+           // window.location.href = '/shop/order_confirm';
+              $('#orderForm').submit();
         } else {
             // 체크박스 중 하나라도 체크되지 않았을 때 알림 표시
             alert('모든 필수 항목에 동의해야 결제하실 수 있습니다.');

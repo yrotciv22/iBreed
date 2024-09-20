@@ -18,26 +18,6 @@
 		SELECT * FROM calendar WHERE diary_id =  #{diary_id}
 	</select>
 	
-	 <insert id="addEvent" parameterType="com.ibreed_project.model.CalendarVO">
-        INSERT INTO calendar (CALENDAR_TITLE, CALENDAR_MEMO, CALENDAR_START, CALENDAR_END, diary_id, color)
-        VALUES (#{CALENDAR_TITLE}, #{CALENDAR_MEMO}, #{CALENDAR_START}, #{CALENDAR_END}, 1, #{color})
-    </insert>
-
-    <update id="updateEvent" parameterType="com.ibreed_project.model.CalendarVO">
-        UPDATE calendar
-        SET CALENDAR_TITLE = #{CALENDAR_TITLE},
-            CALENDAR_MEMO = #{CALENDAR_MEMO},
-            CALENDAR_START = #{CALENDAR_START},
-            CALENDAR_END = #{CALENDAR_END},
-            diary_id = #{diary_id},
-            color = #{color}
-        WHERE CALENDAR_NO = #{CALENDAR_NO}
-    </update>
-
-    <delete id="deleteEvent" parameterType="int">
-        DELETE FROM calendar WHERE CALENDAR_NO = #{CALENDAR_NO}
-    </delete>
-	
 </mapper>
     
     

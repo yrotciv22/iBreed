@@ -38,7 +38,7 @@
                             <div id="after-login" class="profile-container" style="display: none;">
                                 <div class="profile-header">
                                     <!-- 프사 없으면 기본 프사 적용 -->
-                                    <img src="${user.profileImage != null ? user.profileImage : '/image/default-profile.png'}" alt="Profile Image" class="profile-img">
+                                    <img src="${sessionScope.user_profile_image}" />
                                     <div>
                                         <p>${sessionScope.user_nickname}님</p>
                                         <p>${sessionScope.user_id}</p>
