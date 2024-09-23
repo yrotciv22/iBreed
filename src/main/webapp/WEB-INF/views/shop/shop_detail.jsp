@@ -150,7 +150,7 @@
 			<div id="midBox">
 				<div id="detailImgBox">
 					<div id="detailImg">
-						<img src="/image/detailImg.JPG">
+						<img src="${prd.product_detail_img}">
 					</div>
 					<div>
 						<input type="button" id="openBtn" value="상세정보 더보기">

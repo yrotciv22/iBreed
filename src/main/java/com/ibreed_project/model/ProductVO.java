@@ -11,6 +11,15 @@ public class ProductVO {
 	private String product_main_category;
 	private int product_sales;
 	private String product_sub_category;
+	private String product_detail_img;
+
+	public String getProduct_detail_img() {
+		return product_detail_img;
+	}
+
+	public void setProduct_detail_img(String product_detail_img) {
+		this.product_detail_img = product_detail_img;
+	}
 
 	public int getProduct_id() {
 		return product_id;
