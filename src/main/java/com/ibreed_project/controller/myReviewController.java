@@ -2,7 +2,10 @@ package com.ibreed_project.controller;
 
 import com.ibreed_project.model.OrderHistoryVO;
 import com.ibreed_project.model.ReviewVO;
+import com.ibreed_project.service.LoginService;
+import com.ibreed_project.service.MyPageService;
 import com.ibreed_project.service.MyReviewService;
+import com.ibreed_project.service.Mydiary_diaryService;
 import com.ibreed_project.service.ReviewService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,15 @@ public class myReviewController {
     @Autowired
     MyReviewService myreviewService;
 
+    @Autowired
+	private Mydiary_diaryService mydiary_diaryService;
+
+	@Autowired
+	private LoginService loginService;
+
+	@Autowired
+	private MyPageService myPageService;
+    
     @RequestMapping("mypage/review")
     public String myReview(HttpSession session, Model model){
 
@@ -37,7 +49,17 @@ public class myReviewController {
         for (OrderHistoryVO vo : historyVOS) {
             System.out.println("히스토리 불러오기 : " + vo.toString());
         }
-
+        
+        int diaryCount = mydiary_diaryService.getDiaryCount(user_id);
+		String nickName = loginService.getNickName(user_id);
+		String rating = loginService.getRating(user_id);
+		int payCount = myPageService.countPayment(user_id);
+		
+		model.addAttribute("diaryCount", diaryCount);
+		model.addAttribute("nickName", nickName);
+		model.addAttribute("rating", rating);
+		model.addAttribute("payCount", payCount);
+        
 
         model.addAttribute("list", list);
         model.addAttribute("historyVOS", historyVOS);
