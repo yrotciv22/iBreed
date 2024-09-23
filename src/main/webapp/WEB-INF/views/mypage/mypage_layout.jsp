@@ -40,7 +40,7 @@
 
 				<div class="nav_label">나의 정보 관리</div>
 
-				<a href="<c:url value=''/>"><div class="nav_menu">회원정보 수정</div></a>
+				<a href="<c:url value='/mypage/member'/>"><div class="nav_menu">회원정보 수정</div></a>
 				<a href="<c:url value=''/>"><div class="nav_menu">알림 설정</div></a>
 
 				<div class="nav_label">고객센터</div>
